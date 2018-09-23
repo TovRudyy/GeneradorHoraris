@@ -1,2 +1,2 @@
-#Tots els noms de fitxers ecrits aquí seran ignorat pel programa git. D'aquesta manera es pot ometre la gestió de material no rellevant pel projecte, com per exemple fitxers temporals o documents personals. 
+#Tots els noms de fitxers ecrits aquí seran ignorats pel programa git. D'aquesta manera es pot ometre la gestió de material no rellevant pel projecte, com per exemple fitxers temporals o documents personals. 
 #Per exemple, si en la meva carpeta de projecte tinc el fitxer "main.backup" i "hora.backup", els quals no són útils pel projecte, puc indicar a git que els ignori simplement afegint una línia amb "*.backup" en aquest fitxer. 
