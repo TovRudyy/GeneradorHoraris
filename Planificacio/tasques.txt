@@ -1,0 +1,9 @@
+Creació de les classes:
+  Olek: Pla d'estudis
+        Restricció
+  Victor: Aula
+          Filtre
+          Persistencia_lectura_dades
+  David:  Grup
+          Assignatura
+11/09/2018   
