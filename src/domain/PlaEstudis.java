@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class PlaEstudis {
     String id;  //Acrònim del Pla d'Estudis
-    ArrayList<assignatura> assignatures = new ArrayList<assignatura>(); //Assignatures pertenyents al pla d'estudis
+    ArrayList<assignatura> assignatures = new ArrayList<assignatura>(); //Assignatures pertanyents al pla d'estudis
 
     public PlaEstudis(String id) {
         this.id = id;
