@@ -2,3 +2,7 @@
 #D'aquesta manera es pot ometre la gestió de material no rellevant pel projecte, com per exemple fitxers temporals o documents personals. 
 #Per exemple, si en la meva carpeta del projecte tinc el fitxer "main.backup" i "hora.backup", 
 #els quals no són útils pel projecte, puc indicar a git que els ignori simplement afegint una línia amb "*.backup" en aquest fitxer. 
+out
+.idea
+*iml
+
