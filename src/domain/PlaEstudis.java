@@ -3,13 +3,13 @@ package domain;
 import java.util.ArrayList;
 
 /**
- * @author  Oleksandr Rudyy,
+ * @author Rudyy, Oleksandr
  * Date: 06/10/2018
  */
 
 public class PlaEstudis {
-    String id;  //Acrònim del Pla d'Estudis
-    ArrayList<assignatura> assignatures = new ArrayList<assignatura>(); //Assignatures pertanyents al pla d'estudis
+    private String id;  //Acrònim del Pla d'Estudis
+    private ArrayList<assignatura> assignatures = new ArrayList<assignatura>(); //Assignatures pertanyents al pla d'estudis
 
     public PlaEstudis(String id) {
         this.id = id;
