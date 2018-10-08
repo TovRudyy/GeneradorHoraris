@@ -3,11 +3,11 @@ package data;
 import domain.*;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.Map;
 import java.util.Scanner;
 
 public class Capa_Dades {
+    //Comentari
 
 
     private static Tipus_Aula string_to_Tipus_Aula(String s) throws Exception{
@@ -40,7 +40,7 @@ public class Capa_Dades {
             Tipus_Aula tipus = string_to_Tipus_Aula(scanner.next());
             if(tipus.equals(Tipus_Aula.LAB)){
                 Tipus_Lab t_lab = string_to_Tipus_Lab(scanner.next());
-                aules.put(codi, new Aula_Laboratori(codi, capacitat, t_lab));
+                aules.put(codi, new Laboratori(codi, capacitat, t_lab));
             }
             else{
                 aules.put(codi, new Aula(codi, capacitat, tipus));
