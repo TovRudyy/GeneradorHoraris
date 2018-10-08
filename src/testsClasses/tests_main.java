@@ -1,3 +1,5 @@
+package testsClasses;
+
 import domain.PlaEstudis;
 import java.util.Scanner;
 
