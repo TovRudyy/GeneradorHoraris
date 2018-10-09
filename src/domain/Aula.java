@@ -86,9 +86,9 @@ public class Aula {
      * @return Retorna l'Ocupació de l'Aula en forma d'horari (String) preparat per imprimir
      */
     public String ocupacioToString(){
-        StringBuilder s = new StringBuilder("             Dilluns   Dimarts   Dimecres  Dijous    Divendres\n");
+        StringBuilder s = new StringBuilder("               Dilluns  Dimarts  Dimecres Dijous   Divendres\n");
         for(int i=0; i<12; ++i){
-            s.append(i+8).append(":00 - ").append(i+9).append("00: ");
+            s.append(i+8).append(":00 - ").append(i+9).append(":00: ");
             if(i==0) s.append("  ");
             if(i==1) s.append(" ");
             for(int j=0; j<5; ++j){
@@ -107,11 +107,11 @@ public class Aula {
      * @return @true si s'ha pogut fer la reserva, @false si alguna de les hores ja estava reservada
      */
     public boolean reserva(int dia, int hora, int durant) throws Exception{
-        if(dia < 0 || dia > 5 || hora < 8 || hora > 20 || durant > 12 || (durant + hora)>20) throw new Exception();
+        if(dia < 0 || dia > 4 || hora < 8 || hora > 19 || durant > 12 || (durant + hora)>19) throw new Exception();
         for(int i=0; i<durant; ++i){
-            if(ocupacio[hora+i][dia]) return false;
+            if(ocupacio[hora+i-8][dia]) return false;
         }for(int i=0; i<durant; ++i){
-            ocupacio[hora+i][dia] = true;
+            ocupacio[hora+i-8][dia] = true;
         }
         return true;
     }
