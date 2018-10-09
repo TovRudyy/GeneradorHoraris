@@ -12,10 +12,10 @@ package domain;
  */
 public class Aula {
 
-    private String id;          //Identificador de l'Aula
-    private int capacitat;      //Capacitat de l'Aula
-    private Tipus_Aula tipus;   //Tipus d'Aula
-    private boolean[][] ocupacio;
+    private String id;              //Identificador de l'Aula
+    private int capacitat;          //Capacitat de l'Aula
+    private Tipus_Aula tipus;       //Tipus d'Aula
+    private boolean[][] ocupacio;   //Ocupacio de l'Aula (hores x dia)
 
 
     /**
