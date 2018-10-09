@@ -20,7 +20,7 @@ public class Laboratori extends Aula{
      * @throws Exception @tipus == LAB
      */
     public static Aula convert(Laboratori laboratori, Tipus_Aula tipus) throws Exception{
-        return new Aula(laboratori.getId(), laboratori.getCapacitat(), tipus );
+        return new Aula(laboratori.getId(), laboratori.getCapacitat(), tipus);
     }
 
     /**
@@ -61,6 +61,9 @@ public class Laboratori extends Aula{
         this.tipus_lab = tipus_lab;
     }
 
+    /**
+     * @return String amb les dades del Laboratori
+     */
     @Override
     public String toString() {
         return super.toString() + "Tipus de Laboratori: " + tipus_lab + "\n";

@@ -7,7 +7,6 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Capa_Dades {
-    //Comentari
 
 
     private static Tipus_Aula string_to_Tipus_Aula(String s) throws Exception{

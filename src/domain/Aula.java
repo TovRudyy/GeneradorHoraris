@@ -15,6 +15,7 @@ public class Aula {
     private String id;          //Identificador de l'Aula
     private int capacitat;      //Capacitat de l'Aula
     private Tipus_Aula tipus;   //Tipus d'Aula
+    private boolean[][] ocupacio;
 
 
     /**
@@ -28,6 +29,7 @@ public class Aula {
         this.capacitat = capacitat;
         this.tipus = tipus;
         if (tipus == Tipus_Aula.LAB && !(this instanceof Laboratori)) throw new Exception();
+        this.ocupacio = new boolean[12][5];
     }
 
     /**
@@ -73,6 +75,50 @@ public class Aula {
         this.tipus = tipus;
     }
 
+    /**
+     * @return Retorna l'Ocupació de l'Aula en forma de matriu de Booleans (true == ocupat)
+     */
+    public boolean[][] getOcupacio() {
+        return ocupacio;
+    }
+
+    /**
+     * @return Retorna l'Ocupació de l'Aula en forma d'horari (String) preparat per imprimir
+     */
+    public String ocupacioToString(){
+        StringBuilder s = new StringBuilder("             Dilluns   Dimarts   Dimecres  Dijous    Divendres\n");
+        for(int i=0; i<12; ++i){
+            s.append(i+8).append(":00 - ").append(i+9).append("00: ");
+            if(i==0) s.append("  ");
+            if(i==1) s.append(" ");
+            for(int j=0; j<5; ++j){
+                s.append((ocupacio[i][j]) ? "ocupat   " : "lliure   ");
+            }
+            s.append("\n");
+        }
+        return s.toString();
+    }
+
+    /**
+     * Reserva l'Aula durant unes hores consecutives
+     * @param dia Dia de la setmana de la reserva
+     * @param hora Hora del dia de la reserva
+     * @param durant Nombre d'hores de la reserva
+     * @return @true si s'ha pogut fer la reserva, @false si alguna de les hores ja estava reservada
+     */
+    public boolean reserva(int dia, int hora, int durant) throws Exception{
+        if(dia < 0 || dia > 5 || hora < 8 || hora > 20 || durant > 12 || (durant + hora)>20) throw new Exception();
+        for(int i=0; i<durant; ++i){
+            if(ocupacio[hora+i][dia]) return false;
+        }for(int i=0; i<durant; ++i){
+            ocupacio[hora+i][dia] = true;
+        }
+        return true;
+    }
+
+    /**
+     * @return String amb les dades de l'Aula
+     */
     @Override
     public String toString() {
         String s = "Id: " + id + "\n";
