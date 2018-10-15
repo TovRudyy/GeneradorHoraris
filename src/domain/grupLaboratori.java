@@ -12,17 +12,9 @@ public class grupLaboratori extends grup{
 
 
     /** Constructora **/
-    public grupLaboratori (String id, int capacitat, String t) {
+    public grupLaboratori (String id, int capacitat, Tipus_Lab t) {
         super (id, capacitat);
-
-        if ( t.equals ("FISICA") )
-            this.tipus = Tipus_Lab.FISICA;
-
-        else if (t.equals("INFORMATICA"))
-            this.tipus = Tipus_Lab.INFORMATICA;
-
-        else
-            this.tipus = Tipus_Lab.ELECTRONICA;
+        tipus = t;
     }
 
 
