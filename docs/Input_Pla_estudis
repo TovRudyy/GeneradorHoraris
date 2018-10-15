@@ -2,11 +2,12 @@ Nom_Pla
 ASS
     {
         codi_assignatura:nom_assignatura:nivell_assignatura:{M | T | MT}
-        GM:nombre_grups
+        GM:nombre_grups:{P | L | PL}
         {
-            nom_grup:capacitat_grup:{N:nombre_subgrups | A:alumnes_per_subgrup}:{M | T}:{P | L | PL}
+            nom_grup:capacitat_grup:{N:nombre_subgrups | A:alumnes_per_subgrup}:{M | T}
         }*nombre_grups
         GA:nombre_grups:capacitat_grup:{N:nombre_subgrups | A:alumnes_per_subgrup}:{P | L | PL}
+        hores_teoria:hores_lab:hores_problemes
     }*nombre_assignatures
 RES
     C:codi_assignatura_1:codi_assignatura_2
@@ -43,16 +44,20 @@ Fase_inicial
 ASS
 IC:Introduccio als computadors:1:M
 GA:4:60:A:20:L
+2:2:0
 FM:Fonaments matematics:1:MT
-GM:4
-10:60:N:3:M:P
-20:60:N:3:M:P
-30:60:N:3:M:P
-40:60:A:20:T:P
+GM:4:P
+10:60:N:3:M
+20:60:N:3:M
+30:60:N:3:M
+40:60:A:20:T
+2:0:2
 PRO1:Programacio 1:1:M
 GA:4:60:N:3:L
+2:2:0
 F:Fisica:1:T
 GA:4:60:A:20:L
+2:2:0
 RES
 C:IC:PRO1
 FI
