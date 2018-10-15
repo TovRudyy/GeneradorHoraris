@@ -1,0 +1,27 @@
+Nom_Pla
+ASS
+    {
+    codi_assignatura:nom_assignatura:nivell_assignatura
+    GM:nombre_grups
+    {
+        nom_grup:capacitat_grup
+        {N:nombre_subgrups | A:alumnes_per_subgrup}
+    }*nombre_grups
+    GA
+        nombre_grups:capacitat_grup
+        {N:nombre_subgrups | A:alumnes_per_subgrup}
+    }*nombre_assignatures
+RES
+    A:codi_assignatura:{M | T}
+    G:codi_assignatura:nom_grup:{M | T}
+    C:codi_assignatura_1:codi_assignatura_2
+FI
+
+GM = grups manual:  El fitxer indica el nom i la quantitat de cada grup, aixi com la quantitat de subgrups de cada un i
+                        la forma de fer els subgrups
+GA = grups auto:    El fitxer nomes indica la quantitat de grups, la capacitat d'aquests (igual per tots) i la forma de
+                        fer els subgrups. El lector s'encarrega de crear els subgrups seguint la nomenclatura estandar
+RES = Restriccions
+    A = Restriccio horari assignatura
+    G = Restriccio horari grup
+    C = Restriccio de Correquisit
