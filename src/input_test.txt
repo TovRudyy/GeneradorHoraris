@@ -1,68 +1,23 @@
-Nom_Pla
-AULES
-aula1:50:T
-aula2:40:P
-aula3:20:L:INFORMATICA
-aula4:20:L:FISICA
-ASSIGN
-codi1:IC:1
-codi2:PRO1:1
-codi3:M2:2
-codi4:EDA:3
-GRUP
-
-
-
-<PLA>
-    <NOM>FIB-GEI-Q1-2018-2019</NOM>
-    <AULA>
-        <ID>A5001</ID>
-        <CAPACITAT>80</CAPACITAT>
-        <TIPUS>T</TIPUS>
-    </AULA>
-    <AULA>
-        <ID>A5002</ID>
-        <CAPACITAT>80</CAPACITAT>
-        <TIPUS>T</TIPUS>
-    </AULA>
-    <AULA>
-        <ID>A5101</ID>
-        <CAPACITAT>20</CAPACITAT>
-        <TIPUS>P</TIPUS>
-    </AULA>
-    <AULA>
-        <ID>A5102</ID>
-        <CAPACITAT>20</CAPACITAT>
-        <TIPUS>P</TIPUS>
-    </AULA>
-    <AULA>
-        <ID>A5S102</ID>
-        <CAPACITAT>20</CAPACITAT>
-        <TIPUS>L</TIPUS>
-        <TIPUS_LAB>INFORMATICA</TIPUS_LAB>
-    </AULA>
-    <ASSIGNATURA>
-        <ID>IC</ID>
-        <NOM>Introduccio als computadors</NOM>
-        <NIVELL>1</NIVELL>
-        <GRUP>
-            <ID>1</ID>
-
-        </GRUP>
-    </ASSIGNATURA>
-    <ASSIGNATURA>
-        <ID>PRO1</ID>
-        <NOM>Programacio 1</NOM>
-        <NIVELL>1</NIVELL>
-    </ASSIGNATURA>
-    <ASSIGNATURA>
-        <ID>M2</ID>
-        <NOM>Matematiques 2</NOM>
-        <NIVELL>2</NIVELL>
-    </ASSIGNATURA>
-    <ASSIGNATURA>
-        <ID>EDA</ID>
-        <NOM>Estructura de dades i algorismes</NOM>
-        <NIVELL>3</NIVELL>
-    </ASSIGNATURA>
-</PLA>
+Pla Test
+A:IC:Introduccio als computadors:1:MT
+GM:4:L:I
+10:80:M:A:20
+20:60:M:N:3
+30:60:M:N:4
+40:80:T:A:20
+1:2:1:2:0:0
+A:FM:Fonaments matematics:1:M
+GA:4:60:A:20:P
+1:2:0:0:1:2
+A:PRO1:Programacio 1:1:M
+GA:4:60:N:3:L:I
+1:2:1:2:0:0
+C:IC:PRO1
+A:F:Fisica:1:MT
+GM:3:L:F
+10:80:M:N:4
+20:80:M:A:20
+40:80:T:N:4
+1:2:1:2:0:0
+C:F:FM
+FI

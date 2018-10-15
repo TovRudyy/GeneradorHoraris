@@ -3,8 +3,10 @@ package data;
 import domain.*;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 public class Capa_Dades {
 
@@ -17,10 +19,183 @@ public class Capa_Dades {
     }
 
     private static Tipus_Lab string_to_Tipus_Lab(String s) throws Exception{
-        if(s.equals("INFORMATICA")) return Tipus_Lab.INFORMATICA;
-        if(s.equals("FISICA")) return Tipus_Lab.FISICA;
-        if(s.equals("ELECTRONICA")) return Tipus_Lab.ELECTRONICA;
+        if(s.equals("INFORMATICA") | s.equals("I")) return Tipus_Lab.INFORMATICA;
+        if(s.equals("FISICA") | s.equals("F")) return Tipus_Lab.FISICA;
+        if(s.equals("ELECTRONICA") | s.equals("E")) return Tipus_Lab.ELECTRONICA;
         throw new Exception();
+    }
+
+    public static Map<String, Aula> LlegeixAules(String fitxer) throws Exception {
+        File file = new File(fitxer);
+        Scanner scanner = new Scanner(file);
+        scanner.useDelimiter(":|\\r\\n");
+        Map<String, Aula> aules = new HashMap<>();
+        while(scanner.hasNext()){
+            String codi = scanner.next();
+            int capacitat = scanner.nextInt();
+            Tipus_Aula tipus_aula = string_to_Tipus_Aula(scanner.next());
+            if(tipus_aula.equals(Tipus_Aula.LAB)) aules.put(codi, new Laboratori(codi, capacitat, string_to_Tipus_Lab(scanner.next())));
+            else aules.put(codi, new Aula(codi, capacitat, tipus_aula));
+        }
+        return aules;
+    }
+
+    public static void AfegeixAules(Map<String, Aula> aules, String fitxer) throws Exception{
+        aules.putAll(LlegeixAules(fitxer));
+    }
+
+    private static assignatura llegeixAssignatura(Scanner scanner) throws Exception{
+        assignatura ass = new assignatura(scanner.next(), scanner.next(), scanner.nextInt());
+        scanner.next(); //ToDO fer M T Assignatura
+        TreeMap<String, grup> grups = new TreeMap<>();
+        if(scanner.next().equals("GM")){
+            int n_grups = scanner.nextInt();
+            switch(scanner.next()){
+                case "P":
+                    for(int i=0; i<n_grups; ++i){
+                        int nom = scanner.nextInt();
+                        if(nom % 10 != 0) throw new Exception();
+                        int cap = scanner.nextInt();
+                        scanner.next(); //ToDo fer M T Grup
+                        grups.put(String.valueOf(nom), new grup(String.valueOf(nom), cap));
+                        if(scanner.next().equals("N")){
+                            int n_subs = scanner.nextInt();
+                            for(int j=1; j<=n_subs; ++j){
+                                grups.put(String.valueOf(nom+j), new grupProblemes(String.valueOf(nom+j), cap/n_subs));
+                            }
+                        }
+                        else{
+                            int n_als = scanner.nextInt();
+                            for(int j=1; j*n_als<=cap; ++j){
+                                grups.put(String.valueOf(nom+j), new grupProblemes(String.valueOf(nom+j), n_als));
+                            }
+
+                        }
+                    }
+                    break;
+                case "L":
+                    Tipus_Lab tipus_lab = string_to_Tipus_Lab(scanner.next());
+                    for(int i=0; i<n_grups; ++i){
+                        int nom = scanner.nextInt();
+                        if(nom % 10 != 0) throw new Exception();
+                        int cap = scanner.nextInt();
+                        scanner.next(); //ToDo fer M T Grup
+                        grups.put(String.valueOf(nom), new grup(String.valueOf(nom), cap));
+                        if(scanner.next().equals("N")){
+                            int n_subs = scanner.nextInt();
+                            for(int j=1; j<=n_subs; ++j){
+                                grups.put(String.valueOf(nom+j), new grupLaboratori(String.valueOf(nom+j), cap/n_subs, tipus_lab));
+                            }
+                        }
+                        else{
+                            int n_als = scanner.nextInt();
+                            for(int j=1; j*n_als<=cap; ++j){
+                                grups.put(String.valueOf(nom+j), new grupLaboratori(String.valueOf(nom+j), n_als, tipus_lab));
+                            }
+
+                        }
+                    }
+                    break;
+                case "LP":
+                case "PL":
+                    tipus_lab = string_to_Tipus_Lab(scanner.next());
+                    for(int i=0; i<n_grups; ++i){
+                        int nom = scanner.nextInt();
+                        if(nom % 10 != 0) throw new Exception();
+                        int cap = scanner.nextInt();
+                        scanner.next(); //ToDo fer M T Grup
+                        grups.put(String.valueOf(nom), new grup(String.valueOf(nom), cap));
+                        if(scanner.next().equals("N")){
+                            int n_subs = scanner.nextInt();
+                            for(int j=1; j<=n_subs; ++j){
+                                grups.put(String.valueOf(nom+j), new grupProblemes(String.valueOf(nom+j), cap/n_subs));
+                                grups.put(String.valueOf(nom+j), new grupLaboratori(String.valueOf(nom+j), cap/n_subs, tipus_lab));
+                            }
+                        }
+                        else{
+                            int n_als = scanner.nextInt();
+                            for(int j=1; j*n_als<=cap; ++j){
+                                grups.put(String.valueOf(nom+j), new grupProblemes(String.valueOf(nom+j), n_als));
+                                grups.put(String.valueOf(nom+j), new grupLaboratori(String.valueOf(nom+j), n_als, tipus_lab));
+                            }
+
+                        }
+                    }
+            }
+        }
+        else {
+            int n = scanner.nextInt();
+            int cap = scanner.nextInt();
+            for (int i = 1; i <= n; i += 1) grups.put(String.valueOf(i*10), new grup(String.valueOf(i*10), cap));
+            if (scanner.next().equals("N")) {
+                int n_subs = scanner.nextInt();
+                switch (scanner.next()) {
+                    case "P":
+                        for (int i = 1; i <= n; i++) {
+                            for (int j = 1; j < n_subs; ++j) {
+                                grups.put(String.valueOf(i*10 + j), new grupProblemes(String.valueOf(i*10 + j), cap / n_subs));
+                            }
+                        }
+                        break;
+                    case "L":
+                        Tipus_Lab tipus_lab = string_to_Tipus_Lab(scanner.next());
+                        for (int i = 1; i <= n; i++) {
+                            for (int j = 1; j < n_subs; ++j) {
+                                grups.put(String.valueOf(i*10 + j), new grupLaboratori(String.valueOf(i*10 + j), cap / n_subs, tipus_lab));
+                            }
+                        }
+                        break;
+                    case "LP":
+                    case "PL":
+                        tipus_lab = string_to_Tipus_Lab(scanner.next());
+                        for (int i = 1; i <= n; i += 1) {
+                            for (int j = 1; j < n_subs; ++j) {
+                                grups.put(String.valueOf(i*10 + j), new grupProblemes(String.valueOf(i*10 + j), cap / n_subs));
+                                grups.put(String.valueOf(i*10 + j), new grupLaboratori(String.valueOf(i*10 + j), cap / n_subs, tipus_lab));
+                            }
+                        }
+                        break;
+                }
+            } else {
+                int n_alumnes = scanner.nextInt();
+                switch (scanner.next()) {
+                    case "P":
+                        for (int i = 1; i <= n; i++) {
+                            for (int j = 1; j * n_alumnes <= cap; ++j) {
+                                grups.put(String.valueOf(i*10 + j), new grupProblemes(String.valueOf(i*10 + j), n_alumnes));
+                            }
+                        }
+                        break;
+                    case "L":
+                        Tipus_Lab tipus_lab = string_to_Tipus_Lab(scanner.next());
+                        for (int i = 1; i <= n; i++) {
+                            for (int j = 1; j * n_alumnes <= cap; ++j) {
+                                grups.put(String.valueOf(i*10 + j), new grupLaboratori(String.valueOf(i*10 + j), n_alumnes, tipus_lab));
+                            }
+                        }
+                        break;
+                    case "LP":
+                    case "PL":
+                        tipus_lab = string_to_Tipus_Lab(scanner.next());
+                        for (int i = 1; i <= n; i++) {
+                            for (int j = 1; j * n_alumnes <= cap; ++j) {
+                                grups.put(String.valueOf(i*10 + j), new grupProblemes(String.valueOf(i*10 + j), n_alumnes));
+                                grups.put(String.valueOf(i*10 + j), new grupLaboratori(String.valueOf(i*10 + j), n_alumnes, tipus_lab));
+                            }
+                        }
+                        break;
+                }
+            }
+        }
+        ass.creaGrups(grups);
+        ass.setClassesTeoria(scanner.nextInt(), scanner.nextDouble());
+        ass.setClassesLaboratori(scanner.nextInt(), scanner.nextDouble());
+        ass.setClassesProblemes(scanner.nextInt(), scanner.nextDouble());
+        return ass;
+    }
+
+    private static Corequisit llegeixCorequisit(Scanner scanner){
+        return new Corequisit(scanner.next(), scanner.next());
     }
 
     public static PlaEstudis llegeixPlaEstudis(Map<String, Aula> aules, String fitxer) throws Exception {
@@ -28,31 +203,18 @@ public class Capa_Dades {
         Scanner scanner = new Scanner(file);
         scanner.useDelimiter(":|\\r\\n");
         PlaEstudis pla = new PlaEstudis(scanner.next());
-        String codi = scanner.next();
-        if(!codi.equals("AULES")){
-            System.out.println("Format incorrecte");
-            throw new Exception();
-        }
-        codi = scanner.next();
-        while(!codi.equals("ASSIGN")){
-            int capacitat = scanner.nextInt();
-            Tipus_Aula tipus = string_to_Tipus_Aula(scanner.next());
-            if(tipus.equals(Tipus_Aula.LAB)){
-                Tipus_Lab t_lab = string_to_Tipus_Lab(scanner.next());
-                aules.put(codi, new Laboratori(codi, capacitat, t_lab));
+        String codi;
+        while(!(codi = scanner.next()).equals("FI")){
+            switch(codi){
+                case "A":
+                    pla.addAssignatura(llegeixAssignatura(scanner));
+                    break;
+                case "C":
+                    llegeixCorequisit(scanner);
+                    break;
+                default:
+                    throw new Exception();
             }
-            else{
-                aules.put(codi, new Aula(codi, capacitat, tipus));
-            }
-            codi = scanner.next();
-        }
-
-        codi = scanner.next();
-        while(!codi.equals("GRUP")){
-            String nom = scanner.next();
-            int nivell = scanner.nextInt();
-            pla.addAssignatura(new assignatura(codi, nom, nivell));
-            codi = scanner.next();
         }
         return pla;
     }
