@@ -1,0 +1,9 @@
+codi_Aula:capacitat_Aula:tipus_Aula:[tipus_Laboratori]
+
+Exemple:
+aula1:50:T
+aula2:40:P
+aula3:20:L:INFORMATICA
+aula4:20:L:FISICA
+
+ToDo Tipus d'aula i/o laboratoris predefinits o configurables
