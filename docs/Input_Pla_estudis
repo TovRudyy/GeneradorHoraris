@@ -18,6 +18,8 @@ FI
 El fitxer d'entrada no haura d'estar tabulat, l'he escrit així per a que sigui més fàcil de llegir i entendre
 Tampoc hi haura d'haver-hi claus. A sota hi ha un exemple per a que quedi clar
 En cada assignatura nomes pot haver-hi un GM/GA
+Si una assignatura no te grups de laboratoris o problemes, aleshores les hores de laboratoris o preblemes hauran
+de ser 0 respectivament
 
 M = Matins
 T = Tardes
