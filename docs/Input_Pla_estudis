@@ -1,21 +1,24 @@
 Nom_Pla
 ASS
     {
-    codi_assignatura:nom_assignatura:nivell_assignatura
-    GM:nombre_grups
-    {
-        nom_grup:capacitat_grup
-        {N:nombre_subgrups | A:alumnes_per_subgrup}
-    }*nombre_grups
-    GA
-        nombre_grups:capacitat_grup
-        {N:nombre_subgrups | A:alumnes_per_subgrup}
+        codi_assignatura:nom_assignatura:nivell_assignatura
+        GM:nombre_grups
+        {
+            nom_grup:capacitat_grup:{N:nombre_subgrups | A:alumnes_per_subgrup}
+        }*nombre_grups
+        GA:nombre_grups:capacitat_grup:{N:nombre_subgrups | A:alumnes_per_subgrup}
     }*nombre_assignatures
 RES
     A:codi_assignatura:{M | T}
     G:codi_assignatura:nom_grup:{M | T}
     C:codi_assignatura_1:codi_assignatura_2
 FI
+
+
+
+El fitxer d'entrada no haura d'estar tabulat, l'he escrit així per a que sigui més fàcil de llegir i entendre
+Tampoc hi haura d'haver-hi claus. A sota hi ha un exemple per a que quedi clar
+En cada assignatura nomes pot haver-hi un GM/GA
 
 GM = grups manual:  El fitxer indica el nom i la quantitat de cada grup, aixi com la quantitat de subgrups de cada un i
                         la forma de fer els subgrups
@@ -25,3 +28,26 @@ RES = Restriccions
     A = Restriccio horari assignatura
     G = Restriccio horari grup
     C = Restriccio de Correquisit
+
+    M = Matins
+    T = Tardes
+
+Exemple:
+
+Fase_inicial
+ASS
+IC:Introduccio als computadors:1
+GA:4:60:A:20
+FM:Fonaments matematics:1
+GM:4
+10:60:N:3
+20:60:N:3
+30:60:N:3
+40:60:A:20
+PRO1:Programacio 1:1
+GA:4:60:N:3
+F:Fisica:1
+GA:4:60:A:20
+
+
+
