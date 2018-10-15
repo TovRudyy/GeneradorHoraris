@@ -48,6 +48,13 @@ PRO1:Programacio 1:1
 GA:4:60:N:3
 F:Fisica:1
 GA:4:60:A:20
+RES
+G:IC:40:T
+G:FM:40:T
+G:PRO1:40:T
+G:F:40:T
+C:IC:PRO1
+FI
 
 
 
