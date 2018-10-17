@@ -18,7 +18,7 @@ public class test_assignatura {
         assignatura a = new assignatura(id, nom, nivell);
         System.out.println(a.getId() + " "+ a.getNom() + " " + a.getNivell());
 
-        a.setClassesLaboratori(2,0.45);
+       // a.setClassesLaboratori(2,0.45);
     }
 
 

@@ -67,6 +67,7 @@ public class Aula {
         return tipus;
     }
 
+
     /**
      * @param tipus Nou tipus de l'Aula
      */
@@ -75,12 +76,14 @@ public class Aula {
         this.tipus = tipus;
     }
 
+
     /**
      * @return Retorna l'Ocupació de l'Aula en forma de matriu de Booleans (true == ocupat)
      */
     public boolean[][] getOcupacio() {
         return ocupacio;
     }
+
 
     /**
      * @return Retorna l'Ocupació de l'Aula en forma d'horari (String) preparat per imprimir
@@ -103,7 +106,7 @@ public class Aula {
      * Reserva l'Aula durant totes les hores de la setmana
      */
     public void reservar(){
-        for(boolean[] bb : ocupacio){
+        for ( boolean[] bb : ocupacio){
             for(boolean b : bb){
                 b = true;
             }
@@ -157,12 +160,8 @@ public class Aula {
     /**
      * @return String amb les dades de l'Aula
      */
-    @Override
     public String toString() {
-        String s = "Id: " + id + "\n";
-        s += "Capacitat: " + capacitat + "\n";
-        s += "Tipus d'Aula: " + tipus + "\n";
-        return s;
+        return  (id +":" + capacitat + ":" + tipus);
     }
 }
 

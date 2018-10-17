@@ -36,4 +36,17 @@ public class grup {
     }
 
 
+
+
+    public Tipus_Aula getTipus () {
+        return Tipus_Aula.TEORIA;
+    }
+
+
+
+    public Tipus_Lab getTipusLab () {
+        return null;
+    }
+
+
 }

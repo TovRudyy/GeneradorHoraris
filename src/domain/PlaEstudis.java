@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class PlaEstudis {
     private String id;  //Acrònim del Pla d'Estudis
-    private ArrayList<assignatura> assignatures = new ArrayList<assignatura>(); //Assignatures pertanyents al pla d'estudis
+    private ArrayList<assignatura> assignatures = new ArrayList<>(); //Assignatures pertanyents al pla d'estudis
 
     public PlaEstudis(String id) {
         this.id = id;
@@ -47,6 +47,17 @@ public class PlaEstudis {
             i++;
         }
         return id_assignatures;
+    }
+
+
+    public void showAssignatures () {
+
+        for (assignatura a: assignatures) {
+            System.out.println(a.getId() + ":" + a.getNom() + ":" + a.getNivell() + "\n");
+            a.showGrups();
+            a.showClasses();
+        }
+
     }
 
 }

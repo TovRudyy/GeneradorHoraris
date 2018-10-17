@@ -21,10 +21,17 @@ public class grupLaboratori extends grup{
 
     /** Mètodes publics **/
 
+    @Override
+    public Tipus_Aula getTipus () {
+        return Tipus_Aula.LAB;
+    }
+
+
     /**
      * @return Retorna el tipus de laboratori que és.
      */
-    public Tipus_Lab getTipus () {
+    @Override
+    public Tipus_Lab getTipusLab () {
         return tipus;
     }
 

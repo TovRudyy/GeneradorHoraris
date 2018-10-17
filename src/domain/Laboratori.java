@@ -42,7 +42,7 @@ public class Laboratori extends Aula{
      * @param tipus Tipus del nou Laboratori
      * @throws Exception Mai
      */
-    public Laboratori(String id, int capacitat, Tipus_Lab tipus) throws Exception {
+    public Laboratori (String id, int capacitat, Tipus_Lab tipus) throws Exception {
         super(id, capacitat, Tipus_Aula.LAB);
         this.tipus_lab = tipus;
     }
@@ -61,11 +61,15 @@ public class Laboratori extends Aula{
         this.tipus_lab = tipus_lab;
     }
 
+
+
+
     /**
      * @return String amb les dades del Laboratori
      */
     @Override
     public String toString() {
-        return super.toString() + "Tipus de Laboratori: " + tipus_lab + "\n";
+        String s = super.toString() + ":" + tipus_lab;
+        return s;
     }
 }

@@ -15,21 +15,23 @@ public class Capa_Dades {
         if(s.equals("T")) return Tipus_Aula.TEORIA;
         if(s.equals("L")) return Tipus_Aula.LAB;
         if(s.equals("P")) return Tipus_Aula.PROBLEMES;
-        throw new Exception();
+        throw new Exception("format aula incorrecte");
     }
 
     private static Tipus_Lab string_to_Tipus_Lab(String s) throws Exception{
         if(s.equals("INFORMATICA") | s.equals("I")) return Tipus_Lab.INFORMATICA;
         if(s.equals("FISICA") | s.equals("F")) return Tipus_Lab.FISICA;
         if(s.equals("ELECTRONICA") | s.equals("E")) return Tipus_Lab.ELECTRONICA;
-        throw new Exception();
+        throw new Exception("Format d'entrada del tipus lab incorrecte");
     }
 
-    public static Map<String, Aula> LlegeixAules(String fitxer) throws Exception {
+
+    public static Map<String, Aula> llegeixAules(String fitxer) throws Exception {
         File file = new File(fitxer);
         Scanner scanner = new Scanner(file);
-        scanner.useDelimiter(":|\\r\\n");
+        scanner.useDelimiter("\n|:|\\r\\n");
         Map<String, Aula> aules = new HashMap<>();
+
         while(scanner.hasNext()){
             String codi = scanner.next();
             int capacitat = scanner.nextInt();
@@ -37,12 +39,10 @@ public class Capa_Dades {
             if(tipus_aula.equals(Tipus_Aula.LAB)) aules.put(codi, new Laboratori(codi, capacitat, string_to_Tipus_Lab(scanner.next())));
             else aules.put(codi, new Aula(codi, capacitat, tipus_aula));
         }
+
         return aules;
     }
 
-    public static void AfegeixAules(Map<String, Aula> aules, String fitxer) throws Exception{
-        aules.putAll(LlegeixAules(fitxer));
-    }
 
     private static assignatura llegeixAssignatura(Scanner scanner) throws Exception{
         assignatura ass = new assignatura(scanner.next(), scanner.next(), scanner.nextInt());
@@ -54,7 +54,7 @@ public class Capa_Dades {
                 case "P":
                     for(int i=0; i<n_grups; ++i){
                         int nom = scanner.nextInt();
-                        if(nom % 10 != 0) throw new Exception();
+                        if(nom % 10 != 0) throw new Exception();    //comprovem que tingui format de grup de teoria
                         int cap = scanner.nextInt();
                         scanner.next(); //ToDo fer M T Grup
                         grups.put(String.valueOf(nom), new grup(String.valueOf(nom), cap));
@@ -73,11 +73,12 @@ public class Capa_Dades {
                         }
                     }
                     break;
+
                 case "L":
                     Tipus_Lab tipus_lab = string_to_Tipus_Lab(scanner.next());
-                    for(int i=0; i<n_grups; ++i){
+                    for(int i=0; i < n_grups; ++i){
                         int nom = scanner.nextInt();
-                        if(nom % 10 != 0) throw new Exception();
+                        if(nom % 10 != 0) throw new Exception("no grup teoria");
                         int cap = scanner.nextInt();
                         scanner.next(); //ToDo fer M T Grup
                         grups.put(String.valueOf(nom), new grup(String.valueOf(nom), cap));
@@ -101,7 +102,7 @@ public class Capa_Dades {
                     tipus_lab = string_to_Tipus_Lab(scanner.next());
                     for(int i=0; i<n_grups; ++i){
                         int nom = scanner.nextInt();
-                        if(nom % 10 != 0) throw new Exception();
+                        if(nom % 10 != 0) throw new Exception("no grup teoria");
                         int cap = scanner.nextInt();
                         scanner.next(); //ToDo fer M T Grup
                         grups.put(String.valueOf(nom), new grup(String.valueOf(nom), cap));
@@ -188,20 +189,22 @@ public class Capa_Dades {
             }
         }
         ass.creaGrups(grups);
-        ass.setClassesTeoria(scanner.nextInt(), scanner.nextDouble());
-        ass.setClassesLaboratori(scanner.nextInt(), scanner.nextDouble());
-        ass.setClassesProblemes(scanner.nextInt(), scanner.nextDouble());
+        ass.setClasses(scanner.nextInt(), scanner.nextDouble(), scanner.nextInt(), scanner.nextDouble(), scanner.nextInt(), scanner.nextDouble());
         return ass;
     }
+
+
 
     private static Corequisit llegeixCorequisit(Scanner scanner){
         return new Corequisit(scanner.next(), scanner.next());
     }
 
-    public static PlaEstudis llegeixPlaEstudis(Map<String, Aula> aules, String fitxer) throws Exception {
+
+
+    public static PlaEstudis llegeixPlaEstudis(String fitxer) throws Exception {
         File file = new File(fitxer);
         Scanner scanner = new Scanner(file);
-        scanner.useDelimiter(":|\\r\\n");
+        scanner.useDelimiter("\n|:|\\r\\n");
         PlaEstudis pla = new PlaEstudis(scanner.next());
         String codi;
         while(!(codi = scanner.next()).equals("FI")){
@@ -213,7 +216,7 @@ public class Capa_Dades {
                     llegeixCorequisit(scanner);
                     break;
                 default:
-                    throw new Exception();
+                    throw new Exception("codi incorrecte");
             }
         }
         return pla;

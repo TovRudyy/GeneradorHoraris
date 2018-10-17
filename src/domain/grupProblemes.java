@@ -12,4 +12,9 @@ public class grupProblemes extends grup {
         super (id, capacitat);
     }
 
+    @Override
+    public Tipus_Aula getTipus() {
+        return Tipus_Aula.PROBLEMES;
+    }
+
 }

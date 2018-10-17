@@ -18,14 +18,8 @@ public class assignatura {
     private int nivell;  //potser caldria que fós una string????
 
     //numero i duració de classes
-    private int classes_teoria;
-    private double duracio_teoria;
-
-    private int classes_problemes;
-    private double duracio_problemes;
-
-    private int classes_laboratori;
-    private double duracio_laboratori;
+    private int classes_teoria, classes_problemes, classes_laboratori;
+    private double duracio_teoria, duracio_problemes, duracio_laboratori;
 
 
     //mapa en el que guardem els diferents grups de la assignatura. Tots els de teoria i problemes es guarden junts.
@@ -85,36 +79,44 @@ public class assignatura {
     }
 
 
+
     /**
      * El sistema modificarà el nombre i la durada de les classes de teoria.
-     * @param numeroClasses
-     * @param duradaClasse
+     * @param nTeoria
+     * @param dTeoria
+     * @param nProblemes
+     * @param dProblemes
+     * @param nLaboratori
+     * @param dLaboratori
      */
-    public void setClassesTeoria (int numeroClasses, double duradaClasse) {
-        classes_teoria = numeroClasses;
-        duracio_teoria = duradaClasse;
+    public void setClasses (int nTeoria, double dTeoria, int nProblemes, double dProblemes, int nLaboratori, double dLaboratori) {
+        classes_teoria = nTeoria;
+        duracio_teoria = dTeoria;
+        classes_problemes = nProblemes;
+        duracio_problemes = dProblemes;
+        classes_laboratori = nLaboratori;
+        duracio_laboratori = dLaboratori;
     }
 
 
-    /**
-     * El sistema modificarà el nombre i la durada de les classes de laboratori.
-     * @param numeroClasses
-     * @param duradaClasse
-     */
-    public void setClassesLaboratori (int numeroClasses, double duradaClasse) {
-        classes_laboratori = numeroClasses;
-        duracio_laboratori = duradaClasse;
+
+    public void showClasses () {
+        System.out.println(classes_teoria + ":" + duracio_teoria + ":" + classes_problemes + ":" + duracio_problemes
+                + ":" + classes_laboratori + ":" + duracio_laboratori + "\n");
     }
 
 
-    /**
-     * El sistema modificarà el nombre i la durada de les classes de problemes.
-     * @param numeroClasses
-     * @param duradaClasse
-     */
-    public void setClassesProblemes (int numeroClasses, double duradaClasse) {
-        classes_problemes = numeroClasses;
-        duracio_problemes = duradaClasse;
+
+    public void showGrups () {
+
+        for (Map.Entry<String, grup> a : grups.entrySet()) {
+            grup b = a.getValue();
+            Tipus_Aula t = b.getTipus();
+
+            if (t.equals(Tipus_Aula.LAB)) System.out.println(b.getId() + ":" + b.getCapacitat() + ":" + t + ":" + b.getTipusLab());
+            else System.out.println(b.getId() + ":" + b.getCapacitat() + ":" + t);
+        }
+
     }
 
 
