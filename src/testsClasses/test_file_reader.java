@@ -20,7 +20,7 @@ public class test_file_reader {
         Map<String, Aula> aules = new HashMap<>();
         PlaEstudis plaEstudis;
         try{
-            plaEstudis = Capa_Dades.llegeixPlaEstudis ("/home/alumne/IdeaProjects/GeneradorHoraris/src/input_test.txt");
+            plaEstudis = Capa_Dades.llegeixPlaEstudis ("C:\\Users\\victo\\IdeaProjects\\GeneradorHoraris\\data\\PlaEstudis\\input_test.txt");
         }catch(FileNotFoundException fnfo){
             System.out.println("No existeix el fitxer");
             return;
@@ -32,7 +32,7 @@ public class test_file_reader {
 
 
         try{
-            aules = Capa_Dades.llegeixAules ("/home/alumne/IdeaProjects/GeneradorHoraris/src/input_aules.txt");
+            aules = Capa_Dades.llegeixAules ("C:\\Users\\victo\\IdeaProjects\\GeneradorHoraris\\data\\Aules\\input_aules.txt");
         }catch(FileNotFoundException fnfo){
             System.out.println("No existeix el fitxer");
             return;
