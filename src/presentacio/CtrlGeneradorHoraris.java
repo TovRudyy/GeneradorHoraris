@@ -5,6 +5,7 @@ import domain.PlaEstudis;
 
 import static data.Capa_Dades.*;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.io.File;
 import java.util.ArrayList;
@@ -13,9 +14,9 @@ import java.util.Scanner;
 public class CtrlGeneradorHoraris {
     private static final ArrayList<PlaEstudis> plansEstudis = new ArrayList<PlaEstudis>();
     private static final ArrayList<Map> aularis = new ArrayList<>();
-    private static final Map<String, Aula> aules = null;
+    private static final Map<String, Aula> aules = new HashMap<>();
 
-    private static final String welcome_msg = "Generador d'Horaris sGE. Ministeri d'Energia de Kazakstan |*|*|*|";
+    private static final String welcome_msg = "####################################\nGenerador d'Horaris sGE. Ministeri d'Energia de Kazakstan |*|*|*|\n####################################";
 
     public void initialize() throws Exception {
         initializePlaEstudis();
@@ -27,29 +28,51 @@ public class CtrlGeneradorHoraris {
         int action = -1;
         System.out.println(welcome_msg);
         while (true) {
+            System.out.print("\n");
             printActions();
             action = read_command();
-            System.out.println("Your action number is " + action);
+            System.out.println("Your action number is " +action+"\n");
+            switch (action) {
+                case 01:
+                    printAules();
+                    break;
+                case 02:
+                    printPlaEstudis();
+                    break;
+                case -1:
+                    System.out.println("Unkwnonwn command");
+                    break;
+                default: System.out.println("Error");
+            }
+        }
+    }
+
+    private void printAules() {
+        for (Aula entry : aules.values()) {
+            System.out.print(entry.getId()+" ");
+        }
+        System.out.println("");
+    }
+
+    private void printPlaEstudis() {
+        for (PlaEstudis entry : plansEstudis) {
+            System.out.println(entry.getID());
         }
     }
 
     private int read_command() {
         int action = -1;
         Scanner reader = new Scanner(System.in);
-        String cmd = reader.next();
+        String cmd;
+        while ((cmd= reader.nextLine()).equals(""));
+
         switch (cmd) {
-            case "show":
-                cmd = reader.next();
-                switch (cmd) {
-                    case "aules":
-                        action = 01;
-                        break;
-
-                    case "plans":
-                        action = 02;
-                        break;
-                }
-
+            case "show aules":
+                action = 01;
+                break;
+            case "show plans":
+                action = 02;
+                break;
             default:
                 action = -1;
                 break;
@@ -58,7 +81,7 @@ public class CtrlGeneradorHoraris {
     }
 
     private void printActions() {
-        System.out.println("Pots executar:\n Consultar Aules (show aules)\n Consultar pla Estudis (show plans)");
+        System.out.println("Pots executar:\n - Consultar Aules (show aules)\n - Consultar pla Estudis (show plans)");
     }
 
     private void initializePlaEstudis() throws Exception {
