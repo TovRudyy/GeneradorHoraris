@@ -2,3 +2,7 @@ aula1:50:T
 aula2:40:P
 aula3:20:L:INFORMATICA
 aula4:20:L:FISICA
+aula5:80:T
+aula6:20:LAB:E
+aula7:30:PROBLEMES
+aula8:80:LABORATORI:F

@@ -5,7 +5,7 @@ import domain.PlaEstudis;
 import persistencia.Lector_Aules;
 import persistencia.Lector_Pla;
 
-import java.util.HashMap;
+import java.util.TreeMap;
 import java.util.Map;
 import java.io.File;
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ import java.util.Scanner;
 public class CtrlGeneradorHoraris {
     private static final ArrayList<PlaEstudis> plansEstudis = new ArrayList<PlaEstudis>();
     private static final ArrayList<Map> aularis = new ArrayList<>();
-    private static final Map<String, Aula> aules = new HashMap<>();
+    private static final Map<String, Aula> aules = new TreeMap<>();
 
     private static final String welcome_msg = "####################################\nGenerador d'Horaris sGE. Ministeri d'Energia de Kazakstan |*|*|*|\n####################################";
 
