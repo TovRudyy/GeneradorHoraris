@@ -2,14 +2,15 @@ package presentacio;
 
 import domain.Aula;
 import domain.PlaEstudis;
-
-import static data.Capa_Dades.*;
+import persistencia.Lector_Aules;
+import persistencia.Lector_Pla;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
+
 
 public class CtrlGeneradorHoraris {
     private static final ArrayList<PlaEstudis> plansEstudis = new ArrayList<PlaEstudis>();
@@ -93,7 +94,7 @@ public class CtrlGeneradorHoraris {
         File[] PEs = PEfolder.listFiles();
         for (File pe_file : PEs) {
             System.out.println("The following PlaEstudis file is being readed: " + "'" + PEfolder.getAbsolutePath());
-            PlaEstudis pe_aux = llegeixPlaEstudis(pe_file.getAbsolutePath());
+            PlaEstudis pe_aux = Lector_Pla.llegeixPlaEstudis(pe_file.getAbsolutePath());
             if (!plansEstudis.add(pe_aux)) {
                 throw new Exception("Cannot read '" + pe_file.getName() + "' file");
             }
@@ -109,7 +110,7 @@ public class CtrlGeneradorHoraris {
         File[] Aules = AUfolder.listFiles();
         for (File au_file : Aules) {
             System.out.println("The following Aules file is being readed: " + "'" + AUfolder.getAbsolutePath());
-            Map<String, Aula> aula_aux = llegeixAules(au_file.getAbsolutePath());
+            Map<String, Aula> aula_aux = Lector_Aules.llegeixAules(au_file.getAbsolutePath());
             if (!aularis.add(aula_aux)) {
                 throw new Exception("Cannot read '" + au_file.getName() + "' file");
             }
