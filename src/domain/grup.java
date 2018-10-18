@@ -1,5 +1,7 @@
 package domain;
 
+import domain.GrupConcret;
+
 /**
  * @author David Pujol,
  * Date: 07/10/18
@@ -7,13 +9,13 @@ package domain;
 
 public class grup {
     /** Atributs **/
-    private String id; //identificador de l'aula
+    private String idGrup; //identificador de l'aula
     private int capacitat;  //capacitat de l'aula
 
 
     /** Constructores **/
-    public grup (String id, int capacitat) {
-        this.id = id;
+    public grup (String idGrup, int capacitat) {
+        this.idGrup = idGrup;
         this.capacitat = capacitat;
     }
 
@@ -24,7 +26,7 @@ public class grup {
      * @return Retorna el id del grup.
      */
     public String getId () {
-        return id;
+        return idGrup;
     }
 
 
@@ -37,7 +39,6 @@ public class grup {
 
 
 
-
     public Tipus_Aula getTipus () {
         return Tipus_Aula.TEORIA;
     }
@@ -47,6 +48,5 @@ public class grup {
     public Tipus_Lab getTipusLab () {
         return null;
     }
-
 
 }

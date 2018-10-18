@@ -2,7 +2,7 @@ package domain;
 
 import java.util.Map;
 import java.util.TreeMap;
-
+import java.util.ArrayList;
 
 /**
  * @author David Pujol,
@@ -18,8 +18,12 @@ public class assignatura {
     private int nivell;  //potser caldria que fós una string????
 
     //numero i duració de classes
-    private int classes_teoria, classes_problemes, classes_laboratori;
-    private double duracio_teoria, duracio_problemes, duracio_laboratori;
+    private int classes_teoria = 0;
+    private int classes_problemes = 0;
+    private int classes_laboratori = 0;
+    private double duracio_teoria = 0;
+    private double duracio_problemes = 0;
+    private double duracio_laboratori = 0;
 
 
     //mapa en el que guardem els diferents grups de la assignatura. Tots els de teoria i problemes es guarden junts.
@@ -31,15 +35,6 @@ public class assignatura {
         this.id = id;
         this.nom = nom;
         this.nivell = nivell;
-
-        classes_teoria = 0;
-        duracio_teoria = 0;
-
-        classes_problemes = 0;
-        duracio_problemes = 0;
-
-        classes_laboratori = 0;
-        duracio_laboratori = 0;
     }
 
 
@@ -135,11 +130,11 @@ public class assignatura {
 
         grup grupTeoria; //anirà contenint el id del grup de teoria tractat
 
-        for (Map.Entry<String, grup> GrupConcret : grups.entrySet()) {
-            String key = GrupConcret.getKey();
+        for (Map.Entry<String, grup> g : grups.entrySet()) {
+            String key = g.getKey();
             char last = key.charAt (key.length() -1);
             //ES DE TEORIA
-            if (last == '0') grupTeoria = GrupConcret.getValue();
+            if (last == '0') grupTeoria = g.getValue();
 
             else {
                 //funcio per afegir la restricció perquè no es solapin el grup de teoria i el subgrup
@@ -149,6 +144,30 @@ public class assignatura {
         }
 
     }
+
+
+
+    public ArrayList<GrupConcret> getAllGrupConcret () {
+        ArrayList <GrupConcret> result = new ArrayList<>();
+
+        for (Map.Entry<String, grup> g_aux : grups.entrySet()) {
+            grup g = g_aux.getValue();
+            GrupConcret a;
+            if (g.getTipus() == Tipus_Aula.LAB)
+                a = new GrupConcret(g.getId(), g.getCapacitat(), g.getTipus(),g.getTipusLab(), id, nivell);
+
+            else
+                a = new GrupConcret(g.getId(), g.getCapacitat(), g.getTipus(),id, nivell);
+
+
+            a.setClasses(classes_teoria, duracio_teoria, classes_problemes, duracio_problemes, classes_laboratori, duracio_laboratori);
+            result.add(a);
+        }
+
+        return result;
+
+    }
+
 
 
 }

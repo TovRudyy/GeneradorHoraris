@@ -56,6 +56,7 @@ public class PlaEstudis {
             System.out.println(a.getId() + ":" + a.getNom() + ":" + a.getNivell() + "\n");
             a.showGrups();
             a.showClasses();
+            a.getAllGrupConcret();
         }
 
     }
