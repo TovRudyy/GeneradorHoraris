@@ -13,6 +13,11 @@ import java.util.TreeMap;
 public class Lector_Aules {
 
     private static ArrayList<Map<String, Aula>> aularis = new ArrayList<Map<String, Aula>>();
+    private static Map<String, Aula> aules_dades = new TreeMap<>();
+
+    public static Map<String, Aula> getAules() {
+        return aules_dades;
+    }
 
     public static Map<String, Aula> llegeixAules(String fitxer) throws Exception {
         File file = new File(fitxer);
@@ -27,11 +32,13 @@ public class Lector_Aules {
             if(tipus_aula.equals(Tipus_Aula.LAB)) aules.put(codi, new Laboratori(codi, capacitat, Capa_Dades.string_to_Tipus_Lab(scanner.next())));
             else aules.put(codi, new Aula(codi, capacitat, tipus_aula));
         }
+        aules_dades.putAll(aules);
         return aules;
     }
 
     public static void afegeixAules(Map<String, Aula> aules, String fitxer) throws Exception {
         aules.putAll(llegeixAules(fitxer));
+
     }
 
     public static Map<String, Aula> readFolderAules() throws Exception {
