@@ -3,6 +3,7 @@ package persistencia;
 import domain.*;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.TreeMap;
 
@@ -118,6 +119,24 @@ public class Lector_Pla {
             }
         }
         return pla;
+    }
+
+    public static ArrayList<PlaEstudis> readFolderPlaEstudis() throws Exception {
+        File PEfolder = new File("data/PlaEstudis");
+        if (!PEfolder.isDirectory()) {
+            throw new Exception("Error with data/PlaEstudis folder!");
+        }
+
+        ArrayList<PlaEstudis> plansEstudis = new ArrayList<PlaEstudis>();
+        File[] PEs = PEfolder.listFiles();
+        for (File pe_file : PEs) {
+            System.out.println("The following PlaEstudis file is being readed: " + "'" + PEfolder.getAbsolutePath());
+            PlaEstudis pe_aux = llegeixPlaEstudis(pe_file.getAbsolutePath());
+            if (!plansEstudis.add(pe_aux)) {
+                throw new Exception("Cannot read '" + pe_file.getName() + "' file");
+            }
+        }
+        return plansEstudis;
     }
 
 }
