@@ -147,19 +147,19 @@ public class assignatura {
 
 
 
-    public ArrayList<GrupConcret> getAllGrupConcret () {
-        ArrayList <GrupConcret> result = new ArrayList<>();
+    public ArrayList<assignacio> getAllGrupConcret () {
+        ArrayList <assignacio> result = new ArrayList<>();
 
         for (Map.Entry<String, grup> g_aux : grups.entrySet()) {
             grup g = g_aux.getValue();
-            GrupConcret a;
+            assignacio a;
             if (g.getTipus() == Tipus_Aula.LAB)
-                a = new GrupConcret(g.getId(), g.getCapacitat(), g.getTipus(),g.getTipusLab(), id, nivell, classes_laboratori, duracio_laboratori,g.getHorariAssig());
+                a = new assignacio(g.getId(), g.getCapacitat(), g.getTipus(),g.getTipusLab(), id, nivell, classes_laboratori, duracio_laboratori,g.getHorariAssig());
 
             else if (g.getTipus() == Tipus_Aula.TEORIA)
-                a = new GrupConcret(g.getId(), g.getCapacitat(), g.getTipus(),id, nivell, classes_teoria, duracio_teoria, g.getHorariAssig());
+                a = new assignacio(g.getId(), g.getCapacitat(), g.getTipus(),id, nivell, classes_teoria, duracio_teoria, g.getHorariAssig());
 
-            else a = new GrupConcret(g.getId(), g.getCapacitat(), g.getTipus(),id, nivell, classes_problemes, duracio_problemes, g.getHorariAssig());
+            else a = new assignacio(g.getId(), g.getCapacitat(), g.getTipus(),id, nivell, classes_problemes, duracio_problemes, g.getHorariAssig());
 
 
             result.add(a);
