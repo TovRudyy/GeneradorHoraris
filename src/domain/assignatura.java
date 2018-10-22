@@ -138,7 +138,7 @@ public class assignatura {
 
             else {
                 //funcio per afegir la restricció perquè no es solapin el grup de teoria i el subgrup
-                //afegirRestriccio (grupTeoria, GrupConcret.getValue());
+                //afegirRestriccio (grupTeoria, Assignacio.getValue());
             }
 
         }
@@ -147,17 +147,17 @@ public class assignatura {
 
 
 
-    public ArrayList<GrupConcret> getAllGrupConcret () {
-        ArrayList <GrupConcret> result = new ArrayList<>();
+    public ArrayList<Assignacio> getAllGrupConcret () {
+        ArrayList <Assignacio> result = new ArrayList<>();
 
         for (Map.Entry<String, grup> g_aux : grups.entrySet()) {
             grup g = g_aux.getValue();
-            GrupConcret a;
+            Assignacio a;
             if (g.getTipus() == Tipus_Aula.LAB)
-                a = new GrupConcret(g.getId(), g.getCapacitat(), g.getTipus(),g.getTipusLab(), id, nivell);
+                a = new Assignacio(g.getId(), g.getCapacitat(), g.getTipus(),g.getTipusLab(), id, nivell);
 
             else
-                a = new GrupConcret(g.getId(), g.getCapacitat(), g.getTipus(),id, nivell);
+                a = new Assignacio(g.getId(), g.getCapacitat(), g.getTipus(),id, nivell);
 
 
             a.setClasses(classes_teoria, duracio_teoria, classes_problemes, duracio_problemes, classes_laboratori, duracio_laboratori);

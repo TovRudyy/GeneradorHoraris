@@ -11,7 +11,7 @@ import java.util.Map;
  * @Author: David
  */
 
-public class GrupConcret {
+public class Assignacio {
 
     /** Atributs **/
     private String idGrup, idAssig;
@@ -30,7 +30,7 @@ public class GrupConcret {
 
 
     /** Constructors **/
-    public GrupConcret (String idGrup, int cap, Tipus_Aula tAula, String idAssig, int nivellAssig) {
+    public Assignacio(String idGrup, int cap, Tipus_Aula tAula, String idAssig, int nivellAssig) {
         this.idGrup = idGrup;
         this.capacitat = cap;
         this.tAula = tAula;
@@ -41,7 +41,7 @@ public class GrupConcret {
         this.possibles_classes = generaPossiblesClasses();
     }
 
-    public GrupConcret (String idGrup, int cap, Tipus_Aula tAula, Tipus_Lab tLab, String idAssig, int nivellAssig) {
+    public Assignacio(String idGrup, int cap, Tipus_Aula tAula, Tipus_Lab tLab, String idAssig, int nivellAssig) {
         this.idGrup = idGrup;
         this.capacitat = cap;
         this.tAula = tAula;

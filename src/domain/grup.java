@@ -1,7 +1,5 @@
 package domain;
 
-import domain.GrupConcret;
-
 /**
  * @author David Pujol,
  * Date: 07/10/18
