@@ -23,7 +23,7 @@ public class test_grupLaboratori {
         else if(s.equals("FISICA") | s.equals("F")) tipus =  Tipus_Lab.FISICA;
         else tipus = Tipus_Lab.ELECTRONICA;
 
-        grupLaboratori g = new grupLaboratori (id, capacitat, tipus);
+        grupLaboratori g = new grupLaboratori (id, capacitat, "M", tipus);
         System.out.println (g.getTipus());
 
     }

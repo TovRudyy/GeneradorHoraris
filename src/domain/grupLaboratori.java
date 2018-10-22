@@ -12,8 +12,8 @@ public class grupLaboratori extends grup{
 
 
     /** Constructora **/
-    public grupLaboratori (String id, int capacitat, Tipus_Lab t) {
-        super (id, capacitat);
+    public grupLaboratori (String id, int capacitat, String horariGrup, Tipus_Lab t) {
+        super (id, capacitat, horariGrup);
         tipus = t;
     }
 
@@ -35,4 +35,7 @@ public class grupLaboratori extends grup{
         return tipus;
     }
 
+
+
 }
+

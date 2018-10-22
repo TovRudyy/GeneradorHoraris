@@ -12,9 +12,11 @@ public class Lector_Pla {
 
     private static assignatura llegeixAssignatura(Scanner scanner) throws Exception{
         assignatura ass = new assignatura(scanner.next(), scanner.next(), scanner.nextInt());
-        scanner.next(); //ToDO fer M T Assignatura
+
+        String horariAssignatura = scanner.next();
+
         TreeMap<String, grup> grups = new TreeMap<>();
-        if(scanner.next().equals("GM")){
+        if(scanner.next().equals("GM")){    //generem manualment
             int n_grups = scanner.nextInt();
             boolean lab=false, prob=false;
             switch(scanner.next()){
@@ -31,24 +33,29 @@ public class Lector_Pla {
             }
 
             Tipus_Lab tipus_lab = (lab)? Capa_Dades.string_to_Tipus_Lab(scanner.next()) : null;
+
             for(int i=0; i<n_grups; ++i){
                 int nom = scanner.nextInt();
                 if(nom % 10 != 0) throw new Exception();    //comprovem que tingui format de grup de teoria
                 int cap = scanner.nextInt();
-                scanner.next(); //ToDo fer M T Grup
-                grups.put(String.valueOf(nom), new grup(String.valueOf(nom), cap));
+
+                //llegim si el grup és de matins o de tardes
+                String horariGrup = scanner.next();
+
+
+                grups.put(String.valueOf(nom), new grup(String.valueOf(nom), cap, horariGrup));
                 if(scanner.next().equals("N")){
                     int n_subs = scanner.nextInt();
                     for(int j=1; j<=n_subs; ++j){
-                        if(prob) grups.put(String.valueOf(nom+j), new grupProblemes(String.valueOf(nom+j), cap/n_subs));
-                        if(lab) grups.put(String.valueOf(nom+j), new grupLaboratori(String.valueOf(nom+j), cap/n_subs, tipus_lab));
+                        if(prob) grups.put(String.valueOf(nom+j), new grupProblemes(String.valueOf(nom+j), cap/n_subs, horariGrup));
+                        if(lab) grups.put(String.valueOf(nom+j), new grupLaboratori(String.valueOf(nom+j), cap/n_subs, horariGrup, tipus_lab));
                     }
                 }
                 else{
                     int n_als = scanner.nextInt();
                     for(int j=1; j*n_als<=cap; ++j){
-                        if(prob) grups.put(String.valueOf(nom+j), new grupProblemes(String.valueOf(nom+j), n_als));
-                        if(lab) grups.put(String.valueOf(nom+j), new grupLaboratori(String.valueOf(nom+j), n_als, tipus_lab));
+                        if(prob) grups.put(String.valueOf(nom+j), new grupProblemes(String.valueOf(nom+j), n_als, horariGrup));
+                        if(lab) grups.put(String.valueOf(nom+j), new grupLaboratori(String.valueOf(nom+j), n_als, horariGrup, tipus_lab));
                     }
 
                 }
@@ -57,7 +64,7 @@ public class Lector_Pla {
         else {
             int n = scanner.nextInt();
             int cap = scanner.nextInt();
-            for (int i = 1; i <= n; i += 1) grups.put(String.valueOf(i*10), new grup(String.valueOf(i*10), cap));
+            for (int i = 1; i <= n; i += 1) grups.put(String.valueOf(i*10), new grup(String.valueOf(i*10), cap, horariAssignatura));
             String metode = scanner.next();
             int n_auto = scanner.nextInt();
             boolean lab=false, prob=false;
@@ -77,15 +84,15 @@ public class Lector_Pla {
             if(metode.equals("N")) {
                 for (int i = 1; i <= n; i += 1) {
                     for (int j = 1; j <= n_auto; ++j) {
-                        if(prob) grups.put(String.valueOf(i * 10 + j), new grupProblemes(String.valueOf(i * 10 + j), cap / n_auto));
-                        if(lab) grups.put(String.valueOf(i * 10 + j), new grupLaboratori(String.valueOf(i * 10 + j), cap / n_auto, tipus_lab));
+                        if(prob) grups.put(String.valueOf(i * 10 + j), new grupProblemes(String.valueOf(i * 10 + j), cap / n_auto, horariAssignatura));
+                        if(lab) grups.put(String.valueOf(i * 10 + j), new grupLaboratori(String.valueOf(i * 10 + j), cap / n_auto, horariAssignatura, tipus_lab));
                     }
                 }
             } else {
                 for (int i = 1; i <= n; i++) {
                     for (int j = 1; j * n_auto <= cap; ++j) {
-                        if(prob) grups.put(String.valueOf(i * 10 + j), new grupProblemes(String.valueOf(i * 10 + j), n_auto));
-                        if(lab) grups.put(String.valueOf(i * 10 + j), new grupLaboratori(String.valueOf(i * 10 + j), n_auto, tipus_lab));
+                        if(prob) grups.put(String.valueOf(i * 10 + j), new grupProblemes(String.valueOf(i * 10 + j), n_auto, horariAssignatura));
+                        if(lab) grups.put(String.valueOf(i * 10 + j), new grupLaboratori(String.valueOf(i * 10 + j), n_auto, horariAssignatura, tipus_lab));
                     }
                 }
             }
@@ -118,6 +125,7 @@ public class Lector_Pla {
                 default:
                     throw new Exception("codi incorrecte");
             }
+
         }
         return pla;
     }

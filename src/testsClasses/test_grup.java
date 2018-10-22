@@ -14,7 +14,7 @@ public class test_grup {
         id = keyboard.nextLine();
         capacitat = keyboard.nextInt();
 
-        grup a = new grup(id, capacitat);
+        grup a = new grup(id, capacitat, "M");
         System.out.println(a.getId() +" "+  a.getCapacitat());
         System.out.println (a.getCapacitat());
     }

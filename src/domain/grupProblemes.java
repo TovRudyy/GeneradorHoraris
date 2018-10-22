@@ -8,8 +8,8 @@ package domain;
 public class grupProblemes extends grup {
 
     /** Constructores **/
-    public grupProblemes (String id, int capacitat) {
-        super (id, capacitat);
+    public grupProblemes (String id, int capacitat, String horariGrup) {
+        super (id, capacitat, horariGrup);
     }
 
     @Override

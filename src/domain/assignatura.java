@@ -154,12 +154,12 @@ public class assignatura {
             grup g = g_aux.getValue();
             GrupConcret a;
             if (g.getTipus() == Tipus_Aula.LAB)
-                a = new GrupConcret(g.getId(), g.getCapacitat(), g.getTipus(),g.getTipusLab(), id, nivell, classes_laboratori, duracio_laboratori);
+                a = new GrupConcret(g.getId(), g.getCapacitat(), g.getTipus(),g.getTipusLab(), id, nivell, classes_laboratori, duracio_laboratori,g.getHorariAssig());
 
             else if (g.getTipus() == Tipus_Aula.TEORIA)
-                a = new GrupConcret(g.getId(), g.getCapacitat(), g.getTipus(),id, nivell, classes_teoria, duracio_teoria);
+                a = new GrupConcret(g.getId(), g.getCapacitat(), g.getTipus(),id, nivell, classes_teoria, duracio_teoria, g.getHorariAssig());
 
-            else a = new GrupConcret(g.getId(), g.getCapacitat(), g.getTipus(),id, nivell, classes_problemes, duracio_problemes);
+            else a = new GrupConcret(g.getId(), g.getCapacitat(), g.getTipus(),id, nivell, classes_problemes, duracio_problemes, g.getHorariAssig());
 
 
             result.add(a);

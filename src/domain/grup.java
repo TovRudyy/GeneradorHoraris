@@ -11,12 +11,14 @@ public class grup {
     /** Atributs **/
     private String idGrup; //identificador de l'aula
     private int capacitat;  //capacitat de l'aula
+    private String horariGrup;
 
 
     /** Constructores **/
-    public grup (String idGrup, int capacitat) {
+    public grup (String idGrup, int capacitat, String horariGrup) {
         this.idGrup = idGrup;
         this.capacitat = capacitat;
+        this.horariGrup = horariGrup;
     }
 
 
@@ -35,6 +37,12 @@ public class grup {
      */
     public int getCapacitat () {
         return capacitat;
+    }
+
+
+
+    public String getHorariAssig () {
+        return horariGrup;
     }
 
 

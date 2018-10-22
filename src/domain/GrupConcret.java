@@ -20,7 +20,7 @@ public class GrupConcret {
     private int capacitat, nivellAssig;
     private Tipus_Aula tAula;
     private Tipus_Lab tLab = null;
-   // private char
+    private String horariGrup;
 
     private int inici_possible, final_possible;
     private Map<String, Map<DiaSetmana, ArrayList<Classe>>> possibles_classes;
@@ -33,7 +33,7 @@ public class GrupConcret {
 
 
     /** Constructors **/
-    public GrupConcret (String idGrup, int cap, Tipus_Aula tAula, String idAssig, int nivellAssig, int numeroClasses, int duracioClasses) {
+    public GrupConcret (String idGrup, int cap, Tipus_Aula tAula, String idAssig, int nivellAssig, int numeroClasses, int duracioClasses, String horariGrup) {
         this.idGrup = idGrup;
         this.capacitat = cap;
         this.tAula = tAula;
@@ -41,13 +41,17 @@ public class GrupConcret {
         this.nivellAssig = nivellAssig;
         this.numeroClasses = numeroClasses;
         this.duracioClasses = duracioClasses;
+        this.horariGrup = horariGrup;
 
         this.inici_possible = 8;
         this.final_possible = 20;
+        if (horariGrup.equals("T")) this.inici_possible = 14;
+        else if (horariGrup.equals("M")) this.final_possible = 14;
+
         this.possibles_classes = generaPossiblesClasses();
     }
 
-    public GrupConcret (String idGrup, int cap, Tipus_Aula tAula, Tipus_Lab tLab, String idAssig, int nivellAssig, int numeroClasses, int duracioClasses) {
+    public GrupConcret (String idGrup, int cap, Tipus_Aula tAula, Tipus_Lab tLab, String idAssig, int nivellAssig, int numeroClasses, int duracioClasses, String horariGrup) {
         this.idGrup = idGrup;
         this.capacitat = cap;
         this.tAula = tAula;
@@ -56,9 +60,13 @@ public class GrupConcret {
         this.tLab = tLab;
         this.numeroClasses = numeroClasses;
         this.duracioClasses = duracioClasses;
+        this.horariGrup = horariGrup;
 
         this.inici_possible = 8;
         this.final_possible = 20;
+        if (horariGrup.equals("T")) this.inici_possible = 14;
+        else if (horariGrup.equals("M")) this.final_possible = 14;
+
         this.possibles_classes = generaPossiblesClasses();
     }
 
@@ -67,10 +75,9 @@ public class GrupConcret {
 
     //imprimeix per pantalla la informacio
     public void showAll () {
-        if (tLab == null) System.out.println (idGrup + ":" + capacitat + ":"+ tAula + ":" + idAssig +":"+ nivellAssig);
-        else System.out.println (idGrup + ":" + capacitat + ":"+ tAula + ":" + tLab +":"+ idAssig +":"+ nivellAssig);
+        if (tLab == null) System.out.println (idGrup + ":" + capacitat + ":"+ tAula + ":" + idAssig +":"+ nivellAssig + ""+ horariGrup);
+        else System.out.println (idGrup + ":" + capacitat + ":"+ tAula + ":" + tLab +":"+ idAssig +":"+ nivellAssig + "" + horariGrup);
 
-       // System.out.println(numeroClasses + " " + duracioClasses);
     }
 
 
@@ -84,6 +91,7 @@ public class GrupConcret {
             if (aula.getTipus() == tAula && aula.getTipusLab() == tLab) {   //mirem que l'aula i el grup sigui compatible
                 ArrayList<Classe> t = new ArrayList<>();
                 for (DiaSetmana dia : DiaSetmana.values()) {
+
                     for (int i = inici_possible; (i+duracioClasses) <= final_possible; i++) {
                         Classe aux = new Classe(dia, i, (i+duracioClasses), aula);
                         String nom_aula = aula.getId();
