@@ -29,6 +29,7 @@ public class Lector_Pla {
                     lab = prob = true;
                     break;
             }
+
             Tipus_Lab tipus_lab = (lab)? Capa_Dades.string_to_Tipus_Lab(scanner.next()) : null;
             for(int i=0; i<n_grups; ++i){
                 int nom = scanner.nextInt();
