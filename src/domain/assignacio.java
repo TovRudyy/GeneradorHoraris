@@ -13,7 +13,7 @@ import java.util.Map;
  * @Author: David
  */
 
-public class GrupConcret {
+public class assignacio {
 
     /** Atributs **/
     private String idGrup, idAssig;
@@ -33,7 +33,7 @@ public class GrupConcret {
 
 
     /** Constructors **/
-    public GrupConcret (String idGrup, int cap, Tipus_Aula tAula, String idAssig, int nivellAssig, int numeroClasses, int duracioClasses, String horariGrup) {
+    public assignacio (String idGrup, int cap, Tipus_Aula tAula, String idAssig, int nivellAssig, int numeroClasses, int duracioClasses, String horariGrup) {
         this.idGrup = idGrup;
         this.capacitat = cap;
         this.tAula = tAula;
@@ -51,7 +51,7 @@ public class GrupConcret {
         this.possibles_classes = generaPossiblesClasses();
     }
 
-    public GrupConcret (String idGrup, int cap, Tipus_Aula tAula, Tipus_Lab tLab, String idAssig, int nivellAssig, int numeroClasses, int duracioClasses, String horariGrup) {
+    public assignacio (String idGrup, int cap, Tipus_Aula tAula, Tipus_Lab tLab, String idAssig, int nivellAssig, int numeroClasses, int duracioClasses, String horariGrup) {
         this.idGrup = idGrup;
         this.capacitat = cap;
         this.tAula = tAula;
@@ -75,8 +75,8 @@ public class GrupConcret {
 
     //imprimeix per pantalla la informacio
     public void showAll () {
-        if (tLab == null) System.out.println (idGrup + ":" + capacitat + ":"+ tAula + ":" + idAssig +":"+ nivellAssig + ":"+ horariGrup);
-        else System.out.println (idGrup + ":" + capacitat + ":"+ tAula + ":" + tLab +":"+ idAssig +":"+ nivellAssig + ":" + horariGrup);
+        if (tLab == null) System.out.println (idGrup + ":" + capacitat + ":"+ tAula + ":" + idAssig +":"+ nivellAssig + ""+ horariGrup);
+        else System.out.println (idGrup + ":" + capacitat + ":"+ tAula + ":" + tLab +":"+ idAssig +":"+ nivellAssig + "" + horariGrup);
 
     }
 
