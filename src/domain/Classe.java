@@ -16,7 +16,7 @@ public class Classe {
 
     public Classe(DiaSetmana dia, int inici, int fi, Aula aula) {
         this.dia = dia;
-        if (hora_inici < hora_fi) {
+        if (inici < fi) {
             this.hora_inici = inici;
             this.hora_fi = fi;
         }

@@ -15,9 +15,13 @@ public class Lector_Aules {
     private static ArrayList<Map<String, Aula>> aularis = new ArrayList<Map<String, Aula>>();
     private static Map<String, Aula> aules_dades = new TreeMap<>();
 
+
+    /** Public methods **/
+
     public static Map<String, Aula> getAules() {
         return aules_dades;
     }
+
 
     public static Map<String, Aula> llegeixAules(String fitxer) throws Exception {
         File file = new File(fitxer);

@@ -90,7 +90,7 @@ public class Lector_Pla {
             }
         }
         ass.creaGrups(grups);
-        ass.setClasses(scanner.nextInt(), scanner.nextDouble(), scanner.nextInt(), scanner.nextDouble(), scanner.nextInt(), scanner.nextDouble());
+        ass.setClasses(scanner.nextInt(), scanner.nextInt(), scanner.nextInt(), scanner.nextInt(), scanner.nextInt(), scanner.nextInt());
         return ass;
     }
 

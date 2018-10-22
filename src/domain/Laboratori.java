@@ -47,10 +47,12 @@ public class Laboratori extends Aula{
         this.tipus_lab = tipus;
     }
 
+
     /**
      * @return Retorna el tipus del Laboratori
      */
-    public Tipus_Lab getTipus_lab() {
+    @Override
+    public Tipus_Lab getTipusLab() {
         return tipus_lab;
     }
 

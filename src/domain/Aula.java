@@ -15,6 +15,7 @@ public class Aula {
     private String id;              //Identificador de l'Aula
     private int capacitat;          //Capacitat de l'Aula
     private Tipus_Aula tipus;       //Tipus d'Aula
+    private Tipus_Lab tipusLab;     //Tipus de lab. Inicialment val null
     private boolean[][] ocupacio;   //Ocupacio de l'Aula (hores x dia)
 
 
@@ -66,6 +67,11 @@ public class Aula {
     public Tipus_Aula getTipus() {
         return tipus;
     }
+
+
+
+    public Tipus_Lab getTipusLab() { return tipusLab; }
+
 
 
     /**

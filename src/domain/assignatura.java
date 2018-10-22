@@ -21,9 +21,9 @@ public class assignatura {
     private int classes_teoria = 0;
     private int classes_problemes = 0;
     private int classes_laboratori = 0;
-    private double duracio_teoria = 0;
-    private double duracio_problemes = 0;
-    private double duracio_laboratori = 0;
+    private int duracio_teoria = 0;
+    private int duracio_problemes = 0;
+    private int duracio_laboratori = 0;
 
 
     //mapa en el que guardem els diferents grups de la assignatura. Tots els de teoria i problemes es guarden junts.
@@ -84,7 +84,7 @@ public class assignatura {
      * @param nLaboratori
      * @param dLaboratori
      */
-    public void setClasses (int nTeoria, double dTeoria, int nProblemes, double dProblemes, int nLaboratori, double dLaboratori) {
+    public void setClasses (int nTeoria, int dTeoria, int nProblemes, int dProblemes, int nLaboratori, int dLaboratori) {
         classes_teoria = nTeoria;
         duracio_teoria = dTeoria;
         classes_problemes = nProblemes;
@@ -154,14 +154,16 @@ public class assignatura {
             grup g = g_aux.getValue();
             GrupConcret a;
             if (g.getTipus() == Tipus_Aula.LAB)
-                a = new GrupConcret(g.getId(), g.getCapacitat(), g.getTipus(),g.getTipusLab(), id, nivell);
+                a = new GrupConcret(g.getId(), g.getCapacitat(), g.getTipus(),g.getTipusLab(), id, nivell, classes_laboratori, duracio_laboratori);
 
-            else
-                a = new GrupConcret(g.getId(), g.getCapacitat(), g.getTipus(),id, nivell);
+            else if (g.getTipus() == Tipus_Aula.TEORIA)
+                a = new GrupConcret(g.getId(), g.getCapacitat(), g.getTipus(),id, nivell, classes_teoria, duracio_teoria);
+
+            else a = new GrupConcret(g.getId(), g.getCapacitat(), g.getTipus(),id, nivell, classes_problemes, duracio_problemes);
 
 
-            a.setClasses(classes_teoria, duracio_teoria, classes_problemes, duracio_problemes, classes_laboratori, duracio_laboratori);
             result.add(a);
+            a.showAll();
         }
 
         return result;
