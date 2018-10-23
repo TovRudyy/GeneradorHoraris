@@ -88,7 +88,7 @@ public class assignacio {
         Map<String, Map<DiaSetmana, ArrayList<Classe>>> totesClasses = new HashMap<>();
 
         for (Aula aula : aules.values()) {
-            if (aula.getTipus() == tAula && aula.getTipusLab() == tLab) {   //mirem que l'aula i el grup sigui compatible
+            if (aula.getTipus() == tAula && aula.getTipusLab() == tLab && aula.getCapacitat() >= this.capacitat) {   //mirem que l'aula i el grup sigui compatible
                 ArrayList<Classe> t = new ArrayList<>();
                 for (DiaSetmana dia : DiaSetmana.values()) {
 
