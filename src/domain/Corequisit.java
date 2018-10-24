@@ -1,6 +1,6 @@
 package domain;
 
-public final class Corequisit extends Restriccio {
+public class Corequisit extends Restriccio {
     private String assig1, assig2;
 
     public Corequisit(String id1, String id2) {
@@ -10,5 +10,9 @@ public final class Corequisit extends Restriccio {
         }
         this.assig1 = id1;
         this.assig2 = id2;
+    }
+
+    public void checkRestriccio(String my_assig, String my_group) {
+
     }
 }

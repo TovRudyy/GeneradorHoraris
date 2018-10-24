@@ -126,5 +126,9 @@ public class assignacio {
 
     }
 
+    public void deletePossiblesClasses(String id_aula, String dia, int hora_inici, int hora_fi) {
+        //Donats els valors d'entrada borra totes les possibles classes que es donen en l'aula id_aula, el dia dia, des de hora_inici fins a hora_fi)
+    }
+
 
 }
