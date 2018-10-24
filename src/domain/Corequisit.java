@@ -12,7 +12,7 @@ public class Corequisit extends Restriccio {
         this.assig2 = id2;
     }
 
-    public void checkRestriccio(String my_assig, String my_group) {
+    public void applyRestriccio(String my_assig, String my_grup, String id_aula, int hora_inici, int hora_fi) {
 
     }
 }
