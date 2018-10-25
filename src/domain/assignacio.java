@@ -2,10 +2,10 @@ package domain;
 
 // Aquesta classe ens permet tenir tota la informacio necessaria per a calcular l'horari d'un subgrup concret
 
+import jdk.nashorn.internal.codegen.ClassEmitter;
 import persistencia.Lector_Aules;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,7 +24,6 @@ public class assignacio {
 
     private int inici_possible, final_possible;
     private Map<String, Map<DiaSetmana, ArrayList<Classe>>> possibles_classes;
-    private Map<String, Map<DiaSetmana, ArrayList<Classe>>> classes_assignades; //aixo no caldra
 
 
     //numero i duració de classes
@@ -48,7 +47,7 @@ public class assignacio {
         if (horariGrup.equals("T")) this.inici_possible = 14;
         else if (horariGrup.equals("M")) this.final_possible = 14;
 
-        this.possibles_classes = generaPossiblesClasses();
+        this.possibles_classes  = generaPossiblesClasses();
     }
 
     public assignacio (String idGrup, int cap, Tipus_Aula tAula, Tipus_Lab tLab, String idAssig, int nivellAssig, int numeroClasses, int duracioClasses, String horariGrup) {
@@ -78,6 +77,11 @@ public class assignacio {
         if (tLab == null) System.out.println (idGrup + ":" + capacitat + ":"+ tAula + ":" + idAssig +":"+ nivellAssig + ""+ horariGrup);
         else System.out.println (idGrup + ":" + capacitat + ":"+ tAula + ":" + tLab +":"+ idAssig +":"+ nivellAssig + "" + horariGrup);
 
+    }
+
+
+    public String getId() {
+        return idAssig+idGrup;
     }
 
 
@@ -111,8 +115,6 @@ public class assignacio {
     }
 
 
-
-
     //Funció trivial per testos ~Olek
     public void printPossiblesClasses() {
         for (String nomAula : possibles_classes.keySet()) {
@@ -126,8 +128,38 @@ public class assignacio {
 
     }
 
-    public void deletePossiblesClasses(String id_aula, String dia, int hora_inici, int hora_fi) {
+
+    //eliminem les classes possibles i ho guardem a classes_filtrades
+    public void deletePossiblesClasses(String id_aula, DiaSetmana dia, int hora_inici, int hora_fi) {
         //Donats els valors d'entrada borra totes les possibles classes que es donen en l'aula id_aula, el dia dia, des de hora_inici fins a hora_fi)
+    }
+
+
+
+    ////////////////////////////////////////////////////////////////
+
+
+    //retorna totes les classes possibles en forma de ArrayList
+    public ArrayList<Classe> getAllPossibleClasses () {
+        ArrayList<Classe> c = new ArrayList<>();
+        for (String nomAula : possibles_classes.keySet()) {
+            for (DiaSetmana dia: possibles_classes.get(nomAula).keySet() ) {
+                for (Classe classe : possibles_classes.get(nomAula).get(dia)){
+                    c.add(classe);
+                }
+            }
+
+        }
+        return c;
+    }
+
+
+    public Map<String, Map<DiaSetmana, ArrayList<Classe>>> getMapPossibilities() {
+        return this.possibles_classes;
+    }
+
+    public void revertirPossibilitats (Map<String, Map<DiaSetmana, ArrayList<Classe>>> a) {
+        this.possibles_classes = a;
     }
 
 

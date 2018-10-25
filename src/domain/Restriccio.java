@@ -16,7 +16,7 @@ public abstract class Restriccio {
 
     public abstract void applyRestriccio(String my_assig, String my_grup, String id_aula, int hora_inici, int hora_fi);
 
-    private void deletePossiblesClasses(assignacio ass, String id_aula, String dia, int hora_inici, int hora_fi) {
+    private void deletePossiblesClasses(assignacio ass, String id_aula, DiaSetmana dia, int hora_inici, int hora_fi) {
         ass.deletePossiblesClasses(id_aula, dia, hora_inici, hora_fi);
     }
 
