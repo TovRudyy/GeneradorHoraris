@@ -1,10 +1,7 @@
 package domain;
 
-import java.lang.reflect.Array;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class Horari {
 
@@ -34,8 +31,9 @@ public class Horari {
             ArrayList<Classe> possibilitats = a_aux.getAllPossibleClasses();
 
             for (Classe c : possibilitats) {
-
                 ArrayList<Map<String, Map<DiaSetmana, ArrayList<Classe>>> > possibilitatsTotesAssignacions = new ArrayList<>();
+
+                //guarda el estat de les possibilitats actual de totes les assignacions per poder tornar enrere
                 for (assignacio b : conjuntAssignacions)
                     b.getMapPossibilities();
 
@@ -50,7 +48,6 @@ public class Horari {
                     b.revertirPossibilitats (possibilitatsTotesAssignacions.get(0));
                     possibilitatsTotesAssignacions.remove(0);
                 }
-
 
             }
         }
