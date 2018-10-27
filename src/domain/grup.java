@@ -55,6 +55,7 @@ public class grup {
         return null;
     }
 
+
     /**
      *
      * @param id identificador d'un grup existent i que pertany a la mateixa assignatura

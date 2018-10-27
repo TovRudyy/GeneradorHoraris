@@ -8,6 +8,7 @@ import persistencia.Lector_Aules;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Stack;
 
 /**
  * @Author: David
@@ -24,12 +25,11 @@ public class assignacio {
 
     private int inici_possible, final_possible;
     private Map<String, Map<DiaSetmana, ArrayList<Classe>>> possibles_classes;
+    private ArrayList<Restriccio> restriccions;
 
 
     //numero i duració de classes
-    private int numeroClasses;
-    private int duracioClasses;
-
+    private int numeroClasses, duracioClasses, numeroClassesRestants;
 
     /** Constructors **/
     public assignacio (String idGrup, int cap, Tipus_Aula tAula, String idAssig, int nivellAssig, int numeroClasses, int duracioClasses, String horariGrup) {
@@ -48,6 +48,7 @@ public class assignacio {
         else if (horariGrup.equals("M")) this.final_possible = 14;
 
         this.possibles_classes  = generaPossiblesClasses();
+        this.numeroClassesRestants = numeroClasses;
     }
 
     public assignacio (String idGrup, int cap, Tipus_Aula tAula, Tipus_Lab tLab, String idAssig, int nivellAssig, int numeroClasses, int duracioClasses, String horariGrup) {
@@ -67,6 +68,7 @@ public class assignacio {
         else if (horariGrup.equals("M")) this.final_possible = 14;
 
         this.possibles_classes = generaPossiblesClasses();
+        this.numeroClassesRestants = numeroClasses;
     }
 
 
@@ -80,8 +82,13 @@ public class assignacio {
     }
 
 
-    public String getId() {
-        return idAssig+idGrup;
+    public String getIdAssig() {
+        return idAssig;
+    }
+
+
+    public String getIdGrup () {
+        return idGrup;
     }
 
 
@@ -97,7 +104,7 @@ public class assignacio {
                 for (DiaSetmana dia : DiaSetmana.values()) {
 
                     for (int i = inici_possible; (i+duracioClasses) <= final_possible; i++) {
-                        Classe aux = new Classe(dia, i, (i+duracioClasses), aula);
+                        Classe aux = new Classe(idAssig, idGrup, dia, i, (i+duracioClasses), aula.getId());
                         String nom_aula = aula.getId();
                         //mirem si ja tenim la entrada de aquesta aula i sino la afegim
                         totesClasses.putIfAbsent(nom_aula, new HashMap<>());
@@ -120,7 +127,7 @@ public class assignacio {
         for (String nomAula : possibles_classes.keySet()) {
             for (DiaSetmana dia: possibles_classes.get(nomAula).keySet() ) {
                 for (Classe classe : possibles_classes.get(nomAula).get(dia)){
-                    System.out.println(classe.getAula().getId() + " " + classe.getDia()+ " " + classe.getHoraInici());
+                    classe.showClasse();
                 }
             }
 
@@ -129,14 +136,12 @@ public class assignacio {
     }
 
 
-    //eliminem les classes possibles i ho guardem a classes_filtrades
+
+    //eliminem les classes possibles i ho guardem a classes_filtrades (UTIL PEL FORWARD CHECKING)
     public void deletePossiblesClasses(String id_aula, DiaSetmana dia, int hora_inici, int hora_fi) {
         //Donats els valors d'entrada borra totes les possibles classes que es donen en l'aula id_aula, el dia dia, des de hora_inici fins a hora_fi)
+        //aixo ho farem servir quan fem el forward checking
     }
-
-
-
-    ////////////////////////////////////////////////////////////////
 
 
     //retorna totes les classes possibles en forma de ArrayList
@@ -154,13 +159,46 @@ public class assignacio {
     }
 
 
-    public Map<String, Map<DiaSetmana, ArrayList<Classe>>> getMapPossibilities() {
-        return this.possibles_classes;
+
+    //retorna quantes classes queden per assignar
+    public int getNumeroClassesRestants () {
+        return this.numeroClassesRestants;
     }
 
-    public void revertirPossibilitats (Map<String, Map<DiaSetmana, ArrayList<Classe>>> a) {
-        this.possibles_classes = a;
+    //modifica les classes que queden per assignar
+    public void updateClassesRestants (int i) {
+        this.numeroClassesRestants += i;
+    }
+
+    //elimina una classe que ja no es una possibilitat triarla
+    public void eliminaPossibilitat (Classe c) {
+        String id_aula = c.getIdAula();
+        DiaSetmana d = c.getDia();
+        ArrayList<Classe> p = possibles_classes.get(id_aula).get(d);   //arrayList
+        int i=0;
+        boolean found = false;
+        while (i < p.size() && ! found)
+        {
+            if (p.get(i) == c) {
+                possibles_classes.get(id_aula).get(d).remove(i); //eliminem la possibilitat
+                found = true;
+            }
+            ++i;
+        }
     }
 
 
+    //afegeix una classe que ara torna a ser una possibilitat
+    public void afegeixPossibilitat (Classe c) {
+        String id_aula = c.getIdAula();
+        DiaSetmana d = c.getDia();
+        possibles_classes.get(id_aula).get(d).add(c);   //afegim la possibilitat
+    }
+
+
+    //mira a totes les seves restriccions i comprova que es segueixin complint
+    public boolean checkRestriccions (Stack<Classe> c) {
+
+        return true;
+    }
 }

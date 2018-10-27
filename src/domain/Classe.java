@@ -2,19 +2,26 @@ package domain;
 
 public class Classe {
 
+    private String id_assig;
+    private String id_grup;
     private DiaSetmana dia;
     private int hora_inici;
     private int hora_fi;
-    private Aula aula;
+    private String id_aula;
 
-    public Classe(DiaSetmana dia, int inici, Aula aula) {
+    public Classe(String id_assig, String id_grup, DiaSetmana dia, int inici, String id_aula) {
+        this.id_assig = id_assig;
+        this.id_grup = id_grup;
         this.dia = dia;
         this.hora_inici = inici;
-        this.aula = aula;
+        this.id_aula = id_aula;
         this.hora_fi = -1;
     }
 
-    public Classe(DiaSetmana dia, int inici, int fi, Aula aula) {
+
+    public Classe(String id_assig, String id_grup, DiaSetmana dia, int inici, int fi, String id_aula) {
+        this.id_assig = id_assig;
+        this.id_grup = id_grup;
         this.dia = dia;
         if (inici < fi) {
             this.hora_inici = inici;
@@ -23,23 +30,37 @@ public class Classe {
         else {
             System.out.println("Error: hora_inici és major que hora_fi!");
         }
-        this.aula = aula;
+        this.id_aula = id_aula;
     }
+
 
     DiaSetmana getDia() {
         return this.dia;
     }
 
+
     public int getHoraInici() {
         return this.hora_inici;
     }
+
 
     public int getHoraFi() {
         return this.hora_fi;
     }
 
-    public Aula getAula() {
-        return this.aula;
+
+    public String getId_assig () {
+        return this.id_assig;
+    }
+
+
+    public String getId_grup () {
+        return this.id_grup;
+    }
+
+
+    public String getIdAula() {
+        return id_aula;
     }
 
     public void setHoraFi(int hora) {
@@ -59,6 +80,10 @@ public class Classe {
             System.out.println("Error: hora_fi no està inicialitzat!");
             return 0;
         }
+    }
+
+    public void showClasse () {
+        System.out.println(id_assig + " " + id_grup + " "+ id_aula + " " + dia+ " " + hora_inici + " " + hora_fi);
     }
 
 }

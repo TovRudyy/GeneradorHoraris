@@ -1,11 +1,15 @@
 package domain;
 
-import java.util.Map;
 import java.util.ArrayList;
+import java.util.Stack;
+
+
 
 public class Horari {
 
     private ArrayList<assignacio> conjuntAssignacions= new ArrayList<>();
+    private Stack<Classe> classesTriades = new Stack();
+
 
     public Horari (ArrayList <assignacio> conjuntAssignacions) {
         afegeixAssignacions (conjuntAssignacions);
@@ -27,39 +31,42 @@ public class Horari {
 
     public void selectClasse (int index) {
         if (index != conjuntAssignacions.size()) {
-            assignacio a_aux = conjuntAssignacions.get(index);
-            ArrayList<Classe> possibilitats = a_aux.getAllPossibleClasses();
+            assignacio a = conjuntAssignacions.get(index);
+            ArrayList<Classe> possibleClasses = a.getAllPossibleClasses();
 
-            for (Classe c : possibilitats) {
-                ArrayList<Map<String, Map<DiaSetmana, ArrayList<Classe>>> > possibilitatsTotesAssignacions = new ArrayList<>();
+            for (Classe c: possibleClasses )
+            {
+                classesTriades.push(c); //triem una classe
+                a.updateClassesRestants(-1);
+                a.eliminaPossibilitat (c);
 
-                //guarda el estat de les possibilitats actual de totes les assignacions per poder tornar enrere
-                for (assignacio b : conjuntAssignacions)
-                    b.getMapPossibilities();
+                boolean result = a.checkRestriccions (classesTriades);
 
-                //filtrem les possibilitats
-                a_aux.deletePossiblesClasses(c.getAula().getId(), c.getDia(), c.getHoraInici(), c.getHoraFi());     //seleccionem aquesta opcio i eliminem les altres
+                if (result)  //l'horari compleix totes les restriccions
+                {
+                    if (a.getNumeroClassesRestants() == 0) //vol dir que ja no cal seleccionar mes classes per aquesta assignacio
+                        selectClasse(index + 1); //passem a comprovar la seguent assignacio
 
+                     else selectClasse(index);  //encara queden classes que assignar
 
-                selectClasse(index + 1);
-
-                //revertim els canvis
-                for (assignacio b : conjuntAssignacions) {
-                    b.revertirPossibilitats (possibilitatsTotesAssignacions.get(0));
-                    possibilitatsTotesAssignacions.remove(0);
                 }
 
-            }
-        }
+                //revertim els canvis
+                classesTriades.pop();
+                a.afegeixPossibilitat (c);
+                a.updateClassesRestants(1);
 
+            }
+
+        }
 
     }
 
     public void printHorari () {
-        for ( assignacio a : conjuntAssignacions) {
-            ArrayList<Classe> possibilitatsFinals = a.getAllPossibleClasses();
-                for (Classe c : possibilitatsFinals)
-                    System.out.println(a.getId() + " " + c.getDia() + " " + c.getHoraInici() + "");
+        while (! classesTriades.empty())
+        {
+            Classe c = classesTriades.pop();
+            c.showClasse();
         }
 
     }

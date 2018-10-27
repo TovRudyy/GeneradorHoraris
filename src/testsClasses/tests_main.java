@@ -1,10 +1,12 @@
 package testsClasses;
 
 import domain.PlaEstudis;
+import persistencia.Lector_Aules;
+
 import java.util.Scanner;
 
 public class tests_main {
-    public static void main(String [] args) {
+    public static void main(String [] args) throws Exception {
         Scanner keyboard;
         String input, id;
         PlaEstudis pe;
@@ -14,7 +16,6 @@ public class tests_main {
         input = keyboard.nextLine();
         pe = new PlaEstudis(input);
 
-        id = pe.getID();
-        System.out.print("Identificador del Pla d'Estudis: " + id);
+        Lector_Aules.readFolderAules();
     }
 }
