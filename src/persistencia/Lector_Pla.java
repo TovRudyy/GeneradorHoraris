@@ -104,7 +104,8 @@ public class Lector_Pla {
 
 
     private static Corequisit llegeixCorequisit(Scanner scanner){
-        return new Corequisit(scanner.next(), scanner.next());
+        //return new Corequisit(scanner.next(), scanner.next());
+        return new Corequisit();
     }
 
 

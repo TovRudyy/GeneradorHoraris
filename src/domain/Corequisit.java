@@ -1,18 +1,38 @@
 package domain;
 
-public class Corequisit extends Restriccio {
-    private String assig1, assig2;
+import java.util.ArrayList;
+import java.util.Stack;
 
-    public Corequisit(String id1, String id2) {
-        if (id1.equals(id2)) {
-            System.out.println("Una assignatura no pot ser corequisit amb ella mateixa");
-            throw new IllegalArgumentException("Invalid argument");
-        }
-        this.assig1 = id1;
-        this.assig2 = id2;
+public class Corequisit extends Restriccio {
+
+    private ArrayList<String> assignatures;
+
+    public Corequisit(){
     }
 
-    public void applyRestriccio(String my_assig, String my_grup, String id_aula, int hora_inici, int hora_fi) {
+    /**
+     *
+     * @param id_assignatura
+     * @return cert si id_assignatura s'ha afegit al Corequisit
+     */
+    public boolean addAssignatura(String id_assignatura) {
+        return assignatures.add(id_assignatura);
+    }
 
+
+    @Override
+    public boolean checkRestriccio(Stack<Classe> assignats) {
+        Classe a = assignats.pop();
+        while(!assignats.empty()) {
+            Classe b = assignats.pop();
+            for (String assignatura : assignatures) {
+                if (assignatura.equals(b.getId_assig()))
+                    if(a.getId_grup().equals(b.getId_grup()) && a.getDia().equals(b.getDia())) {
+                        if (solapenHores(a.getHoraInici(), a.getHoraFi(), b.getHoraInici(), b.getHoraFi()))
+                            return false;
+                    }
+            }
+        }
+        return true;
     }
 }
