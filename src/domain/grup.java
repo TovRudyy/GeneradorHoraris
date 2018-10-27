@@ -55,4 +55,16 @@ public class grup {
         return null;
     }
 
+    /**
+     *
+     * @param id identificador d'un grup existent i que pertany a la mateixa assignatura
+     * @return  cert si aquest objecte grup és un subgrup del grup id, fals si no
+     */
+    public boolean esSubgrup(String id) {
+        int other = Integer.parseInt(id);
+        if (other%10 != 0) return false;
+        int me = Integer.parseInt(idGrup);
+        return (other/10 == me/10);
+    }
+
 }
