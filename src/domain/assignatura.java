@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.Collection;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.ArrayList;
@@ -84,7 +85,7 @@ public class assignatura {
      * @param nLaboratori
      * @param dLaboratori
      */
-    public void setClasses (int nTeoria, int dTeoria, int nProblemes, int dProblemes, int nLaboratori, int dLaboratori) {
+    public void setClasses (int nTeoria, int dTeoria, int nLaboratori, int dLaboratori, int nProblemes, int dProblemes) {
         classes_teoria = nTeoria;
         duracio_teoria = dTeoria;
         classes_problemes = nProblemes;
@@ -147,7 +148,8 @@ public class assignatura {
 
 
 
-    public ArrayList<assignacio> getAllGrupConcret () {
+
+    public ArrayList<assignacio> getAssignacions () {
         ArrayList <assignacio> result = new ArrayList<>();
 
         for (Map.Entry<String, grup> g_aux : grups.entrySet()) {
@@ -161,13 +163,10 @@ public class assignatura {
 
             else a = new assignacio(g.getId(), g.getCapacitat(), g.getTipus(),id, nivell, classes_problemes, duracio_problemes, g.getHorariAssig());
 
-
             result.add(a);
-            a.showAll();
         }
 
         return result;
-
     }
 
 

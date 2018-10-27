@@ -10,10 +10,12 @@ import java.util.ArrayList;
 public class PlaEstudis {
     private String id;  //Acrònim del Pla d'Estudis
     private ArrayList<assignatura> assignatures = new ArrayList<>(); //Assignatures pertanyents al pla d'estudis
+    private Horari h;
 
     public PlaEstudis(String id) {
         this.id = id;
     }
+
 
     /**
      *
@@ -56,9 +58,23 @@ public class PlaEstudis {
             System.out.println(a.getId() + ":" + a.getNom() + ":" + a.getNivell() + "\n");
             a.showGrups();
             a.showClasses();
-            a.getAllGrupConcret();
+            a.getAssignacions();
         }
 
     }
+
+    public void generaHorari () {
+        ArrayList<assignacio> assignacions = new ArrayList<>();
+        for (assignatura a: assignatures) {
+            assignacions.addAll(a.getAssignacions());       //AQUI ESTA EL FALLO
+        }
+
+        //aqui tenim totes les assignacions totals
+        h = new Horari (assignacions);
+        System.out.println("Ja tenim el horari creat. Ara el calculem");
+        h.findHorari();
+
+    }
+
 
 }

@@ -11,7 +11,7 @@ GA:4:60:A:20:P
 1:2:0:0:1:2
 A:PRO1:Programacio 1:1:M
 GA:4:60:N:3:L:I
-1:2:1:2:0:0
+2:2:1:2:0:0
 C:IC:PRO1
 A:F:Fisica:1:MT
 GM:3:L:F

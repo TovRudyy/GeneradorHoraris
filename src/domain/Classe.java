@@ -28,6 +28,7 @@ public class Classe {
             this.hora_fi = fi;
         }
         else {
+            System.out.println(id_assig +" "+ id_grup);
             System.out.println("Error: hora_inici és major que hora_fi!");
         }
         this.id_aula = id_aula;

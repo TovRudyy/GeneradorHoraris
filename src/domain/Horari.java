@@ -4,11 +4,10 @@ import java.util.ArrayList;
 import java.util.Stack;
 
 
-
 public class Horari {
 
     private ArrayList<assignacio> conjuntAssignacions= new ArrayList<>();
-    private Stack<Classe> classesTriades = new Stack();
+    private Stack<Classe> classesFinals = new Stack();
 
 
     public Horari (ArrayList <assignacio> conjuntAssignacions) {
@@ -24,48 +23,61 @@ public class Horari {
 
 
     public void findHorari () {
-        selectClasse(0);
-        printHorari ();
+        Stack<Classe> c = new Stack();
+        boolean r = selectClasse(0);
+        if (r) printHorari();
     }
 
-
-    public void selectClasse (int index) {
-        if (index != conjuntAssignacions.size()) {
+    //retorna true si ja ha acabat o false si encara no
+    public boolean selectClasse (int index) {
+        if (index < conjuntAssignacions.size()) {
             assignacio a = conjuntAssignacions.get(index);
             ArrayList<Classe> possibleClasses = a.getAllPossibleClasses();
 
             for (Classe c: possibleClasses )
             {
-                classesTriades.push(c); //triem una classe
+                classesFinals.push(c); //triem una classe
                 a.updateClassesRestants(-1);
                 a.eliminaPossibilitat (c);
 
-                boolean result = a.checkRestriccions (classesTriades);
+                Stack<Classe> aux = new Stack();
+                aux.addAll(classesFinals);
+                boolean result = a.checkRestriccions (aux);
 
                 if (result)  //l'horari compleix totes les restriccions
                 {
-                    if (a.getNumeroClassesRestants() == 0) //vol dir que ja no cal seleccionar mes classes per aquesta assignacio
-                        selectClasse(index + 1); //passem a comprovar la seguent assignacio
+                    boolean r;
+                    if (a.getNumeroClassesRestants() == 0)  //vol dir que ja no cal seleccionar mes classes per aquesta assignacio
+                        r = selectClasse(index + 1); //passem a comprovar la seguent assignacio
 
-                     else selectClasse(index);  //encara queden classes que assignar
+                     else r = selectClasse(index);  //encara queden classes que assignar
+
+                    if (r) //ja hem acabat
+                        return r;
+
+                    //si not r, hem de seguir iterant
 
                 }
 
                 //revertim els canvis
-                classesTriades.pop();
+                classesFinals.pop();
                 a.afegeixPossibilitat (c);
                 a.updateClassesRestants(1);
 
             }
+            return false;   //vol dir que hem mirat totes les opcions i no n'hi ha cap que funcioni
 
         }
+        else return true;
 
     }
 
+
+
     public void printHorari () {
-        while (! classesTriades.empty())
+        while (! classesFinals.empty())
         {
-            Classe c = classesTriades.pop();
+            Classe c = classesFinals.pop();
             c.showClasse();
         }
 

@@ -76,8 +76,8 @@ public class assignacio {
 
     //imprimeix per pantalla la informacio
     public void showAll () {
-        if (tLab == null) System.out.println (idGrup + ":" + capacitat + ":"+ tAula + ":" + idAssig +":"+ nivellAssig + ""+ horariGrup);
-        else System.out.println (idGrup + ":" + capacitat + ":"+ tAula + ":" + tLab +":"+ idAssig +":"+ nivellAssig + "" + horariGrup);
+        if (tLab == null) System.out.println (idGrup + ":" + capacitat + ":"+ tAula + ":" + idAssig +":"+ nivellAssig + ""+ horariGrup + " " + inici_possible + " " + final_possible + " " + duracioClasses);
+        else System.out.println (idGrup + ":" + capacitat + ":"+ tAula + ":" + tLab +":"+ idAssig +":"+ nivellAssig + "" + horariGrup + " " + inici_possible + " " + final_possible +" " + duracioClasses) ;
 
     }
 
@@ -101,6 +101,7 @@ public class assignacio {
         for (Aula aula : aules.values()) {
             if (aula.getTipus() == tAula && aula.getTipusLab() == tLab && aula.getCapacitat() >= this.capacitat) {   //mirem que l'aula i el grup sigui compatible
                 ArrayList<Classe> t = new ArrayList<>();
+
                 for (DiaSetmana dia : DiaSetmana.values()) {
 
                     for (int i = inici_possible; (i+duracioClasses) <= final_possible; i++) {
@@ -198,6 +199,8 @@ public class assignacio {
 
     //mira a totes les seves restriccions i comprova que es segueixin complint
     public boolean checkRestriccions (Stack<Classe> c) {
+        while (! c.empty())
+            c.pop();
 
         return true;
     }
