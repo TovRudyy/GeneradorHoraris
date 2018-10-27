@@ -20,6 +20,11 @@ public class Corequisit extends Restriccio {
     }
 
 
+    /**
+     *
+     * @param assignats
+     * @return cert si els corequisits de l'assignació es compleixen amb l'horari actuals, fals si no
+     */
     @Override
     public boolean checkRestriccio(Stack<Classe> assignats) {
         Classe a = assignats.pop();

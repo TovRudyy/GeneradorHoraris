@@ -6,8 +6,7 @@ public class RestriccioOcupacio extends Restriccio{
 
     /**
      *
-     * @param assignats pila que conté els identificadors de les assignacions i les seves classes assignades.
-     *                  Com a mínim ha de contenir un element.
+     * @param assignats
      * @return cert si la Classe escollida està disponible, fals si solapa amb una assignació existent
      */
     public boolean checkRestriccio(Stack<Classe> assignats) {
