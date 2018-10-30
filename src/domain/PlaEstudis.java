@@ -67,6 +67,7 @@ public class PlaEstudis {
     public void generaHorari () {
         ArrayList<assignacio> assignacions = new ArrayList<>();
         for (assignatura a: assignatures) {
+            a.noSolapis_Teoria_i_Problemes();
             assignacions.addAll(a.getAssignacions());       //AQUI ESTA EL FALLO
         }
 

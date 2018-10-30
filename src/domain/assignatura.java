@@ -1,9 +1,9 @@
 package domain;
 
-import java.util.Collection;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.ArrayList;
+
 
 /**
  * @author David Pujol,
@@ -129,17 +129,18 @@ public class assignatura {
      */
     public void noSolapis_Teoria_i_Problemes () {
 
-        grup grupTeoria; //anirà contenint el id del grup de teoria tractat
+        grup grupTeoria = null; //anirà contenint el id del grup de teoria tractat. Sabem que abans de un subgrup sempre hi anira primer el de teoria.
 
         for (Map.Entry<String, grup> g : grups.entrySet()) {
             String key = g.getKey();
             char last = key.charAt (key.length() -1);
+
             //ES DE TEORIA
             if (last == '0') grupTeoria = g.getValue();
 
             else {
-                //funcio per afegir la restricció perquè no es solapin el grup de teoria i el subgrup
-                //afegirRestriccio (grupTeoria, GrupConcret.getValue());
+                RestriccioSubgrup r = new RestriccioSubgrup(grupTeoria);
+                g.getValue().afegirRestriccio(r);
             }
 
         }
@@ -152,6 +153,8 @@ public class assignatura {
     public ArrayList<assignacio> getAssignacions () {
         ArrayList <assignacio> result = new ArrayList<>();
 
+        RestriccioOcupacio r = new RestriccioOcupacio();
+
         for (Map.Entry<String, grup> g_aux : grups.entrySet()) {
             grup g = g_aux.getValue();
             assignacio a;
@@ -162,6 +165,11 @@ public class assignatura {
                 a = new assignacio(g.getId(), g.getCapacitat(), g.getTipus(),id, nivell, classes_teoria, duracio_teoria, g.getHorariAssig());
 
             else a = new assignacio(g.getId(), g.getCapacitat(), g.getTipus(),id, nivell, classes_problemes, duracio_problemes, g.getHorariAssig());
+
+
+            //aqui copiem les restriccions que té un grup a la seva assignacio
+            a.afegirRestriccions (g_aux.getValue().getRestriccions());  //afegim les restriccions del grup
+           // a.afegirRestriccio(r);  //totes les assignacions han de tenir la restriccio que nomes poden ser assignades a una aula si esta lliure
 
             result.add(a);
         }

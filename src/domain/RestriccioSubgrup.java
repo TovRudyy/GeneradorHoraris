@@ -4,7 +4,6 @@ import java.util.Stack;
 
 public class RestriccioSubgrup extends Restriccio {
 
-
     private grup pare;
 
     /**

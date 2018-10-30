@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.HashMap;
 import java.util.Stack;
 
 public class RestriccioOcupacio extends Restriccio{

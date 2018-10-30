@@ -137,6 +137,14 @@ public class assignacio {
     }
 
 
+    public void afegirRestriccions (ArrayList<Restriccio> r) {
+        restriccions.addAll(r);
+    }
+
+    public void afegirRestriccio (Restriccio r) {
+        restriccions.add(r);
+    }
+
 
     //eliminem les classes possibles i ho guardem a classes_filtrades (UTIL PEL FORWARD CHECKING)
     public void deletePossiblesClasses(String id_aula, DiaSetmana dia, int hora_inici, int hora_fi) {
@@ -203,7 +211,8 @@ public class assignacio {
             Stack<Classe> aux = new Stack();
             aux.addAll(c);  //ens assegurem que la restricció pugui eliminar la pila sense modificar la original
 
-            if (! r.checkRestriccio(aux)) return false;
+            boolean result = r.checkRestriccio(aux);
+            if (! result) return false;
         }
 
         return true;

@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.ArrayList;
 /**
  * @author David Pujol,
  * Date: 07/10/18
@@ -10,6 +11,8 @@ public class grup {
     private String idGrup; //identificador de l'aula
     private int capacitat;  //capacitat de l'aula
     private String horariGrup;
+    private ArrayList <Restriccio> restriccions = new ArrayList<>();
+
 
 
     /** Constructores **/
@@ -67,5 +70,15 @@ public class grup {
         int me = Integer.parseInt(idGrup);
         return (other/10 == me/10);
     }
+
+
+    public ArrayList<Restriccio> getRestriccions () {
+        return restriccions;
+    }
+
+    public void afegirRestriccio (Restriccio r) {
+        restriccions.add(r);
+    }
+
 
 }

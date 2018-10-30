@@ -36,13 +36,18 @@ public class Horari {
 
             for (Classe c: possibleClasses )
             {
+                System.out.println("nova classe");
+                c.showClasse();
+
                 classesFinals.push(c); //triem una classe
                 a.updateClassesRestants(-1);
                 a.eliminaPossibilitat (c);
 
-                boolean result = a.checkRestriccions (classesFinals);
+                //aqui hauriem d'eliminar les opcions que es solapen amb ella en aquella aula
 
-                if (result)  //l'horari compleix totes les restriccions
+                boolean valid = a.checkRestriccions (classesFinals);
+
+                if (valid)  //l'horari compleix totes les restriccions
                 {
                     boolean r;
                     if (a.getNumeroClassesRestants() == 0)  //vol dir que ja no cal seleccionar mes classes per aquesta assignacio
@@ -57,12 +62,12 @@ public class Horari {
 
                 }
 
-                //revertim els canvis
                 classesFinals.pop();
-                a.afegeixPossibilitat (c);
+
                 a.updateClassesRestants(1);
 
             }
+
             return false;   //vol dir que hem mirat totes les opcions i no n'hi ha cap que funcioni
 
         }
