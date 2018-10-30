@@ -15,6 +15,7 @@ public abstract class Restriccio {
      */
     public abstract boolean checkRestriccio(Stack<Classe> assignats);
 
+
     protected boolean solapenHores(int ai, int af, int bi, int bf) {
         if (bf <= ai || af <= bi) return true;
         return false;

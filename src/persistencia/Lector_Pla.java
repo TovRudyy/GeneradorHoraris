@@ -104,8 +104,11 @@ public class Lector_Pla {
 
 
     private static Corequisit llegeixCorequisit(Scanner scanner){
-        //return new Corequisit(scanner.next(), scanner.next());
-        return new Corequisit();
+        Corequisit c = new Corequisit();
+        scanner.next();scanner.next();
+       // c.addAssignatura(scanner.next());
+      //  c.addAssignatura(scanner.next());
+        return c;
     }
 
 
@@ -115,18 +118,17 @@ public class Lector_Pla {
         scanner.useDelimiter("\n|:|\\r\\n");
         PlaEstudis pla = new PlaEstudis(scanner.next());
         String codi;
-        while(!(codi = scanner.next()).equals("FI")){
+        while(!(codi=scanner.next()).equals("FI")){
             switch(codi){
                 case "A":
                     pla.addAssignatura(llegeixAssignatura(scanner));
                     break;
                 case "C":
-                    llegeixCorequisit(scanner);
+                    Corequisit c = llegeixCorequisit(scanner);
                     break;
                 default:
                     throw new Exception("codi incorrecte");
             }
-
         }
         return pla;
     }

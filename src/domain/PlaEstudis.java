@@ -63,6 +63,7 @@ public class PlaEstudis {
 
     }
 
+
     public void generaHorari () {
         ArrayList<assignacio> assignacions = new ArrayList<>();
         for (assignatura a: assignatures) {
@@ -71,7 +72,6 @@ public class PlaEstudis {
 
         //aqui tenim totes les assignacions totals
         h = new Horari (assignacions);
-        System.out.println("Ja tenim el horari creat. Ara el calculem");
         h.findHorari();
 
     }

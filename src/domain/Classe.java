@@ -64,6 +64,8 @@ public class Classe {
         return id_aula;
     }
 
+
+
     public void setHoraFi(int hora) {
         if (hora_inici < hora) {
             this.hora_fi = hora;
@@ -72,6 +74,8 @@ public class Classe {
             System.out.println("Error: hora_fi és menor que hora_inici!");
         }
     }
+
+
 
     public int getDurada() {
         if (hora_fi != -1) {

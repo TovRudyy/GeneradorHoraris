@@ -40,9 +40,7 @@ public class Horari {
                 a.updateClassesRestants(-1);
                 a.eliminaPossibilitat (c);
 
-                Stack<Classe> aux = new Stack();
-                aux.addAll(classesFinals);
-                boolean result = a.checkRestriccions (aux);
+                boolean result = a.checkRestriccions (classesFinals);
 
                 if (result)  //l'horari compleix totes les restriccions
                 {

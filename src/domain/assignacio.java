@@ -25,7 +25,7 @@ public class assignacio {
 
     private int inici_possible, final_possible;
     private Map<String, Map<DiaSetmana, ArrayList<Classe>>> possibles_classes;
-    private ArrayList<Restriccio> restriccions;
+    private ArrayList<Restriccio> restriccions = new ArrayList<>(); //Contindrà les restriccions creades per a aquests
 
 
     //numero i duració de classes
@@ -199,8 +199,12 @@ public class assignacio {
 
     //mira a totes les seves restriccions i comprova que es segueixin complint
     public boolean checkRestriccions (Stack<Classe> c) {
-        while (! c.empty())
-            c.pop();
+        for (Restriccio r: restriccions) {
+            Stack<Classe> aux = new Stack();
+            aux.addAll(c);  //ens assegurem que la restricció pugui eliminar la pila sense modificar la original
+
+            if (! r.checkRestriccio(aux)) return false;
+        }
 
         return true;
     }
