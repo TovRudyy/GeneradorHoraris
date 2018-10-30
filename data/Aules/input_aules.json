@@ -1,17 +1,18 @@
 [
-  {"aula":{
+  {
     "nom":"aula1",
     "capacitat":60,
     "tipus":"Teoria"
-  }},
-  {"laboratori":{
+  },
+  {
     "nom":"aula2",
     "capacitat":20,
-    "tipus":"Fisica"
-  }},
-  {"aula":{
+    "tipus":"Laboratori",
+    "tipus_lab":"Fisica"
+  },
+  {
     "nom":"aula3",
-    "capacitat":"20",
+    "capacitat":20,
     "tipus":"Problemes"
-  }}
+  }
 ]

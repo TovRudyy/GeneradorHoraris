@@ -25,11 +25,11 @@ public class Aula {
      * @param tipus Tipus de la nova Aula
      * @throws Exception @tipus == LAB quan no és un Laboratori
      */
-    public Aula(String id, int capacitat, Tipus_Aula tipus) throws Exception {
+    public Aula(String id, int capacitat, Tipus_Aula tipus) throws Aula_Exception {
         this.id = id;
         this.capacitat = capacitat;
         this.tipus = tipus;
-        if (tipus == Tipus_Aula.LAB && !(this instanceof Laboratori)) throw new Exception();
+        if (tipus == Tipus_Aula.LAB && !(this instanceof Laboratori)) throw new Aula_Exception("Intent de crear un Lab a traves d'Aula");
         this.ocupacio = new boolean[12][5];
     }
 

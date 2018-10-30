@@ -42,7 +42,7 @@ public class Laboratori extends Aula{
      * @param tipus Tipus del nou Laboratori
      * @throws Exception Mai
      */
-    public Laboratori (String id, int capacitat, Tipus_Lab tipus) throws Exception {
+    public Laboratori (String id, int capacitat, Tipus_Lab tipus) throws Aula_Exception {
         super(id, capacitat, Tipus_Aula.LAB);
         this.tipus_lab = tipus;
     }
