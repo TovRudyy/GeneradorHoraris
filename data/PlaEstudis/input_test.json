@@ -1,0 +1,64 @@
+{
+  "nom":"Pla_test",
+  "assignatures":[
+    {
+      "codi":"IC",
+      "nom":"Introduccio als computadors",
+      "nivell":1,
+      "horari":"MT",
+      "classes":{
+        "teoria":2,
+        "duracio_t":2,
+        "problemes":0,
+        "duracio_p":0,
+        "laboratori":1,
+        "duracio_l":2
+      },
+      "grups":{
+        "automatic":true,
+        "nombre":4,
+        "capacitat":60,
+        "tipus_subgrup":"L Informatica",
+        "subgrup_per_alumnes":true,
+        "valor":20
+      }
+    },
+    {
+      "codi":"FM",
+      "nom":"Fonaments matematics",
+      "nivell":1,
+      "horari":"MT",
+      "classes":{
+        "teoria":2,
+        "duracio_t":2,
+        "problemes":1,
+        "duracio_p":2,
+        "laboratori":0,
+        "duracio_l":0
+      },
+      "grups":{
+        "automatic":false,
+        "tipus_subgrup":"P",
+        "grups":[
+          {
+            "nom":10,
+            "capacitat":60,
+            "horari":"M",
+            "subgrup_per_alumnes":true,
+            "valor":20
+          },
+          {
+            "nom":40,
+            "capacitat":60,
+            "horari":"T",
+            "subgrup_per_alumnes":false,
+            "valor":4
+          }
+        ]
+      }
+    }
+  ],
+  "restriccions":[
+
+  ]
+}
