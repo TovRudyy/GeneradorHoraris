@@ -26,6 +26,7 @@ public class assignacio {
     private int inici_possible, final_possible;
     private Map<String, Map<DiaSetmana, ArrayList<Classe>>> possibles_classes;
     private ArrayList<Restriccio> restriccions = new ArrayList<>(); //Contindrà les restriccions creades per a aquests
+    private RestriccioOcupacio r;
 
 
     //numero i duració de classes
@@ -217,4 +218,5 @@ public class assignacio {
 
         return true;
     }
+
 }

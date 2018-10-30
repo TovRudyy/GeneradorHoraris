@@ -169,8 +169,6 @@ public class assignatura {
 
             //aqui copiem les restriccions que té un grup a la seva assignacio
             a.afegirRestriccions (g_aux.getValue().getRestriccions());  //afegim les restriccions del grup
-           // a.afegirRestriccio(r);  //totes les assignacions han de tenir la restriccio que nomes poden ser assignades a una aula si esta lliure
-
             result.add(a);
         }
 

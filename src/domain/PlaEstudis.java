@@ -78,4 +78,9 @@ public class PlaEstudis {
     }
 
 
+  /*  public void afegirCorrequisits () {
+
+    }
+*/
+
 }

@@ -1,5 +1,6 @@
 package domain;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Stack;
 
@@ -8,7 +9,6 @@ public class Horari {
 
     private ArrayList<assignacio> conjuntAssignacions= new ArrayList<>();
     private Stack<Classe> classesFinals = new Stack();
-
 
     public Horari (ArrayList <assignacio> conjuntAssignacions) {
         afegeixAssignacions (conjuntAssignacions);

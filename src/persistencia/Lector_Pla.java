@@ -105,9 +105,8 @@ public class Lector_Pla {
 
     private static Corequisit llegeixCorequisit(Scanner scanner){
         Corequisit c = new Corequisit();
-        scanner.next();scanner.next();
-       // c.addAssignatura(scanner.next());
-      //  c.addAssignatura(scanner.next());
+        c.addAssignatura(scanner.next());
+        c.addAssignatura(scanner.next());
         return c;
     }
 
@@ -125,6 +124,9 @@ public class Lector_Pla {
                     break;
                 case "C":
                     Corequisit c = llegeixCorequisit(scanner);
+                    //ara hem d'afegir aquest corequisit a les assignatures implicades
+                   // pla.afegirCorrequisits (c);
+
                     break;
                 default:
                     throw new Exception("codi incorrecte");

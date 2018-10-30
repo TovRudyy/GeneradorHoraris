@@ -5,7 +5,7 @@ import java.util.Stack;
 
 public class Corequisit extends Restriccio {
 
-    private ArrayList<String> assignatures;
+    private ArrayList<String> assignatures = new ArrayList<>();
 
     public Corequisit(){
     }
