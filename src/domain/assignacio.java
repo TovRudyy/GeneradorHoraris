@@ -25,8 +25,10 @@ public class assignacio {
 
     private int inici_possible, final_possible;
     private Map<String, Map<DiaSetmana, ArrayList<Classe>>> possibles_classes;
-    private ArrayList<Restriccio> restriccions = new ArrayList<>(); //Contindrà les restriccions creades per a aquests
-    private RestriccioOcupacio r;
+
+    private RestriccioOcupacio ocupacio = new RestriccioOcupacio();
+    private Corequisit corequisit = null;
+    private RestriccioSubgrup subgrup = null;
 
 
     //numero i duració de classes
@@ -137,16 +139,6 @@ public class assignacio {
 
     }
 
-
-    public void afegirRestriccions (ArrayList<Restriccio> r) {
-        restriccions.addAll(r);
-    }
-
-    public void afegirRestriccio (Restriccio r) {
-        restriccions.add(r);
-    }
-
-
     //eliminem les classes possibles i ho guardem a classes_filtrades (UTIL PEL FORWARD CHECKING)
     public void deletePossiblesClasses(String id_aula, DiaSetmana dia, int hora_inici, int hora_fi) {
         //Donats els valors d'entrada borra totes les possibles classes que es donen en l'aula id_aula, el dia dia, des de hora_inici fins a hora_fi)
@@ -208,15 +200,34 @@ public class assignacio {
 
     //mira a totes les seves restriccions i comprova que es segueixin complint
     public boolean checkRestriccions (Stack<Classe> c) {
-        for (Restriccio r: restriccions) {
-            Stack<Classe> aux = new Stack();
-            aux.addAll(c);  //ens assegurem que la restricció pugui eliminar la pila sense modificar la original
+        Stack<Classe> aux = new Stack();
+        aux.addAll(c);  //ens assegurem que la restricció pugui eliminar la pila sense modificar la original
 
-            boolean result = r.checkRestriccio(aux);
-            if (! result) return false;
+        Stack<Classe> aux_2 = new Stack();
+        aux_2.addAll(c);  //ens assegurem que la restricció pugui eliminar la pila sense modificar la original
+
+        Stack<Classe> aux_3 = new Stack();
+        aux_3.addAll(c);  //ens assegurem que la restricció pugui eliminar la pila sense modificar la original
+
+        if ((ocupacio.checkRestriccio(aux)) && (subgrup == null || subgrup.checkRestriccio(aux_2))
+                && (corequisit == null || corequisit.checkRestriccio(aux_3))) {
+            System.out.println("Les restriccions son correctes");
+            return true;
         }
 
-        return true;
+        else  {
+            System.out.println("les restriccions són incorrectes");
+            return false;
+        }
+
+    }
+
+    public void afegirCorrequisit (Corequisit c) {
+        this.corequisit = c;
+    }
+
+    public void afegirSubgrup (RestriccioSubgrup r) {
+        subgrup = r;
     }
 
 }

@@ -1,6 +1,6 @@
 package persistencia;
 
-import org.json.simple.*;
+//import org.json.simple.*;
 
 public class Lector_JSON {
 
