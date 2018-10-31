@@ -5,6 +5,7 @@ import java.util.Stack;
 
 public class Corequisit extends Restriccio {
 
+    //conte les assignatures amb les que es correquisit
     private ArrayList<String> assignatures = new ArrayList<>();
 
     public Corequisit(){
@@ -31,13 +32,16 @@ public class Corequisit extends Restriccio {
         while(!assignats.empty()) {
             Classe b = assignats.pop();
             for (String assignatura : assignatures) {
-                if (assignatura.equals(b.getId_assig()))
+                if (assignatura.equals(b.getId_assig()))    //es un correquisit
                     if(a.getId_grup().equals(b.getId_grup()) && a.getDia().equals(b.getDia())) {
                         if (solapenHores(a.getHoraInici(), a.getHoraFi(), b.getHoraInici(), b.getHoraFi()))
                             return false;
+
                     }
             }
         }
         return true;
     }
+
+
 }

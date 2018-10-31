@@ -25,7 +25,11 @@ public class Horari {
     public void findHorari () {
         Stack<Classe> c = new Stack();
         boolean r = selectClasse(0);
-        if (r) printHorari();
+        if (r){
+            System.out.println("HEM TROBAT UN HORARI: ");
+            printHorari();
+        }
+        else System.out.println("NO HEM POGUT FORMAR UN HORARI");
     }
 
     //retorna true si ja ha acabat o false si encara no
@@ -36,7 +40,7 @@ public class Horari {
 
             for (Classe c: possibleClasses )
             {
-                System.out.println("nova classe");
+                System.out.println("nova classe a tractar");
                 c.showClasse();
 
                 classesFinals.push(c); //triem una classe

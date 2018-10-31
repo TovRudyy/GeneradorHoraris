@@ -1,6 +1,8 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Rudyy, Oleksandr
@@ -9,7 +11,7 @@ import java.util.ArrayList;
 
 public class PlaEstudis {
     private String id;  //Acrònim del Pla d'Estudis
-    private ArrayList<assignatura> assignatures = new ArrayList<>(); //Assignatures pertanyents al pla d'estudis
+    private HashMap<String,assignatura> assignatures = new HashMap<>(); //Assignatures pertanyents al pla d'estudis
     private Horari h;
 
     public PlaEstudis(String id) {
@@ -22,8 +24,8 @@ public class PlaEstudis {
      * @param assig
      * @return true si l'element s'ha afegit a les assignatures del Pla d'Estudis, false si no.
      */
-    public boolean addAssignatura(assignatura assig) {
-        return assignatures.add(assig);
+    public void addAssignatura(assignatura assig) {
+         assignatures.put(assig.getId(), assig);
     }
 
     /**
@@ -44,8 +46,8 @@ public class PlaEstudis {
 
         id_assignatures = new String[assignatures.size()];
         i = 0;
-        for (assignatura  a : assignatures) {
-            id_assignatures[i] = a.getId();
+        for (Map.Entry<String, assignatura> a : assignatures.entrySet()) {
+            id_assignatures[i] = a.getKey();
             i++;
         }
         return id_assignatures;
@@ -53,8 +55,8 @@ public class PlaEstudis {
 
 
     public void showAssignatures () {
-
-        for (assignatura a: assignatures) {
+        for (Map.Entry<String, assignatura> assig : assignatures.entrySet()) {
+            assignatura a = assig.getValue();
             System.out.println(a.getId() + ":" + a.getNom() + ":" + a.getNivell() + "\n");
             a.showGrups();
             a.showClasses();
@@ -66,7 +68,8 @@ public class PlaEstudis {
 
     public void generaHorari () {
         ArrayList<assignacio> assignacions = new ArrayList<>();
-        for (assignatura a: assignatures) {
+        for (Map.Entry<String, assignatura> assig : assignatures.entrySet()) {
+            assignatura a = assig.getValue();
             a.noSolapis_Teoria_i_Problemes();
             assignacions.addAll(a.getAssignacions());       //AQUI ESTA EL FALLO
         }
@@ -78,9 +81,13 @@ public class PlaEstudis {
     }
 
 
-  /*  public void afegirCorrequisits () {
+    public void afegirCorrequisits (String[] c) {
+        String primera = c[0];
+        String segona  = c[1];
+        assignatures.get(primera).addCorrequisit(segona);
+        assignatures.get(segona).addCorrequisit(primera);
 
     }
-*/
+
 
 }

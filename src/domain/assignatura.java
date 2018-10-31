@@ -29,6 +29,8 @@ public class assignatura {
 
     //mapa en el que guardem els diferents grups de la assignatura. Tots els de teoria i problemes es guarden junts.
     private TreeMap<String, grup> grups;
+    private Corequisit c = new Corequisit();
+
 
 
     /** Constructores **/
@@ -168,13 +170,19 @@ public class assignatura {
 
 
             //aqui copiem les restriccions que té un grup a la seva assignacio
-            a.afegirRestriccions (g_aux.getValue().getRestriccions());  //afegim les restriccions del grup
+            a.afegirCorrequisit (c);
+            a.afegirSubgrup (g_aux.getValue().getSubgrup());  //afegim les restriccions del grup
             result.add(a);
         }
 
         return result;
     }
 
+
+
+    public void addCorrequisit (String new_correquisit) {
+        c.addAssignatura(new_correquisit);
+    }
 
 
 }

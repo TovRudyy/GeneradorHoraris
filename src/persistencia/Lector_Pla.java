@@ -103,10 +103,10 @@ public class Lector_Pla {
     }
 
 
-    private static Corequisit llegeixCorequisit(Scanner scanner){
-        Corequisit c = new Corequisit();
-        c.addAssignatura(scanner.next());
-        c.addAssignatura(scanner.next());
+    private static String[] llegeixCorequisit(Scanner scanner){
+        String c[] = new String[2];
+        c[0] = scanner.next();
+        c[1] = scanner.next();
         return c;
     }
 
@@ -123,9 +123,7 @@ public class Lector_Pla {
                     pla.addAssignatura(llegeixAssignatura(scanner));
                     break;
                 case "C":
-                    Corequisit c = llegeixCorequisit(scanner);
-                    //ara hem d'afegir aquest corequisit a les assignatures implicades
-                   // pla.afegirCorrequisits (c);
+                    pla.afegirCorrequisits (llegeixCorequisit(scanner));
 
                     break;
                 default:

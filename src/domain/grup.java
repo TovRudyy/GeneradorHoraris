@@ -11,7 +11,7 @@ public class grup {
     private String idGrup; //identificador de l'aula
     private int capacitat;  //capacitat de l'aula
     private String horariGrup;
-    private ArrayList <Restriccio> restriccions = new ArrayList<>();
+    private RestriccioSubgrup subgrup;
 
 
 
@@ -72,12 +72,13 @@ public class grup {
     }
 
 
-    public ArrayList<Restriccio> getRestriccions () {
-        return restriccions;
+    public RestriccioSubgrup getSubgrup () {
+        return subgrup;
     }
 
-    public void afegirRestriccio (Restriccio r) {
-        restriccions.add(r);
+
+    public void afegirRestriccio (RestriccioSubgrup r) {
+        this.subgrup = r;
     }
 
 
