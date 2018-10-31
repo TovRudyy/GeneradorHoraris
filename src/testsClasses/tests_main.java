@@ -2,8 +2,8 @@ package testsClasses;
 
 import domain.Aula;
 import domain.PlaEstudis;
-import persistencia.Lector_Aules;
-import persistencia.Lector_Pla;
+import persistencia.Lector_Aules_JSON;
+import persistencia.Lector_Pla_JSON;
 
 import java.io.FileNotFoundException;
 import java.util.HashMap;
@@ -15,8 +15,8 @@ public class tests_main {
         Map<String, Aula> aules = new HashMap<>();
         PlaEstudis plaEstudis;
         try{
-            //plaEstudis = Lector_Pla.llegeixPlaEstudis ("C:\\Users\\victo\\IdeaProjects\\GeneradorHoraris\\data\\PlaEstudis\\input_test.txt");
-            plaEstudis = Lector_Pla.llegeixPlaEstudis("/home/alumne/IdeaProjects/GeneradorHoraris/data/PlaEstudis/input_test.txt");
+            plaEstudis = Lector_Pla_JSON.llegirPlaEstudis ("C:\\Users\\victo\\IdeaProjects\\GeneradorHoraris\\data\\PlaEstudis\\input_test.json");
+            //plaEstudis = Lector_Pla_JSON.llegirPlaEstudis("/home/alumne/IdeaProjects/GeneradorHoraris/data/PlaEstudis/input_test.txt");
         }catch(FileNotFoundException fnfo){
             System.out.println("No existeix el fitxer");
             return;
@@ -27,7 +27,8 @@ public class tests_main {
 
 
         try{
-            aules = Lector_Aules.llegeixAules ("/home/alumne/IdeaProjects/GeneradorHoraris/data/Aules/input_aules.txt");
+            aules = Lector_Aules_JSON.llegirAules ("C:\\Users\\victo\\IdeaProjects\\GeneradorHoraris\\data\\Aules\\input_aules.json");
+            //aules = Lector_Aules_JSON.llegirAules ("/home/alumne/IdeaProjects/GeneradorHoraris/data/Aules/input_aules.json");
         }catch(FileNotFoundException fnfo){
             System.out.println("No existeix el fitxer");
             return;

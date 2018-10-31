@@ -2,7 +2,6 @@ package persistencia;
 
 import domain.Aula;
 import domain.Aula_Exception;
-import domain.Laboratori;
 import domain.Tipus_Aula;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -18,6 +17,12 @@ import java.util.TreeMap;
 
 public class Lector_Aules_JSON {
 
+    private static Map<String, Aula> aules_dades = new TreeMap<>();
+
+    public static Map<String, Aula> getAules() {
+        return aules_dades;
+    }
+
     public static Map<String, Aula> llegirAules(String fitxer) throws ParseException, IOException, Aula_Exception{
         Map<String, Aula> aules = new TreeMap<>();
         JSONParser parser = new JSONParser();
@@ -26,10 +31,10 @@ public class Lector_Aules_JSON {
             JSONObject aulaJ = (JSONObject) anObj;
             String nom = (String) aulaJ.get("nom");
             int capacitat = ((Long) aulaJ.get("capacitat")).intValue();
-            Tipus_Aula tipus = Capa_Dades.string_to_Tipus_Aula((String) aulaJ.get("tipus"));
-            if(tipus.equals(Tipus_Aula.LAB)) aules.put(nom, new Laboratori(nom, capacitat, Capa_Dades.string_to_Tipus_Lab((String) aulaJ.get("tipus_lab"))));
-            else aules.put(nom, new Aula(nom, capacitat, tipus));
+            Tipus_Aula tipus = Tipus_Aula.string_to_Tipus_Aula((String) aulaJ.get("tipus"));
+            aules.put(nom, new Aula(nom, capacitat, tipus));
         }
+        aules_dades.putAll(aules);
         return aules;
     }
 
@@ -37,7 +42,7 @@ public class Lector_Aules_JSON {
         aules.putAll(llegirAules(fitxer));
     }
 
-    public static Map<String, Aula> llegirCarpetaAules()  throws  ParseException, IOException, Aula_Exception{
+    public static Map<String, Aula> llegirCarpetaAules()  throws Aula_Exception{
         File AUfolder = new File("data/Aules");
         if (!AUfolder.isDirectory()) throw new Aula_Exception("Error with data/Aules folder!");
         Map<String, Aula> aules = new TreeMap<>();

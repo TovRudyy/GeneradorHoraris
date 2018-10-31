@@ -2,13 +2,11 @@ package testsClasses;
 
 import domain.assignacio;
 import domain.Tipus_Aula;
-import domain.grup;
-import persistencia.Lector_Aules;
-import persistencia.Lector_Pla;
+import persistencia.Lector_Aules_JSON;
 
 public class testAssignacio {
     public static void main(String [] argv) throws Exception {
-        Lector_Aules.readFolderAules();
+        Lector_Aules_JSON.llegirCarpetaAules();
         assignacio b = new assignacio("10", 20, Tipus_Aula.TEORIA, "M1", 1, 1, 2, "M");
         b.printPossiblesClasses();
     }

@@ -15,7 +15,6 @@ public class Aula {
     private String id;              //Identificador de l'Aula
     private int capacitat;          //Capacitat de l'Aula
     private Tipus_Aula tipus;       //Tipus d'Aula
-    private Tipus_Lab tipusLab;     //Tipus de lab. Inicialment val null
     private boolean[][] ocupacio;   //Ocupacio de l'Aula (hores x dia)
 
 
@@ -23,13 +22,11 @@ public class Aula {
      * @param id Identificador de la nova Aula
      * @param capacitat Capacitat de la nova Aula
      * @param tipus Tipus de la nova Aula
-     * @throws Exception @tipus == LAB quan no és un Laboratori
      */
-    public Aula(String id, int capacitat, Tipus_Aula tipus) throws Aula_Exception {
+    public Aula(String id, int capacitat, Tipus_Aula tipus){
         this.id = id;
         this.capacitat = capacitat;
         this.tipus = tipus;
-        if (tipus == Tipus_Aula.LAB && !(this instanceof Laboratori)) throw new Aula_Exception("Intent de crear un Lab a traves d'Aula");
         this.ocupacio = new boolean[12][5];
     }
 
@@ -70,15 +67,13 @@ public class Aula {
 
 
 
-    public Tipus_Lab getTipusLab() { return tipusLab; }
 
 
 
     /**
      * @param tipus Nou tipus de l'Aula
      */
-    public void setTipus(Tipus_Aula tipus) throws Exception {
-        if(tipus == Tipus_Aula.LAB || this.tipus == Tipus_Aula.LAB ) throw new Exception();
+    public void setTipus(Tipus_Aula tipus){
         this.tipus = tipus;
     }
 

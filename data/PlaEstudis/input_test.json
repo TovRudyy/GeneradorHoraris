@@ -5,7 +5,6 @@
       "codi":"IC",
       "nom":"Introduccio als computadors",
       "nivell":1,
-      "horari":"MT",
       "classes":{
         "teoria":2,
         "duracio_t":2,
@@ -16,9 +15,10 @@
       },
       "grups":{
         "automatic":true,
+        "horari":"M",
         "nombre":4,
         "capacitat":60,
-        "tipus_subgrup":"L Informatica",
+        "tipus_subgrup":"L INFORMATICA",
         "subgrup_per_alumnes":true,
         "valor":20
       }
@@ -27,7 +27,6 @@
       "codi":"FM",
       "nom":"Fonaments matematics",
       "nivell":1,
-      "horari":"MT",
       "classes":{
         "teoria":2,
         "duracio_t":2,
@@ -58,7 +57,10 @@
       }
     }
   ],
-  "restriccions":[
-
+  "corequisits":[
+    {
+      "a1":"IC",
+      "a2":"FM"
+    }
   ]
 }

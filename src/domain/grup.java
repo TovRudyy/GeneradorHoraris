@@ -12,14 +12,16 @@ public class grup {
     private int capacitat;  //capacitat de l'aula
     private String horariGrup;
     private RestriccioSubgrup subgrup;
+    private Tipus_Aula tipus;
 
 
 
     /** Constructores **/
-    public grup (String idGrup, int capacitat, String horariGrup) {
+    public grup (String idGrup, int capacitat, String horariGrup, Tipus_Aula tipus) {
         this.idGrup = idGrup;
         this.capacitat = capacitat;
         this.horariGrup = horariGrup;
+        this.tipus = tipus;
     }
 
 
@@ -49,14 +51,9 @@ public class grup {
 
 
     public Tipus_Aula getTipus () {
-        return Tipus_Aula.TEORIA;
+        return tipus;
     }
 
-
-
-    public Tipus_Lab getTipusLab () {
-        return null;
-    }
 
 
     /**

@@ -2,8 +2,8 @@ package domain;
 
 // Aquesta classe ens permet tenir tota la informacio necessaria per a calcular l'horari d'un subgrup concret
 
-import jdk.nashorn.internal.codegen.ClassEmitter;
-import persistencia.Lector_Aules;
+//import jdk.nashorn.internal.codegen.ClassEmitter;
+import persistencia.Lector_Aules_JSON;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,7 +20,6 @@ public class assignacio {
     private String idGrup, idAssig;
     private int capacitat, nivellAssig;
     private Tipus_Aula tAula;
-    private Tipus_Lab tLab = null;
     private String horariGrup;
 
     private int inici_possible, final_possible;
@@ -54,33 +53,11 @@ public class assignacio {
         this.numeroClassesRestants = numeroClasses;
     }
 
-    public assignacio (String idGrup, int cap, Tipus_Aula tAula, Tipus_Lab tLab, String idAssig, int nivellAssig, int numeroClasses, int duracioClasses, String horariGrup) {
-        this.idGrup = idGrup;
-        this.capacitat = cap;
-        this.tAula = tAula;
-        this.idAssig = idAssig;
-        this.nivellAssig = nivellAssig;
-        this.tLab = tLab;
-        this.numeroClasses = numeroClasses;
-        this.duracioClasses = duracioClasses;
-        this.horariGrup = horariGrup;
-
-        this.inici_possible = 8;
-        this.final_possible = 20;
-        if (horariGrup.equals("T")) this.inici_possible = 14;
-        else if (horariGrup.equals("M")) this.final_possible = 14;
-
-        this.possibles_classes = generaPossiblesClasses();
-        this.numeroClassesRestants = numeroClasses;
-    }
-
-
     /** Public **/
 
     //imprimeix per pantalla la informacio
     public void showAll () {
-        if (tLab == null) System.out.println (idGrup + ":" + capacitat + ":"+ tAula + ":" + idAssig +":"+ nivellAssig + ""+ horariGrup + " " + inici_possible + " " + final_possible + " " + duracioClasses);
-        else System.out.println (idGrup + ":" + capacitat + ":"+ tAula + ":" + tLab +":"+ idAssig +":"+ nivellAssig + "" + horariGrup + " " + inici_possible + " " + final_possible +" " + duracioClasses) ;
+        System.out.println (idGrup + ":" + capacitat + ":"+ tAula + ":" + idAssig +":"+ nivellAssig + ""+ horariGrup + " " + inici_possible + " " + final_possible + " " + duracioClasses);
 
     }
 
@@ -97,12 +74,12 @@ public class assignacio {
 
     private Map<String, Map<DiaSetmana, ArrayList<Classe>>> generaPossiblesClasses() {
 
-        Map<String, Aula> aules = Lector_Aules.getAules();  //map amb totes les aules
+        Map<String, Aula> aules = Lector_Aules_JSON.getAules();  //map amb totes les aules
 
         Map<String, Map<DiaSetmana, ArrayList<Classe>>> totesClasses = new HashMap<>();
 
         for (Aula aula : aules.values()) {
-            if (aula.getTipus() == tAula && aula.getTipusLab() == tLab && aula.getCapacitat() >= this.capacitat) {   //mirem que l'aula i el grup sigui compatible
+            if (aula.getTipus() == tAula && aula.getCapacitat() >= this.capacitat) {   //mirem que l'aula i el grup sigui compatible
                 ArrayList<Classe> t = new ArrayList<>();
 
                 for (DiaSetmana dia : DiaSetmana.values()) {

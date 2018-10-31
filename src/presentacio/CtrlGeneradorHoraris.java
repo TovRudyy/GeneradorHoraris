@@ -2,8 +2,8 @@ package presentacio;
 
 import domain.Aula;
 import domain.PlaEstudis;
-import persistencia.Lector_Aules;
-import persistencia.Lector_Pla;
+import persistencia.Lector_Aules_JSON;
+import persistencia.Lector_Pla_JSON;
 
 import java.util.TreeMap;
 import java.util.Map;
@@ -19,8 +19,8 @@ public class CtrlGeneradorHoraris {
     private static final String welcome_msg = "####################################\nGenerador d'Horaris sGE. Ministeri d'Energia de Kazakstan |*|*|*|\n####################################";
 
     public void initialize() throws Exception {
-        plansEstudis = Lector_Pla.readFolderPlaEstudis();
-        aules = Lector_Aules.readFolderAules();
+        plansEstudis = Lector_Pla_JSON.llegirCarpetaPlans();
+        aules = Lector_Aules_JSON.llegirCarpetaAules();
         System.out.println(welcome_msg+"\n");
         MenuPrincipal();
     }
