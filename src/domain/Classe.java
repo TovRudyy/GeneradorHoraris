@@ -9,16 +9,6 @@ public class Classe {
     private int hora_fi;
     private String id_aula;
 
-    public Classe(String id_assig, String id_grup, DiaSetmana dia, int inici, String id_aula) {
-        this.id_assig = id_assig;
-        this.id_grup = id_grup;
-        this.dia = dia;
-        this.hora_inici = inici;
-        this.id_aula = id_aula;
-        this.hora_fi = -1;
-    }
-
-
     public Classe(String id_assig, String id_grup, DiaSetmana dia, int inici, int fi, String id_aula) {
         this.id_assig = id_assig;
         this.id_grup = id_grup;
@@ -35,7 +25,7 @@ public class Classe {
     }
 
 
-    DiaSetmana getDia() {
+    public DiaSetmana getDia() {
         return this.dia;
     }
 
@@ -65,18 +55,6 @@ public class Classe {
     }
 
 
-
-    public void setHoraFi(int hora) {
-        if (hora_inici < hora) {
-            this.hora_fi = hora;
-        }
-        else {
-            System.out.println("Error: hora_fi és menor que hora_inici!");
-        }
-    }
-
-
-
     public int getDurada() {
         if (hora_fi != -1) {
             return hora_fi - hora_inici;
@@ -87,8 +65,11 @@ public class Classe {
         }
     }
 
+
+ // NO CALDRIA PERQUE JA TENIM EL DRIVER QUE LES TESTEJA UNA A UNA
     public void showClasse () {
         System.out.println(id_assig + " " + id_grup + " "+ id_aula + " " + dia+ " " + hora_inici + " " + hora_fi);
     }
+
 
 }

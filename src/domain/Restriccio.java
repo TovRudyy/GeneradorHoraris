@@ -17,7 +17,9 @@ public abstract class Restriccio {
 
 
     protected boolean solapenHores(int ai, int af, int bi, int bf) {
-        if ((bi >= ai &&  bi < af) || (bf > ai && bf < af)) return true;
+        if ((bi >= ai &&  bi < af) || (bf > ai && bf < af) ||
+            (ai >= bi &&  ai < bf) || (af > bi && af < bf)) return true;
+
         return false;
     }
 
