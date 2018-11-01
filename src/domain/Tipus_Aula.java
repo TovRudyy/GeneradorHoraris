@@ -39,7 +39,7 @@ public enum Tipus_Aula{
 
         out.println("Codis valids per " + LAB_INFORMATICA + ":");
         out.println("\t LI | L INFORMATICA | LAB_INFORMATICA | LABORATORI_INFORMATICA | I | INFORMATICA");
-
-
     }
+
+    public static void escriure_codis_valids(){escriure_codis_valids(System.out);}
 }

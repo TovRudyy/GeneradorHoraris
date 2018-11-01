@@ -82,7 +82,7 @@ public class driverGrup {
                 }
             }catch(Aula_Exception ae){
                 System.out.println("Tipus no valid");
-                Tipus_Aula.escriure_codis_valids(System.out);
+                Tipus_Aula.escriure_codis_valids();
             }catch(NullPointerException npe){
                 System.out.println("Abans de probar altres funcions, crea un grup probant la creadora");
             }finally{
