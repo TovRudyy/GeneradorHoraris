@@ -78,5 +78,8 @@ public class grup {
         this.subgrup = r;
     }
 
-
+    @Override
+    public String toString() {
+        return idGrup + ":" + capacitat + ":" + horariGrup + ":" + tipus;
+    }
 }
