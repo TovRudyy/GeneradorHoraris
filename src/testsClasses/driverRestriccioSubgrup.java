@@ -1,20 +1,22 @@
 package testsClasses;
 
-import domain.RestriccioOcupacio;
-import testsClasses.stubRestriccioOcupacio;
+import domain.RestriccioSubgrup;
+import testsClasses.stubRestriccioSubgrup;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
 
 
-public class driverRestriccioOcupacio  {
+public class driverRestriccioSubgrup  {
     public static void main (String argv[]) {
-        RestriccioOcupacio a = null;
+        RestriccioSubgrup a = null;
+        stubRestriccioSubgrup q = new stubRestriccioSubgrup();
+
         try {
-            System.out.println("Driver RestriccioOcupacio");
+            System.out.println("Driver RestriccioSubgrup");
             System.out.println("Opcions:");
             System.out.println("\t 1) Creadora Classe()");
-            System.out.println("\t       input: 1");
+            System.out.println("\t       input: 1 (S'agafarà un exemple de grup que faci de grup de teoria)");
 
             System.out.println("\t 2) Comprova si la ultima classe afegida segueix complint la restriccio amb les altres");
             System.out.println("\t       input: 2");
@@ -33,14 +35,13 @@ public class driverRestriccioOcupacio  {
                 switch (line[0]) {  //line[0] ens indicarà el numero de la opcio
                     case "1":
                         try {
-                            a = new RestriccioOcupacio();
+                            a = new RestriccioSubgrup(q.getGrupTeoria());
                             System.out.println("Creada correctament");
                         } catch (Exception e) {
                         }
                         break;
 
                     case "2":
-                        stubRestriccioOcupacio q = new stubRestriccioOcupacio();
                         boolean r = a.checkRestriccio(q.getResultatParcialFals());
                         System.out.println("PROVEM EL PRIMER TEST: El resultat hauria de ser false ja que dos classes es solapen");
                         System.out.println("Resultat: " + r);

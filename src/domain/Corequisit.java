@@ -11,6 +11,12 @@ public class Corequisit extends Restriccio {
     public Corequisit(){
     }
 
+
+    public ArrayList<String> getAssignatures () {
+        return assignatures;
+    }
+
+
     /**
      *
      * @param id_assignatura

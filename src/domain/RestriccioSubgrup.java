@@ -11,7 +11,7 @@ public class RestriccioSubgrup extends Restriccio {
      * @param pare és l'objecte grup de l'assignacio
      * @return cert si el grup de l'assignacio solapa Classe amb amb el seu grup de teoria, fals si no
      */
-    RestriccioSubgrup(grup pare) {
+    public RestriccioSubgrup(grup pare) {
         this.pare = pare;
     }
 

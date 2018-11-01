@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class grup {
     /** Atributs **/
-    private String idGrup; //identificador de l'aula
+    private String idGrup; //identificador del grup
     private int capacitat;  //capacitat de l'aula
     private String horariGrup;
     private RestriccioSubgrup subgrup;
@@ -58,11 +58,11 @@ public class grup {
 
     /**
      *
-     * @param id identificador d'un grup existent i que pertany a la mateixa assignatura
+     * @param id_grup identificador d'un grup existent i que pertany a la mateixa assignatura
      * @return  cert si aquest objecte grup és un subgrup del grup id, fals si no
      */
-    public boolean esSubgrup(String id) {
-        int other = Integer.parseInt(id);
+    public boolean esSubgrup(String id_grup) {
+        int other = Integer.parseInt(id_grup);
         if (other%10 != 0) return false;
         int me = Integer.parseInt(idGrup);
         return (other/10 == me/10);
