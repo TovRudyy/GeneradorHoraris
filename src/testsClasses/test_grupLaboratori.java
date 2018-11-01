@@ -1,8 +1,8 @@
 package testsClasses;
 
 import java.util.Scanner;
-import domain.grupLaboratori;
-import domain.Tipus_Lab;
+
+import domain.*;
 
 public class test_grupLaboratori {
     public static void main (String [] argv) {
@@ -10,20 +10,23 @@ public class test_grupLaboratori {
         String id;
         int capacitat;
         String s; //accedim a la enumeració dels tipus
-        Tipus_Lab tipus;
+        Tipus_Aula tipus = null;
 
         System.out.println ("Escriu el id,la capacitat i el tipus de grup de laboratori");
 
         keyboard = new Scanner(System.in);
         id = keyboard.nextLine();
         capacitat = keyboard.nextInt();
-        s = keyboard.next();
+        while(tipus == null) {
+            s = keyboard.next();
+            try {
+                tipus = Tipus_Aula.string_to_Tipus_Aula(s);
+            } catch (Aula_Exception ae) {
+                System.out.println("Tipus no valid");
+            }
+        }
 
-        if(s.equals("INFORMATICA") | s.equals("I")) tipus = Tipus_Lab.INFORMATICA;
-        else if(s.equals("FISICA") | s.equals("F")) tipus =  Tipus_Lab.FISICA;
-        else tipus = Tipus_Lab.ELECTRONICA;
-
-        grupLaboratori g = new grupLaboratori (id, capacitat, "M", tipus);
+        grup g = new grup(id, capacitat, "M", tipus);
         System.out.println (g.getTipus());
 
     }

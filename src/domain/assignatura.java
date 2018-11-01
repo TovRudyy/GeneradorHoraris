@@ -111,8 +111,7 @@ public class assignatura {
             grup b = a.getValue();
             Tipus_Aula t = b.getTipus();
 
-            if (t.equals(Tipus_Aula.LAB)) System.out.println(b.getId() + ":" + b.getCapacitat() + ":" + t + ":" + b.getTipusLab());
-            else System.out.println(b.getId() + ":" + b.getCapacitat() + ":" + t);
+            System.out.println(b.getId() + ":" + b.getCapacitat() + ":" + t);
         }
 
     }
@@ -160,8 +159,8 @@ public class assignatura {
         for (Map.Entry<String, grup> g_aux : grups.entrySet()) {
             grup g = g_aux.getValue();
             assignacio a;
-            if (g.getTipus() == Tipus_Aula.LAB)
-                a = new assignacio(g.getId(), g.getCapacitat(), g.getTipus(),g.getTipusLab(), id, nivell, classes_laboratori, duracio_laboratori,g.getHorariAssig());
+            if (Tipus_Aula.es_Laboratori(g.getTipus()))
+                a = new assignacio(g.getId(), g.getCapacitat(), g.getTipus(), id, nivell, classes_laboratori, duracio_laboratori,g.getHorariAssig());
 
             else if (g.getTipus() == Tipus_Aula.TEORIA)
                 a = new assignacio(g.getId(), g.getCapacitat(), g.getTipus(),id, nivell, classes_teoria, duracio_teoria, g.getHorariAssig());
