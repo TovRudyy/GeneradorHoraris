@@ -8,8 +8,8 @@ import java.util.Scanner;
 
 
 public class ControladorPresentacioMenuPrincipal {
-    ControladorPlaEstudis CtrlPE;
-    ControladorAules CtrlAUS;
+    static ControladorPlaEstudis CtrlPE;
+    static ControladorAules CtrlAUS;
 
     ControladorPresentacioPlaEstudis PresentacioPE;
 
@@ -55,8 +55,11 @@ public class ControladorPresentacioMenuPrincipal {
     private void printActionsMenuPrincipal() {
         System.out.println("#Pots executar:\n " +
                 "- Consultar Aules (show aules)\n " +
+                "- Afegir una aula (add aula)\n " +
+                "- Eliminar una aula (rm aula)\n " +
                 "- Consultar Pla Estudis (show plans)\n " +
                 "- Seleccionar un Pla Estudis (select pe)\n " +
+                "- Restaurar les dades (reset dades, reset aules, reset pe)\n " +
                 "- Sortir del Generador (quit)\n ");
     }
 
@@ -69,6 +72,12 @@ public class ControladorPresentacioMenuPrincipal {
             case "show aules":
                 printAules();
                 break;
+            case "add aula":
+                afegirAula();
+                break;
+            case "rm aula":
+                eliminarAula();
+                break;
             case "show plans":
                 printPlaEstudis();
                 break;
@@ -77,14 +86,24 @@ public class ControladorPresentacioMenuPrincipal {
                 printPlaEstudis();
                 System.out.print("Seleccio: ");
                 arg = reader.next();
-                System.out.println("Debug msg! arg = " + arg);
+                System.out.println("DEBUG msg: arg = " + arg);
                 if (CtrlPE.exists(arg)) {
                     System.out.println("Has seleccionat " + arg);
                     PresentacioPE = new
-                            ControladorPresentacioPlaEstudis(arg);
+                            ControladorPresentacioPlaEstudis(arg, this);
                     PresentacioPE.MenuPrincipal();
                 }
                 else System.out.println("ERROR: " + arg + " does not exists");
+                break;
+            case "reset dades":
+                restaurarDadesAules();
+                restaurarDadesPE();
+                break;
+            case "reset aules":
+                restaurarDadesAules();
+                break;
+            case "reset pe":
+                restaurarDadesPE();
                 break;
             case "quit":
                 endExecution();
@@ -97,6 +116,41 @@ public class ControladorPresentacioMenuPrincipal {
 
     protected void endExecution() {
         System.exit(0);
+    }
+
+    protected void afegirAula() {
+        Scanner reader = new Scanner(System.in);
+        String arg;
+        System.out.println("*Per llegir un fitxer amb aules introdueix (file)\n" +
+                "*Per afegir una aula interactivament introdueix (manual)\n");
+        arg = reader.next();
+        System.out.println("DEBUG msg: arg = " + arg);
+        switch (arg) {
+            case "file":
+                CtrlAUS.llegeixFitxerAula();
+                break;
+            case "manual":
+                CtrlAUS.afegirNovaAula();
+                break;
+        }
+    }
+
+    protected void eliminarAula(){
+        Scanner reader = new Scanner(System.in);
+        String arg;
+        System.out.println("*Pots eliminar les següents aules:");
+        printAules();
+        System.out.print("Introdueix el id de l'aula a eliminar:");
+        arg = reader.next();
+        CtrlAUS.eliminarAula(arg);
+    }
+
+    protected void restaurarDadesAules() {
+        CtrlAUS.resetData();
+    }
+
+    protected void restaurarDadesPE() {
+        CtrlPE.resetData();
     }
 
 

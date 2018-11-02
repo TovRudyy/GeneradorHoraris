@@ -132,4 +132,9 @@ public class Lector_Pla_JSON {
         }
         return plansEstudis;
     }
+
+    public static assignatura llegeixAssignatura(String path) {
+        return null;
+    }
+
 }

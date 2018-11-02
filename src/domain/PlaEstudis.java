@@ -22,7 +22,7 @@ public class PlaEstudis {
     /**
      *
      * @param assig
-     * @return true si l'element s'ha afegit a les assignatures del Pla d'Estudis, false si no.
+     *
      */
     public void addAssignatura(assignatura assig) {
          assignatures.put(assig.getId(), assig);
@@ -105,5 +105,16 @@ public class PlaEstudis {
         h.printHorari();
     }
 
+    public boolean existsAssignatura(String id) {
+        return (assignatures.get(id) == null);
+    }
+
+    public void eliminarAssignatura(String id) {
+        if (assignatures.remove(id) == null) {
+            System.out.println("ERROR: no existeix l'assignatura " + id);
+            return;
+        }
+        System.out.println("DEBUG: s'ha eliminat l'assignatura " + id);
+    }
 
 }
