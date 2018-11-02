@@ -1,8 +1,8 @@
-import presentacio.CtrlGeneradorHoraris;
+import presentacio.ControladorPresentacioMenuPrincipal;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        CtrlGeneradorHoraris GH = new CtrlGeneradorHoraris();
-        GH.initialize();
+        ControladorPresentacioMenuPrincipal GH = new ControladorPresentacioMenuPrincipal();
+        GH.runGeneradorHoraris();
     }
 }

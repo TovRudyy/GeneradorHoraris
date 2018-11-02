@@ -12,7 +12,7 @@ import java.util.Map;
 public class PlaEstudis {
     private String id;  //Acrònim del Pla d'Estudis
     private HashMap<String,assignatura> assignatures = new HashMap<>(); //Assignatures pertanyents al pla d'estudis
-    private Horari h;
+    private Horari h = null;
 
     public PlaEstudis(String id) {
         this.id = id;
@@ -53,6 +53,9 @@ public class PlaEstudis {
         return id_assignatures;
     }
 
+    public boolean hasHorari() {
+        return (h != null);
+    }
 
     public void showAssignatures () {
         for (Map.Entry<String, assignatura> assig : assignatures.entrySet()) {
@@ -63,6 +66,16 @@ public class PlaEstudis {
             a.getAssignacions();
         }
 
+    }
+
+    public String toStringAssignatures() {
+        String ret = new String();
+        for (assignatura assig : assignatures.values()) {
+            ret = ret + "---------\n";
+            ret = ret + assig.getId() + "," + assig.getNom() + "\nNivell:" +
+                    assig.getNivell() + "\n";
+        }
+        return ret;
     }
 
 
@@ -86,7 +99,10 @@ public class PlaEstudis {
         String segona  = c[1];
         assignatures.get(primera).addCorrequisit(segona);
         assignatures.get(segona).addCorrequisit(primera);
+    }
 
+    public void printHorari(){
+        h.printHoraribetter();
     }
 
 

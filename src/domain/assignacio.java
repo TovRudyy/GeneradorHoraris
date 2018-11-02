@@ -188,12 +188,12 @@ public class assignacio {
 
         if ((ocupacio.checkRestriccio(aux)) && (subgrup == null || subgrup.checkRestriccio(aux_2))
                 && (corequisit == null || corequisit.checkRestriccio(aux_3))) {
-            System.out.println("Les restriccions son correctes");
+            //System.out.println("Les restriccions son correctes");
             return true;
         }
 
         else  {
-            System.out.println("les restriccions són incorrectes");
+            //System.out.println("les restriccions són incorrectes");
             return false;
         }
 
