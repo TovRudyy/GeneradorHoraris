@@ -15,4 +15,20 @@
     "capacitat":20,
     "tipus":"Problemes"
   }
+  {
+    "nom":"aula4",
+    "capacitat":60,
+    "tipus":"Teoria"
+  },
+  {
+    "nom":"aula5",
+    "capacitat":30,
+    "tipus":"Problemes"
+  },
+  {
+    "nom":"aula6",
+    "capacitat":40,
+    "tipus":"Laboratori_Informatica",
+    "tipus_lab":"Fisica"
+  }
 ]

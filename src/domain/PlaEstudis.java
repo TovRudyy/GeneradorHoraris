@@ -102,7 +102,7 @@ public class PlaEstudis {
     }
 
     public void printHorari(){
-        h.printHoraribetter();
+        h.printHorari();
     }
 
 

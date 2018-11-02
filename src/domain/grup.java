@@ -56,6 +56,7 @@ public class grup {
 
 
 
+
     /**
      *
      * @param id_grup identificador d'un grup existent i que pertany a la mateixa assignatura

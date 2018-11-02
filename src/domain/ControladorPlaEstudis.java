@@ -42,6 +42,8 @@ public class ControladorPlaEstudis {
     public void printHorari(String id) {
         getPlaEstudi(id).printHorari();
     }
+
+
     private PlaEstudis getPlaEstudi(String id) {
         for (PlaEstudis pe : ConjuntPE) {
             if (pe.getID().equals(id))

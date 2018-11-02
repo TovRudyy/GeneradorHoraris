@@ -72,6 +72,15 @@ public class assignacio {
     }
 
 
+    public void afegirCorrequisit (Corequisit c) {
+        this.corequisit = c;
+    }
+
+    public void afegirSubgrup (RestriccioSubgrup r) {
+        subgrup = r;
+    }
+
+
     private Map<String, Map<DiaSetmana, ArrayList<Classe>>> generaPossiblesClasses() {
 
         Map<String, Aula> aules = Lector_Aules_JSON.getAules();  //map amb totes les aules
@@ -116,12 +125,6 @@ public class assignacio {
 
     }
 
-    //eliminem les classes possibles i ho guardem a classes_filtrades (UTIL PEL FORWARD CHECKING)
-    public void deletePossiblesClasses(String id_aula, DiaSetmana dia, int hora_inici, int hora_fi) {
-        //Donats els valors d'entrada borra totes les possibles classes que es donen en l'aula id_aula, el dia dia, des de hora_inici fins a hora_fi)
-        //aixo ho farem servir quan fem el forward checking
-    }
-
 
     //retorna totes les classes possibles en forma de ArrayList
     public ArrayList<Classe> getAllPossibleClasses () {
@@ -149,30 +152,13 @@ public class assignacio {
         this.numeroClassesRestants += i;
     }
 
-    //elimina una classe que ja no es una possibilitat triarla
-    public void eliminaPossibilitat (Classe c) {
-        String id_aula = c.getIdAula();
-        DiaSetmana d = c.getDia();
-        ArrayList<Classe> p = possibles_classes.get(id_aula).get(d);   //arrayList
-        int i=0;
-        boolean found = false;
-        while (i < p.size() && ! found)
-        {
-            if (p.get(i) == c) {
-                possibles_classes.get(id_aula).get(d).remove(i); //eliminem la possibilitat
-                found = true;
-            }
-            ++i;
-        }
-    }
-
-
     //afegeix una classe que ara torna a ser una possibilitat
     public void afegeixPossibilitat (Classe c) {
         String id_aula = c.getIdAula();
         DiaSetmana d = c.getDia();
         possibles_classes.get(id_aula).get(d).add(c);   //afegim la possibilitat
     }
+
 
 
     //mira a totes les seves restriccions i comprova que es segueixin complint
@@ -199,12 +185,39 @@ public class assignacio {
 
     }
 
-    public void afegirCorrequisit (Corequisit c) {
-        this.corequisit = c;
+
+    public ArrayList<Classe> forwardChecking (Classe c) {
+        ArrayList<Classe> result = new ArrayList<>();
+        result.addAll( ocupacio.deletePossibilities(possibles_classes, c));
+
+        if (subgrup != null) result.addAll( subgrup.deletePossibilities(possibles_classes, c));
+
+        if (corequisit != null) result.addAll(corequisit.deletePossibilities(possibles_classes, c));
+
+        return result;
     }
 
-    public void afegirSubgrup (RestriccioSubgrup r) {
-        subgrup = r;
+
+    public ArrayList<Classe> borrarTotes (Classe c) {
+        ArrayList<Classe> result = new ArrayList<>();
+
+        for (Map.Entry<String, Map<DiaSetmana, ArrayList<Classe>>> aula: possibles_classes.entrySet()) {
+            String id_aula = aula.getKey();
+            for (Map.Entry<DiaSetmana, ArrayList<Classe>> dia : possibles_classes.get(id_aula).entrySet() ) {
+                DiaSetmana nom_dia = dia.getKey();
+                ArrayList<Classe> classes = possibles_classes.get(id_aula).get(nom_dia);
+
+                for (Classe classe_aux : classes)
+                    if (classe_aux != c) result.add(classe_aux);
+
+            }
+        }
+
+        for (Classe c_aux: result)  //eliminem les classes amb les que hi ha conflicte
+            possibles_classes.get(c_aux.getIdAula()).get(c_aux.getDia()).remove (c_aux);
+
+        return result;
     }
+
 
 }
