@@ -2,6 +2,8 @@ package domain;
 
 import java.lang.reflect.Array;
 import java.util.*;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 import java.util.jar.JarEntry;
 import java.util.Stack;
 
@@ -133,6 +135,7 @@ public class Horari {
             Classe definitiva = a.getAllPossibleClasses().get(0);   //agafem la unica possibilitat possible
             definitiva.showClasse();
         }
+        writeHorari();
     }
 
     class SortClasses implements Comparator<Classe> {
@@ -194,5 +197,59 @@ public class Horari {
         }
     }*/
 
+    private void writeHorari(){
+        String formatHeader = "|%-15s|%-20s|%-20s|%-20s|%-20s|%-20s|\n";
+        System.out.format("+---------------+--------------------+--------------------+--------------------+--------------------+--------------------+\n");
+        System.out.format(formatHeader, "   Hora/Dia", "      DILLUNS", "      DIMARTS", "     DIMECRES", "      DIJOUS", "     DIVENDRES");
+        System.out.format("+---------------+--------------------+--------------------+--------------------+--------------------+--------------------+\n");
 
+        ArrayList<ArrayList<Queue<String>>> horaris = new ArrayList<>();
+        for(int i=0; i<12; ++i){
+            horaris.add(new ArrayList<>());
+            for(int j=0; j<5; ++j){
+                horaris.get(i).add(new LinkedBlockingQueue<>());
+            }
+        }
+        for(assignacio a:conjuntAssignacions.values()){
+            Classe c = a.getAllPossibleClasses().get(0);
+            int dia=0;
+            switch(c.getDia()){
+                case DILLUNS:
+                    dia = 0;
+                    break;
+                case DIMARTS:
+                    dia = 1;
+                    break;
+                case DIMECRES:
+                    dia = 2;
+                    break;
+                case DIJOUS:
+                    dia = 3;
+                    break;
+                case DIVENDRES:
+                    dia = 4;
+            }
+            int ini = c.getHoraInici(), fi = c.getHoraFi();
+            for(int i=ini; i<fi; ++i){
+                horaris.get(i-8).get(dia).add("  " + c.getId_assig() + "  " + c.getId_grup() + "  " + c.getIdAula());
+            }
+        }
+        int hora0 = 8, hora1=9;
+        for(ArrayList<Queue<String>> hora : horaris){
+            boolean fi = false;
+            boolean first = true;
+            while(!fi){
+                String dilluns = (hora.get(0).isEmpty())? " " : hora.get(0).remove();
+                String dimarts = (hora.get(1).isEmpty())? " " : hora.get(1).remove();
+                String dimecres = (hora.get(2).isEmpty())? " " : hora.get(2).remove();
+                String dijous = (hora.get(3).isEmpty())? " " : hora.get(3).remove();
+                String divendres = (hora.get(4).isEmpty())? " " : hora.get(4).remove();
+                System.out.format(formatHeader, (first)? " " + hora0 + ":00 - " + hora1 + ":00" : "", dilluns, dimarts, dimecres, dijous, divendres);
+                first = false;
+                fi = (hora.get(0).isEmpty() && hora.get(1).isEmpty() && hora.get(2).isEmpty() && hora.get(3).isEmpty() && hora.get(4).isEmpty());
+            }
+            ++hora0; ++hora1;
+            System.out.format("+---------------+--------------------+--------------------+--------------------+--------------------+--------------------+\n");
+        }
+    }
 }
