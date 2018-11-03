@@ -107,9 +107,9 @@ public class Lector_Pla_JSON {
         JSONObject obj = (JSONObject) parser.parse(new FileReader(fitxer));
         PlaEstudis plaEstudis = new PlaEstudis((String) obj.get("nom"));
         JSONArray assignatures = (JSONArray) obj.get("assignatures");
-        afegeixAssignatures(plaEstudis, assignatures);
+        if(assignatures != null) afegeixAssignatures(plaEstudis, assignatures);
         JSONArray corequisits = (JSONArray) obj.get("corequisits");
-        afegeixCorrequisits(plaEstudis, corequisits);
+        if(corequisits != null) afegeixCorrequisits(plaEstudis, corequisits);
 
         return plaEstudis;
     }
@@ -122,7 +122,7 @@ public class Lector_Pla_JSON {
 
         ArrayList<PlaEstudis> plansEstudis = new ArrayList<>();
         for (File pe_file : Objects.requireNonNull(PEfolder.listFiles())) {
-            System.out.println("The following PlaEstudis file is being readed: " + "'" + PEfolder.getAbsolutePath());
+            System.out.println("The following PlaEstudis file is being readed: " + "'" + pe_file.getAbsolutePath());
             try{
                 plansEstudis.add(llegirPlaEstudis(pe_file.getAbsolutePath()));
             }catch(Exception e){

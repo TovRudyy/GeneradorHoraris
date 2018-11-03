@@ -27,8 +27,8 @@ public class tests_main {
 
 
         try{
-            aules = Lector_Aules_JSON.llegirAules ("C:\\Users\\victo\\IdeaProjects\\GeneradorHoraris\\data\\Aules\\input_aules.json");
-            //aules = Lector_Aules_JSON.llegirAules ("/home/alumne/IdeaProjects/GeneradorHoraris/data/Aules/input_aules.json");
+            aules = Lector_Aules_JSON.llegirAules ("C:\\Users\\victo\\IdeaProjects\\GeneradorHoraris\\data\\Aules\\AulariA6.json");
+            //aules = Lector_Aules_JSON.llegirAules ("/home/alumne/IdeaProjects/GeneradorHoraris/data/Aules/AulariA6.json");
         }catch(FileNotFoundException fnfo){
             System.out.println("No existeix el fitxer");
             return;
