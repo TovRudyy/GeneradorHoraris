@@ -46,21 +46,22 @@ public class Lector_Pla_JSON {
                 String horari = (String) grups.get("horari");
                 int n_grups = ((Long) grups.get("nombre")).intValue();
                 int capacitat = ((Long) grups.get("capacitat")).intValue();
+                int n_matins = ((Long) grups.get("matins")).intValue();
 
-                for(int i=1; i<=n_grups; ++i) grupMap.put(String.valueOf(i*10), new grup(String.valueOf(i*10), capacitat, horari, Tipus_Aula.TEORIA));
+                for(int i=1; i<=n_grups; ++i) grupMap.put(String.valueOf(i*10), new grup(String.valueOf(i*10), capacitat, (i<=n_matins)? "M" : "T", Tipus_Aula.TEORIA));
 
                 if((boolean) grups.get("subgrup_per_alumnes")) {
                     int alumnes_subgrup = ((Long) grups.get("valor")).intValue();
                     for (int i = 1; i <= n_grups; i++) {
                         for (int j = 1; j * alumnes_subgrup <= capacitat; ++j) {
-                            for (Tipus_Aula t:tipus_aules) grupMap.put(String.valueOf(i*10 + j), new grup(String.valueOf(i*10+j), alumnes_subgrup, horari, t));
+                            for (Tipus_Aula t:tipus_aules) grupMap.put(String.valueOf(i*10 + j), new grup(String.valueOf(i*10+j), alumnes_subgrup, (i<=n_matins)? "M" : "T", t));
                         }
                     }
                 }else{
                     int n_subgrups = ((Long) grups.get("valor")).intValue();
                     for (int i = 1; i <= n_grups; i++) {
                         for (int j = 1; j <= n_subgrups; ++j) {
-                            for (Tipus_Aula t:tipus_aules) grupMap.put(String.valueOf(i*10 + j), new grup(String.valueOf(i*10+j), capacitat/n_subgrups, horari, t));
+                            for (Tipus_Aula t:tipus_aules) grupMap.put(String.valueOf(i*10 + j), new grup(String.valueOf(i*10+j), capacitat/n_subgrups, (i<=n_matins)? "M" : "T", t));
                         }
                     }
                 }
@@ -107,9 +108,9 @@ public class Lector_Pla_JSON {
         JSONObject obj = (JSONObject) parser.parse(new FileReader(fitxer));
         PlaEstudis plaEstudis = new PlaEstudis((String) obj.get("nom"));
         JSONArray assignatures = (JSONArray) obj.get("assignatures");
-        afegeixAssignatures(plaEstudis, assignatures);
+        if(assignatures != null) afegeixAssignatures(plaEstudis, assignatures);
         JSONArray corequisits = (JSONArray) obj.get("corequisits");
-        afegeixCorrequisits(plaEstudis, corequisits);
+        if(corequisits != null) afegeixCorrequisits(plaEstudis, corequisits);
 
         return plaEstudis;
     }
@@ -122,7 +123,7 @@ public class Lector_Pla_JSON {
 
         ArrayList<PlaEstudis> plansEstudis = new ArrayList<>();
         for (File pe_file : Objects.requireNonNull(PEfolder.listFiles())) {
-            System.out.println("The following PlaEstudis file is being readed: " + "'" + PEfolder.getAbsolutePath());
+            System.out.println("The following PlaEstudis file is being readed: " + "'" + pe_file.getAbsolutePath());
             try{
                 plansEstudis.add(llegirPlaEstudis(pe_file.getAbsolutePath()));
             }catch(Exception e){
