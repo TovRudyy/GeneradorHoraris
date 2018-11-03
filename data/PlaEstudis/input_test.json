@@ -15,8 +15,8 @@
       },
       "grups":{
         "automatic":true,
-        "horari":"M",
         "nombre":4,
+        "matins":3,
         "capacitat":60,
         "tipus_subgrup":"L INFORMATICA",
         "subgrup_per_alumnes":true,
