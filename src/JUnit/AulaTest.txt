@@ -1,0 +1,6 @@
+//idAula capacitat Tipus
+a1 20 T
+a2 34 P
+a3 54 LF
+a4 23 LI
+a5 12 LE

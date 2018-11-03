@@ -27,17 +27,11 @@ public class driverGrup {
         System.out.println("\t5) Getter tipus:");
         System.out.println("\t\tinput: 5");
 
-        System.out.println("\t6) Getter subgrup:");
-        System.out.println("\t\tinput: 6");
+        System.out.println("\t6) Consultora subgrup:");
+        System.out.println("\t\tinput: 6 IdGrup<int>");
 
-        System.out.println("\t7) Consultora subgrup:");
-        System.out.println("\t\tinput: 7 IdGrup<int>");
-
-        System.out.println("\t8) Setter subgrup:");
-        System.out.println("\t\tinput: 8 idPare<int> CapacitatPare<int> HorariPare<M | T | MT> TipusPare<Tipus_Aula>");
-
-        System.out.println("\t9) Sortir:");
-        System.out.println("\t\tinput: 9");
+        System.out.println("\t7) Sortir:");
+        System.out.println("\t\tinput: 7");
 
         System.out.println("Introdueix un codi:");
 
@@ -46,7 +40,7 @@ public class driverGrup {
         String id=null, horari=null;
         int capacitat = -1;
         Tipus_Aula tipus=null;
-        while(codi!=9){
+        while(codi != 7){
             try {
                 switch (codi) {
                     case 1:
@@ -79,6 +73,13 @@ public class driverGrup {
                         System.out.println("Tipus esperat: " + tipus);
                         System.out.println("Tipus obtingut: " + g.getTipus());
                         break;
+                    case 6:
+                        if(g == null) throw new NullPointerException();
+                        String id_pare = keyboard.next();
+                        System.out.println("Resultat obtingut: " + g.esSubgrup(id_pare));
+                        break;
+                    default:
+                        System.out.println("Codi no valid.");
                 }
             }catch(Aula_Exception ae){
                 System.out.println("Tipus no valid");

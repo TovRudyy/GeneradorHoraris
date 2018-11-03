@@ -40,7 +40,7 @@ public class driverCorequisit  {
             while (linia_llegida != null && !sortir) {
                 String[] line = linia_llegida.split(" ");   //quan trobi un espai fer un split
 
-                switch (line[0]) {  //line[0] ens indicarà el numero de la opcio
+                switch (line[0]) {  //line[0] ens indicara el numero de la opcio
                     case "1":
                         try {
                             a = new Corequisit();

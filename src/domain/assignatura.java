@@ -1,5 +1,6 @@
 package domain;
 
+import java.lang.reflect.Array;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.ArrayList;
@@ -76,7 +77,9 @@ public class assignatura {
         this.grups = grups;
     }
 
-
+    public TreeMap<String, grup> getGrups() {
+        return grups;
+    }
 
     /**
      * El sistema modificarà el nombre i la durada de les classes de teoria.
@@ -96,7 +99,64 @@ public class assignatura {
         duracio_laboratori = dLaboratori;
     }
 
+    public int getClasses_teoria() {
+        return classes_teoria;
+    }
 
+    public void setClasses_teoria(int classes_teoria) {
+        this.classes_teoria = classes_teoria;
+    }
+
+    public int getClasses_problemes() {
+        return classes_problemes;
+    }
+
+    public void setClasses_problemes(int classes_problemes) {
+        this.classes_problemes = classes_problemes;
+    }
+
+    public int getClasses_laboratori() {
+        return classes_laboratori;
+    }
+
+    public void setClasses_laboratori(int classes_laboratori) {
+        this.classes_laboratori = classes_laboratori;
+    }
+
+    public int getDuracio_teoria() {
+        return duracio_teoria;
+    }
+
+    public void setDuracio_teoria(int duracio_teoria) {
+        this.duracio_teoria = duracio_teoria;
+    }
+
+    public int getDuracio_problemes() {
+        return duracio_problemes;
+    }
+
+    public void setDuracio_problemes(int duracio_problemes) {
+        this.duracio_problemes = duracio_problemes;
+    }
+
+    public int getDuracio_laboratori() {
+        return duracio_laboratori;
+    }
+
+    public void setDuracio_laboratori(int duracio_laboratori) {
+        this.duracio_laboratori = duracio_laboratori;
+    }
+
+    public ArrayList<Integer> getClasses(){
+        ArrayList<Integer> classes = new ArrayList<>();
+        classes.add(classes_teoria);
+        classes.add(duracio_teoria);
+        classes.add(classes_laboratori);
+        classes.add(duracio_laboratori);
+        classes.add(classes_problemes);
+        classes.add(duracio_problemes);
+        return classes;
+    }
 
     public void showClasses () {
         System.out.println(classes_teoria + ":" + duracio_teoria + ":" + classes_problemes + ":" + duracio_problemes
@@ -147,8 +207,6 @@ public class assignatura {
         }
 
     }
-
-
 
 
     public ArrayList<assignacio> getAssignacions () {

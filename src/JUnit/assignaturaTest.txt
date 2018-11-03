@@ -1,0 +1,5 @@
+# id nom nivell nT dT nP dP nL dL
+IC IntroduccioComputadors 1 2 2 0 0 1 2
+FM FonamentsMatematics 1 2 2 1 2 0 0
+PRO1 Programacio1 1 1 2 0 0 1 2
+F Fisica 1 1 2 0 0 1 2
