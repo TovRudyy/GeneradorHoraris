@@ -175,28 +175,6 @@ public class Horari {
         }*/
     }
 
-/*    private void displayHorari(String[][] horari) {
-        String formatHeader = "|%-15s|%-20s|%-20s|%-20s|%-20s|%-20s|\n";
-        System.out.format("+---------------+--------------------+--------------------+--------------------+--------------------+--------------------+\n");
-        System.out.format(formatHeader, "Hora/Dia", "DILLUNS", "DIMARTS", "DIMECRES", "DIJOUS", "DIVENDRES");
-        System.out.format("+---------------+--------------------+--------------------+--------------------+--------------------+--------------------+\n");
-        System.out.format(formatHeader, "8:00-9:00", )
-        //System.out.format(
-        *//*for (int i = 0; i < horari.length; i++) {
-            for (int j = 0; j < horari[0].length; j++)
-                System.out.format("%-15s", horari[i][j]);
-            System.out.println();
-        }
-        System.out.println();*//*
-    }*/
-
-/*    private void buildHorariMatrix(String[][]horari, Classe[] classes) {
-        for (int i = 0; i < horari.length; i++)
-            for (int j = 0; j < horari[0].length; j++) {
-                horari[i][j] = "";
-        }
-    }*/
-
     private void writeHorari(){
         String formatHeader = "|%-15s|%-20s|%-20s|%-20s|%-20s|%-20s|\n";
         System.out.format("+---------------+--------------------+--------------------+--------------------+--------------------+--------------------+\n");
