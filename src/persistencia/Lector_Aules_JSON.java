@@ -15,7 +15,10 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.TreeMap;
 
-public class Lector_Aules_JSON {
+public final class Lector_Aules_JSON {
+
+    private Lector_Aules_JSON() {
+    }
 
     private static Map<String, Aula> aules_dades = new TreeMap<>();
 

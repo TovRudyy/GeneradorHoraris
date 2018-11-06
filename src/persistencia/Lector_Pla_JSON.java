@@ -13,7 +13,10 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.TreeMap;
 
-public class Lector_Pla_JSON {
+public final class Lector_Pla_JSON {
+
+    private Lector_Pla_JSON() {
+    }
 
     private static void afegeixAssignatures(PlaEstudis plaEstudis, JSONArray assignatures) throws Aula_Exception{
         for(Object a: assignatures){
