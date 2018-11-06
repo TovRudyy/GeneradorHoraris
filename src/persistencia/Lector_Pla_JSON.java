@@ -10,7 +10,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.Objects;
 import java.util.TreeMap;
 
@@ -43,7 +42,6 @@ public class Lector_Pla_JSON {
             }
             TreeMap<String, grup> grupMap = new TreeMap<>();
             if((boolean) grups.get("automatic")){
-                String horari = (String) grups.get("horari");
                 int n_grups = ((Long) grups.get("nombre")).intValue();
                 int capacitat = ((Long) grups.get("capacitat")).intValue();
                 int n_matins = ((Long) grups.get("matins")).intValue();

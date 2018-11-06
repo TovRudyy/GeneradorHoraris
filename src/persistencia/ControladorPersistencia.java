@@ -13,13 +13,10 @@ import java.util.TreeMap;
 
 public class ControladorPersistencia {
 
-    Lector_Aules_JSON   dades_aules = new Lector_Aules_JSON();
-    Lector_Pla_JSON     dades_plans = new Lector_Pla_JSON();
-
     public ArrayList<PlaEstudis> llegeixDadesPE() {
         ArrayList<PlaEstudis> ret = new ArrayList<>();
         try {
-            ret = dades_plans.llegirCarpetaPlans();
+            ret = Lector_Pla_JSON.llegirCarpetaPlans();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -27,7 +24,7 @@ public class ControladorPersistencia {
     }
 
     public Map<String, Aula> llegeixDadesAules() {
-        Map<String, Aula> ret = new TreeMap();
+        Map<String, Aula> ret = new TreeMap<>();
         try {
             ret = Lector_Aules_JSON.llegirCarpetaAules();
         } catch (Aula_Exception e) {
@@ -39,19 +36,15 @@ public class ControladorPersistencia {
     public Map<String, Aula> llegeixFitxerAula(String path) {
         Map<String, Aula> noves = new TreeMap<>();
         try {
-            noves = dades_aules.llegirAules(path);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (Aula_Exception e) {
+            noves = Lector_Aules_JSON.llegirAules(path);
+        } catch (ParseException | IOException | Aula_Exception e) {
             e.printStackTrace();
         }
         return noves;
     }
 
     public assignatura llegeixAssignatura(String path) {
-        return dades_plans.llegeixAssignatura(path);
+        return Lector_Pla_JSON.llegeixAssignatura(path);
     }
 
 }
