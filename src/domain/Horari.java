@@ -1,17 +1,13 @@
 package domain;
 
-import java.lang.reflect.Array;
 import java.util.*;
-import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
-import java.util.jar.JarEntry;
 import java.util.Stack;
 
 
 public class Horari {
 
     private HashMap<String, assignacio> conjuntAssignacions= new HashMap<>();
-    private Stack<Classe> classesFinals = new Stack();
 
     public Horari (ArrayList <assignacio> conjuntAssignacions) {
         afegeixAssignacions (conjuntAssignacions);
@@ -26,12 +22,11 @@ public class Horari {
 
     public void findHorari () {
         boolean r = selectClasse(0);
-        if (r){
-            System.out.println("HEM TROBAT UN HORARI: ");
-            //printHorari();
-        }
+        if (r) System.out.println("HEM TROBAT UN HORARI: ");
+
         else System.out.println("NO HEM POGUT FORMAR UN HORARI");
     }
+
 
     //retorna true si ja ha acabat o false si encara no
     public boolean selectClasse (int index) {
@@ -43,42 +38,38 @@ public class Horari {
 
             for (Classe c: possibleClasses )
             {
-                a.updateClassesRestants(-1);
+                a.afegirSeleccionada(c);    //tambe fa el update de les que falten
                 Stack<Classe> eliminades = new Stack();
-
                 eliminades.addAll(forward_checking (c)); //forward checking
 
                 boolean valid = checkNotEmpty ();
 
-                if (!valid) System.out.println("Fals");
-                if (valid)  //l'horari compleix totes les restriccions
-                {
-                    boolean r;
-                    if (a.getNumeroClassesRestants() == 0) {  //vol dir que ja no cal seleccionar mes classes per aquesta assignacio
+                boolean r;
+                if (valid) {
+                    if (a.getNumeroClassesRestants() == 0)  //hem de saltar al seguent
+                    {
+                        eliminades.addAll(a.nomesSeleccionades());
                         r = selectClasse(index + 1); //passem a comprovar la seguent assignacio
                     }
-                     else {
-                         r = selectClasse(index);  //encara queden classes que assignar
-                    }
 
-                    if (r) //ja hem acabat
-                        return r;
+                    else   //si encara hem d'assignar classes a aquesta assignacio
+                        r = selectClasse(index);
 
-                    //si not r, hem de seguir iterant
-
+                    if (r) return r;
                 }
 
-                //revertim els canvis fets usant la stack eliminades
-                revertChanges (eliminades);
-
-
-                a.updateClassesRestants(1);
+                else {  //la combinacio es invalida
+                    System.out.println("no es valida");
+                    c.showClasse();
+                    revertChanges (eliminades);
+                    a.eliminarSeleccionada(c);
+                }
 
             }
-
             return false;   //vol dir que hem mirat totes les opcions i no n'hi ha cap que funcioni
 
         }
+
         else return true;
 
     }
@@ -88,17 +79,13 @@ public class Horari {
     private Stack<Classe> forward_checking (Classe c) {
         Stack<Classe> totes_eliminades = new Stack<>();
 
-        assignacio assig_actual = conjuntAssignacions.get(c.getId_assig()+c.getId_grup());
-        totes_eliminades.addAll(assig_actual.borrarTotes (c));
-
-
         for (Map.Entry<String, assignacio> aux : conjuntAssignacions.entrySet()) {
             assignacio a = aux.getValue();
-            if (a != assig_actual) {
-                ArrayList<Classe> eliminades = a.forwardChecking(c);
-                totes_eliminades.addAll(eliminades);
-            }
+            ArrayList<Classe> eliminades = a.forwardChecking(c);
+            totes_eliminades.addAll(eliminades);
+
         }
+
         return totes_eliminades;
     }
 
@@ -106,8 +93,8 @@ public class Horari {
     private boolean checkNotEmpty () {
         for (Map.Entry<String, assignacio> aux : conjuntAssignacions.entrySet()) {
             assignacio a = aux.getValue();
-            if (a.getAllPossibleClasses().isEmpty()) {
-                System.out.println("La assignacio ");
+            if (a.isEmpty()) {
+                System.out.println("Aquesta falla");
                 a.showAll();
                 return false;
             }
@@ -128,54 +115,7 @@ public class Horari {
     }
 
 
-
-    public void printHorari () {
-        for (Map.Entry<String,assignacio> aux : conjuntAssignacions.entrySet()) {
-            assignacio a = aux.getValue();
-            Classe definitiva = a.getAllPossibleClasses().get(0);   //agafem la unica possibilitat possible
-            definitiva.showClasse();
-        }
-        writeHorari();
-    }
-
-    class SortClasses implements Comparator<Classe> {
-        @Override
-        public int compare(Classe o1, Classe o2) {
-            if (o1.getDia().compareTo(o2.getDia()) > 0)
-                return 1;
-            else if (o1.getDia().compareTo(o2.getDia()) < 0)
-                return -1;
-            else{
-                if (o1.getHoraInici() < o2.getHoraInici())
-                    return -1;
-                else if (o1.getHoraInici() > o2.getHoraInici())
-                    return 1;
-                else return 0;
-            }
-        }
-    }
-
-    public void printHoraribetter() {
-        Classe[] classes = sortClasses();
-        for (int i = 0; i < classes.length; i++) {
-            classes[i].showClasse();
-        }
-    }
-
-
-    private Classe[] sortClasses() {
-        //System.out.println("DEBUG: size of classesFinals = " + classesFinals.size());
-        Classe[] classes = classesFinals.toArray(new Classe[classesFinals.size()]);
-        //System.out.println("DEBUG: size of classes = " + classes.length);
-        Arrays.sort(classes, new SortClasses());
-        return classes;
-/*        for (Classe c : classes) {
-            System.out.println(c.getId_assig() + "," + c.getId_grup() +
-                    "," + c.getDia() + "," + c.getHoraInici());
-        }*/
-    }
-
-    private void writeHorari(){
+    public void printHorari(){
         String formatHeader = "|%-15s|%-20s|%-20s|%-20s|%-20s|%-20s|\n";
         System.out.format("+---------------+--------------------+--------------------+--------------------+--------------------+--------------------+\n");
         System.out.format(formatHeader, "   Hora/Dia", "      DILLUNS", "      DIMARTS", "     DIMECRES", "      DIJOUS", "     DIVENDRES");
@@ -189,29 +129,31 @@ public class Horari {
             }
         }
         for(assignacio a:conjuntAssignacions.values()){
-            Classe c = a.getAllPossibleClasses().get(0);
-            int dia=0;
-            switch(c.getDia()){
-                case DILLUNS:
-                    dia = 0;
-                    break;
-                case DIMARTS:
-                    dia = 1;
-                    break;
-                case DIMECRES:
-                    dia = 2;
-                    break;
-                case DIJOUS:
-                    dia = 3;
-                    break;
-                case DIVENDRES:
-                    dia = 4;
-            }
-            int ini = c.getHoraInici(), fi = c.getHoraFi();
-            for(int i=ini; i<fi; ++i){
-                horaris.get(i-8).get(dia).add("  " + c.getId_assig() + "  " + c.getId_grup() + "  " + c.getIdAula());
+            for (Classe c: a.getSeleccionades()) {
+                int dia = 0;
+                switch (c.getDia()) {
+                    case DILLUNS:
+                        dia = 0;
+                        break;
+                    case DIMARTS:
+                        dia = 1;
+                        break;
+                    case DIMECRES:
+                        dia = 2;
+                        break;
+                    case DIJOUS:
+                        dia = 3;
+                        break;
+                    case DIVENDRES:
+                        dia = 4;
+                }
+                int ini = c.getHoraInici(), fi = c.getHoraFi();
+                for (int i = ini; i < fi; ++i) {
+                    horaris.get(i - 8).get(dia).add("  " + c.getId_assig() + "  " + c.getId_grup() + "  " + c.getIdAula());
+                }
             }
         }
+
         int hora0 = 8, hora1=9;
         for(ArrayList<Queue<String>> hora : horaris){
             boolean fi = false;

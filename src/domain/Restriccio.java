@@ -40,7 +40,7 @@ public abstract class Restriccio {
                 ArrayList<Classe> classes = possibles_classes.get(id_aula).get(nom_dia);
 
                 for (Classe classe_aux : classes)  {
-                    boolean r = checkCorrecte (classe_aux, c);
+                    boolean r = checkCorrecte(classe_aux, c);
                     if (!r)   //em d'eliminar-la
                         result.add(classe_aux);
 

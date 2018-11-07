@@ -2,13 +2,11 @@ package domain;
 
 // Aquesta classe ens permet tenir tota la informacio necessaria per a calcular l'horari d'un subgrup concret
 
-//import jdk.nashorn.internal.codegen.ClassEmitter;
 import persistencia.Lector_Aules_JSON;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Stack;
 
 /**
  * @Author: David
@@ -21,17 +19,16 @@ public class assignacio {
     private int capacitat, nivellAssig;
     private Tipus_Aula tAula;
     private String horariGrup;
-
+    private int numeroClasses, duracioClasses, numeroClassesRestants; //numero i duracio de les classes
     private int inici_possible, final_possible;
     private Map<String, Map<DiaSetmana, ArrayList<Classe>>> possibles_classes;
+    private ArrayList<Classe> classes_seleccionades = new ArrayList<>();
 
+    //RESTRICCIONS
     private RestriccioOcupacio ocupacio = new RestriccioOcupacio();
     private Corequisit corequisit = null;
     private RestriccioSubgrup subgrup = null;
 
-
-    //numero i duració de classes
-    private int numeroClasses, duracioClasses, numeroClassesRestants;
 
     /** Constructors **/
     public assignacio (String idGrup, int cap, Tipus_Aula tAula, String idAssig, int nivellAssig, int numeroClasses, int duracioClasses, String horariGrup) {
@@ -147,42 +144,13 @@ public class assignacio {
         return this.numeroClassesRestants;
     }
 
-    //modifica les classes que queden per assignar
-    public void updateClassesRestants (int i) {
-        this.numeroClassesRestants += i;
-    }
+
 
     //afegeix una classe que ara torna a ser una possibilitat
     public void afegeixPossibilitat (Classe c) {
         String id_aula = c.getIdAula();
         DiaSetmana d = c.getDia();
         possibles_classes.get(id_aula).get(d).add(c);   //afegim la possibilitat
-    }
-
-
-
-    //mira a totes les seves restriccions i comprova que es segueixin complint
-    public boolean checkRestriccions (Stack<Classe> c) {
-        Stack<Classe> aux = new Stack();
-        aux.addAll(c);  //ens assegurem que la restricció pugui eliminar la pila sense modificar la original
-
-        Stack<Classe> aux_2 = new Stack();
-        aux_2.addAll(c);  //ens assegurem que la restricció pugui eliminar la pila sense modificar la original
-
-        Stack<Classe> aux_3 = new Stack();
-        aux_3.addAll(c);  //ens assegurem que la restricció pugui eliminar la pila sense modificar la original
-
-        if ((ocupacio.checkRestriccio(aux)) && (subgrup == null || subgrup.checkRestriccio(aux_2))
-                && (corequisit == null || corequisit.checkRestriccio(aux_3))) {
-            //System.out.println("Les restriccions son correctes");
-            return true;
-        }
-
-        else  {
-            //System.out.println("les restriccions són incorrectes");
-            return false;
-        }
-
     }
 
 
@@ -198,26 +166,32 @@ public class assignacio {
     }
 
 
-    public ArrayList<Classe> borrarTotes (Classe c) {
-        ArrayList<Classe> result = new ArrayList<>();
 
-        for (Map.Entry<String, Map<DiaSetmana, ArrayList<Classe>>> aula: possibles_classes.entrySet()) {
-            String id_aula = aula.getKey();
-            for (Map.Entry<DiaSetmana, ArrayList<Classe>> dia : possibles_classes.get(id_aula).entrySet() ) {
-                DiaSetmana nom_dia = dia.getKey();
-                ArrayList<Classe> classes = possibles_classes.get(id_aula).get(nom_dia);
-
-                for (Classe classe_aux : classes)
-                    if (classe_aux != c) result.add(classe_aux);
-
-            }
-        }
-
-        for (Classe c_aux: result)  //eliminem les classes amb les que hi ha conflicte
-            possibles_classes.get(c_aux.getIdAula()).get(c_aux.getDia()).remove (c_aux);
-
-        return result;
+    public ArrayList<Classe> nomesSeleccionades () {
+        ArrayList <Classe> eliminades = getAllPossibleClasses();    //eliminem tota la resta de possibilitats
+        possibles_classes = new HashMap<>();
+        return (eliminades);   //aqui ja no hi ha les que hem anat agafant
     }
 
+
+    public void afegirSeleccionada (Classe c) {
+        classes_seleccionades.add(c);
+        this.numeroClassesRestants -= 1;
+    }
+
+    public void eliminarSeleccionada (Classe c) {
+        classes_seleccionades.remove (c);
+        this.numeroClassesRestants += 1;
+    }
+
+
+    public ArrayList<Classe> getSeleccionades () {
+        return classes_seleccionades;
+    }
+
+    public boolean isEmpty () { //si no tenim suficients possibilitats per cobrir les necessitats de l'assignatura
+        if (numeroClassesRestants > (getAllPossibleClasses().size())) return true;
+        return false;
+    }
 
 }

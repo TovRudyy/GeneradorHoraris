@@ -53,9 +53,11 @@ public class PlaEstudis {
         return id_assignatures;
     }
 
+
     public boolean hasHorari() {
         return (h != null);
     }
+
 
     public void showAssignatures () {
         for (Map.Entry<String, assignatura> assig : assignatures.entrySet()) {
