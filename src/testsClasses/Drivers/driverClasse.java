@@ -1,40 +1,42 @@
-package testsClasses;
+package testsClasses.Drivers;
 
-import domain.Aula;
-import domain.Tipus_Aula;
-import domain.Aula_Exception;
+import domain.Classe;
+import domain.DiaSetmana;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
 
 
-public class driverAula  {
+public class driverClasse  {
     public static void main (String argv[]) {
-        Aula a = null;
+        Classe a = null;
         try {
-            System.out.println("Driver Aula");
+            System.out.println("Driver Classe");
             System.out.println("Opcions:");
-            System.out.println("\t 1) Creadora Aula()");
-            System.out.println("\t       input: 1 <String>, <int>, <TipusAula>");
+            System.out.println("\t 1) Creadora Classe()");
+            System.out.println("\t       input: 1 <String>, <String>, <DiaSetmana>, <int>, <int>, <String>");
 
-            System.out.println("\t 2) Retorna el Id()");
+            System.out.println("\t 2) Retorna el Id de la assignatura()");
             System.out.println("\t       input: 2");
 
-            System.out.println("\t 3) Modifica el Id()");
-            System.out.println("\t       input: 3 <String>");
+            System.out.println("\t 3) Retorna el Id del grup()");
+            System.out.println("\t       input: 2");
 
-            System.out.println("\t 4) Retorna capacitat()");
+            System.out.println("\t 4) Retorna el dia de la Setmana()");
+            System.out.println("\t       input: 2");
+
+            System.out.println("\t 5) Retorna la hora d'inici()");
+            System.out.println("\t       input: 2");
+
+            System.out.println("\t 6) Retorna la hora fi()");
+            System.out.println("\t       input: 3");
+
+            System.out.println("\t 7) Retorna el id de l'aula()");
             System.out.println("\t       input: 4");
 
-            System.out.println("\t 5) Modifica capacitat()");
-            System.out.println("\t       input: 5 <int>");
-
-            System.out.println("\t 6) Retorna el tipus de aula()");
+            System.out.println("\t 5) Retorna la durada()");
             System.out.println("\t       input: 5");
-
-            System.out.println("\t 7) Modifica el tipus de aula()");
-            System.out.println("\t       input: 5 <int>");
 
             System.out.println("\t 8) Sortir");
 
@@ -50,36 +52,34 @@ public class driverAula  {
                 switch (line[0]) {  //line[0] ens indicarà el numero de la opcio
                     case "1":
                         try {
-                            a = new Aula(line[1], Integer.parseInt(line[2]), Tipus_Aula.valueOf(line[3]));
+                            a = new Classe(line[1], line[2], DiaSetmana.valueOf(line[3]), Integer.parseInt(line[4]), Integer.parseInt(line[5]), line[6]);
                             System.out.println("Creada correctament");
                         } catch (Exception e) {
                         }
                         break;
 
                     case "2":
-                        System.out.println(a.getId());
+                        System.out.println(a.getId_assig());
                         break;
+
                     case "3":
-                        a.setId(line[1]);
-                        System.out.println("El nou id es: " + a.getId());
+                        System.out.println(a.getId_grup());
                         break;
 
                     case "4":
-                        System.out.println(a.getCapacitat());
+                        System.out.println(a.getDia());
                         break;
 
                     case "5":
-                        a.setCapacitat(Integer.parseInt(line[1]));
-                        System.out.println("La nova capacitat es: " + a.getCapacitat());
+                        System.out.println(a.getHoraInici());
                         break;
 
                     case "6":
-                        System.out.println(a.getTipus());
+                        System.out.println(a.getHoraFi());
                         break;
 
                     case "7":
-                        a.setTipus(Tipus_Aula.string_to_Tipus_Aula(line[1]));
-                        System.out.println("El nou tipus es: " + a.getTipus());
+                        System.out.println(a.getDurada());
                         break;
 
                     case "8":
@@ -95,14 +95,14 @@ public class driverAula  {
             }
 
         }
-        catch (IOException | Aula_Exception e){
+        catch (IOException e){
             e.printStackTrace();
         }
         catch (NullPointerException e) {
             System.out.println("No hem inicialitzat una aula");
         }
 
-        }
+    }
 
 
 }
