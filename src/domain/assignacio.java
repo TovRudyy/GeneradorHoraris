@@ -80,8 +80,7 @@ public class assignacio {
 
     private Map<String, Map<DiaSetmana, ArrayList<Classe>>> generaPossiblesClasses() {
 
-        Map<String, Aula> aules = Lector_Aules_JSON.getAules();  //map amb totes les aules
-        //TODO: Eliminar el getAules, ja que trenca l'aillament entre capes
+        Map<String, Aula> aules = ControladorAules.getAules();
 
         Map<String, Map<DiaSetmana, ArrayList<Classe>>> totesClasses = new HashMap<>();
 
