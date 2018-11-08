@@ -183,5 +183,8 @@ public class assignatura {
         c.addAssignatura(new_correquisit);
     }
 
-
+    @Override
+    public String toString() {
+        return id + ":" + nom + ":" + nivell;
+    }
 }
