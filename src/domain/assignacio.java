@@ -195,4 +195,8 @@ public class assignacio {
         return false;
     }
 
+    @Override
+    public String toString() {
+        return idAssig + ":" + idGrup + ":" + capacitat + ":" + tAula + ":" + horariGrup;
+    }
 }

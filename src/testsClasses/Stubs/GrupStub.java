@@ -2,11 +2,12 @@ package testsClasses.Stubs;
 
 import domain.RestriccioSubgrup;
 import domain.Tipus_Aula;
+import testsClasses.stubRestriccioSubgrup;
 
 public class GrupStub extends domain.grup {
 
-    public GrupStub() {
-        super("0", 0, "M", Tipus_Aula.TEORIA);
+    public GrupStub(String id) {
+        super(id, 0, "M", Tipus_Aula.TEORIA);
     }
 
     @Override
@@ -32,11 +33,6 @@ public class GrupStub extends domain.grup {
     @Override
     public boolean esSubgrup(String id_grup) {
         return true;
-    }
-
-    @Override
-    public RestriccioSubgrup getSubgrup() {
-        return null;
     }
 
     @Override
