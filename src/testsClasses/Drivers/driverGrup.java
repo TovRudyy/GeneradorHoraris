@@ -1,4 +1,4 @@
-package testsClasses;
+package testsClasses.Drivers;
 
 import domain.Aula_Exception;
 import domain.Tipus_Aula;

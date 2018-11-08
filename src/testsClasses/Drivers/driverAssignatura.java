@@ -1,12 +1,10 @@
-package testsClasses;
+package testsClasses.Drivers;
 
-import domain.Tipus_Aula;
 import domain.assignacio;
 import domain.assignatura;
 import domain.grup;
 import testsClasses.Stubs.GrupStub;
 
-import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
 
