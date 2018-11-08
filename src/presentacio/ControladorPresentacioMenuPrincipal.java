@@ -39,7 +39,7 @@ public class ControladorPresentacioMenuPrincipal {
         infoAulari = CtrlAUS.getInfoAulari();
 
         if (infoAulari.isEmpty())
-            System.out.println("No hi ha aules");
+            System.out.println("INFO: No hi ha aules");
         for (String atributs : infoAulari) System.out.println(atributs);
     }
 
@@ -48,17 +48,14 @@ public class ControladorPresentacioMenuPrincipal {
         infoPlans = CtrlPE.getInfoPlans();
 
         if (infoPlans.isEmpty())
-            System.out.println("~No hi ha Plans d'Estudi");
+            System.out.println("INFO: No hi ha Plans d'Estudi");
         for (String atributs : infoPlans) System.out.println(atributs);
     }
 
     private void printActionsMenuPrincipal() {
-        System.out.println("#Pots executar:\n " +
-                "- Consultar Aules (show aules)\n " +
-                "- Afegir una aula (add aula)\n " +
-                "- Eliminar una aula (rm aula)\n " +
-                "- Consultar Pla Estudis (show plans)\n " +
-                "- Seleccionar un Pla Estudis (select pe)\n " +
+        System.out.println("GH: Pots executar:\n " +
+                "- Consultar Aules (show aules) | afegir aules (add aula) | eliminar aules (rm aula)\n " +
+                "- Consultar Plans Estudis (show plans) | seleccionar un Pla Estudis (select pe)\n " +
                 "- Restaurar les dades (reset dades, reset aules, reset pe)\n " +
                 "- Sortir del Generador (quit)\n ");
     }
@@ -82,13 +79,13 @@ public class ControladorPresentacioMenuPrincipal {
                 printPlaEstudis();
                 break;
             case "select pe":
-                System.out.println("Plans d'estudis actuals:");
+                System.out.println("GH: plans d'estudis actuals:");
                 printPlaEstudis();
-                System.out.print("Seleccio: ");
+                System.out.print("GH: seleccio: ");
                 arg = reader.next();
                 System.out.println("DEBUG msg: arg = " + arg);
                 if (CtrlPE.exists(arg)) {
-                    System.out.println("Has seleccionat " + arg);
+                    System.out.println("INFO: has seleccionat " + arg);
                     PresentacioPE = new
                             ControladorPresentacioPlaEstudis(arg, this);
                     PresentacioPE.MenuPrincipal();
@@ -121,8 +118,8 @@ public class ControladorPresentacioMenuPrincipal {
     protected void afegirAula() {
         Scanner reader = new Scanner(System.in);
         String arg;
-        System.out.println("*Per llegir un fitxer amb aules introdueix (file)\n" +
-                "*Per afegir una aula interactivament introdueix (manual)\n");
+        System.out.println("GH: per llegir un fitxer amb aules introdueix (file)\n" +
+                "GH: per afegir una aula interactivament introdueix (manual)\n");
         arg = reader.next();
         System.out.println("DEBUG msg: arg = " + arg);
         switch (arg) {
@@ -138,11 +135,19 @@ public class ControladorPresentacioMenuPrincipal {
     protected void eliminarAula(){
         Scanner reader = new Scanner(System.in);
         String arg;
-        System.out.println("*Pots eliminar les següents aules:");
-        printAules();
-        System.out.print("Introdueix el id de l'aula a eliminar:");
+        System.out.print("GH: vols eliminar totes les aules (all) o una en concret (single)?:");
         arg = reader.next();
-        CtrlAUS.eliminarAula(arg);
+        switch (arg) {
+            case "all":
+                CtrlAUS.eliminarTotesAules();
+                break;
+            case "single":
+                System.out.println("GH: pots eliminar les següents aules:");
+                printAules();
+                System.out.print("GH: introdueix el id de l'aula a eliminar:");
+                arg = reader.next();
+                CtrlAUS.eliminarAula(arg);
+        }
     }
 
     protected void restaurarDadesAules() {

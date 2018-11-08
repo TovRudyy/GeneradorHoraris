@@ -43,8 +43,15 @@ public class ControladorPersistencia {
         return noves;
     }
 
-    public assignatura llegeixAssignatura(String path) {
-        return Lector_Pla_JSON.llegeixAssignatura(path);
+    public ArrayList<assignatura> llegeixAssignatura(String path) {
+        ArrayList<assignatura> noves = new ArrayList<>();
+        try {
+            noves = Lector_Pla_JSON.llegeixAssignatura(path);
+            return noves;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return noves;
+        }
     }
 
 }

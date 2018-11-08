@@ -72,17 +72,12 @@ public class ControladorPresentacioPlaEstudis {
         }
     }
     private void printActionsMenuPrincipal() {
-        System.out.println("** Pla Estudis: " + id_plaEstudi + " **");
-        System.out.println("#Pots executar:\n " +
-                "- Consultar Assignatures (show assig)\n " +
-                "- Afegir una Assignatura (add assig)\n " +
-                "- Eliminar una Assignatura (rm assig)\n " +
-                "- Consultar Aules (show aules)\n " +
-                "- Afegir una aula (add aula)\n " +
-                "- Eliminar una aula (rm aula)\n " +
+        System.out.println("GH: pla Estudis: " + id_plaEstudi + " **");
+        System.out.println("GH: pots executar:\n " +
+                "- Consultar Assignatures (show assig) | afegir una Assignatura (add assig) | eliminar una Assignatura (rm assig)\n " +
+                "- Consultar Aules (show aules) | afegir una aula (add aula) | eliminar una aula (rm aula)\n " +
                 "- Restaurar dades aules (reset aules)\n " +
-                "- Generar Horari (gen horari)\n " +
-                "- Consultar Horari (show horari)\n " +
+                "- Generar Horari (gen horari) | consultar Horari (show horari)\n " +
                 "- Sortir del pla d'estudis (exit)\n " +
                 "- Sortir del Generador (quit)\n ");
     }
@@ -106,7 +101,7 @@ public class ControladorPresentacioPlaEstudis {
     }
 
     private void eliminarAssignatura() {
-        System.out.println("*Pots eliminar les següents assignatures:\n");
+        System.out.println("INFO: pots eliminar les següents assignatures:\n");
         mostraAssignatures();
         master.CtrlPE.eliminarAssignatura(id_plaEstudi); }
 

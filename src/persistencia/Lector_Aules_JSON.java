@@ -50,11 +50,11 @@ public final class Lector_Aules_JSON {
         if (!AUfolder.isDirectory()) throw new Aula_Exception("Error with data/Aules folder!");
         Map<String, Aula> aules = new TreeMap<>();
         for (File file : Objects.requireNonNull(AUfolder.listFiles())) {
-            System.out.println("The following Aules file is being read: " + "'" + file.getAbsolutePath());
+            System.out.println("DEGUB: The following Aules file is being read: " + "'" + file.getAbsolutePath());
             try{
                 afegirAules(aules,file.getAbsolutePath());
             }catch(Exception e){
-                System.out.println("El fitxer " + file.toString() + " no s'ha pogut llegir");
+                System.out.println("DEGUB: El fitxer " + file.toString() + " no s'ha pogut llegir");
                 System.out.println("Error: " + e.getMessage());
             }
         }

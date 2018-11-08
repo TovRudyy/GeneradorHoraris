@@ -31,14 +31,14 @@ public class ControladorAules {
         String arg, id;
         int capacitat;
         Tipus_Aula tipus;
-        System.out.print("Introdueix id de l'aula:");
+        System.out.print("GH: introdueix l'id de l'aula:");
         arg = reader.next();
         if (Aulari.containsKey(arg)) {
             System.out.println("ERROR: classroom " + arg +" already exists!\n");
             return;
         }
         id = arg;
-        System.out.print("Introdueix capcitat i tipus separats per un espai: ");
+        System.out.print("GH: introdueix capacitat i tipus separats per un espai: ");
         arg = reader.next();
         try {
             capacitat = Integer.parseInt(arg);
@@ -63,7 +63,7 @@ public class ControladorAules {
     public void llegeixFitxerAula() {
         Scanner reader = new Scanner(System.in);
         String arg;
-        System.out.println("*Introdueix el PATH del fitxer\n");
+        System.out.println("GH: introdueix el PATH del fitxer\n");
         arg = reader.next();
         Map<String, Aula> noves = CtrlDades.llegeixFitxerAula(arg);
         for (String key : noves.keySet())
@@ -96,6 +96,10 @@ public class ControladorAules {
         for (String key : noves.keySet())
             afegirAulaSiNoExisteix(key, noves.get(key));
         System.out.println("DEBUG: s'han restaurat les dades de les Aules");
+    }
+
+    public void eliminarTotesAules() {
+        Aulari.clear();
     }
 
 }

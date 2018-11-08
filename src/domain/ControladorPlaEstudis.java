@@ -57,22 +57,26 @@ public class ControladorPlaEstudis {
         Scanner reader = new Scanner(System.in);
         String arg;
         PlaEstudis pe = getPlaEstudi(id);
-        System.out.print("*Introdueix el path al fitxer de l'assignatura: ");
+        System.out.print("GH: Introdueix el path al fitxer de l'assignatura: ");
         arg = reader.next();
-        assignatura nova = CtrlDades.llegeixAssignatura(arg);
-        if (pe.existsAssignatura(nova.getId())) {
-            System.out.println("ERROR: l'assignatura " + nova.getId() + " ja existeix!");
-            return;
+        ArrayList<assignatura> noves = CtrlDades.llegeixAssignatura(arg);
+        for (assignatura a: noves) {
+            if (pe.existsAssignatura(a.getId())) {
+                System.out.println("ERROR: l'assignatura " + a.getId() + " ja existeix!");
+            }
+            else {
+                pe.addAssignatura(a);
+                System.out.println("DEBUG: l'assignatura " + a.getId() + " s'ha afegit");
+            }
         }
-        pe.addAssignatura(nova);
-        System.out.println("DEBUG: l'assignatura " + nova.getId() + " s'ha afegit");
+
     }
 
     public void eliminarAssignatura(String id) {
         Scanner reader = new Scanner(System.in);
         String arg;
         PlaEstudis pe = getPlaEstudi(id);
-        System.out.print("Indica l'assignatura que vols eliminar: ");
+        System.out.print("GH: Indica l'assignatura que vols eliminar: ");
         arg = reader.next();
         pe.eliminarAssignatura(arg);
     }
