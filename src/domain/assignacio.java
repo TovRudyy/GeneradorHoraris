@@ -166,7 +166,6 @@ public class assignacio {
     }
 
 
-
     public ArrayList<Classe> nomesSeleccionades () {
         ArrayList <Classe> eliminades = getAllPossibleClasses();    //eliminem tota la resta de possibilitats
         possibles_classes = new HashMap<>();
@@ -188,6 +187,7 @@ public class assignacio {
     public ArrayList<Classe> getSeleccionades () {
         return classes_seleccionades;
     }
+
 
     public boolean isEmpty () { //si no tenim suficients possibilitats per cobrir les necessitats de l'assignatura
         if (numeroClassesRestants > (getAllPossibleClasses().size())) return true;
