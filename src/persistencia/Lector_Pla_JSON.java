@@ -9,9 +9,7 @@ import org.json.simple.parser.ParseException;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Objects;
-import java.util.TreeMap;
+import java.util.*;
 
 public final class Lector_Pla_JSON {
 
@@ -37,7 +35,7 @@ public final class Lector_Pla_JSON {
         JSONObject grups = (JSONObject) ass.get("grups");
 
         String tipus = (String) grups.get("tipus_subgrup");
-        ArrayList<Tipus_Aula> tipus_aules = new ArrayList<>();
+        Set<Tipus_Aula> tipus_aules = new HashSet<>();
         for(String t:tipus.split(";|:|,|.")){
             tipus_aules.add(Tipus_Aula.string_to_Tipus_Aula(t));
         }
