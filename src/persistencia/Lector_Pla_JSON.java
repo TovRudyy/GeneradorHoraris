@@ -38,7 +38,7 @@ public final class Lector_Pla_JSON {
 
         String tipus = (String) grups.get("tipus_subgrup");
         ArrayList<Tipus_Aula> tipus_aules = new ArrayList<>();
-        for(String t:tipus.split(";")){
+        for(String t:tipus.split(";|:|,|.")){
             tipus_aules.add(Tipus_Aula.string_to_Tipus_Aula(t));
         }
         TreeMap<String, grup> grupMap = new TreeMap<>();
