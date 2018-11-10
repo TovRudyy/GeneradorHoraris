@@ -1,5 +1,7 @@
 package domain;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -97,6 +99,9 @@ public class PlaEstudis {
 
 
     public void generaHorari () {
+        //Timer start
+        Instant start = Instant.now();
+
         ArrayList<assignacio> assignacions = new ArrayList<>();
         for (Map.Entry<String, assignatura> assig : assignatures.entrySet()) {
             assignatura a = assig.getValue();
@@ -108,6 +113,10 @@ public class PlaEstudis {
         h = new Horari (assignacions);
         h.findHorari();
 
+        //Timer end
+        Instant end = Instant.now();
+        long ElapsedTime = Duration.between(start, end).toMillis();
+        System.err.println("DEBUG: l'algorisme ha tardat (elapsed time) " + ElapsedTime + " ms");
     }
 
 
