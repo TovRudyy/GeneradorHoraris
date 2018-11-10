@@ -36,7 +36,6 @@ public class Aula {
         return id;
     }
 
-
     /**
      * @return Retorna la capacitat de la classe
      */
@@ -44,14 +43,12 @@ public class Aula {
         return capacitat;
     }
 
-
     /**
      * @return Retorna el tipus de l'Aula
      */
     public Tipus_Aula getTipus() {
         return tipus;
     }
-
 
     /**
      * @return String amb les dades de l'Aula

@@ -15,7 +15,7 @@ public enum Tipus_Aula{
         if (s.equals("LE") | s.equals("LAB_ELECTRONICA") | s.equals("LABORATORI_ELECTRONICA") | s.equals("E") | s.equals("ELECTRONICA") | s.equals("L ELECTRONICA")) return Tipus_Aula.LAB_ELECTRONICA;
         if (s.equals("LI") | s.equals("LAB_INFORMATICA") | s.equals("LABORATORI_INFORMATICA") | s.equals("I") | s.equals("INFORMATICA") | s.equals("L INFORMATICA")) return Tipus_Aula.LAB_INFORMATICA;
         if (s.equals("P") | s.equals("PROB") | s.equals("PROBLEMES")) return Tipus_Aula.PROBLEMES;
-        throw new Aula_Exception("Format aula incorrecte");
+        throw new Aula_Exception("El string introduit no correspon a cap valor de Tipus_Aula");
     }
 
     public static boolean es_Laboratori(Tipus_Aula tipus){
