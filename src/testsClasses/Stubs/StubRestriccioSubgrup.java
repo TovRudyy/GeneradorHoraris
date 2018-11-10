@@ -37,4 +37,9 @@ public class StubRestriccioSubgrup extends domain.RestriccioSubgrup {
         System.out.println("deletePossibilities invocat");
         return null;
     }
+
+    @Override
+    public String toString() {
+        return "Stub de RestriccioSubgrup";
+    }
 }
