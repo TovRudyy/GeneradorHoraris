@@ -60,7 +60,7 @@ public class ControladorPresentacioPlaEstudis {
                 break;
             case "show horari":
                 if (master.CtrlPE.hasHorari(id_plaEstudi))
-                    master.CtrlPE.printHorari(id_plaEstudi);
+                    System.out.println(master.CtrlPE.getHorari(id_plaEstudi));
                 else System.err.println("ERROR: " + id_plaEstudi + " does not have any Horari");
                 break;
             case "save horari":
@@ -91,12 +91,12 @@ public class ControladorPresentacioPlaEstudis {
                 "- Sortir del Generador (quit)\n ");
     }
 
-    public void display(){
-        master.CtrlPE.generarHorari(id_plaEstudi);
-        if (master.CtrlPE.hasHorari(id_plaEstudi))
-            master.CtrlPE.printHorari(id_plaEstudi);
-        else System.err.println("ERROR: " + id_plaEstudi + " does not have any Horari");
-    }
+//    public void display(){
+//        master.CtrlPE.generarHorari(id_plaEstudi);
+//        if (master.CtrlPE.hasHorari(id_plaEstudi))
+//            master.CtrlPE.printHorari(id_plaEstudi);
+//        else System.err.println("ERROR: " + id_plaEstudi + " does not have any Horari");
+//    }
 
     private void mostraAssignatures() {
         String aux = master.CtrlPE.toStringAssignatures(id_plaEstudi);

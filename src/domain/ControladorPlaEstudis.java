@@ -74,12 +74,20 @@ public class ControladorPlaEstudis {
         return (getPlaEstudi(id).hasHorari());
     }
 
+//    /**
+//     * Imprimeix per pantalla el horari del pla d'estudis amb el identificador passat per paràmetre
+//     * @param id Identificador del pla d'estudis.
+//     */
+//    public void printHorari(String id) {
+//        getPlaEstudi(id).printHorari();
+//    }
+
     /**
-     * Imprimeix per pantalla el horari del pla d'estudis amb el identificador passat per paràmetre
+     * Una string amb el horari corresponent a aquest pla d'estudis.
      * @param id Identificador del pla d'estudis.
      */
-    public void printHorari(String id) {
-        getPlaEstudi(id).printHorari();
+    public String getHorari(String id) {
+        return getPlaEstudi(id).getHorari();
     }
 
 
