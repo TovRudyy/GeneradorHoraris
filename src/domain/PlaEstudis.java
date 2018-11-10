@@ -99,10 +99,17 @@ public class PlaEstudis {
         return ret;
     }
 
+    /**
+     * @param idAssig Identificador d'una assignatura.
+     * @return Una string amb tota la informació de la assignatura que indica el identificador passat per paràmetre.
+     */
     public String detallsAssignatura(String idAssig) {
         return assignatures.get(idAssig).toStringComplet();
     }
 
+    /**
+     * @return Una array de string amb tots els noms de les diferents assignatures del pla d'estudis.
+     */
     public String[] toStringNomAssignatures(){
         String[] ret = new String[assignatures.size()];
         int i = 0;
@@ -157,9 +164,15 @@ public class PlaEstudis {
         h.printHorari();
     }
 
+
+
+    /**
+     * @return Una string amb el horari corresponent a aquest pla d'estudis.
+     */
     public String getHorari() {
         return h.toString();
     }
+
 
     /**
      * @param id Identificador d'una assignatura.
