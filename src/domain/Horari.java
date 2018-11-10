@@ -12,17 +12,26 @@ public class Horari {
 
     private HashMap<String, assignacio> conjuntAssignacions= new HashMap<>();
 
+    /**
+     * Creadora de la classe Horari.
+     * @param conjuntAssignacions ArrayList amb tot el conjunt d'assignacions que hem d'assignar al nostre horari.
+     */
     public Horari (ArrayList <assignacio> conjuntAssignacions) {
         afegeixAssignacions (conjuntAssignacions);
     }
 
-
+    /**
+     * Afegeix totes les assignacions passades pel paràmetre al map de la classe horari.
+     * @param conjuntAssignacions ArrayList amb tot el conjunt d'assignacions que hem d'assignar al nostre horari.
+     */
     public void afegeixAssignacions (ArrayList<assignacio> conjuntAssignacions) {
         for (assignacio a : conjuntAssignacions)
             this.conjuntAssignacions.put((a.getIdAssig()+a.getIdGrup()), a);
     }
 
-
+    /**
+     * Genera el horari i imprimeix per pantalla si ha trobat un horari possible o no.
+     */
     public void findHorari () {
         boolean r = selectClasse(0);
         if (r) System.err.println("HEM TROBAT UN HORARI: ");
@@ -31,7 +40,12 @@ public class Horari {
     }
 
 
-    //retorna true si ja ha acabat o false si encara no
+    /**
+     * Implementa el algorisme que calcularà un horari per les diferents assignacions prèviament guardades
+     * i que compleixin totes les restriccions.
+     * @param index Indica quina assignació estem tractant en aquesta iteració.
+     * @return Un booleà que indica si el horari és possible o no.
+     */
     public boolean selectClasse (int index) {
         ArrayList<assignacio> l = new ArrayList<>( conjuntAssignacions.values());
 
@@ -77,7 +91,11 @@ public class Horari {
 
     }
 
-
+    /**
+     * Recorre totes les assignacions i fa la poda de les possibilitats que ja no són viables amb la nova elecció de l'horari.
+     * @param c Nova classe seleccionada per l'horari
+     * @return Una pila amb totes les possibilitats que les assignacions han eliminat en aquesta "poda"
+     */
 
     private Stack<Classe> forward_checking (Classe c) {
         Stack<Classe> totes_eliminades = new Stack<>();
@@ -93,6 +111,11 @@ public class Horari {
     }
 
 
+
+    /**
+     * @return Un booleà que indica si encara tenim suficients possibilitats en totes les assignacions per poder generar
+     * tot el horari restant.
+     */
     private boolean checkNotEmpty () {
         for (Map.Entry<String, assignacio> aux : conjuntAssignacions.entrySet()) {
             assignacio a = aux.getValue();
@@ -105,7 +128,10 @@ public class Horari {
         return true;
     }
 
-
+    /**
+     * Torna a afegir totes aquestes possibilitats a les seves assignacions originals, revertint així els canvis.
+     * @param eliminades Una pila amb totes les classes que prèviament hem "podat" perquè ja no eren viables.
+     */
     private void revertChanges (Stack<Classe> eliminades) {
         if (! eliminades.empty()) {
             Classe c = eliminades.pop();
@@ -118,6 +144,10 @@ public class Horari {
     }
 
 
+    /**
+     * Processa les classes que hem triat per a forma el horari i l'agrupa en aquells que es produeixen el mateix dia,
+     * a la mateix hora i ho mostra en forma de taula.
+     */
     public void printHorari(){
         String formatHeader = "|%-15s|%-20s|%-20s|%-20s|%-20s|%-20s|\n";
         System.out.format("+---------------+--------------------+--------------------+--------------------+--------------------+--------------------+\n");

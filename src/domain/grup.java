@@ -17,6 +17,13 @@ public class grup {
 
 
     /** Constructores **/
+    /**
+     * Constructora de la classe grup.
+     * @param idGrup Identificador del grup
+     * @param capacitat Capacitat del grup
+     * @param horariGrup Horari del grup (Mati/Tardes)
+     * @param tipus Tipus d'aula que requereix aquest grup
+     */
     public grup (String idGrup, int capacitat, String horariGrup, Tipus_Aula tipus) {
         this.idGrup = idGrup;
         this.capacitat = capacitat;
@@ -43,43 +50,40 @@ public class grup {
     }
 
 
-
+    /**
+     * @return Retorna el horari del grup (Matins/Tardes)
+     */
     public String getHorariAssig () {
         return horariGrup;
     }
 
-
-
+    /**
+     * @return Retorna el tipus d'aula que necessita el grup.
+     */
     public Tipus_Aula getTipus () {
         return tipus;
     }
 
-
-
-
     /**
-     *
-     * @param id_grup identificador d'un grup existent i que pertany a la mateixa assignatura
-     * @return  cert si aquest objecte grup és un subgrup del grup id, fals si no
+     * @return Retorna la restricció de subgrup d'aquest grup.
      */
-    public boolean esSubgrup(String id_grup) {
-        int other = Integer.parseInt(id_grup);
-        if (other%10 != 0) return false;
-        int me = Integer.parseInt(idGrup);
-        return (other/10 == me/10);
-    }
-
-
     public RestriccioSubgrup getSubgrup () {
         return subgrup;
     }
 
-
+    /**
+     * Guarda la nova restricció de subgrup en aquest grup.
+     * @param r Una nova restricció de subgrup.
+     */
     public void afegirRestriccio (RestriccioSubgrup r) {
         this.subgrup = r;
     }
 
     @Override
+    /**
+     * @return Retorna una string amb la informació del id del grup, la seva capacitat, si és de mati o tarde i
+     * finalment el tipus d'aula que necessita.
+     */
     public String toString() {
         return idGrup + ":" + capacitat + ":" + horariGrup + ":" + tipus;
     }

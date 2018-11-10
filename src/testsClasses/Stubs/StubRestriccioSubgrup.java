@@ -15,11 +15,6 @@ public class StubRestriccioSubgrup extends domain.RestriccioSubgrup {
     }
 
     @Override
-    public boolean checkRestriccio(Stack<Classe> assignats) {
-        return false;
-    }
-
-    @Override
     public boolean checkCorrecte(Classe c1, Classe c2) {
         return false;
     }

@@ -59,16 +59,6 @@ public class driverCorequisit  {
                         break;
 
                     case "4":
-                        Corequisit c = new Corequisit();
-                        c.addAssignatura(q.getCorequisit());
-                        boolean r = c.checkRestriccio(q.getResultatParcialFals());
-                        System.out.println("PROVEM EL PRIMER TEST: El resultat hauria de ser false ja que dos classes es solapen");
-                        System.out.println("Resultat: " + r);
-
-                        r = c.checkRestriccio(q.getResultatParcialCert());
-                        System.out.println("PROVEM EL SEGON TEST: El resultat hauria de ser true ja que no hi ha cap classe que es solapi");
-                        System.out.println("Resultat: " + r);
-
                         break;
 
                     case "5":
