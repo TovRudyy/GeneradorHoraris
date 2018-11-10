@@ -42,4 +42,21 @@ public enum Tipus_Aula{
     }
 
     public static void escriure_codis_valids(){escriure_codis_valids(System.out);}
+
+    public static String getShort(Tipus_Aula tp){
+        switch(tp){
+            case TEORIA:
+                return "T";
+            case PROBLEMES:
+                return "P";
+            case LAB_FISICA:
+                return "LF";
+            case LAB_ELECTRONICA:
+                return "LE";
+            case LAB_INFORMATICA:
+                return "LI";
+            default:
+                return null;
+        }
+    }
 }

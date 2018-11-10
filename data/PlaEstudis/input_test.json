@@ -32,12 +32,12 @@
         "duracio_t":2,
         "problemes":1,
         "duracio_p":2,
-        "laboratori":0,
-        "duracio_l":0
+        "laboratori":1,
+        "duracio_l":2
       },
       "grups":{
         "automatic":false,
-        "tipus_subgrup":"P",
+        "tipus_subgrup":"P:LI",
         "grups":[
           {
             "nom":10,
