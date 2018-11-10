@@ -7,38 +7,40 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
 
+import static java.lang.System.out;
 
-public class driverClasse  {
-    static void main () {
+
+class driverClasse  {
+    static void main2 () {
         Classe a = null;
         try {
-            System.out.println("Driver Classe");
-            System.out.println("Opcions:");
-            System.out.println("\t 1) Creadora Classe()");
-            System.out.println("\t       input: 1 <String>, <String>, <DiaSetmana>, <int>, <int>, <String>");
+            out.println("Driver Classe");
+            out.println("Opcions:");
+            out.println("\t 1) Creadora Classe()");
+            out.println("\t       input: 1 <String>, <String>, <DiaSetmana>, <int>, <int>, <String>");
 
-            System.out.println("\t 2) Retorna el Id de la assignatura()");
-            System.out.println("\t       input: 2");
+            out.println("\t 2) Retorna el Id de la assignatura()");
+            out.println("\t       input: 2");
 
-            System.out.println("\t 3) Retorna el Id del grup()");
-            System.out.println("\t       input: 2");
+            out.println("\t 3) Retorna el Id del grup()");
+            out.println("\t       input: 2");
 
-            System.out.println("\t 4) Retorna el dia de la Setmana()");
-            System.out.println("\t       input: 2");
+            out.println("\t 4) Retorna el dia de la Setmana()");
+            out.println("\t       input: 2");
 
-            System.out.println("\t 5) Retorna la hora d'inici()");
-            System.out.println("\t       input: 2");
+            out.println("\t 5) Retorna la hora d'inici()");
+            out.println("\t       input: 2");
 
-            System.out.println("\t 6) Retorna la hora fi()");
-            System.out.println("\t       input: 3");
+            out.println("\t 6) Retorna la hora fi()");
+            out.println("\t       input: 3");
 
-            System.out.println("\t 7) Retorna el id de l'aula()");
-            System.out.println("\t       input: 4");
+            out.println("\t 7) Retorna el id de l'aula()");
+            out.println("\t       input: 4");
 
-            System.out.println("\t 5) Retorna la durada()");
-            System.out.println("\t       input: 5");
+            out.println("\t 5) Retorna la durada()");
+            out.println("\t       input: 5");
 
-            System.out.println("\t 8) Sortir");
+            out.println("\t 8) Sortir");
 
 
             BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
@@ -53,33 +55,33 @@ public class driverClasse  {
                     case "1":
                         try {
                             a = new Classe(line[1], line[2], DiaSetmana.valueOf(line[3]), Integer.parseInt(line[4]), Integer.parseInt(line[5]), line[6]);
-                            System.out.println("Creada correctament");
+                            out.println("Creada correctament");
                         } catch (Exception e) {
                         }
                         break;
 
                     case "2":
-                        System.out.println(a.getId_assig());
+                        out.println(a.getId_assig());
                         break;
 
                     case "3":
-                        System.out.println(a.getId_grup());
+                        out.println(a.getId_grup());
                         break;
 
                     case "4":
-                        System.out.println(a.getDia());
+                        out.println(a.getDia());
                         break;
 
                     case "5":
-                        System.out.println(a.getHoraInici());
+                        out.println(a.getHoraInici());
                         break;
 
                     case "6":
-                        System.out.println(a.getHoraFi());
+                        out.println(a.getHoraFi());
                         break;
 
                     case "7":
-                        System.out.println(a.getDurada());
+                        out.println(a.getDurada());
                         break;
 
                     case "8":
@@ -87,7 +89,7 @@ public class driverClasse  {
                         break;
 
                     default:
-                        System.out.println("El numero de opcio triada es incorrecte");
+                        out.println("El numero de opcio triada es incorrecte");
                         break;
                 }
 
@@ -99,8 +101,27 @@ public class driverClasse  {
             e.printStackTrace();
         }
         catch (NullPointerException e) {
-            System.out.println("No hem inicialitzat una aula");
+            out.println("No hem inicialitzat una aula");
         }
+
+    }
+
+    static void main() {
+        printMenu();
+        executar();
+    }
+
+    private static void printMenu() {
+        out.println("Driver de la Classe Classe.");
+        out.println("Selecciona la funcio que vols provar");
+
+    }
+
+    private static void printCodis() {
+
+    }
+
+    private static void executar() {
 
     }
 

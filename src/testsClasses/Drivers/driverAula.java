@@ -1,12 +1,9 @@
 package testsClasses.Drivers;
 
 import domain.Aula;
-import domain.Tipus_Aula;
 import domain.Aula_Exception;
+import domain.Tipus_Aula;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.IOException;
 import java.util.InputMismatchException;
 
 import static java.lang.System.out;
@@ -24,7 +21,7 @@ class driverAula  {
 
     private static void printMenu() {
         out.println("Driver de la Classe Aula.");
-        out.println("Selecciona la funcio que vols probar introduint el seu codi associat:");
+        out.println("Selecciona la funcio que vols provar introduint el seu codi associat:");
         printCodis();
         out.println("Aquest driver mante una unica instancia de Aula, que va sobreescribint cada cop que probes la constructora.");
         out.println("Al principi, aquesta instancia esta inicialitzada amb uns valors trivials.");
@@ -59,7 +56,7 @@ class driverAula  {
                         }
                         break;
                     case 2:
-                        out.println("Tria el getter que vols probar introduint el seu codi associat: ");
+                        out.println("Tria el getter que vols provar introduint el seu codi associat: ");
                         out.println("\t1) Identificador");
                         out.println("\t2) Capacitat");
                         out.println("\t3) Tipus");

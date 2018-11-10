@@ -84,7 +84,7 @@ public class driverGrup {
                 System.out.println("Tipus no valid");
                 Tipus_Aula.escriure_codis_valids();
             }catch(NullPointerException npe){
-                System.out.println("Abans de probar altres funcions, crea un grup probant la creadora");
+                System.out.println("Abans de provar altres funcions, crea un grup provant la creadora");
             }finally{
                 System.out.println("Introdueix un codi:");
                 codi = keyboard.nextInt();

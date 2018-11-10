@@ -16,7 +16,7 @@ class driverTipus_Aula {
 
     private static void printMenu(){
         out.println("Driver de la Enumeracio Tipus_Aula.");
-        out.println("Selecciona la funcio que vols probar introduint el seu codi associat:");
+        out.println("Selecciona la funcio que vols provar introduint el seu codi associat:");
         printCodis();
         out.println("La primera opcio (Escriure tipus) no es una funcio en si, sino que esta per a que puguis veure tots els tipus d'aula que hi ha actualment.");
     }
