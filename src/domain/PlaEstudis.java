@@ -1,7 +1,10 @@
 package domain;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 /**
@@ -43,6 +46,7 @@ public class PlaEstudis {
 
 
     /**
+     *
      * @return un element String[] amb els identificadors de totes les assignatures del pla d'estudis
      */
     public String[] getAssignatures(){
@@ -95,11 +99,28 @@ public class PlaEstudis {
         return ret;
     }
 
+    public String detallsAssignatura(String idAssig) {
+        return assignatures.get(idAssig).toStringComplet();
+    }
+
+    public String[] toStringNomAssignatures(){
+        String[] ret = new String[assignatures.size()];
+        int i = 0;
+        for (String idAssig : assignatures.keySet()) {
+            ret[i] = idAssig;
+            i++;
+        }
+        return ret;
+    }
+
 
     /**
      * Genera un horari per aquest pla d'estudis.
      */
     public void generaHorari () {
+        //Timer start
+        Instant start = Instant.now();
+
         ArrayList<assignacio> assignacions = new ArrayList<>();
         for (Map.Entry<String, assignatura> assig : assignatures.entrySet()) {
             assignatura a = assig.getValue();
@@ -111,6 +132,10 @@ public class PlaEstudis {
         h = new Horari (assignacions);
         h.findHorari();
 
+        //Timer end
+        Instant end = Instant.now();
+        long ElapsedTime = Duration.between(start, end).toMillis();
+        System.err.println("DEBUG: l'algorisme ha tardat (elapsed time) " + ElapsedTime + " ms");
     }
 
 
@@ -132,12 +157,16 @@ public class PlaEstudis {
         h.printHorari();
     }
 
+    public String getHorari() {
+        return h.toString();
+    }
+
     /**
      * @param id Identificador d'una assignatura.
      * @return Indica si en el nostre conjunt d'assignatures n'hi ha una amb aquest identificador.
      */
     public boolean existsAssignatura(String id) {
-        return (assignatures.get(id) == null);
+        return (assignatures.get(id) != null);
     }
 
 
@@ -148,10 +177,10 @@ public class PlaEstudis {
 
     public void eliminarAssignatura(String id) {
         if (assignatures.remove(id) == null) {
-            System.out.println("ERROR: no existeix l'assignatura " + id);
+            System.err.println("ERROR: no existeix l'assignatura " + id);
             return;
         }
-        System.out.println("DEBUG: s'ha eliminat l'assignatura " + id);
+        System.err.println("DEBUG: s'ha eliminat l'assignatura " + id);
     }
 
 }

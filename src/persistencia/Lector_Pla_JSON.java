@@ -125,12 +125,12 @@ public final class Lector_Pla_JSON {
 
         ArrayList<PlaEstudis> plansEstudis = new ArrayList<>();
         for (File pe_file : Objects.requireNonNull(PEfolder.listFiles())) {
-            System.out.println("DEGUB: The following PlaEstudis file is being readed: " + "'" + pe_file.getAbsolutePath());
+            System.err.println("DEGUB: The following PlaEstudis file is being readed: " + "'" + pe_file.getAbsolutePath());
             try{
                 plansEstudis.add(llegirPlaEstudis(pe_file.getAbsolutePath()));
             }catch(Exception e){
-                System.out.println("DEGUB: El fitxer " + pe_file.toString() + " no s'ha pogut llegir");
-                System.out.println("Error: " + e.getMessage());
+                System.err.println("DEGUB: El fitxer " + pe_file.toString() + " no s'ha pogut llegir");
+                System.err.println("Error: " + e.getMessage());
             }
         }
         return plansEstudis;

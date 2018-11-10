@@ -41,7 +41,7 @@ public class ControladorAules {
         System.out.print("GH: introdueix l'id de l'aula:");
         arg = reader.next();
         if (Aulari.containsKey(arg)) {
-            System.out.println("ERROR: classroom " + arg +" already exists!\n");
+            System.err.println("ERROR: classroom " + arg +" already exists!\n");
             return;
         }
         id = arg;
@@ -51,7 +51,7 @@ public class ControladorAules {
             capacitat = Integer.parseInt(arg);
         }
         catch (NumberFormatException e) {
-            System.out.println("ERROR: la capacitat ha de ser un enter" + e);
+            System.err.println("ERROR: la capacitat ha de ser un enter" + e);
             return;
         }
         arg = reader.next();
@@ -59,12 +59,12 @@ public class ControladorAules {
             tipus = Tipus_Aula.string_to_Tipus_Aula(arg);
         }
         catch (Aula_Exception e) {
-            System.out.println("ERROR: " + e);
+            System.err.println("ERROR: " + e);
             return;
         }
         Aula nova = new Aula(id, capacitat, tipus);
         Aulari.put(id, nova);
-        System.out.println("DEBUG: s'ha afegit la nova aula " + id);
+        System.err.println("DEBUG: s'ha afegit la nova aula " + id);
     }
 
 
@@ -89,9 +89,9 @@ public class ControladorAules {
      */
     public void afegirAulaSiNoExisteix(String key, Aula value) {
             if (Aulari.putIfAbsent(key, value) != null)
-                System.out.println("WARNING: classrom " + key + " already exists!");
+                System.err.println("WARNING: classrom " + key + " already exists!");
             else
-                System.out.println("DEBUG: s'ha afegit l'aula " + key);
+                System.err.println("DEBUG: s'ha afegit l'aula " + key);
     }
 
 
@@ -101,10 +101,10 @@ public class ControladorAules {
      */
     public void eliminarAula(String id) {
         if (Aulari.remove(id) == null) {
-            System.out.println("WARNING: classroom " + id + " does not exists");
+            System.err.println("WARNING: classroom " + id + " does not exists");
             return;
         }
-        System.out.println("DEBUG: s'ha eliminat l'aula " + id);
+        System.err.println("DEBUG: s'ha eliminat l'aula " + id);
 
     }
 
@@ -124,7 +124,7 @@ public class ControladorAules {
         Map<String, Aula> noves = CtrlDades.llegeixDadesAules();
         for (String key : noves.keySet())
             afegirAulaSiNoExisteix(key, noves.get(key));
-        System.out.println("DEBUG: s'han restaurat les dades de les Aules");
+        System.err.println("DEBUG: s'han restaurat les dades de les Aules");
     }
 
     /**
