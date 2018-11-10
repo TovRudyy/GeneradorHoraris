@@ -1,5 +1,6 @@
 package testsClasses.Drivers;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import static java.lang.System.out;
@@ -9,69 +10,76 @@ public class MainDriver {
     static Scanner keyboard;
 
     public static void main(String[] args) {
+        keyboard = new Scanner(System.in);
         printMenu();
         executar();
     }
 
     private static void executar(){
-        int codi;
-        keyboard = new Scanner(System.in);
-        out.println("Introdueix un codi: ");
-        while((codi = keyboard.nextInt()) != 12){
-            switch (codi) {
-                case -1:
-                    printCodis();
-                    break;
-                case 1:
-                    driverTipus_Aula.main();
-                    printMenu();
-                    break;
-                case 2:
-                    driverAula.main();
-                    printMenu();
-                    break;
-                case 3:
-                    driverClasse.main();
-                    printMenu();
-                    break;
-                case 4:
-                    driverGrup.main();
-                    printMenu();
-                    break;
-                case 5:
-                    driverRestriccioOcupacio.main();
-                    printMenu();
-                    break;
-                case 6:
-                    driverRestriccioSubgrup.main();
-                    printMenu();
-                    break;
-                case 7:
-                    driverControladorAules.main();
-                    printMenu();
-                    break;
-                case 8:
-                    driverAssignacio.main();
-                    printMenu();
-                    break;
-                case 9:
-                    driverAssignatura.main();
-                    printMenu();
-                    break;
-                case 10:
-                    driverHorari.main();
-                    printMenu();
-                    break;
-                case 11:
-                    driverPlaEstudis.main();
-                    printMenu();
-                    break;
-                default:
-                    out.println("Codi no valid. Aqui tens els codis que ho son:");
-                    printCodis();
-            }
-            out.println();
+        try {
+            int codi;
             out.println("Introdueix un codi: ");
+            while ((codi = keyboard.nextInt()) != 12) {
+                switch (codi) {
+                    case -1:
+                        printCodis();
+                        break;
+                    case 1:
+                        driverTipus_Aula.main();
+                        printMenu();
+                        break;
+                    case 2:
+                        driverAula.main();
+                        printMenu();
+                        break;
+                    case 3:
+                        driverClasse.main();
+                        printMenu();
+                        break;
+                    case 4:
+                        driverGrup.main();
+                        printMenu();
+                        break;
+                    case 5:
+                        driverRestriccioOcupacio.main();
+                        printMenu();
+                        break;
+                    case 6:
+                        driverRestriccioSubgrup.main();
+                        printMenu();
+                        break;
+                    case 7:
+                        driverControladorAules.main();
+                        printMenu();
+                        break;
+                    case 8:
+                        driverAssignacio.main();
+                        printMenu();
+                        break;
+                    case 9:
+                        driverAssignatura.main();
+                        printMenu();
+                        break;
+                    case 10:
+                        driverHorari.main();
+                        printMenu();
+                        break;
+                    case 11:
+                        driverPlaEstudis.main();
+                        printMenu();
+                        break;
+                    default:
+                        out.println("Codi no valid. Aqui tens els codis que ho son:");
+                        printCodis();
+                }
+                out.println();
+                out.println("Introdueix un codi: ");
+            }
+        }catch(InputMismatchException ime){
+            out.println("Codi no valid. Aqui tens els codis que ho son:");
+            printCodis();
+            keyboard.nextLine();
+            executar();
         }
     }
 
