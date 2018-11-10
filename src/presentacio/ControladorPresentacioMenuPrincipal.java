@@ -14,7 +14,7 @@ public class ControladorPresentacioMenuPrincipal {
     ControladorPresentacioPlaEstudis PresentacioPE;
 
     private static final String welcome_msg = "####################################" +
-            "\nGenerador d'Horaris sGE. Ministeri d'Energia de Kazakstan |*|*|*|\n" +
+            "\nGenerador d'Horaris v1.0 | @David Pujol @Víctor Diví @Oleksandr Rudyy\n" +
             "####################################";
 
     public ControladorPresentacioMenuPrincipal() {
@@ -90,7 +90,7 @@ public class ControladorPresentacioMenuPrincipal {
                             ControladorPresentacioPlaEstudis(arg, this);
                     PresentacioPE.MenuPrincipal();
                 }
-                else System.out.println("ERROR: " + arg + " does not exists");
+                else System.err.println("ERROR: " + arg + " does not exists");
                 break;
             case "reset dades":
                 restaurarDadesAules();
@@ -106,7 +106,7 @@ public class ControladorPresentacioMenuPrincipal {
                 endExecution();
                 break;
             default:
-                System.out.println("ERROR: bad command");
+                System.err.println("ERROR: bad command");
                 break;
         }
     }
@@ -121,13 +121,16 @@ public class ControladorPresentacioMenuPrincipal {
         System.out.println("GH: per llegir un fitxer amb aules introdueix (file)\n" +
                 "GH: per afegir una aula interactivament introdueix (manual)\n");
         arg = reader.next();
-        System.out.println("DEBUG msg: arg = " + arg);
+        System.err.println("DEBUG msg: arg = " + arg);
         switch (arg) {
             case "file":
                 CtrlAUS.llegeixFitxerAula();
                 break;
             case "manual":
                 CtrlAUS.afegirNovaAula();
+                break;
+            default:
+                System.err.println("ERROR: bad option");
                 break;
         }
     }

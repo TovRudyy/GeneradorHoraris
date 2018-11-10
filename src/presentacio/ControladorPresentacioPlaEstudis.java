@@ -40,6 +40,9 @@ public class ControladorPresentacioPlaEstudis {
             case "rm assig":
                 eliminarAssignatura();
                 break;
+            case "get assig":
+                getDetallsAssignatura();
+                break;
             case "show aules":
                 master.printAules();
                 break;
@@ -58,7 +61,12 @@ public class ControladorPresentacioPlaEstudis {
             case "show horari":
                 if (master.CtrlPE.hasHorari(id_plaEstudi))
                     master.CtrlPE.printHorari(id_plaEstudi);
-                else System.out.println("ERROR: " + id_plaEstudi + " does not have any Horari");
+                else System.err.println("ERROR: " + id_plaEstudi + " does not have any Horari");
+                break;
+            case "save horari":
+                if (master.CtrlPE.hasHorari(id_plaEstudi))
+                    master.CtrlPE.guardaHorari(id_plaEstudi);
+                else System.err.println("ERROR: " + id_plaEstudi + " does not havy any Horari");
                 break;
             case "exit":
                 sortir = true;
@@ -67,17 +75,18 @@ public class ControladorPresentacioPlaEstudis {
                 master.endExecution();
                 break;
             default:
-                System.out.println("ERROR: bad command");
+                System.err.println("ERROR: bad command");
                 break;
         }
     }
     private void printActionsMenuPrincipal() {
-        System.out.println("GH: pla Estudis: " + id_plaEstudi + " **");
+        System.out.println("GH: Pla Estudis: " + id_plaEstudi );
         System.out.println("GH: pots executar:\n " +
                 "- Consultar Assignatures (show assig) | afegir una Assignatura (add assig) | eliminar una Assignatura (rm assig)\n " +
+                "- Mostrar detalls d'una assignatura (get assig)\n " +
                 "- Consultar Aules (show aules) | afegir una aula (add aula) | eliminar una aula (rm aula)\n " +
                 "- Restaurar dades aules (reset aules)\n " +
-                "- Generar Horari (gen horari) | consultar Horari (show horari)\n " +
+                "- Generar Horari (gen horari) | consultar Horari (show horari) | guardar horari (save horari)\n " +
                 "- Sortir del pla d'estudis (exit)\n " +
                 "- Sortir del Generador (quit)\n ");
     }
@@ -86,13 +95,13 @@ public class ControladorPresentacioPlaEstudis {
         master.CtrlPE.generarHorari(id_plaEstudi);
         if (master.CtrlPE.hasHorari(id_plaEstudi))
             master.CtrlPE.printHorari(id_plaEstudi);
-        else System.out.println("ERROR: " + id_plaEstudi + " does not have any Horari");
+        else System.err.println("ERROR: " + id_plaEstudi + " does not have any Horari");
     }
 
     private void mostraAssignatures() {
         String aux = master.CtrlPE.toStringAssignatures(id_plaEstudi);
         if (aux.isEmpty())
-            System.out.println(id_plaEstudi + "no té assignatures");
+            System.err.println("WARNING: " + id_plaEstudi + "no té assignatures");
         System.out.println(aux);
     }
 
@@ -104,5 +113,16 @@ public class ControladorPresentacioPlaEstudis {
         System.out.println("INFO: pots eliminar les següents assignatures:\n");
         mostraAssignatures();
         master.CtrlPE.eliminarAssignatura(id_plaEstudi); }
+
+    private void getDetallsAssignatura() {
+        System.out.println("INFO: pots consultar les següents assignatures:");
+        master.CtrlPE.llistatAssignatures(id_plaEstudi);
+        System.out.println("GH: introdueix el id de l'assignatura:");
+        Scanner reader = new Scanner(System.in);
+        String arg = reader.next();
+        String detalls = master.CtrlPE.getDetallAssignatura(id_plaEstudi, arg);
+        if (detalls != null)
+            System.out.println(detalls);
+    }
 
 }

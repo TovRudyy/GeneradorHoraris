@@ -11,6 +11,10 @@ public class Corequisit extends Restriccio {
     public Corequisit(){
     }
 
+    public boolean isEmpty() {
+        return assignatures.isEmpty();
+    }
+
 
     public ArrayList<String> getAssignatures () {
         return assignatures;
@@ -62,8 +66,19 @@ public class Corequisit extends Restriccio {
         for (String a: assignatures)
             if (a.equals(id_assig))  return true;
 
-
         return false;
+    }
+
+    public String toString(){
+        String ret = new String();
+        for (int i = 0; i < assignatures.size(); i++) {
+            if (i == 0)
+                ret = assignatures.get(i);
+            else
+            ret = ret + ":" + assignatures.get(i);
+        }
+        ret = ret + "\n";
+        return ret;
     }
 
 

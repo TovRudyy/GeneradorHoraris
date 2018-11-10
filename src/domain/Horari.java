@@ -1,5 +1,8 @@
 package domain;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
 import java.util.*;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.Stack;
@@ -22,9 +25,9 @@ public class Horari {
 
     public void findHorari () {
         boolean r = selectClasse(0);
-        if (r) System.out.println("HEM TROBAT UN HORARI: ");
+        if (r) System.err.println("HEM TROBAT UN HORARI: ");
 
-        else System.out.println("NO HEM POGUT FORMAR UN HORARI");
+        else System.err.println("NO HEM POGUT FORMAR UN HORARI");
     }
 
 
@@ -59,7 +62,7 @@ public class Horari {
                 }
 
                 else {  //la combinacio es invalida
-                    System.out.println("no es valida");
+                    System.err.println("no es valida");
                     c.showClasse();
                     revertChanges (eliminades);
                     a.eliminarSeleccionada(c);
@@ -94,7 +97,7 @@ public class Horari {
         for (Map.Entry<String, assignacio> aux : conjuntAssignacions.entrySet()) {
             assignacio a = aux.getValue();
             if (a.isEmpty()) {
-                System.out.println("Aquesta falla");
+                System.err.println("Aquesta falla");
                 a.showAll();
                 return false;
             }
@@ -171,5 +174,27 @@ public class Horari {
             ++hora0; ++hora1;
             System.out.format("+---------------+--------------------+--------------------+--------------------+--------------------+--------------------+\n");
         }
+    }
+
+    public String toString() {
+        // Es crea un nou stream
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        PrintStream ps = new PrintStream(baos);
+        // Es salva el stream vell
+        PrintStream old = System.out;
+        // S'indica a java que passi a utilitzar el nou stream
+        System.setOut(ps);
+        printHorari();
+        // Es restaura el stream original:
+        System.out.flush();
+        System.setOut(old);
+        //Es transforma baos en un String
+        String ret = null;
+        try {
+            ret = baos.toString("UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return ret;
     }
 }

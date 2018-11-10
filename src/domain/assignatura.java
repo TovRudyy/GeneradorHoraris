@@ -187,4 +187,19 @@ public class assignatura {
     public String toString() {
         return id + ":" + nom + ":" + nivell;
     }
+
+    public String toStringComplet() {
+        String ret = "Id: " + id + ", nom: " + nom + "\nnivell:" + nivell + "\nclasses_teoria:" +
+                classes_teoria + "\nclasses_problemes:" + classes_problemes +
+                "\nclasses laboratori:" + classes_laboratori + "\nCorrequisits:\n";
+
+        if (!c.isEmpty())
+            ret = ret + c.toString();
+
+        ret = ret + "Grups:\n";
+        for (grup g : grups.values()) {
+            ret = ret + g.toString() + "\n";
+        }
+        return ret;
+    }
 }

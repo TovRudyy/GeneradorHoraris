@@ -2,6 +2,7 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 /**
@@ -80,6 +81,20 @@ public class PlaEstudis {
         return ret;
     }
 
+    public String detallsAssignatura(String idAssig) {
+        return assignatures.get(idAssig).toStringComplet();
+    }
+
+    public String[] toStringNomAssignatures(){
+        String[] ret = new String[assignatures.size()];
+        int i = 0;
+        for (String idAssig : assignatures.keySet()) {
+            ret[i] = idAssig;
+            i++;
+        }
+        return ret;
+    }
+
 
     public void generaHorari () {
         ArrayList<assignacio> assignacions = new ArrayList<>();
@@ -107,16 +122,20 @@ public class PlaEstudis {
         h.printHorari();
     }
 
+    public String getHorari() {
+        return h.toString();
+    }
+
     public boolean existsAssignatura(String id) {
-        return (assignatures.get(id) == null);
+        return (assignatures.get(id) != null);
     }
 
     public void eliminarAssignatura(String id) {
         if (assignatures.remove(id) == null) {
-            System.out.println("ERROR: no existeix l'assignatura " + id);
+            System.err.println("ERROR: no existeix l'assignatura " + id);
             return;
         }
-        System.out.println("DEBUG: s'ha eliminat l'assignatura " + id);
+        System.err.println("DEBUG: s'ha eliminat l'assignatura " + id);
     }
 
 }
