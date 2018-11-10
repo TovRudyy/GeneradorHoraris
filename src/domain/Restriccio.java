@@ -13,13 +13,12 @@ import java.lang.Object;
 public abstract class Restriccio {
 
     /**
-     *
-     * @param assignats pila que conté els identificadors de les assignacions i les seves classes assignades. Com a mínim ha de contenir un element.
-     * @return certs si la nova assignacio de Classe compleix amb la restricció, fals si no.
+     * @param ai Hora inici de la primera classe
+     * @param af Hora final de la primera classe.
+     * @param bi Hora inici de la segona classe.
+     * @param bf Hora final de la segona classe.
+     * @return Un booleà que indica si les hores de les dues classes es solapen o no.
      */
-    public abstract boolean checkRestriccio(Stack<Classe> assignats);
-
-
     protected boolean solapenHores(int ai, int af, int bi, int bf) {
         if ((bi >= ai &&  bi < af) || (bf > ai && bf < af) ||
             (ai >= bi &&  ai < bf) || (af > bi && af < bf)) return true;
@@ -30,6 +29,12 @@ public abstract class Restriccio {
 
     public abstract boolean checkCorrecte (Classe c1, Classe c2);
 
+
+    /**
+     * @param possibles_classes Mapa amb totes les possibilitats que té fins al moment la assignació.
+     * @param c Classe que acabem d'agafar i amb la que cal podar totes les possibilitats.
+     * @return Una arrayList amb totes les possibilitats que hem podat.
+     */
     public ArrayList<Classe> deletePossibilities (Map<String, Map<DiaSetmana, ArrayList<Classe>>> possibles_classes, Classe c) {
         ArrayList<Classe> result = new ArrayList<>();
 

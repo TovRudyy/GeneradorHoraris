@@ -17,27 +17,33 @@ public class PlaEstudis {
     private HashMap<String,assignatura> assignatures = new HashMap<>(); //Assignatures pertanyents al pla d'estudis
     private Horari h = null;
 
+    /** Creadores **/
+
+    /**
+     * Crea un pla d'estudis amb aquest identificador.
+     * @param id Identificador del pla d'estudis.
+     */
     public PlaEstudis(String id) {
         this.id = id;
     }
 
 
     /**
-     *
-     * @param assig
-     *
+     * Afegeix aquesta assignatura al conjunt d'assignatures global del pla d'estudis.
+     * @param assig Una instància de la classe Assignatura.
      */
     public void addAssignatura(assignatura assig) {
          assignatures.put(assig.getId(), assig);
     }
 
+
     /**
-     *
-     * @return el id del Pla d'Estudis
+     * @return el identificador del Pla d'Estudis
      */
     public String getID() {
         return this.id;
     }
+
 
     /**
      *
@@ -57,11 +63,17 @@ public class PlaEstudis {
     }
 
 
+    /**
+     * @return Ens indica si aquest pla d'estudis ja té un horari prèviament generat.
+     */
     public boolean hasHorari() {
         return (h != null);
     }
 
 
+    /**
+     * Mostra per pantalla la informació de totes les assignatures, incloent tots els seus grups, assignacions i Classes.
+     */
     public void showAssignatures () {
         for (Map.Entry<String, assignatura> assig : assignatures.entrySet()) {
             assignatura a = assig.getValue();
@@ -73,6 +85,10 @@ public class PlaEstudis {
 
     }
 
+    /**
+     * @return Una string amb tota la informació de totes les assignatures que conte el pla d'estudis.
+     */
+
     public String toStringAssignatures() {
         String ret = new String();
         for (assignatura assig : assignatures.values()) {
@@ -83,10 +99,17 @@ public class PlaEstudis {
         return ret;
     }
 
+    /**
+     * @param idAssig Identificador d'una assignatura.
+     * @return Una string amb tota la informació de la assignatura que indica el identificador passat per paràmetre.
+     */
     public String detallsAssignatura(String idAssig) {
         return assignatures.get(idAssig).toStringComplet();
     }
 
+    /**
+     * @return Una array de string amb tots els noms de les diferents assignatures del pla d'estudis.
+     */
     public String[] toStringNomAssignatures(){
         String[] ret = new String[assignatures.size()];
         int i = 0;
@@ -97,7 +120,10 @@ public class PlaEstudis {
         return ret;
     }
 
-
+    /**
+     * Genera un horari per aquest pla d'estudis.
+     */
+    
     public void generaHorari () {
         //Timer start
         Instant start = Instant.now();
@@ -106,7 +132,7 @@ public class PlaEstudis {
         for (Map.Entry<String, assignatura> assig : assignatures.entrySet()) {
             assignatura a = assig.getValue();
             a.noSolapis_Teoria_i_Problemes();
-            assignacions.addAll(a.getAssignacions());       //AQUI ESTA EL FALLO
+            assignacions.addAll(a.getAssignacions());
         }
 
         //aqui tenim totes les assignacions totals
@@ -120,6 +146,10 @@ public class PlaEstudis {
     }
 
 
+    /**
+     * Afegeix a cadascuna de les assignatures, els seus nous correquisits.
+     * @param c Una array de strings que indiquen els diferents identificadors dels correquisits.
+     */
     public void afegirCorrequisits (String[] c) {
         String primera = c[0];
         String segona  = c[1];
@@ -127,17 +157,36 @@ public class PlaEstudis {
         assignatures.get(segona).addCorrequisit(primera);
     }
 
+    /**
+     * Mostra per pantalla el horari d'aquest pla d'estudis.
+     */
     public void printHorari(){
         h.printHorari();
     }
 
+
+
+    /**
+     * @return Una string amb el horari corresponent a aquest pla d'estudis.
+     */
     public String getHorari() {
         return h.toString();
     }
 
+
+    /**
+     * @param id Identificador d'una assignatura.
+     * @return Indica si en el nostre conjunt d'assignatures n'hi ha una amb aquest identificador.
+     */
     public boolean existsAssignatura(String id) {
         return (assignatures.get(id) != null);
     }
+
+
+    /**
+     *  Elimina la assignatura amb aquest identificador del conjunt total d'assignatures del pla d'estudis.
+     * @param id Identificador d'una assignatura.
+     */
 
     public void eliminarAssignatura(String id) {
         if (assignatures.remove(id) == null) {

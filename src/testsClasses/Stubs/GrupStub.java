@@ -31,11 +31,6 @@ public class GrupStub extends domain.grup {
     }
 
     @Override
-    public boolean esSubgrup(String id_grup) {
-        return true;
-    }
-
-    @Override
     public void afegirRestriccio(RestriccioSubgrup r) {
         System.out.println("afegirRestriccio cridat");
     }

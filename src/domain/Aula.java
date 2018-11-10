@@ -18,6 +18,7 @@ public class Aula {
 
 
     /**
+     * Creadora de la classe Aula
      * @param id Identificador de la nova Aula
      * @param capacitat Capacitat de la nova Aula
      * @param tipus Tipus de la nova Aula
@@ -36,6 +37,7 @@ public class Aula {
     }
 
     /**
+     * Modifica el identificador de l'aula pel nou identificador
      * @param id Nou identificador de l'Aula
      */
     public void setId(String id) {
@@ -50,6 +52,7 @@ public class Aula {
     }
 
     /**
+     * Modifica la capacitat de l'aula per la nova capacitat
      * @param capacitat Nova capacitat de l'Aula
      */
     public void setCapacitat(int capacitat) {
@@ -64,6 +67,7 @@ public class Aula {
     }
 
     /**
+     * Modifica el tipus de l'aula pel nou tipus.
      * @param tipus Nou tipus de l'Aula
      */
     public void setTipus(Tipus_Aula tipus){
