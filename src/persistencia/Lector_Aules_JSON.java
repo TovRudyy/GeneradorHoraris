@@ -8,6 +8,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import javax.naming.AuthenticationException;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -34,6 +35,7 @@ public final class Lector_Aules_JSON {
             JSONObject aulaJ = (JSONObject) anObj;
             String nom = (String) aulaJ.get("nom");
             int capacitat = ((Long) aulaJ.get("capacitat")).intValue();
+            if(capacitat < 0) throw new Aula_Exception("La capacitat ha de ser un natural");
             Tipus_Aula tipus = Tipus_Aula.string_to_Tipus_Aula((String) aulaJ.get("tipus"));
             aules.put(nom, new Aula(nom, capacitat, tipus));
         }

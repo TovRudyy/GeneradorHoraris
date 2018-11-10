@@ -42,9 +42,10 @@ public class ControladorAules {
         arg = reader.next();
         try {
             capacitat = Integer.parseInt(arg);
+            if(capacitat < 0) throw new NullPointerException();
         }
         catch (NumberFormatException e) {
-            System.err.println("ERROR: la capacitat ha de ser un enter" + e);
+            System.err.println("ERROR: la capacitat ha de ser un natural" + e);
             return;
         }
         arg = reader.next();
