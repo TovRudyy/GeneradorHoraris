@@ -102,6 +102,7 @@ class driverTipus_Aula {
                         }
                         break;
                     default:
+                        keyboard.nextLine();
                         out.println("Codi no valid. Aqui tens els codis que ho son: ");
                         printCodis();
                 }
