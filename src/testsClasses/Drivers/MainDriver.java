@@ -98,6 +98,7 @@ public class MainDriver {
         out.println("Els drivers estan ordenats segons l'us que fan les classes de les altres, de forma que una classe pot utilitzar una altre amb codi inferior, pero no amb codi superior.");
         out.println("Per exemple, la classe Aula conte un atribut Tipus_Aula, pero no conte cap de les altres classes, mentre que Pla d'Estudis conte, entre altres, Horari i Assignatura, pero ninguna classe de dades el conte a ell.");
         out.println("L'unica excepcio son les classes Grup i Restriccio_Subgrup, que es contenen la una a la altra, de manera que en el driver de Grup s'utilitza un Stub de Restriccio_Subgrup.");
+        out.println("La classe abstracta Restriccio (pare de Restriccio_Subgrup, Restriccio_Ocupacio i Corequisit), es prova amb el driver Restriccio_Ocupacio, de manera que els drivers de Restriccio_Subgrup i Corequisit nomes provaran els metodes que implementen o sobreescriuen.");
         out.println("Recorda que les execucions dels drivers son independents. Es a dir, qualsevol cosa que facis en un driver no es conservara quan hi surtis.");
         out.println("Si vols tronar a consultar els codis, pots introduir el codi -1 (tambe valid en tots els drivers).");
     }
