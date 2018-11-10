@@ -1,7 +1,7 @@
 package testsClasses.Drivers;
 
 import domain.RestriccioOcupacio;
-import testsClasses.stubRestriccioOcupacio;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;

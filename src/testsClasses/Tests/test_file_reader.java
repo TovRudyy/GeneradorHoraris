@@ -1,4 +1,4 @@
-package testsClasses;
+package testsClasses.Tests;
 
 import domain.Aula_Exception;
 import domain.PlaEstudis;

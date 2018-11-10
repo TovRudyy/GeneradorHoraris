@@ -2,7 +2,6 @@ package testsClasses.Stubs;
 
 import domain.RestriccioSubgrup;
 import domain.Tipus_Aula;
-import testsClasses.stubRestriccioSubgrup;
 
 public class GrupStub extends domain.grup {
 

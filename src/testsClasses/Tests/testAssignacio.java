@@ -1,4 +1,4 @@
-package testsClasses;
+package testsClasses.Tests;
 
 import domain.assignacio;
 import domain.Tipus_Aula;

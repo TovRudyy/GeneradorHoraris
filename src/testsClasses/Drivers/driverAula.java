@@ -91,7 +91,6 @@ class driverAula  {
                 out.println();
                 out.println("Introdueix un codi:");
             }
-
         }catch(InputMismatchException ime){
             out.println("Codi no valid. Aqui tens els codis que ho son: ");
             printCodis();

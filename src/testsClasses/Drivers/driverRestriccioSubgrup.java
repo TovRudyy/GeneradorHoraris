@@ -1,7 +1,7 @@
 package testsClasses.Drivers;
 
 import domain.RestriccioSubgrup;
-import testsClasses.stubRestriccioSubgrup;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
@@ -10,7 +10,6 @@ import java.io.IOException;
 public class driverRestriccioSubgrup  {
     static void main () {
         RestriccioSubgrup a = null;
-        stubRestriccioSubgrup q = new stubRestriccioSubgrup();
 
         try {
             System.out.println("Driver RestriccioSubgrup");
@@ -35,7 +34,6 @@ public class driverRestriccioSubgrup  {
                 switch (line[0]) {  //line[0] ens indicarà el numero de la opcio
                     case "1":
                         try {
-                            a = new RestriccioSubgrup(q.getGrupTeoria());
                             System.out.println("Creada correctament");
                         } catch (Exception e) {
                         }

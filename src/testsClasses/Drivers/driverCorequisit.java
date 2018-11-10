@@ -1,7 +1,7 @@
 package testsClasses.Drivers;
 
 import domain.Corequisit;
-import testsClasses.stubCorequisit;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
@@ -12,7 +12,6 @@ public class driverCorequisit  {
 
     static void main () {
         Corequisit a = null;
-        stubCorequisit q = new stubCorequisit();
 
         try {
             System.out.println("Driver Corequisit");
