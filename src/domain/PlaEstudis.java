@@ -97,7 +97,6 @@ public class PlaEstudis {
         return ret;
     }
 
-
     public void generaHorari () {
         //Timer start
         Instant start = Instant.now();

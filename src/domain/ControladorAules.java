@@ -11,6 +11,7 @@ public class ControladorAules {
 
     static ControladorPersistencia CtrlDades = new ControladorPersistencia();
     static Map<String, Aula> Aulari = new TreeMap<>();
+    static final String EscenaAules="/Aulari.json";
 
     public ControladorAules(){
             Map<String, Aula> noves = CtrlDades.llegeixDadesAules();
@@ -57,24 +58,29 @@ public class ControladorAules {
         }
         Aula nova = new Aula(id, capacitat, tipus);
         Aulari.put(id, nova);
-        System.err.println("DEBUG: s'ha afegit la nova aula " + id);
+        System.err.print("DEBUG: s'ha afegit la nova aula " + id);
     }
 
     public void llegeixFitxerAula() {
         Scanner reader = new Scanner(System.in);
         String arg;
-        System.out.println("GH: introdueix el PATH del fitxer\n");
+        System.out.println("GH: introdueix el PATH del fitxer d'aules:");
         arg = reader.next();
-        Map<String, Aula> noves = CtrlDades.llegeixFitxerAula(arg);
-        for (String key : noves.keySet())
+        Map<String, Aula> noves = llegeixFitxer(arg);
+        for (String key : noves.keySet()) {
             afegirAulaSiNoExisteix(key, noves.get(key));
+        }
+    }
+
+    private Map<String, Aula> llegeixFitxer(String file) {
+        return CtrlDades.llegeixFitxerAula(file);
     }
 
     public void afegirAulaSiNoExisteix(String key, Aula value) {
             if (Aulari.putIfAbsent(key, value) != null)
-                System.err.println("WARNING: classrom " + key + " already exists!");
-            else
-                System.err.println("DEBUG: s'ha afegit l'aula " + key);
+                System.err.print("WARNING: classrom " + key + " already exists!");
+            //else
+            //    System.err.print("DEBUG: s'ha afegit l'aula " + key + "\n");
     }
 
     public void eliminarAula(String id) {
@@ -100,6 +106,12 @@ public class ControladorAules {
 
     public void eliminarTotesAules() {
         Aulari.clear();
+    }
+
+    public void carregaEscena(String dir) {
+        Aulari.clear();
+        String file = dir + EscenaAules;
+        Aulari = llegeixFitxer(file);
     }
 
 }

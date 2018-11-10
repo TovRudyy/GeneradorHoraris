@@ -66,7 +66,7 @@ public class ControladorPresentacioPlaEstudis {
             case "save horari":
                 if (master.CtrlPE.hasHorari(id_plaEstudi))
                     master.CtrlPE.guardaHorari(id_plaEstudi);
-                else System.err.println("ERROR: " + id_plaEstudi + " does not havy any Horari");
+                else System.err.println("ERROR: " + id_plaEstudi + " does not have any Horari");
                 break;
             case "exit":
                 sortir = true;

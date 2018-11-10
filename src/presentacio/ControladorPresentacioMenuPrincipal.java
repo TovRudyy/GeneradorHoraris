@@ -5,6 +5,7 @@ import domain.ControladorPlaEstudis;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 
 public class ControladorPresentacioMenuPrincipal {
@@ -20,6 +21,11 @@ public class ControladorPresentacioMenuPrincipal {
     public ControladorPresentacioMenuPrincipal() {
         this.CtrlPE = new ControladorPlaEstudis();
         this.CtrlAUS = new ControladorAules();
+        try {
+            TimeUnit.MILLISECONDS.sleep(250);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public void runGeneradorHoraris() throws Exception {
@@ -56,6 +62,8 @@ public class ControladorPresentacioMenuPrincipal {
         System.out.println("GH: Pots executar:\n " +
                 "- Consultar Aules (show aules) | afegir aules (add aula) | eliminar aules (rm aula)\n " +
                 "- Consultar Plans Estudis (show plans) | seleccionar un Pla Estudis (select pe)\n " +
+                "- Visualitzar un horari guardat (show horari)\n " +
+                "- Carregar un escenari (load scene)\n " +
                 "- Restaurar les dades (reset dades, reset aules, reset pe)\n " +
                 "- Sortir del Generador (quit)\n ");
     }
@@ -83,7 +91,7 @@ public class ControladorPresentacioMenuPrincipal {
                 printPlaEstudis();
                 System.out.print("GH: seleccio: ");
                 arg = reader.next();
-                System.out.println("DEBUG msg: arg = " + arg);
+                System.err.println("DEBUG msg: arg = " + arg);
                 if (CtrlPE.exists(arg)) {
                     System.out.println("INFO: has seleccionat " + arg);
                     PresentacioPE = new
@@ -91,6 +99,12 @@ public class ControladorPresentacioMenuPrincipal {
                     PresentacioPE.MenuPrincipal();
                 }
                 else System.err.println("ERROR: " + arg + " does not exists");
+                break;
+            case "show horari":
+                CtrlPE.visualitzaHorari();
+                break;
+            case "load scene":
+                carregaEscena();
                 break;
             case "reset dades":
                 restaurarDadesAules();
@@ -161,5 +175,13 @@ public class ControladorPresentacioMenuPrincipal {
         CtrlPE.resetData();
     }
 
+    protected void carregaEscena() {
+        Scanner reader = new Scanner(System.in);
+        String arg;
+        System.out.print("GH: introdueix el PATH on es troba el directori amb l'escenari:");
+        arg = reader.next();
+        CtrlAUS.carregaEscena(arg);
+        CtrlPE.carregaEscena(arg);
+    }
 
 }

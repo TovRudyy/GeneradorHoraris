@@ -15,6 +15,7 @@ public class ControladorPlaEstudis {
 
     static ControladorPersistencia CtrlDades = new ControladorPersistencia();
     static ArrayList<PlaEstudis> ConjuntPE;
+    static final String EscenaPE = "/PlaEstudi.json";
 
     public ControladorPlaEstudis() {
         ConjuntPE = CtrlDades.llegeixDadesPE();
@@ -121,13 +122,32 @@ public class ControladorPlaEstudis {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
         String strDate = dateFormat.format(date);
         h =  pe.getID() + "\n" + "Data creació: " + strDate + "\n" + h;
-        System.out.println("GH: introdueix el pathname del fitxer on vols guardar l'horari");
+        System.out.println("GH: introdueix el nom del fitxer on vols guardar l'horari");
         Scanner reader = new Scanner(System.in);
         String arg;
         arg = reader.next();
-        if (CtrlDades.guardaHorari(h, arg)) {
-            System.out.println("INFO: s'ha guardat l'horari en " + arg);
+        String aux;
+        if ( (aux = CtrlDades.guardaHorari(h, arg)) != null) {
+            System.out.println("INFO: s'ha guardat l'horari en " + aux);
         }
+    }
+
+    public void visualitzaHorari() {
+        System.out.print("INFO: tens guardats els següents horaris:\n");
+        CtrlDades.mostraFitxersHoraris();
+        System.out.print("INFO: indica l'horari que vols visualitzar:");
+        Scanner reader = new Scanner(System.in);
+        String arg;
+        arg = reader.next();
+        CtrlDades.visualitzaHorari(arg);
+    }
+
+    public void carregaEscena(String dir) {
+        ConjuntPE.clear();
+        String file = dir + EscenaPE;
+        PlaEstudis pe = CtrlDades.llegeixPE(file);
+        if (pe != null)
+            ConjuntPE.add(pe);
     }
 
 }
