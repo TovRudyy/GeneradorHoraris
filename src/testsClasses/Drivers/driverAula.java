@@ -50,7 +50,7 @@ class driverAula  {
                         try{
                             aula = new Aula(keyboard.next(), keyboard.nextInt(), Tipus_Aula.string_to_Tipus_Aula(keyboard.next()));
                         }catch(Aula_Exception ae){
-                            out.println("Missatge d'Aula_Exception: " + ae.getMessage());
+                            out.println(ae.getMessage());
                         }catch(InputMismatchException ime){
                             out.println("Has introduit algun atribut incorrectament.");
                         }
