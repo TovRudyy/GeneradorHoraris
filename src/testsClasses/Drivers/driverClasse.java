@@ -3,9 +3,6 @@ package testsClasses.Drivers;
 import domain.Classe;
 import domain.DiaSetmana;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.IOException;
 import java.util.InputMismatchException;
 
 import static java.lang.System.out;
@@ -14,7 +11,7 @@ import static testsClasses.Drivers.MainDriver.keyboard;
 
 class driverClasse  {
 
-    private static Classe classe = new Classe("Assig_Inicial", "Grup_Inicial", DiaSetmana.DILLUNS, 0, 1, "Aula_Inicial");
+    private static Classe classe = new Classe("Assignatura_Inicial", "Grup_Inicial", DiaSetmana.DILLUNS, 0, 1, "Aula_Inicial");
 
     static void main() {
         printMenu();
