@@ -18,9 +18,8 @@ public class Corequisit extends Restriccio {
 
 
     /**
-     *
-     * @param id_assignatura
-     * @return cert si id_assignatura s'ha afegit al Corequisit
+     * @param id_assignatura Identificador de la assignatura.
+     * @return cert si id_assignatura s'ha afegit al Corequisit correctament
      */
     public boolean addAssignatura(String id_assignatura) {
         return assignatures.add(id_assignatura);
@@ -28,28 +27,10 @@ public class Corequisit extends Restriccio {
 
 
     /**
-     *
-     * @param assignats
-     * @return cert si els corequisits de l'assignació es compleixen amb l'horari actuals, fals si no
+     * @param c1 Primera possibilitat.
+     * @param c2 Segona possibilitat.
+     * @return Retorna un booleà que indica si c2 és correquisit amb c1.
      */
-    @Override
-    public boolean checkRestriccio(Stack<Classe> assignats) {
-        Classe a = assignats.pop();
-        while(!assignats.empty()) {
-            Classe b = assignats.pop();
-            for (String assignatura : assignatures) {
-                if (assignatura.equals(b.getId_assig()))    //es un correquisit
-                    if(a.getId_grup().equals(b.getId_grup()) && a.getDia().equals(b.getDia())) {
-                        if (solapenHores(a.getHoraInici(), a.getHoraFi(), b.getHoraInici(), b.getHoraFi()))
-                            return false;
-
-                    }
-            }
-        }
-        return true;
-    }
-
-
     public boolean checkCorrecte (Classe c1, Classe c2 ) {    //hem de comprovar si la c2 es un correquisit
         if (esCorrequisit (c2.getId_assig()) && (c1.getDia().equals(c2.getDia())) &&
                 (solapenHores(c1.getHoraInici(), c1.getHoraFi(), c2.getHoraInici(), c2.getHoraFi())) )

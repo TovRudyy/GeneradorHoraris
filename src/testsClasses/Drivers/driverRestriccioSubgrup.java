@@ -42,14 +42,6 @@ public class driverRestriccioSubgrup  {
                         break;
 
                     case "2":
-                        boolean r = a.checkRestriccio(q.getResultatParcialFals());
-                        System.out.println("PROVEM EL PRIMER TEST: El resultat hauria de ser false ja que dos classes es solapen");
-                        System.out.println("Resultat: " + r);
-
-                        r = a.checkRestriccio(q.getResultatParcialCert());
-                        System.out.println("PROVEM EL SEGON TEST: El resultat hauria de ser true ja que no hi ha cap classe que es solapi");
-                        System.out.println("Resultat: " + r);
-
                         break;
 
                     case "3":

@@ -43,16 +43,15 @@ public class assignatura {
 
     /** Mètodes públics **/
 
+
     /**
-     * Modifica el identificador de la assignatura pel del paràmetre rebut.
-     * @return Retorna el id de la assignatura.
+     * @return Retorna el identificador de l'assignatura.
      */
     public String getId (){
         return id;
     }
 
     /**
-     * Modifica el identificador de la assignatura pel del paràmetre rebut.
      * @return Retorna el nom de la assignatura.
      */
     public String getNom () {
@@ -60,7 +59,6 @@ public class assignatura {
     }
 
     /**
-     * Modifica el identificador de la assignatura pel del paràmetre rebut.
      * @return Retorna el nivell de la assignatura.
      */
     public int getNivell () {
@@ -69,8 +67,8 @@ public class assignatura {
 
 
     /**
-     * Es guarda tots els grups que pertanyen a aquesta assignatura.
-     * @param grups
+     * Es guarden tots els grups que pertanyen a aquesta assignatura.
+     * @param grups Rep un map amb el conjunt de grups de l'assignatura, indexats pel seu identificador.
      */
     public void creaGrups (TreeMap<String, grup> grups) {
         this.grups = grups;
@@ -79,13 +77,13 @@ public class assignatura {
 
 
     /**
-     * El sistema modificarà el nombre i la durada de les classes de teoria.
-     * @param nTeoria
-     * @param dTeoria
-     * @param nProblemes
-     * @param dProblemes
-     * @param nLaboratori
-     * @param dLaboratori
+     * El sistema modificarà el nombre i la durada de les classes de teoria, problemes i laboratori.
+     * @param nTeoria Número de classes de teoria a la setmana.
+     * @param dTeoria Duració de les classes de teoria.
+     * @param nProblemes  Número de classes de problemes a la setmana.
+     * @param dProblemes Duració de les classes de problemes.
+     * @param nLaboratori Número de classes de laboratori a la setmana.
+     * @param dLaboratori Duració de les classes de laboratori.
      */
     public void setClasses (int nTeoria, int dTeoria, int nLaboratori, int dLaboratori, int nProblemes, int dProblemes) {
         classes_teoria = nTeoria;
@@ -97,14 +95,17 @@ public class assignatura {
     }
 
 
-
+    /**
+     * Imprimeix per pantalla el nombre de classes i la duracio de teoria, problemes i laboratori.
+     */
     public void showClasses () {
         System.out.println(classes_teoria + ":" + duracio_teoria + ":" + classes_problemes + ":" + duracio_problemes
                 + ":" + classes_laboratori + ":" + duracio_laboratori + "\n");
     }
 
-
-
+    /**
+     * Imprimeix per pantalla la informació dels diferents grups que formen la assignatura.
+     */
     public void showGrups () {
 
         for (Map.Entry<String, grup> a : grups.entrySet()) {
@@ -122,11 +123,6 @@ public class assignatura {
      * Fa un recorregut en tots els seus grups, i afegeix restriccions perquè
      * en cap cas, els grups de teoria es solapin amb els seus subgrups de
      * problemes o laboratori.
-     *
-     * Algorisme: Recorre els grups. Si trobes un grup de teoria guardete'l.
-     * Sinó, crea la restricció entre el últim grup de teoria trobat i aquest.
-     * Funciona perquè el map els manté ordenats (10,11,12,20,22,23)
-     *
      */
     public void noSolapis_Teoria_i_Problemes () {
 
@@ -149,8 +145,10 @@ public class assignatura {
     }
 
 
-
-
+    /**
+     * @return Retorna una arrayList amb tot el conjunt de assignacions generades, tenint en compte que
+     * una assignacio serà la relació entre una assignatura i un dels seus grups.
+     */
     public ArrayList<assignacio> getAssignacions () {
         ArrayList <assignacio> result = new ArrayList<>();
 
@@ -177,12 +175,19 @@ public class assignatura {
         return result;
     }
 
-
-
+    /**
+     * Afegeix un nou correquisit en aquesta assignatura amb relacio amb la assignatura que té com a id
+     * el paràmetre passat.
+     * @param new_correquisit Una string amb el id de la assignatura amb la que és correquisit
+     */
     public void addCorrequisit (String new_correquisit) {
         c.addAssignatura(new_correquisit);
     }
 
+
+    /**
+     * @return Retorna una sola string amb el id, el nom i el nivell de la assignatura.
+     */
     @Override
     public String toString() {
         return id + ":" + nom + ":" + nivell;

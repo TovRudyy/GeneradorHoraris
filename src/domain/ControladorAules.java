@@ -12,11 +12,15 @@ public class ControladorAules {
     static ControladorPersistencia CtrlDades = new ControladorPersistencia();
     static Map<String, Aula> Aulari = new TreeMap<>();
 
+    /**
+     * Crea un nou ControladorAules amb les dades que llegeix.
+     */
     public ControladorAules(){
             Map<String, Aula> noves = CtrlDades.llegeixDadesAules();
             for (String key : noves.keySet())
                 afegirAulaSiNoExisteix(key, noves.get(key));
     }
+
 
     public ArrayList<String> getInfoAulari(){
         ArrayList<String> ret = new ArrayList<String>();
@@ -26,6 +30,9 @@ public class ControladorAules {
         return ret;
     }
 
+    /**
+     * Llegeix una nova aula i l'afegeix a l'aulari.
+     */
     public void afegirNovaAula() {
         Scanner reader = new Scanner(System.in);
         String arg, id;
@@ -60,6 +67,10 @@ public class ControladorAules {
         System.out.println("DEBUG: s'ha afegit la nova aula " + id);
     }
 
+
+    /**
+     * Llegeix un fitxer i processa les dades amb totes les aules d'un aulari.
+     */
     public void llegeixFitxerAula() {
         Scanner reader = new Scanner(System.in);
         String arg;
@@ -70,6 +81,12 @@ public class ControladorAules {
             afegirAulaSiNoExisteix(key, noves.get(key));
     }
 
+
+    /**
+     * Comprova si una aula ja la tenim guardada en el nostre aulari, i en cas negatiu, l'afegeix.
+     * @param key Identificador de l'aula
+     * @param value Instància de la classe Aula.
+     */
     public void afegirAulaSiNoExisteix(String key, Aula value) {
             if (Aulari.putIfAbsent(key, value) != null)
                 System.out.println("WARNING: classrom " + key + " already exists!");
@@ -77,6 +94,11 @@ public class ControladorAules {
                 System.out.println("DEBUG: s'ha afegit l'aula " + key);
     }
 
+
+    /**
+     * Comprova si l'aula amb aquest identificador existeix a l'aulari, i en cas positiu, l'elimina.
+     * @param id Identificador de l'aula
+     */
     public void eliminarAula(String id) {
         if (Aulari.remove(id) == null) {
             System.out.println("WARNING: classroom " + id + " does not exists");
@@ -86,10 +108,17 @@ public class ControladorAules {
 
     }
 
+    /**
+     * @return Retorna el map amb totes les aules de l'aulari.
+     */
     public static Map<String, Aula> getAules() {
         return Aulari;
     }
 
+
+    /**
+     * Restaura el aulari al estat original, llegint directament un altre cop el fitxer original.
+     */
     public void resetData() {
         Aulari.clear();
         Map<String, Aula> noves = CtrlDades.llegeixDadesAules();
@@ -98,6 +127,9 @@ public class ControladorAules {
         System.out.println("DEBUG: s'han restaurat les dades de les Aules");
     }
 
+    /**
+     * Elimina totes les aules del aulari guardat.
+     */
     public void eliminarTotesAules() {
         Aulari.clear();
     }
