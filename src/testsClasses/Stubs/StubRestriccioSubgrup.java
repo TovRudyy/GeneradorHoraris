@@ -15,12 +15,6 @@ public class StubRestriccioSubgrup extends domain.RestriccioSubgrup {
     }
 
     @Override
-    public boolean checkRestriccio(Stack<Classe> assignats) {
-        System.out.println("checkRestriccio invocat");
-        return false;
-    }
-
-    @Override
     public boolean checkCorrecte(Classe c1, Classe c2) {
         System.out.println("checkCorrecte invocat");
         return false;
