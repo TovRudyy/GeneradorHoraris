@@ -34,41 +34,51 @@ public class MainDriver {
                         break;
                     case 3:
                         driverClasse.main();
+                        //TODO
                         printMenu();
                         break;
                     case 4:
                         driverGrup.main();
+                        //TODO
                         printMenu();
                         break;
                     case 5:
                         driverRestriccioOcupacio.main();
+                        //TODO
                         printMenu();
                         break;
                     case 6:
                         driverRestriccioSubgrup.main();
+                        //TODO
                         printMenu();
                         break;
                     case 7:
                         driverControladorAules.main();
+                        //TODO
                         printMenu();
                         break;
                     case 8:
                         driverAssignacio.main();
+                        //TODO
                         printMenu();
                         break;
                     case 9:
                         driverAssignatura.main();
+                        //TODO
                         printMenu();
                         break;
                     case 10:
                         driverHorari.main();
+                        //TODO
                         printMenu();
                         break;
                     case 11:
                         driverPlaEstudis.main();
+                        //TODO
                         printMenu();
                         break;
                     default:
+                        keyboard.nextLine();
                         out.println("Codi no valid. Aqui tens els codis que ho son:");
                         printCodis();
                 }
