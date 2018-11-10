@@ -34,12 +34,10 @@ public class MainDriver {
                         break;
                     case 3:
                         driverClasse.main();
-                        //TODO
                         printMenu();
                         break;
                     case 4:
                         driverGrup.main();
-                        //TODO
                         printMenu();
                         break;
                     case 5:

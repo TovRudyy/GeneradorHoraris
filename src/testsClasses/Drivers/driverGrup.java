@@ -3,97 +3,109 @@ package testsClasses.Drivers;
 import domain.Aula_Exception;
 import domain.Tipus_Aula;
 import domain.grup;
+import testsClasses.Stubs.StubRestriccioSubgrup;
 
-import java.util.Scanner;
+import java.util.InputMismatchException;
 
-public class driverGrup {
+import static java.lang.System.out;
+import static testsClasses.Drivers.MainDriver.keyboard;
+
+class driverGrup {
+
+    private static grup grup = new grup("Id_Inicial", 0, "M", Tipus_Aula.TEORIA);
+
     static void main() {
-        grup g = null;
+        grup.afegirRestriccio(new StubRestriccioSubgrup());
+        printMenu();
+        executar();
+    }
 
-        System.out.println("Driver grup:");
-        System.out.println("Opcions:");
-        System.out.println("\t1) Constructora:");
-        System.out.println("\t\tinput: 1 Id<int> Capacitat<int> Horari<M | T | MT> Tipus<Tipus_Aula>");
+    private static void printMenu() {
+        out.println("Driver de la Classe Grup.");
+        out.println("Selecciona la funcio que vols provar introduint el seu codi associat: ");
+        printCodis();
+        out.println("Aquest driver mante una unica instancia de Grup, que va sobreescribint cada cop que proves la constructora.");
+        out.println("Al principi, aquesta instancia esta inicialitzada amb uns valors trivials.");
+        out.println("Com pots veure, no hi ha setters. Aixo es perque no permetem modificar els grups un cop creats.");
+        out.println("En aquest driver s'utilitza un Stub de la classe RestriccioSubgrup. Per aixo, al provar el getter de subgrup, et sortiran uns valors per defecte");
+    }
 
-        System.out.println("\t2) Getter id:");
-        System.out.println("\t\tinput: 2");
+    private static void printCodis() {
+        out.println("\t1) Constructora");
+        out.println("\t2) Getters");
+        out.println("\t3) Sortir");
+    }
 
-        System.out.println("\t3) Getter capacitat:");
-        System.out.println("\t\tinput: 3");
-
-        System.out.println("\t4) Getter horari:");
-        System.out.println("\t\tinput: 4");
-
-        System.out.println("\t5) Getter tipus:");
-        System.out.println("\t\tinput: 5");
-
-        System.out.println("\t6) Getter subgrup:");
-        System.out.println("\t\tinput: 6");
-
-        System.out.println("\t7) Consultora subgrup:");
-        System.out.println("\t\tinput: 7 IdGrup<int>");
-
-        System.out.println("\t8) Setter subgrup:");
-        System.out.println("\t\tinput: 8 idPare<int> CapacitatPare<int> HorariPare<M | T | MT> TipusPare<Tipus_Aula>");
-
-        System.out.println("\t9) Sortir:");
-        System.out.println("\t\tinput: 9");
-
-        System.out.println("Introdueix un codi:");
-
-        Scanner keyboard = new Scanner(System.in);
-        int codi = keyboard.nextInt();
-        String id=null, horari=null;
-        int capacitat = -1;
-        Tipus_Aula tipus=null;
-        while(codi!=9){
-            try {
+    private static void executar() {
+        try{
+            int codi;
+            out.println("Introdueix un codi: ");
+            while ((codi = keyboard.nextInt()) != 3){
                 switch (codi) {
+                    case -1:
+                        printCodis();
+                        break;
                     case 1:
-                        id = keyboard.next();
-                        capacitat = keyboard.nextInt();
-                        horari = keyboard.next();
-                        tipus = Tipus_Aula.string_to_Tipus_Aula(keyboard.next());
-                        g = new grup(id, capacitat, horari, tipus);
-
-                        System.out.println("Grup esperat: " + id + ":" + capacitat + ":" + horari + ":" + tipus);
-                        System.out.println("Grup creat: " + g.toString());
+                        out.println("Introdueix els seguents atributs, separats per un espai:");
+                        out.println("\tIdentificador<String> Capacitat<int> Horari<M | T> Tipus<Tipus_Aula>");
+                        try {
+                            grup = new grup(keyboard.next(), keyboard.nextInt(), keyboard.next(), Tipus_Aula.string_to_Tipus_Aula(keyboard.next()));
+                            grup.afegirRestriccio(new StubRestriccioSubgrup());
+                        }catch(Aula_Exception ae){
+                            out.println(ae.getMessage());
+                        }catch (InputMismatchException ime){
+                            out.println("Has introduit algun atribut incorrectament");
+                        }
                         break;
                     case 2:
-                        if(g == null) throw new NullPointerException();
-                        System.out.println("Id esperat: " + id);
-                        System.out.println("Id obtingut: " + g.getId());
+                        out.println("Tria el getter que vols provar introduint el seu codi associat: ");
+                        out.println("\t1) Identificador");
+                        out.println("\t2) Capacitat");
+                        out.println("\t3) Tipus");
+                        out.println("\t4) Horari");
+                        out.println("\t5) Subgrup");
+                        out.println("\t6) Tots");
+                        switch (keyboard.nextInt()) {
+                            case 1:
+                                out.println("Identificador : " + grup.getId());
+                                break;
+                            case 2:
+                                out.println("Capacitat : " + grup.getCapacitat());
+                                break;
+                            case 3:
+                                out.println("Tipus_Aula : " + grup.getTipus());
+                                break;
+                            case 4:
+                                out.println("Horari : " + grup.getHorariAssig());
+                                break;
+                            case 5:
+                                out.println("Subgrup : " + grup.getSubgrup().toString());
+                                break;
+                            case 6:
+                                out.println("Identificador : " + grup.getId());
+                                out.println("Capacitat : " + grup.getCapacitat());
+                                out.println("Tipus_Aula : " + grup.getTipus());
+                                out.println("Horari : " + grup.getHorariAssig());
+                                out.println("Subgrup : " + grup.getSubgrup().toString());
+                                break;
+                            default:
+                                out.println("Codi d'opcio no valid.");
+                        }
                         break;
-                    case 3:
-                        if(g == null) throw new NullPointerException();
-                        System.out.println("Capacitat esperada: " + capacitat);
-                        System.out.println("Capacitat obtinguda: " + g.getCapacitat());
-                        break;
-                    case 4:
-                        if(g == null) throw new NullPointerException();
-                        System.out.println("Horari esperat: " + horari);
-                        System.out.println("Horari obtingut: " + g.getHorariAssig());
-                        break;
-                    case 5:
-                        if(g == null) throw new NullPointerException();
-                        System.out.println("Tipus esperat: " + tipus);
-                        System.out.println("Tipus obtingut: " + g.getTipus());
-                        break;
+                    default:
+                        keyboard.nextLine();
+                        out.println("Codi no valid. Aqui tens els codis que ho son: ");
+                        printCodis();
                 }
-            }catch(Aula_Exception ae){
-                System.out.println("Tipus no valid");
-                Tipus_Aula.escriure_codis_valids();
-            }catch(NullPointerException npe){
-                System.out.println("Abans de provar altres funcions, crea un grup provant la creadora");
-            }finally{
-                System.out.println("Introdueix un codi:");
-                codi = keyboard.nextInt();
+                out.println();
+                out.println("Introdueix un codi:");
             }
+        }catch(InputMismatchException ime){
+            out.println("Codi no valid. Aqui tens els codis que ho son: ");
+            printCodis();
+            keyboard.nextLine();
+            executar();
         }
-
-
-
-
 
     }
 }
