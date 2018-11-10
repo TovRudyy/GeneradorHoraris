@@ -1,6 +1,6 @@
 package testsClasses.Drivers;
 
-public class driverControladorAules {
+public class driverTipus_Aula {
     static void main() {
 
     }

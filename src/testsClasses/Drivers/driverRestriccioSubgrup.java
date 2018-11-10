@@ -8,7 +8,7 @@ import java.io.IOException;
 
 
 public class driverRestriccioSubgrup  {
-    public static void main (String argv[]) {
+    static void main () {
         RestriccioSubgrup a = null;
         stubRestriccioSubgrup q = new stubRestriccioSubgrup();
 

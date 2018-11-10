@@ -7,7 +7,7 @@ import domain.grup;
 import java.util.Scanner;
 
 public class driverGrup {
-    public static void main(String[] args) {
+    static void main() {
         grup g = null;
 
         System.out.println("Driver grup:");

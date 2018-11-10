@@ -13,7 +13,7 @@ public class driverAssignatura {
     private static Scanner keyboard = new Scanner(System.in);
     private static assignatura ass;
 
-    public static void main(String[] args) {
+    static void main() {
         ass = new assignatura(null, null, 0);
 
         System.out.println("Driver assignatura:");

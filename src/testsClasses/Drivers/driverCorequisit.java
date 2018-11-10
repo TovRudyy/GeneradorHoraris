@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class driverCorequisit  {
 
 
-    public static void main (String argv[]) {
+    static void main () {
         Corequisit a = null;
         stubCorequisit q = new stubCorequisit();
 

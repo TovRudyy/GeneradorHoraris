@@ -8,7 +8,7 @@ import java.io.IOException;
 
 
 public class driverRestriccioOcupacio  {
-    public static void main (String argv[]) {
+    static void main () {
         RestriccioOcupacio a = null;
         try {
             System.out.println("Driver RestriccioOcupacio");

@@ -3,7 +3,7 @@ package testsClasses.Drivers;
 import domain.assignacio;
 
 public class driverAssignacio {
-    public static void main(String[] args) {
+    static void main() {
         assignacio ass = null;
 
     }

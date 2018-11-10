@@ -9,7 +9,7 @@ import java.io.IOException;
 
 
 public class driverClasse  {
-    public static void main (String argv[]) {
+    static void main () {
         Classe a = null;
         try {
             System.out.println("Driver Classe");
