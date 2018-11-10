@@ -23,7 +23,7 @@ class driverAula  {
         out.println("Driver de la Classe Aula.");
         out.println("Selecciona la funcio que vols provar introduint el seu codi associat:");
         printCodis();
-        out.println("Aquest driver mante una unica instancia de Aula, que va sobreescribint cada cop que probes la constructora.");
+        out.println("Aquest driver mante una unica instancia de Aula, que va sobreescribint cada cop que proves la constructora.");
         out.println("Al principi, aquesta instancia esta inicialitzada amb uns valors trivials.");
         out.println("Com pots veure, no hi ha setters. Aixo es perque no permetem modificar les aules un cop creades.");
     }
