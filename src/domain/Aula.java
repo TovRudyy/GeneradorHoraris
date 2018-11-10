@@ -36,13 +36,6 @@ public class Aula {
         return id;
     }
 
-    /**
-     * Modifica el identificador de l'aula pel nou identificador
-     * @param id Nou identificador de l'Aula
-     */
-    public void setId(String id) {
-        this.id = id;
-    }
 
     /**
      * @return Retorna la capacitat de la classe
@@ -51,13 +44,6 @@ public class Aula {
         return capacitat;
     }
 
-    /**
-     * Modifica la capacitat de l'aula per la nova capacitat
-     * @param capacitat Nova capacitat de l'Aula
-     */
-    public void setCapacitat(int capacitat) {
-        this.capacitat = capacitat;
-    }
 
     /**
      * @return Retorna el tipus de l'Aula
@@ -66,13 +52,6 @@ public class Aula {
         return tipus;
     }
 
-    /**
-     * Modifica el tipus de l'aula pel nou tipus.
-     * @param tipus Nou tipus de l'Aula
-     */
-    public void setTipus(Tipus_Aula tipus){
-        this.tipus = tipus;
-    }
 
     /**
      * @return String amb les dades de l'Aula
