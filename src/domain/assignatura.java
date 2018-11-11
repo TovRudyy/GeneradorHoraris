@@ -29,7 +29,7 @@ public class assignatura {
 
     //mapa en el que guardem els diferents grups de la assignatura. Tots els de teoria i problemes es guarden junts.
     private TreeMap<String, grup> grups;
-    private Corequisit corequisits = new Corequisit();  //sempre tindrà aquesta restricció tot i que pot ser que estigui buida.
+    private RestriccioCorequisit corequisits = new RestriccioCorequisit();  //sempre tindrà aquesta restricció tot i que pot ser que estigui buida.
 
 
 

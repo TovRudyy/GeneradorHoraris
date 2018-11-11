@@ -2,12 +2,12 @@ package domain;
 
 import java.util.ArrayList;
 
-public class Corequisit extends Restriccio {
+public class RestriccioCorequisit extends Restriccio {
 
     //conte les assignatures amb les que es correquisit
     private ArrayList<String> assignatures = new ArrayList<>();
 
-    public Corequisit(){
+    public RestriccioCorequisit(){
     }
 
     public boolean isEmpty() {
@@ -44,13 +44,12 @@ public class Corequisit extends Restriccio {
     }
 
     public boolean esCorrequisit (String id_assig) {
-        if (assignatures.contains (id_assig)) return true;
+        return assignatures.contains(id_assig);
 
-        return false;
     }
 
     public String toString(){
-        String ret = new String();
+        String ret = "";
         for (int i = 0; i < assignatures.size(); i++) {
             if (i == 0)
                 ret = assignatures.get(i);

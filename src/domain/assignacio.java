@@ -24,7 +24,7 @@ public class assignacio {
 
     //RESTRICCIONS
     private RestriccioOcupacio ocupacio = new RestriccioOcupacio();
-    private Corequisit corequisit = null;
+    private RestriccioCorequisit corequisit = null;
     private RestriccioSubgrup subgrup = null;
 
 
@@ -88,7 +88,7 @@ public class assignacio {
      * Afegeix un nou correquisit a la assignació.
      * @param c Un nou correquisit.
      */
-    public void afegirCorrequisit (Corequisit c) {
+    public void afegirCorrequisit (RestriccioCorequisit c) {
         this.corequisit = c;
     }
 
