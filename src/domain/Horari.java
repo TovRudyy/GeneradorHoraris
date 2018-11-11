@@ -157,7 +157,7 @@ public class Horari {
         for(int i=0; i<12; ++i){
             horaris.add(new ArrayList<>());
             for(int j=0; j<5; ++j){
-                horaris.get(i).add(new LinkedBlockingQueue<>());
+                horaris.get(i).add(new PriorityQueue<>());
             }
         }
         for(assignacio a:conjuntAssignacions.values()){
