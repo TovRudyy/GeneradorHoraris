@@ -24,6 +24,8 @@ class driverGrup {
         out.println("Driver de la Classe Grup.");
         out.println("Selecciona la funcio que vols provar introduint el seu codi associat: ");
         printCodis();
+        out.println("Tot i que el driver no ho comprova, perque no es rellevant per la classe, el programa real admet una unica codificacio pels identificadors.");
+        out.println("Aquesta codificacio es la que s'utilitza a la FIB: tots els grups de teoria tenen un nombre acabat en 0, mentre que els seus subgrups tenen el mateix sense acabar en 0.");
         out.println("Aquest driver mante una unica instancia de Grup, que va sobreescribint cada cop que proves la constructora.");
         out.println("Al principi, aquesta instancia esta inicialitzada amb uns valors trivials.");
         out.println("Com pots veure, no hi ha setters. Aixo es perque no permetem modificar els grups un cop creats.");

@@ -46,7 +46,6 @@ public class MainDriver {
                         break;
                     case 6:
                         driverRestriccioSubgrup.main();
-                        //TODO
                         printMenu();
                         break;
                     case 7:

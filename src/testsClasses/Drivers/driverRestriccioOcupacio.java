@@ -84,7 +84,7 @@ class driverRestriccioOcupacio  {
         out.println("Com que el conjunt de classes que rep aquesta funcio es bastant complex, s'ha d'introduir mitjancant un fitxer JSON.");
         out.println("Aquest fitxer es troba dins la carpeta \"Data\", subcarpeta \"Drivers_Input\", i el seu nom ha de ser \"RestriccioOcupacio_InputMap.json\".");
         out.println("Ja et proporcionem un fitxer creat amb dades de mostra fetes, que pots utilitzar perfectament.");
-        out.println("Aquestes dades consisteixen en totes les Classes possibles de dues hores, de dues Assignatures diferents(A i TC), cadascuna amb 3 grups(10, 11 i 12), repetit per cada dia.");
+        out.println("Aquestes dades consisteixen en totes les Classes possibles de dues hores, de dues Assignatures diferents(A i TC), cadascuna amb 3 grups(10, 11 i 12), repetit per cada dia i en dues Aules diferents(Aula1 i Aula2).");
         out.println("Quan tinguis el fitxer llest per ser llegit, apreta el boto \"Enter\": ");
         keyboard.next();
         Map<String, Map<DiaSetmana, ArrayList<Classe>>> classes;
@@ -102,7 +102,7 @@ class driverRestriccioOcupacio  {
             return;
         }
         out.println("Fitxer llegit. Ara introdueix la Classe que vols utilitzar per eliminar les incompatibles: ");
-        out.println("\tId_Assignatura<String> Id_Grup<String> Id_Aula<String>, Dia<DiaSetmana> HoraInici<int> HoraFinal<int>");
+        out.println("\tId_Assignatura<String> Id_Grup<String> Id_Aula<String> Dia<DiaSetmana> HoraInici<int> HoraFinal<int>");
         Classe cl;
         try{
             String as = keyboard.next(), g = keyboard.next(), au = keyboard.next(), dia = keyboard.next();
