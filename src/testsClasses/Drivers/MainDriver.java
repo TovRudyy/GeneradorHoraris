@@ -108,7 +108,7 @@ public class MainDriver {
         out.println("\t4) Grup");
         out.println("\t5) Restriccio Ocupacio");
         out.println("\t6) Restriccio Subgrup");
-        out.println("\t7) RestriccioCorequisit");
+        out.println("\t7) Restriccio Corequisit");
         out.println("\t8) Assignacio");
         out.println("\t9) Assignatura");
         out.println("\t10) Horari");
