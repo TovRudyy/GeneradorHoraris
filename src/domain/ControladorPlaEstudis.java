@@ -74,6 +74,7 @@ public class ControladorPlaEstudis {
         return (getPlaEstudi(id).hasHorari());
     }
 
+
 //    /**
 //     * Imprimeix per pantalla el horari del pla d'estudis amb el identificador passat per paràmetre
 //     * @param id Identificador del pla d'estudis.
@@ -81,6 +82,7 @@ public class ControladorPlaEstudis {
 //    public void printHorari(String id) {
 //        getPlaEstudi(id).printHorari();
 //    }
+
 
     /**
      * Una string amb el horari corresponent a aquest pla d'estudis.
@@ -153,6 +155,7 @@ public class ControladorPlaEstudis {
         System.err.println("DEBUG: s'han restaurat les dades dels Plans d'Estudis");
     }
 
+
     public void llistatAssignatures(String id) {
         PlaEstudis pe = getPlaEstudi(id);
         String[] noms = pe.toStringNomAssignatures();
@@ -162,6 +165,7 @@ public class ControladorPlaEstudis {
         }
         System.out.println(noms[i]);
     }
+
 
     public String getDetallAssignatura(String id, String idAssig) {
         PlaEstudis pe = getPlaEstudi(id);

@@ -1,7 +1,6 @@
 package domain;
 
 import java.util.ArrayList;
-import java.util.Stack;
 
 public class Corequisit extends Restriccio {
 
@@ -37,15 +36,15 @@ public class Corequisit extends Restriccio {
      */
     public boolean checkCorrecte (Classe c1, Classe c2 ) {    //hem de comprovar si la c2 es un correquisit
         if (esCorrequisit (c2.getId_assig()) && (c1.getDia().equals(c2.getDia())) &&
-                (solapenHores(c1.getHoraInici(), c1.getHoraFi(), c2.getHoraInici(), c2.getHoraFi())) )
-            return false;
+           (solapenHores(c1.getHoraInici(), c1.getHoraFi(), c2.getHoraInici(), c2.getHoraFi())) &&
+           (c1.getId_grup().equals(c2.getId_grup())) )
+                return false;
 
         return true;
     }
 
-    private boolean esCorrequisit (String id_assig) {
-        for (String a: assignatures)
-            if (a.equals(id_assig))  return true;
+    public boolean esCorrequisit (String id_assig) {
+        if (assignatures.contains (id_assig)) return true;
 
         return false;
     }

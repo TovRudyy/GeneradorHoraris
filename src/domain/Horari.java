@@ -75,11 +75,10 @@ public class Horari {
                     if (r) return r;
                 }
 
-                else {  //la combinacio es invalida
+                else {  //la combinacio es invalida. Per tant revertim els canvis i agafem la seguent Classe
                     System.err.println("no es valida");
-                    c.showClasse();
-                    revertChanges (eliminades);
-                    a.eliminarSeleccionada(c);
+                    revertChanges (eliminades); //afegim les possibilitats que haviem podat
+                    a.eliminarSeleccionada(c);  //revertim el canvi de les que haviem seleccionat
                 }
 
             }
@@ -120,7 +119,7 @@ public class Horari {
         for (Map.Entry<String, assignacio> aux : conjuntAssignacions.entrySet()) {
             assignacio a = aux.getValue();
             if (a.isEmpty()) {
-                System.err.println("Aquesta falla");
+                System.err.println("Aquesta esta buida");
                 a.showAll();
                 return false;
             }

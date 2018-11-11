@@ -12,11 +12,13 @@ import java.util.Map;
  */
 
 public class PlaEstudis {
+    /**Atributs **/
     private String id;  //Acrònim del Pla d'Estudis
     private HashMap<String,assignatura> assignatures = new HashMap<>(); //Assignatures pertanyents al pla d'estudis
     private Horari horari = null;
 
-    /** Creadores **/
+
+    /** Constructores **/
 
     /**
      * Crea un pla d'estudis amb aquest identificador.
@@ -26,6 +28,7 @@ public class PlaEstudis {
         this.id = id;
     }
 
+    /** Mètodes **/
 
     /**
      * Afegeix aquesta assignatura al conjunt d'assignatures global del pla d'estudis.
@@ -119,13 +122,15 @@ public class PlaEstudis {
         return ret;
     }
 
+
     /**
      * Genera un horari per aquest pla d'estudis.
      */
-
     public void generaHorari () {
         //Timer start
         Instant start = Instant.now();
+
+
 
         ArrayList<assignacio> assignacions = new ArrayList<>();
         for (Map.Entry<String, assignatura> assig : assignatures.entrySet()) {
@@ -133,6 +138,8 @@ public class PlaEstudis {
             a.noSolapis_Teoria_i_Problemes();
             assignacions.addAll(a.getAssignacions());
         }
+
+        afegirRestriccionsNivell(); //afeim a les assignatures les seves restriccions de nivell
 
         //aqui tenim totes les assignacions totals
         horari = new Horari (assignacions);
@@ -155,6 +162,41 @@ public class PlaEstudis {
         assignatures.get(primera).addCorrequisit(segona);
         assignatures.get(segona).addCorrequisit(primera);
     }
+
+
+    /**
+     *
+     */
+    public void afegirRestriccionsNivell () {
+        HashMap<Integer, ArrayList<String>> nivellsIassignatures = new HashMap<>();
+
+        for (Map.Entry<String,assignatura> a_aux : assignatures.entrySet()) {
+            assignatura a = a_aux.getValue();
+            int nivell = a.getNivell();
+
+            nivellsIassignatures.putIfAbsent(nivell, new ArrayList<>());
+            nivellsIassignatures.get(nivell).add(a.getId());
+        }
+        //quan arribem aqui ja tenim un map amb les assignatures agrupades per nivells
+        //ara afegim els correquisits
+
+        for (Map.Entry<Integer, ArrayList<String>> n_aux : nivellsIassignatures.entrySet()) {
+            ArrayList<String> n = n_aux.getValue();
+            int numero_elements = n.size();
+
+            for (int i=0; i < numero_elements; ++i) {
+                String actual = n.get(i);
+                assignatures.get(actual).addManyCorrequisits(n);    //la funció addManyCorrequisits no s'afegirà a ella mateixa
+            }
+
+        }
+
+    }
+
+
+
+
+
 
 //    /**
 //     * Mostra per pantalla el horari d'aquest pla d'estudis.

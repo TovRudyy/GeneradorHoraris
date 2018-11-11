@@ -101,7 +101,7 @@ public final class Lector_Pla_JSON {
             String[] a = new String[2];
             a[0] = (String) cc.get("a1");
             a[1] = (String) cc .get("a2");
-            plaEstudis.afegirCorrequisits(a);
+            plaEstudis.afegirCorrequisits(a);   //afegim aquests nous correquisits
         }
     }
 
