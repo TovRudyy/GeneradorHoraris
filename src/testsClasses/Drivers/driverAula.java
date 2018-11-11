@@ -45,40 +45,10 @@ class driverAula  {
                         printCodis();
                         break;
                     case 1:
-                        out.println("Introdueix els seguents atributs, separats per un espai:");
-                        out.println("\tIdentificador<String> Capacitat<int> Tipus_Aula<Tipus_Aula>");
-                        try{
-                            aula = new Aula(keyboard.next(), keyboard.nextInt(), Tipus_Aula.string_to_Tipus_Aula(keyboard.next()));
-                        }catch(Aula_Exception ae){
-                            out.println(ae.getMessage());
-                        }catch(InputMismatchException ime){
-                            out.println("Has introduit algun atribut incorrectament.");
-                        }
+                        constructor_Test();
                         break;
                     case 2:
-                        out.println("Tria el getter que vols provar introduint el seu codi associat: ");
-                        out.println("\t1) Identificador");
-                        out.println("\t2) Capacitat");
-                        out.println("\t3) Tipus");
-                        out.println("\t4) Tots");
-                        switch(keyboard.nextInt()){
-                            case 1:
-                                out.println("Identificador : " + aula.getId());
-                                break;
-                            case 2:
-                                out.println("Capacitat : " + aula.getCapacitat());
-                                break;
-                            case 3:
-                                out.println("Tipus_Aula : " + aula.getTipus());
-                                break;
-                            case 4:
-                                out.println("Identificador : " + aula.getId());
-                                out.println("Capacitat : " + aula.getCapacitat());
-                                out.println("Tipus_Aula : " + aula.getTipus());
-                                break;
-                            default:
-                                out.println("Codi d'opcio no valid.");
-                        }
+                        getter_test();
                         break;
                     case 3:
                         out.println("Aula en format String: " + aula.toString());
@@ -99,6 +69,43 @@ class driverAula  {
         }
     }
 
+    private static void getter_test() {
+        out.println("Tria el getter que vols provar introduint el seu codi associat: ");
+        out.println("\t1) Identificador");
+        out.println("\t2) Capacitat");
+        out.println("\t3) Tipus");
+        out.println("\t4) Tots");
+        switch(keyboard.nextInt()){
+            case 1:
+                out.println("Identificador : " + aula.getId());
+                break;
+            case 2:
+                out.println("Capacitat : " + aula.getCapacitat());
+                break;
+            case 3:
+                out.println("Tipus_Aula : " + aula.getTipus());
+                break;
+            case 4:
+                out.println("Identificador : " + aula.getId());
+                out.println("Capacitat : " + aula.getCapacitat());
+                out.println("Tipus_Aula : " + aula.getTipus());
+                break;
+            default:
+                out.println("Codi d'opcio no valid.");
+        }
+    }
+
+    private static void constructor_Test() {
+        out.println("Introdueix els seguents atributs, separats per un espai:");
+        out.println("\tIdentificador<String> Capacitat<int> Tipus_Aula<Tipus_Aula>");
+        try{
+            aula = new Aula(keyboard.next(), keyboard.nextInt(), Tipus_Aula.string_to_Tipus_Aula(keyboard.next()));
+        }catch(Aula_Exception ae){
+            out.println(ae.getMessage());
+        }catch(InputMismatchException ime){
+            out.println("Has introduit algun atribut incorrectament.");
+        }
+    }
 
 
 }

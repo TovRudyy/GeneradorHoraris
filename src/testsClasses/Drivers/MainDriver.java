@@ -42,7 +42,6 @@ public class MainDriver {
                         break;
                     case 5:
                         driverRestriccioOcupacio.main();
-                        //TODO
                         printMenu();
                         break;
                     case 6:

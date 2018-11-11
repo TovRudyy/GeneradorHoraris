@@ -46,60 +46,13 @@ class driverTipus_Aula {
                         Tipus_Aula.escriure_codis_valids();
                         break;
                     case 3:
-                        out.println("Introdueix un string: ");
-                        String s = keyboard.next();
-                        try {
-                            out.println(s + " -> " + Tipus_Aula.string_to_Tipus_Aula(s));
-                        } catch (Aula_Exception ae) {
-                            out.println("El string que has introduit no es correspon a cap Tipus_Aula i, per tant, s'ha llencat la Excepcio Aula_Exception.");
-                            out.println("Missatge d'Aula_Exception: " + ae.getMessage());
-                        }
+                        String_To_Tipus_Aula_Test();
                         break;
                     case 4:
-                        out.println("Tria la opcio que vols introduint el seu codi associat: ");
-                        out.println("\t1) Introduir un unic string, que sera convertit a Tipus_Aula, i consultar si es Laboratori o no");
-                        out.println("\t2) Fer que el driver imprimeixi, per cada valor possible de Tipus_Aula, el resultat de consultar si es Laboratori o no");
-                        switch (keyboard.nextInt()) {
-                            case 1:
-                                out.println("Introdueix un string: ");
-                                try {
-                                    Tipus_Aula tp = Tipus_Aula.string_to_Tipus_Aula(keyboard.next());
-                                    out.println(tp + " : " + Tipus_Aula.es_Laboratori(tp));
-                                } catch (Aula_Exception ae) {
-                                    out.println("El string que has introduit no es correspon a cap Tipus_Aula i, per tant, s'ha llencat la Excepcio Aula_Exception.");
-                                    out.println("Missatge d'Aula_Exception: " + ae.getMessage());
-                                }
-                                break;
-                            case 2:
-                                for (Tipus_Aula tp : Tipus_Aula.values())
-                                    out.println(tp + " : " + Tipus_Aula.es_Laboratori(tp));
-                                break;
-                            default:
-                                out.println("Codi d'opcio no valid.");
-                        }
+                        es_Laboratori_Test();
                         break;
                     case 5:
-                        out.println("Tria la opcio que vols introduint el seu codi associat: ");
-                        out.println("\t1) Introduir un unic string, que sera convertit a Tipus_Aula, i obtenir la seva abreviacio");
-                        out.println("\t2) Fer que el driver imprimeixi, per cada valor possible de Tipus_Aula, la seva abreviacio");
-                        switch (keyboard.nextInt()) {
-                            case 1:
-                                out.println("Introdueix un string: ");
-                                try {
-                                    Tipus_Aula tp = Tipus_Aula.string_to_Tipus_Aula(keyboard.next());
-                                    out.println(tp + " : " + Tipus_Aula.getShort(tp));
-                                } catch (Aula_Exception ae) {
-                                    out.println("El string que has introduit no es correspon a cap Tipus_Aula i, per tant, s'ha llencat la Excepcio Aula_Exception.");
-                                    out.println("Missatge d'Aula_Exception: " + ae.getMessage());
-                                }
-                                break;
-                            case 2:
-                                for (Tipus_Aula tp : Tipus_Aula.values())
-                                    out.println(tp + " : " + Tipus_Aula.getShort(tp));
-                                break;
-                            default:
-                                out.println("Codi d'opcio no valid.");
-                        }
+                        get_Short_Test();
                         break;
                     default:
                         keyboard.nextLine();
@@ -114,6 +67,65 @@ class driverTipus_Aula {
             printCodis();
             keyboard.nextLine();
             executar();
+        }
+    }
+
+    private static void get_Short_Test() {
+        out.println("Tria la opcio que vols introduint el seu codi associat: ");
+        out.println("\t1) Introduir un unic string, que sera convertit a Tipus_Aula, i obtenir la seva abreviacio");
+        out.println("\t2) Fer que el driver imprimeixi, per cada valor possible de Tipus_Aula, la seva abreviacio");
+        switch (keyboard.nextInt()) {
+            case 1:
+                out.println("Introdueix un string: ");
+                try {
+                    Tipus_Aula tp = Tipus_Aula.string_to_Tipus_Aula(keyboard.next());
+                    out.println(tp + " : " + Tipus_Aula.getShort(tp));
+                } catch (Aula_Exception ae) {
+                    out.println("El string que has introduit no es correspon a cap Tipus_Aula i, per tant, s'ha llencat la Excepcio Aula_Exception.");
+                    out.println("Missatge d'Aula_Exception: " + ae.getMessage());
+                }
+                break;
+            case 2:
+                for (Tipus_Aula tp : Tipus_Aula.values())
+                    out.println(tp + " : " + Tipus_Aula.getShort(tp));
+                break;
+            default:
+                out.println("Codi d'opcio no valid.");
+        }
+    }
+
+    private static void es_Laboratori_Test() {
+        out.println("Tria la opcio que vols introduint el seu codi associat: ");
+        out.println("\t1) Introduir un unic string, que sera convertit a Tipus_Aula, i consultar si es Laboratori o no");
+        out.println("\t2) Fer que el driver imprimeixi, per cada valor possible de Tipus_Aula, el resultat de consultar si es Laboratori o no");
+        switch (keyboard.nextInt()) {
+            case 1:
+                out.println("Introdueix un string: ");
+                try {
+                    Tipus_Aula tp = Tipus_Aula.string_to_Tipus_Aula(keyboard.next());
+                    out.println(tp + " : " + Tipus_Aula.es_Laboratori(tp));
+                } catch (Aula_Exception ae) {
+                    out.println("El string que has introduit no es correspon a cap Tipus_Aula i, per tant, s'ha llencat la Excepcio Aula_Exception.");
+                    out.println("Missatge d'Aula_Exception: " + ae.getMessage());
+                }
+                break;
+            case 2:
+                for (Tipus_Aula tp : Tipus_Aula.values())
+                    out.println(tp + " : " + Tipus_Aula.es_Laboratori(tp));
+                break;
+            default:
+                out.println("Codi d'opcio no valid.");
+        }
+    }
+
+    private static void String_To_Tipus_Aula_Test() {
+        out.println("Introdueix un string: ");
+        String s = keyboard.next();
+        try {
+            out.println(s + " -> " + Tipus_Aula.string_to_Tipus_Aula(s));
+        } catch (Aula_Exception ae) {
+            out.println("El string que has introduit no es correspon a cap Tipus_Aula i, per tant, s'ha llencat la Excepcio Aula_Exception.");
+            out.println("Missatge d'Aula_Exception: " + ae.getMessage());
         }
     }
 }
