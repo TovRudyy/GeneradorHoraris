@@ -20,8 +20,7 @@ public class RestriccioSubgrup extends Restriccio {
      * @return Retorna un booleà que indica si el grup de c2 és subgrup del grup de c1.
      */
     public boolean checkCorrecte (Classe c1, Classe c2 ) {
-        if ( c1.getId_assig().equals(c2.getId_assig()) &&
-                (checkSub(c2.getId_grup(), c1.getId_grup()) || checkSub(c1.getId_grup(), c2.getId_grup()) ) &&    //son subgrup
+        if ( c1.getId_assig().equals(c2.getId_assig()) &&  (checkSub (c2.getId_grup(), c1.getId_grup()) ) &&    //son subgrup
                 (c1.getDia().equals(c2.getDia())) &&    //mateix dia i les hores es solapen amb el de teoria
                 (solapenHores(c1.getHoraInici(), c1.getHoraFi(), c2.getHoraInici(), c2.getHoraFi()))) {
             return false;

@@ -155,7 +155,7 @@ class driverRestriccioSubgrup  {
     }
 
     private static void check_Sub_Test() {
-        out.println("Aquest funcio determina, donats dos grups, si un es subgrup de l'altre.");
+        out.println("Aquest funcio determina, donats dos grups, si el segon es subgrup del primer.");
         out.println("Cal tenir en compte que aquesta funcio nomes tracta l'identificador dels grups, ja que tenim una codificacio estricte pel que fa als identificadors dels grups.");
         out.println("A mes, tampoc comprova si son de la mateixa assignatura, ja que el programa nomes invoca la funcio si ja ho ha comprovat.");
         out.println("Introdueix els seguents parametres, separats per una coma: ");
