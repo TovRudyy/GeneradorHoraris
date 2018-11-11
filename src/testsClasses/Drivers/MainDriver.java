@@ -49,7 +49,7 @@ public class MainDriver {
                         printMenu();
                         break;
                     case 7:
-                        driverControladorAules.main();
+                        driverCorequisit.main();
                         //TODO
                         printMenu();
                         break;
