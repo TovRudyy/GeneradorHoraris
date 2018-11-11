@@ -44,64 +44,10 @@ class driverClasse  {
                         printCodis();
                         break;
                     case 1:
-                        out.println("Introdueix els seguent atributs, separats per un espai:");
-                        out.println("\tId_Assignatura<String> Id_Grup<String> Id_Aula<String>, Dia<DiaSetmana> HoraInicia<int> HoraFinal<int>");
-                        try{
-                            String as = keyboard.next(), g = keyboard.next(), dia = keyboard.next();
-                            int ini = keyboard.nextInt(), fin = keyboard.nextInt();
-                            if(ini > fin){
-                                out.println("L'hora final ha de ser posterior a la inicial.");
-                                break;
-                            }
-                            classe = new Classe(as, g, DiaSetmana.string_To_DiaSetmana(dia), ini, fin, keyboard.next());
-                        }catch(IllegalArgumentException iae){
-                            out.println("Has introduit algun dels atributs incorrectament.");
-                        }
+                        constructor_test();
                         break;
                     case 2:
-                        out.println("Tria el getter que vols provar introduint el seu codi associat: ");
-                        out.println("\t1) Assignatura");
-                        out.println("\t2) Grup");
-                        out.println("\t3) Aula");
-                        out.println("\t4) Dia");
-                        out.println("\t5) Hora inicial");
-                        out.println("\t6) Hora final");
-                        out.println("\t7) Durada");
-                        out.println("\t8) Tots");
-                        switch (keyboard.nextInt()){
-                            case 1:
-                                out.println("Identificador assignatura: " + classe.getId_assig());
-                                break;
-                            case 2:
-                                out.println("Identificador grup: " + classe.getId_grup());
-                                break;
-                            case 3:
-                                out.println("Identificador aula: " + classe.getIdAula());
-                                break;
-                            case 4:
-                                out.println("Dia: " + classe.getDia());
-                                break;
-                            case 5:
-                                out.println("Hora inicial: " + classe.getHoraInici());
-                                break;
-                            case 6:
-                                out.println("Hora final: " + classe.getHoraFi());
-                                break;
-                            case 7:
-                                out.println("Durada: " + classe.getDurada());
-                                break;
-                            case 8:
-                                out.println("Identificador assignatura: " + classe.getId_assig());
-                                out.println("Identificador grup: " + classe.getId_grup());
-                                out.println("Identificador aula: " + classe.getIdAula());
-                                out.println("Dia: " + classe.getDia());
-                                out.println("Hora inicial: " + classe.getHoraInici());
-                                out.println("Hora final: " + classe.getHoraFi());
-                                out.println("Durada: " + classe.getDurada());
-                                break;
-                            default:
-                                out.println("Codi d'opcio no valid.");
-                        }
+                        getter_Test();
                         break;
                     case 3:
                         out.println("Classe en format String: " + classe.toString());
@@ -119,6 +65,68 @@ class driverClasse  {
             printCodis();
             keyboard.nextLine();
             executar();
+        }
+    }
+
+    private static void getter_Test() {
+        out.println("Tria el getter que vols provar introduint el seu codi associat: ");
+        out.println("\t1) Assignatura");
+        out.println("\t2) Grup");
+        out.println("\t3) Aula");
+        out.println("\t4) Dia");
+        out.println("\t5) Hora inicial");
+        out.println("\t6) Hora final");
+        out.println("\t7) Durada");
+        out.println("\t8) Tots");
+        switch (keyboard.nextInt()){
+            case 1:
+                out.println("Identificador assignatura: " + classe.getId_assig());
+                break;
+            case 2:
+                out.println("Identificador grup: " + classe.getId_grup());
+                break;
+            case 3:
+                out.println("Identificador aula: " + classe.getIdAula());
+                break;
+            case 4:
+                out.println("Dia: " + classe.getDia());
+                break;
+            case 5:
+                out.println("Hora inicial: " + classe.getHoraInici());
+                break;
+            case 6:
+                out.println("Hora final: " + classe.getHoraFi());
+                break;
+            case 7:
+                out.println("Durada: " + classe.getDurada());
+                break;
+            case 8:
+                out.println("Identificador assignatura: " + classe.getId_assig());
+                out.println("Identificador grup: " + classe.getId_grup());
+                out.println("Identificador aula: " + classe.getIdAula());
+                out.println("Dia: " + classe.getDia());
+                out.println("Hora inicial: " + classe.getHoraInici());
+                out.println("Hora final: " + classe.getHoraFi());
+                out.println("Durada: " + classe.getDurada());
+                break;
+            default:
+                out.println("Codi d'opcio no valid.");
+        }
+    }
+
+    private static void constructor_test() {
+        out.println("Introdueix els seguent atributs, separats per un espai:");
+        out.println("\tId_Assignatura<String> Id_Grup<String> Id_Aula<String>, Dia<DiaSetmana> HoraInicia<int> HoraFinal<int>");
+        try{
+            String as = keyboard.next(), g = keyboard.next(), au = keyboard.next(), dia = keyboard.next();
+            int ini = keyboard.nextInt(), fin = keyboard.nextInt();
+            if(ini > fin){
+                out.println("L'hora final ha de ser posterior a la inicial.");
+                return;
+            }
+            classe = new Classe(as, g, DiaSetmana.string_To_DiaSetmana(dia), ini, fin, au);
+        }catch(IllegalArgumentException iae){
+            out.println("Has introduit algun dels atributs incorrectament.");
         }
     }
 }

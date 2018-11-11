@@ -27,7 +27,7 @@ public class StubRestriccioSubgrup extends domain.RestriccioSubgrup {
     }
 
     @Override
-    protected boolean solapenHores(int ai, int af, int bi, int bf) {
+    public boolean solapenHores(int ai, int af, int bi, int bf) {
         System.out.println("solapenHores invocat");
         return false;
     }

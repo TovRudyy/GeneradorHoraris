@@ -19,7 +19,7 @@ public abstract class Restriccio {
      * @param bf Hora final de la segona classe.
      * @return Un booleà que indica si les hores de les dues classes es solapen o no.
      */
-    protected boolean solapenHores(int ai, int af, int bi, int bf) {
+    public boolean solapenHores(int ai, int af, int bi, int bf) {
         if ((bi >= ai &&  bi < af) || (bf > ai && bf < af) ||
             (ai >= bi &&  ai < bf) || (af > bi && af < bf)) return true;
 
