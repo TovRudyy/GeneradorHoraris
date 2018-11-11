@@ -47,13 +47,13 @@ class driverClasse  {
                         out.println("Introdueix els seguent atributs, separats per un espai:");
                         out.println("\tId_Assignatura<String> Id_Grup<String> Id_Aula<String>, Dia<DiaSetmana> HoraInicia<int> HoraFinal<int>");
                         try{
-                            String as = keyboard.next(), g = keyboard.next(), dia = keyboard.next();
+                            String as = keyboard.next(), g = keyboard.next(), au = keyboard.next(), dia = keyboard.next();
                             int ini = keyboard.nextInt(), fin = keyboard.nextInt();
                             if(ini > fin){
                                 out.println("L'hora final ha de ser posterior a la inicial.");
                                 break;
                             }
-                            classe = new Classe(as, g, DiaSetmana.string_To_DiaSetmana(dia), ini, fin, keyboard.next());
+                            classe = new Classe(as, g, DiaSetmana.string_To_DiaSetmana(dia), ini, fin, au);
                         }catch(IllegalArgumentException iae){
                             out.println("Has introduit algun dels atributs incorrectament.");
                         }

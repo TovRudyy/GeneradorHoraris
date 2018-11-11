@@ -106,7 +106,7 @@ public class assignacio {
      * d'aules possibles (que siguin del tipus necessari) i amb tots els intervals d'hores possibles.
      * @return Un map que conté tot el conjunt de possibilitats d'aquesta assignació.
      */
-    private Map<String, Map<DiaSetmana, ArrayList<Classe>>> generaPossiblesClasses() {
+    public Map<String, Map<DiaSetmana, ArrayList<Classe>>> generaPossiblesClasses() {
 
         Map<String, Aula> aules = ControladorAules.getAules();
 
