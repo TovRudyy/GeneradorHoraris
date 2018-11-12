@@ -110,6 +110,7 @@ class driverClasse  {
                 out.println("Durada: " + classe.getDurada());
                 break;
             default:
+                keyboard.nextLine();
                 out.println("Codi d'opcio no valid.");
         }
     }

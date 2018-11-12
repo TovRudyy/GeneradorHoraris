@@ -50,7 +50,6 @@ public class MainDriver {
                         break;
                     case 7:
                         driverRestriccioCorequisit.main();
-                        //TODO
                         printMenu();
                         break;
                     case 8:
