@@ -233,8 +233,7 @@ public class assignacio {
      * @param c Classe que l'horari ha eliminat de la selecció final.
      */
     public void eliminarSeleccionada (Classe c) {
-        classes_seleccionades.remove (c);
-        this.numeroClassesRestants += 1;
+        if(classes_seleccionades.remove(c)) this.numeroClassesRestants += 1;
     }
 
     /**
