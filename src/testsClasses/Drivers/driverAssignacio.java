@@ -45,7 +45,64 @@ class driverAssignacio {
     }
 
     private static void executar() {
-
+        try{
+            int codi;
+            out.println("Introdueix un codi: ");
+            while((codi = keyboard.nextInt()) != 13){
+                switch (codi){
+                    case -1:
+                        printCodis();
+                        break;
+                    case 1:
+                        constructor_Test();
+                        break;
+                    case 2:
+                        getters_Test();
+                        break;
+                    case 3:
+                        setters_Test();
+                        break;
+                    case 4:
+                        genera_Possibles_Classes_Test();
+                        break;
+                    case 5:
+                        afegeix_possibilitat_Test();
+                        break;
+                    case 6:
+                        forward_Checking_Test();
+                        break;
+                    case 7:
+                        nomes_Seleccionades_Test();
+                        break;
+                    case 8:
+                        afegir_Seleccionada_Test();
+                        break;
+                    case 9:
+                        eliminar_Seleccionada_Test();
+                        break;
+                    case 10:
+                        get_Seleccionades_Test();
+                        break;
+                    case 11:
+                        is_Empty_Test();
+                        break;
+                    case 12:
+                        to_String_Test();
+                        break;
+                    default:
+                        keyboard.nextLine();
+                        out.println("Codi no valid. Aqui tens els codis que ho son: ");
+                        printCodis();
+                }
+                out.println();
+                out.println("Introdueix un codi:");
+            }
+        }catch(InputMismatchException ime){
+            out.println("Codi no valid. Aqui tens els codis que ho son: ");
+            printCodis();
+            keyboard.nextLine();
+            executar();
+        }
     }
 
     private static void constructor_Test() {
@@ -135,34 +192,90 @@ class driverAssignacio {
     }
 
     private static void afegeix_possibilitat_Test() {
-
+        out.println("Introdueix la classe que vols afegir a la llista de possibilitats:");
+        out.println("\tId_Assignatura<String> Id_Grup<String> Id_Aula<String>, Dia<DiaSetmana> HoraInicia<int> HoraFinal<int>");
+        try{
+            String as = keyboard.next(), g = keyboard.next(), au = keyboard.next(), dia = keyboard.next();
+            int ini = keyboard.nextInt(), fin = keyboard.nextInt();
+            if(ini > fin){
+                out.println("L'hora final ha de ser posterior a la inicial.");
+                return;
+            }
+            ass.afegeixPossibilitat(new Classe(as, g, DiaSetmana.string_To_DiaSetmana(dia), ini, fin, au));
+        }catch(IllegalArgumentException iae){
+            out.println("Has introduit algun dels atributs incorrectament.");
+        }
     }
 
     private static void forward_Checking_Test() {
+        out.println("Introdueix la classe amb la que vols podar les possibilitats:");
+        out.println("Tingues en compte que no es comprova que aquesta classe sigui una de les possibles.");
+        out.println("\tId_Assignatura<String> Id_Grup<String> Id_Aula<String>, Dia<DiaSetmana> HoraInicia<int> HoraFinal<int>");
+        try{
+            String as = keyboard.next(), g = keyboard.next(), au = keyboard.next(), dia = keyboard.next();
+            int ini = keyboard.nextInt(), fin = keyboard.nextInt();
+            if(ini > fin){
+                out.println("L'hora final ha de ser posterior a la inicial.");
+                return;
+            }
+            out.println("Aquestes son les possibles classes que han sigut eliminades:");
+            for(Classe c :ass.forwardChecking(new Classe(as, g, DiaSetmana.string_To_DiaSetmana(dia), ini, fin, au))) out.println("\t" + c.toString());
+        }catch(IllegalArgumentException iae){
+            out.println("Has introduit algun dels atributs incorrectament.");
+        }
 
     }
 
     private static void nomes_Seleccionades_Test() {
-
+        out.println("Aquestes son totes les possibilitats que quedaven i han sigut eliminades:");
+        for(Classe c: ass.nomesSeleccionades()) out.println("\t" + c.toString());
     }
 
     private static void afegir_Seleccionada_Test() {
-
+        out.println("Introdueix la classe que vols afegir a la llista de possibilitats:");
+        out.println("Tingues en compte que no es comprova que aquesta classe sigui una de les possibles.");
+        out.println("\tId_Assignatura<String> Id_Grup<String> Id_Aula<String>, Dia<DiaSetmana> HoraInicia<int> HoraFinal<int>");
+        try{
+            String as = keyboard.next(), g = keyboard.next(), au = keyboard.next(), dia = keyboard.next();
+            int ini = keyboard.nextInt(), fin = keyboard.nextInt();
+            if(ini > fin){
+                out.println("L'hora final ha de ser posterior a la inicial.");
+                return;
+            }
+            ass.afegirSeleccionada(new Classe(as, g, DiaSetmana.string_To_DiaSetmana(dia), ini, fin, au));
+        }catch(IllegalArgumentException iae){
+            out.println("Has introduit algun dels atributs incorrectament.");
+        }
     }
 
     private static void eliminar_Seleccionada_Test() {
-
+        out.println("Introdueix la classe que vols eliminar de la llista de possibilitats:");
+        out.println("Tingues en compte que no es llença cap error si la classe no es seleccionada (pero tampoc te cap efecte secundari).");
+        out.println("\tId_Assignatura<String> Id_Grup<String> Id_Aula<String>, Dia<DiaSetmana> HoraInicia<int> HoraFinal<int>");
+        try{
+            String as = keyboard.next(), g = keyboard.next(), au = keyboard.next(), dia = keyboard.next();
+            int ini = keyboard.nextInt(), fin = keyboard.nextInt();
+            if(ini > fin){
+                out.println("L'hora final ha de ser posterior a la inicial.");
+                return;
+            }
+            ass.eliminarSeleccionada(new Classe(as, g, DiaSetmana.string_To_DiaSetmana(dia), ini, fin, au));
+        }catch(IllegalArgumentException iae){
+            out.println("Has introduit algun dels atributs incorrectament.");
+        }
     }
 
     private static void get_Seleccionades_Test() {
-
+        out.println("Aquestes son les Classes seleccionades: ");
+        for(Classe c:ass.getSeleccionades()) out.println("\t" + c.toString());
     }
 
     private static void is_Empty_Test() {
-
+        out.println("Aquesta funcio retorna true si no queden prous classes possibles com per satisfer les necessitats:");
+        out.println("Resultat: " + ass.isEmpty());
     }
 
     private static void to_String_Test() {
-
+        out.println("Resultat: " + ass.toString());
     }
 }
