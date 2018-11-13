@@ -4,7 +4,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 import java.util.*;
-import java.util.concurrent.LinkedBlockingQueue;
 import java.util.Stack;
 
 
@@ -24,7 +23,7 @@ public class Horari {
      * Afegeix totes les assignacions passades pel paràmetre al map de la classe horari.
      * @param conjuntAssignacions ArrayList amb tot el conjunt d'assignacions que hem d'assignar al nostre horari.
      */
-    public void afegeixAssignacions (ArrayList<assignacio> conjuntAssignacions) {
+    private void afegeixAssignacions (ArrayList<assignacio> conjuntAssignacions) {
         for (assignacio a : conjuntAssignacions)
             this.conjuntAssignacions.put((a.getIdAssig()+a.getIdGrup()), a);
     }
@@ -46,7 +45,7 @@ public class Horari {
      * @param index Indica quina assignació estem tractant en aquesta iteració.
      * @return Un booleà que indica si el horari és possible o no.
      */
-    public boolean selectClasse (int index) {
+    private boolean selectClasse (int index) {
         ArrayList<assignacio> l = new ArrayList<assignacio>( conjuntAssignacions.values());
 
         if (index < l.size()) {
