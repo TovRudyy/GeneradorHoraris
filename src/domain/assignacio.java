@@ -39,7 +39,7 @@ public class assignacio {
      * @param numeroClasses Numero de classes a la semana (tenint en compte que una assignació només serà de TEORIA,PROBLEMES o LABORATORI)
      * @param duracioClasses Duració de les seves classes.
      * @param horariGrup    Indica si la assignatura és de matins o tardes.
-     * @param aules
+     * @param aules Conjunt d'aules amb les que es generen les possibles classes de la assignacio
      */
     public assignacio(String idGrup, int cap, Tipus_Aula tAula, String idAssig, int nivellAssig, int numeroClasses, int duracioClasses, String horariGrup, Map<String, Aula> aules) {
         this.idGrup = idGrup;

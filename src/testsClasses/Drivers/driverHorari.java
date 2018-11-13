@@ -79,7 +79,9 @@ class driverHorari {
 
     private static void constructor_Test() {
         try {
-            horari = new Horari(Lector_Drivers_JSON.llegitFitxer_Horari_InputList());
+            ArrayList<assignacio> ass = Lector_Drivers_JSON.llegitFitxer_Horari_InputList();
+            for(assignacio a : ass) out.println(a.toString());
+            horari = new Horari(ass);
         }catch(Exception e){
             out.println("Hi ha algun problema amb l'arxiu.");
             out.println("Missatge: " + e.getMessage());

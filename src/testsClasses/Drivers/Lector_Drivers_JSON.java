@@ -87,8 +87,8 @@ class Lector_Drivers_JSON {
         JSONArray corequisits = (JSONArray) obj.get("corequisits");
         if(corequisits != null) afegeixCorrequisits(corequisits, assigs);
         Map<String, Aula> aules;
-        JSONArray au = (JSONArray) obj.get("corequisits");
-        if(corequisits != null) aules = llegirAules(au);
+        JSONArray au = (JSONArray) obj.get("aules");
+        if(au != null) aules = llegirAules(au);
 
         ArrayList<assignacio> assignacions = new ArrayList<>();
         for(assignatura a: assigs.values()){
