@@ -82,7 +82,7 @@ public class PlaEstudis {
             System.out.println(a.getId() + ":" + a.getNom() + ":" + a.getNivell() + "\n");
             a.showGrups();
             a.showClasses();
-            a.getAssignacions();
+            a.getAssignacions(ControladorAules.getAules());
         }
 
     }
@@ -136,7 +136,7 @@ public class PlaEstudis {
         for (Map.Entry<String, assignatura> assig : assignatures.entrySet()) {
             assignatura a = assig.getValue();
             a.noSolapis_Teoria_i_Problemes();
-            assignacions.addAll(a.getAssignacions());
+            assignacions.addAll(a.getAssignacions(ControladorAules.getAules()));
         }
 
         afegirRestriccionsNivell(); //afeim a les assignatures les seves restriccions de nivell

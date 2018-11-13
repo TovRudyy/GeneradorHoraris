@@ -156,7 +156,7 @@ public class assignatura {
      * @return Retorna una arrayList amb tot el conjunt de assignacions generades, tenint en compte que
      * una assignacio serà la relació entre una assignatura i un dels seus grups.
      */
-    public ArrayList<assignacio> getAssignacions () {
+    public ArrayList<assignacio> getAssignacions (Map<String, Aula> aules) {
         ArrayList <assignacio> result = new ArrayList<assignacio>();
 
         RestriccioOcupacio r = new RestriccioOcupacio();
@@ -165,12 +165,12 @@ public class assignatura {
             grup g = g_aux.getValue();
             assignacio a;
             if (Tipus_Aula.es_Laboratori(g.getTipus()))
-                a = new assignacio(g.getId(), g.getCapacitat(), g.getTipus(), id, nivell, classes_laboratori, duracio_laboratori,g.getHorariAssig(),ControladorAules.getAules() );
+                a = new assignacio(g.getId(), g.getCapacitat(), g.getTipus(), id, nivell, classes_laboratori, duracio_laboratori,g.getHorariAssig(), aules);
 
             else if (g.getTipus() == Tipus_Aula.TEORIA)
-                a = new assignacio(g.getId(), g.getCapacitat(), g.getTipus(),id, nivell, classes_teoria, duracio_teoria, g.getHorariAssig(),ControladorAules.getAules() );
+                a = new assignacio(g.getId(), g.getCapacitat(), g.getTipus(),id, nivell, classes_teoria, duracio_teoria, g.getHorariAssig(), aules);
 
-            else a = new assignacio(g.getId(), g.getCapacitat(), g.getTipus(),id, nivell, classes_problemes, duracio_problemes, g.getHorariAssig(),ControladorAules.getAules() );
+            else a = new assignacio(g.getId(), g.getCapacitat(), g.getTipus(),id, nivell, classes_problemes, duracio_problemes, g.getHorariAssig(), aules);
 
 
             //aqui copiem les restriccions que té un grup a la seva assignacio

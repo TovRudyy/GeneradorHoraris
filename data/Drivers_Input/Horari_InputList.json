@@ -189,6 +189,86 @@
     "nom":"C5S203",
     "capacitat":40,
     "tipus":"LE"
+  },
+  {
+    "nom":"A6001",
+    "capacitat":120,
+    "tipus":"Teoria"
+  },
+  {
+    "nom":"A6002",
+    "capacitat":120,
+    "tipus":"Teoria"
+  },
+  {
+    "nom":"A6E01",
+    "capacitat":140,
+    "tipus":"Teoria"
+  },
+  {
+    "nom":"A6E02",
+    "capacitat":140,
+    "tipus":"Teoria"
+  },
+  {
+    "nom":"A6101",
+    "capacitat":46,
+    "tipus":"Problemes"
+  },
+  {
+    "nom":"A6102",
+    "capacitat":76,
+    "tipus":"Teoria"
+  },
+  {
+    "nom":"A6103",
+    "capacitat":50,
+    "tipus":"Teoria"
+  },
+  {
+    "nom":"A6104",
+    "capacitat":40,
+    "tipus":"Problemes"
+  },
+  {
+    "nom":"A6105",
+    "capacitat":40,
+    "tipus":"Problemes"
+  },
+  {
+    "nom":"A6106",
+    "capacitat":40,
+    "tipus":"Problemes"
+  },
+  {
+    "nom":"A6201",
+    "capacitat":46,
+    "tipus":"Problemes"
+  },
+  {
+    "nom":"A6202",
+    "capacitat":76,
+    "tipus":"Teoria"
+  },
+  {
+    "nom":"A6203",
+    "capacitat":50,
+    "tipus":"Teoria"
+  },
+  {
+    "nom":"A6204",
+    "capacitat":40,
+    "tipus":"Problemes"
+  },
+  {
+    "nom":"A6205",
+    "capacitat":40,
+    "tipus":"Problemes"
+  },
+  {
+    "nom":"A6206",
+    "capacitat":40,
+    "tipus":"Problemes"
   }
 ],
   "assignatures":[
@@ -458,7 +538,7 @@
       }
     }
   ],
-  "correquisits":[
+  "corequisits":[
     {
       "a1":"IC",
       "a2":"FM"

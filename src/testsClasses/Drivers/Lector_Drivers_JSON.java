@@ -82,17 +82,19 @@ class Lector_Drivers_JSON {
         JSONParser parser = new JSONParser();
         JSONObject obj = (JSONObject) parser.parse(new FileReader("data/Drivers_Input/Horari_InputList.json"));
         JSONArray assignatures = (JSONArray) obj.get("assignatures");
-        Map<String, assignatura> assigs = new TreeMap<>();
-        if(assignatures != null) assigs = afegeixAssignatures(assignatures);
+        Map<String, assignatura> assigs;
+        if(assignatures == null) throw new IOException("No hi ha assignatures");
+        assigs = afegeixAssignatures(assignatures);
         JSONArray corequisits = (JSONArray) obj.get("corequisits");
         if(corequisits != null) afegeixCorrequisits(corequisits, assigs);
         Map<String, Aula> aules;
         JSONArray au = (JSONArray) obj.get("aules");
-        if(au != null) aules = llegirAules(au);
+        if(au == null)  throw new IOException("No hi ha aules");
+        aules = llegirAules(au);
 
         ArrayList<assignacio> assignacions = new ArrayList<>();
         for(assignatura a: assigs.values()){
-            assignacions.addAll(a.getAssignacions());
+            assignacions.addAll(a.getAssignacions(aules));
         }
         return assignacions;
     }

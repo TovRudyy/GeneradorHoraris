@@ -3,6 +3,7 @@ package testsClasses.Drivers;
 import domain.*;
 
 import java.util.InputMismatchException;
+import java.util.Map;
 import java.util.TreeMap;
 
 import static java.lang.System.out;
@@ -10,6 +11,14 @@ import static testsClasses.Drivers.MainDriver.keyboard;
 
 class driverAssignatura {
 
+
+    private static Map<String, Aula> aules = Map.ofEntries(
+            Map.entry("AulaT", new Aula("AulaT", 9999999, Tipus_Aula.TEORIA)),
+            Map.entry("AulaP", new Aula("AulaP", 9999999, Tipus_Aula.PROBLEMES)),
+            Map.entry("AulaLI", new Aula("AulaLI", 9999999, Tipus_Aula.LAB_INFORMATICA)),
+            Map.entry("AulaLF", new Aula("AulaLF", 9999999, Tipus_Aula.LAB_FISICA)),
+            Map.entry("AulaLE", new Aula("AulaLE", 9999999, Tipus_Aula.LAB_ELECTRONICA))
+    );
     private static assignatura ass = new assignatura("AI","Assignatura_Inicial", 0);
 
     static void main() {
@@ -171,7 +180,7 @@ class driverAssignatura {
                 break;
             case 7:
                 out.println("Assignacions: ");
-                for(assignacio a: ass.getAssignacions()) out.println("\t" + a.toString());
+                for(assignacio a: ass.getAssignacions(aules)) out.println("\t" + a.toString());
                 break;
             case 8:
                 out.println("Identificador: " + ass.getId());
@@ -184,7 +193,7 @@ class driverAssignatura {
                 out.println("Grups: ");
                 ass.showGrups();
                 out.println("Assignacions: ");
-                for(assignacio a: ass.getAssignacions()) out.println("\t" + a.toString());
+                for(assignacio a: ass.getAssignacions(aules)) out.println("\t" + a.toString());
                 break;
             default:
                 keyboard.nextLine();
