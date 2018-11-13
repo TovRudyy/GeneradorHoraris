@@ -1,482 +1,467 @@
-[
+{
+  "aules":[
   {
-    "assig":"FM",
-    "nivellAssig":1,
-    "idGrup":"10",
-    "capacitat":60,
-    "tipus":"T",
-    "nClasses":2,
-    "dClasses":2,
-    "horari":"M"
+    "nom":"A5001",
+    "capacitat":120,
+    "tipus":"Teoria"
   },
   {
-    "assig":"FM",
-    "nivellAssig":1,
-    "idGrup":"11",
+    "nom":"A5002",
+    "capacitat":120,
+    "tipus":"Teoria"
+  },
+  {
+    "nom":"A5E01",
+    "capacitat":140,
+    "tipus":"Teoria"
+  },
+  {
+    "nom":"A5E02",
+    "capacitat":140,
+    "tipus":"Teoria"
+  },
+  {
+    "nom":"A5101",
+    "capacitat":46,
+    "tipus":"Problemes"
+  },
+  {
+    "nom":"A5102",
+    "capacitat":76,
+    "tipus":"Teoria"
+  },
+  {
+    "nom":"A5103",
+    "capacitat":50,
+    "tipus":"Teoria"
+  },
+  {
+    "nom":"A5104",
+    "capacitat":40,
+    "tipus":"Problemes"
+  },
+  {
+    "nom":"A5105",
+    "capacitat":40,
+    "tipus":"Problemes"
+  },
+  {
+    "nom":"A5106",
+    "capacitat":40,
+    "tipus":"Problemes"
+  },
+  {
+    "nom":"A5201",
+    "capacitat":40,
+    "tipus":"Problemes"
+  },
+  {
+    "nom":"A5202",
+    "capacitat":64,
+    "tipus":"Teoria"
+  },
+  {
+    "nom":"A5203",
+    "capacitat":40,
+    "tipus":"Teoria"
+  },
+  {
+    "nom":"A5204",
+    "capacitat":40,
+    "tipus":"Problemes"
+  },
+  {
+    "nom":"A5S102",
+    "capacitat":25,
+    "tipus":"LI"
+  },
+  {
+    "nom":"A5S103",
+    "capacitat":14,
+    "tipus":"LI"
+  },
+  {
+    "nom":"A5S103",
+    "capacitat":21,
+    "tipus":"LI"
+  },
+  {
+    "nom":"A5S105",
+    "capacitat":14,
+    "tipus":"LI"
+  },
+  {
+    "nom":"A5S108",
+    "capacitat":23,
+    "tipus":"LI"
+  },
+  {
+    "nom":"A5S109",
+    "capacitat":25,
+    "tipus":"LI"
+  },
+  {
+    "nom":"A5S111",
+    "capacitat":14,
+    "tipus":"LI"
+  },
+  {
+    "nom":"A5S112",
+    "capacitat":14,
+    "tipus":"LI"
+  },
+  {
+    "nom":"A5S113",
+    "capacitat":25,
+    "tipus":"LI"
+  },
+  {
+    "nom":"B5S101",
+    "capacitat":22,
+    "tipus":"LI"
+  },
+  {
+    "nom":"B5S102",
+    "capacitat":23,
+    "tipus":"LI"
+  },
+  {
+    "nom":"B5S202",
+    "capacitat":22,
+    "tipus":"LI"
+  },
+  {
+    "nom":"C6S301",
+    "capacitat":15,
+    "tipus":"LI"
+  },
+  {
+    "nom":"C6S302",
+    "capacitat":29,
+    "tipus":"LI"
+  },
+  {
+    "nom":"C6S303",
+    "capacitat":16,
+    "tipus":"LI"
+  },
+  {
+    "nom":"C6S304",
+    "capacitat":10,
+    "tipus":"LI"
+  },
+  {
+    "nom":"C6S306",
+    "capacitat":21,
+    "tipus":"LI"
+  },
+  {
+    "nom":"C6S308",
+    "capacitat":21,
+    "tipus":"LI"
+  },
+  {
+    "nom":"C6S309",
+    "capacitat":21,
+    "tipus":"LI"
+  },
+  {
+    "nom":"A1S101",
     "capacitat":20,
-    "tipus":"P",
-    "nClasses":1,
-    "dClasses":2,
-    "horari":"M"
+    "tipus":"LF"
   },
   {
-    "assig":"FM",
-    "nivellAssig":1,
-    "idGrup":"12",
+    "nom":"A1S102",
     "capacitat":20,
-    "tipus":"P",
-    "nClasses":1,
-    "dClasses":2,
-    "horari":"M"
+    "tipus":"LF"
   },
   {
-    "assig":"FM",
-    "nivellAssig":1,
-    "idGrup":"13",
+    "nom":"A1S103",
     "capacitat":20,
-    "tipus":"P",
-    "nClasses":1,
-    "dClasses":2,
-    "horari":"M"
+    "tipus":"LF"
   },
   {
-    "assig":"FM",
-    "nivellAssig":1,
-    "idGrup":"20",
-    "capacitat":60,
-    "tipus":"T",
-    "nClasses":2,
-    "dClasses":2,
-    "horari":"M"
+    "nom":"C5S202",
+    "capacitat":40,
+    "tipus":"LE"
   },
   {
-    "assig":"FM",
-    "nivellAssig":1,
-    "idGrup":"21",
-    "capacitat":20,
-    "tipus":"P",
-    "nClasses":1,
-    "dClasses":2,
-    "horari":"M"
-  },
-  {
-    "assig":"FM",
-    "nivellAssig":1,
-    "idGrup":"22",
-    "capacitat":20,
-    "tipus":"P",
-    "nClasses":1,
-    "dClasses":2,
-    "horari":"M"
-  },
-  {
-    "assig":"FM",
-    "nivellAssig":1,
-    "idGrup":"23",
-    "capacitat":20,
-    "tipus":"P",
-    "nClasses":1,
-    "dClasses":2,
-    "horari":"M"
-  },
-  {
-    "assig":"FM",
-    "nivellAssig":1,
-    "idGrup":"30",
-    "capacitat":60,
-    "tipus":"T",
-    "nClasses":2,
-    "dClasses":2,
-    "horari":"M"
-  },
-  {
-    "assig":"FM",
-    "nivellAssig":1,
-    "idGrup":"31",
-    "capacitat":20,
-    "tipus":"P",
-    "nClasses":1,
-    "dClasses":2,
-    "horari":"M"
-  },
-  {
-    "assig":"FM",
-    "nivellAssig":1,
-    "idGrup":"32",
-    "capacitat":20,
-    "tipus":"P",
-    "nClasses":1,
-    "dClasses":2,
-    "horari":"M"
-  },
-  {
-    "assig":"FM",
-    "nivellAssig":1,
-    "idGrup":"33",
-    "capacitat":20,
-    "tipus":"P",
-    "nClasses":1,
-    "dClasses":2,
-    "horari":"M"
-  },
-  {
-    "assig":"FM",
-    "nivellAssig":1,
-    "idGrup":"40",
-    "capacitat":60,
-    "tipus":"T",
-    "nClasses":2,
-    "dClasses":2,
-    "horari":"T"
-  },
-  {
-    "assig":"FM",
-    "nivellAssig":1,
-    "idGrup":"41",
-    "capacitat":20,
-    "tipus":"P",
-    "nClasses":1,
-    "dClasses":2,
-    "horari":"T"
-  },
-  {
-    "assig":"FM",
-    "nivellAssig":1,
-    "idGrup":"42",
-    "capacitat":20,
-    "tipus":"P",
-    "nClasses":1,
-    "dClasses":2,
-    "horari":"T"
-  },
-  {
-    "assig":"FM",
-    "nivellAssig":1,
-    "idGrup":"43",
-    "capacitat":20,
-    "tipus":"P",
-    "nClasses":1,
-    "dClasses":2,
-    "horari":"T"
-  },
-  {
-    "assig":"PRO1",
-    "nivellAssig":1,
-    "idGrup":"10",
-    "capacitat":60,
-    "tipus":"T",
-    "nClasses":2,
-    "dClasses":2,
-    "horari":"M"
-  },
-  {
-    "assig":"PRO1",
-    "nivellAssig":1,
-    "idGrup":"11",
-    "capacitat":20,
-    "tipus":"L",
-    "nClasses":1,
-    "dClasses":2,
-    "horari":"M"
-  },
-  {
-    "assig":"PRO1",
-    "nivellAssig":1,
-    "idGrup":"12",
-    "capacitat":20,
-    "tipus":"L",
-    "nClasses":1,
-    "dClasses":2,
-    "horari":"M"
-  },
-  {
-    "assig":"PRO1",
-    "nivellAssig":1,
-    "idGrup":"13",
-    "capacitat":20,
-    "tipus":"L",
-    "nClasses":1,
-    "dClasses":2,
-    "horari":"M"
-  },
-  {
-    "assig":"PRO1",
-    "nivellAssig":1,
-    "idGrup":"20",
-    "capacitat":60,
-    "tipus":"T",
-    "nClasses":2,
-    "dClasses":2,
-    "horari":"M"
-  },
-  {
-    "assig":"PRO1",
-    "nivellAssig":1,
-    "idGrup":"21",
-    "capacitat":20,
-    "tipus":"L",
-    "nClasses":1,
-    "dClasses":2,
-    "horari":"M"
-  },
-  {
-    "assig":"PRO1",
-    "nivellAssig":1,
-    "idGrup":"22",
-    "capacitat":20,
-    "tipus":"L",
-    "nClasses":1,
-    "dClasses":2,
-    "horari":"M"
-  },
-  {
-    "assig":"PRO1",
-    "nivellAssig":1,
-    "idGrup":"23",
-    "capacitat":20,
-    "tipus":"L",
-    "nClasses":1,
-    "dClasses":2,
-    "horari":"M"
-  },
-  {
-    "assig":"PRO1",
-    "nivellAssig":1,
-    "idGrup":"30",
-    "capacitat":60,
-    "tipus":"T",
-    "nClasses":2,
-    "dClasses":2,
-    "horari":"M"
-  },
-  {
-    "assig":"PRO1",
-    "nivellAssig":1,
-    "idGrup":"31",
-    "capacitat":20,
-    "tipus":"L",
-    "nClasses":1,
-    "dClasses":2,
-    "horari":"M"
-  },
-  {
-    "assig":"PRO1",
-    "nivellAssig":1,
-    "idGrup":"32",
-    "capacitat":20,
-    "tipus":"L",
-    "nClasses":1,
-    "dClasses":2,
-    "horari":"M"
-  },
-  {
-    "assig":"PRO1",
-    "nivellAssig":1,
-    "idGrup":"33",
-    "capacitat":20,
-    "tipus":"L",
-    "nClasses":1,
-    "dClasses":2,
-    "horari":"M"
-  },
-  {
-    "assig":"PRO1",
-    "nivellAssig":1,
-    "idGrup":"40",
-    "capacitat":60,
-    "tipus":"T",
-    "nClasses":2,
-    "dClasses":2,
-    "horari":"T"
-  },
-  {
-    "assig":"PRO1",
-    "nivellAssig":1,
-    "idGrup":"41",
-    "capacitat":20,
-    "tipus":"L",
-    "nClasses":1,
-    "dClasses":2,
-    "horari":"T"
-  },
-  {
-    "assig":"PRO1",
-    "nivellAssig":1,
-    "idGrup":"42",
-    "capacitat":20,
-    "tipus":"L",
-    "nClasses":1,
-    "dClasses":2,
-    "horari":"T"
-  },
-  {
-    "assig":"PRO1",
-    "nivellAssig":1,
-    "idGrup":"43",
-    "capacitat":20,
-    "tipus":"L",
-    "nClasses":1,
-    "dClasses":2,
-    "horari":"T"
-  },
-  {
-    "assig":"IC",
-    "nivellAssig":1,
-    "idGrup":"10",
-    "capacitat":60,
-    "tipus":"T",
-    "nClasses":2,
-    "dClasses":2,
-    "horari":"M"
-  },
-  {
-    "assig":"IC",
-    "nivellAssig":1,
-    "idGrup":"11",
-    "capacitat":20,
-    "tipus":"L",
-    "nClasses":1,
-    "dClasses":2,
-    "horari":"M"
-  },
-  {
-    "assig":"IC",
-    "nivellAssig":1,
-    "idGrup":"12",
-    "capacitat":20,
-    "tipus":"L",
-    "nClasses":1,
-    "dClasses":2,
-    "horari":"M"
-  },
-  {
-    "assig":"IC",
-    "nivellAssig":1,
-    "idGrup":"13",
-    "capacitat":20,
-    "tipus":"L",
-    "nClasses":1,
-    "dClasses":2,
-    "horari":"M"
-  },
-  {
-    "assig":"IC",
-    "nivellAssig":1,
-    "idGrup":"20",
-    "capacitat":60,
-    "tipus":"T",
-    "nClasses":2,
-    "dClasses":2,
-    "horari":"M"
-  },
-  {
-    "assig":"IC",
-    "nivellAssig":1,
-    "idGrup":"21",
-    "capacitat":20,
-    "tipus":"L",
-    "nClasses":1,
-    "dClasses":2,
-    "horari":"M"
-  },
-  {
-    "assig":"IC",
-    "nivellAssig":1,
-    "idGrup":"22",
-    "capacitat":20,
-    "tipus":"L",
-    "nClasses":1,
-    "dClasses":2,
-    "horari":"M"
-  },
-  {
-    "assig":"IC",
-    "nivellAssig":1,
-    "idGrup":"23",
-    "capacitat":20,
-    "tipus":"L",
-    "nClasses":1,
-    "dClasses":2,
-    "horari":"M"
-  },
-  {
-    "assig":"IC",
-    "nivellAssig":1,
-    "idGrup":"30",
-    "capacitat":60,
-    "tipus":"T",
-    "nClasses":2,
-    "dClasses":2,
-    "horari":"M"
-  },
-  {
-    "assig":"IC",
-    "nivellAssig":1,
-    "idGrup":"31",
-    "capacitat":20,
-    "tipus":"L",
-    "nClasses":1,
-    "dClasses":2,
-    "horari":"M"
-  },
-  {
-    "assig":"IC",
-    "nivellAssig":1,
-    "idGrup":"32",
-    "capacitat":20,
-    "tipus":"L",
-    "nClasses":1,
-    "dClasses":2,
-    "horari":"M"
-  },
-  {
-    "assig":"IC",
-    "nivellAssig":1,
-    "idGrup":"33",
-    "capacitat":20,
-    "tipus":"L",
-    "nClasses":1,
-    "dClasses":2,
-    "horari":"M"
-  },
-  {
-    "assig":"IC",
-    "nivellAssig":1,
-    "idGrup":"40",
-    "capacitat":60,
-    "tipus":"T",
-    "nClasses":2,
-    "dClasses":2,
-    "horari":"T"
-  },
-  {
-    "assig":"IC",
-    "nivellAssig":1,
-    "idGrup":"41",
-    "capacitat":20,
-    "tipus":"L",
-    "nClasses":1,
-    "dClasses":2,
-    "horari":"T"
-  },
-  {
-    "assig":"IC",
-    "nivellAssig":1,
-    "idGrup":"42",
-    "capacitat":20,
-    "tipus":"L",
-    "nClasses":1,
-    "dClasses":2,
-    "horari":"T"
-  },
-  {
-    "assig":"IC",
-    "nivellAssig":1,
-    "idGrup":"43",
-    "capacitat":20,
-    "tipus":"L",
-    "nClasses":1,
-    "dClasses":2,
-    "horari":"T"
+    "nom":"C5S203",
+    "capacitat":40,
+    "tipus":"LE"
   }
-]
+],
+  "assignatures":[
+    {
+      "codi": "IC",
+      "nom": "Introduccio als computadors",
+      "nivell": 1,
+      "classes": {
+        "teoria": 2,
+        "duracio_t": 2,
+        "problemes": 0,
+        "duracio_p": 0,
+        "laboratori": 1,
+        "duracio_l": 2
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 7,
+        "matins": 4,
+        "capacitat": 68,
+        "tipus_subgrup": "L INFORMATICA",
+        "subgrup_per_alumnes": false,
+        "valor": 4
+      }
+    },
+    {
+      "codi": "F",
+      "nom": "Fisica",
+      "nivell": 1,
+      "classes": {
+        "teoria": 2,
+        "duracio_t": 2,
+        "problemes": 0,
+        "duracio_p": 0,
+        "laboratori": 1,
+        "duracio_l": 2
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 7,
+        "matins": 4,
+        "capacitat": 68,
+        "tipus_subgrup": "L Fisica",
+        "subgrup_per_alumnes": false,
+        "valor": 4
+      }
+    },
+    {
+      "codi": "FM",
+      "nom": "Fonaments matematics",
+      "nivell": 1,
+      "classes": {
+        "teoria": 1,
+        "duracio_t": 3,
+        "problemes": 1,
+        "duracio_p": 2,
+        "laboratori": 0,
+        "duracio_l": 0
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 7,
+        "matins": 4,
+        "capacitat": 66,
+        "tipus_subgrup": "P",
+        "subgrup_per_alumnes": false,
+        "valor": 3
+      }
+    },
+    {
+      "codi": "PRO1",
+      "nom": "Programacio 1",
+      "nivell": 1,
+      "classes": {
+        "teoria": 1,
+        "duracio_t": 3,
+        "problemes": 0,
+        "duracio_p": 0,
+        "laboratori": 1,
+        "duracio_l": 2
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 7,
+        "matins": 4,
+        "capacitat": 66,
+        "tipus_subgrup": "LI",
+        "subgrup_per_alumnes": false,
+        "valor": 3
+      }
+    },
+    {
+      "codi": "EC",
+      "nom": "Estructura de computadors",
+      "nivell": 2,
+      "classes": {
+        "teoria": 2,
+        "duracio_t": 2,
+        "problemes": 0,
+        "duracio_p": 0,
+        "laboratori": 1,
+        "duracio_l": 2
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 5,
+        "matins": 3,
+        "capacitat": 60,
+        "tipus_subgrup": "LI",
+        "subgrup_per_alumnes": false,
+        "valor": 4
+      }
+    },
+    {
+      "codi": "PRO2",
+      "nom": "Programacio 2",
+      "nivell": 2,
+      "classes": {
+        "teoria": 1,
+        "duracio_t": 2,
+        "problemes": 0,
+        "duracio_p": 0,
+        "laboratori": 1,
+        "duracio_l": 2
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 5,
+        "matins": 3,
+        "capacitat": 60,
+        "tipus_subgrup": "LI",
+        "subgrup_per_alumnes": false,
+        "valor": 4
+      }
+    },
+    {
+      "codi": "M1",
+      "nom": "Matematiques 1",
+      "nivell": 2,
+      "classes": {
+        "teoria": 1,
+        "duracio_t": 2,
+        "problemes": 1,
+        "duracio_p": 2,
+        "laboratori": 0,
+        "duracio_l": 0
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 5,
+        "matins": 3,
+        "capacitat": 60,
+        "tipus_subgrup": "P",
+        "subgrup_per_alumnes": false,
+        "valor": 4
+      }
+    },
+    {
+      "codi": "M2",
+      "nom": "Matematiques 2",
+      "nivell": 2,
+      "classes": {
+        "teoria": 1,
+        "duracio_t": 2,
+        "problemes": 1,
+        "duracio_p": 2,
+        "laboratori": 0,
+        "duracio_l": 0
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 5,
+        "matins": 3,
+        "capacitat": 60,
+        "tipus_subgrup": "P",
+        "subgrup_per_alumnes": false,
+        "valor": 4
+      }
+    },
+    {
+      "codi": "CI",
+      "nom": "Computer interfaces",
+      "nivell": 3,
+      "classes": {
+        "teoria": 1,
+        "duracio_t": 2,
+        "problemes": 1,
+        "duracio_p": 2,
+        "laboratori": 2,
+        "duracio_l": 2
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 5,
+        "matins": 3,
+        "capacitat": 60,
+        "tipus_subgrup": "P",
+        "subgrup_per_alumnes": false,
+        "valor": 4
+      }
+    } ,
+
+    {
+      "codi": "EDA",
+      "nom": "Estructures de dades i disseny d'algorismes",
+      "nivell": 3,
+      "classes": {
+        "teoria": 1,
+        "duracio_t": 2,
+        "problemes": 1,
+        "duracio_p": 2,
+        "laboratori": 0,
+        "duracio_l": 0
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 5,
+        "matins": 3,
+        "capacitat": 60,
+        "tipus_subgrup": "P",
+        "subgrup_per_alumnes": false,
+        "valor": 4
+      }
+    },
+    {
+      "codi": "EEE",
+      "nom": "Empresa i entorn econòmic",
+      "nivell": 3,
+      "classes": {
+        "teoria": 2,
+        "duracio_t": 2,
+        "problemes": 2,
+        "duracio_p": 2,
+        "laboratori": 0,
+        "duracio_l": 0
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 5,
+        "matins": 3,
+        "capacitat": 60,
+        "tipus_subgrup": "P",
+        "subgrup_per_alumnes": false,
+        "valor": 4
+      }
+    },
+    {
+      "codi": "BD",
+      "nom": "Bases de dades",
+      "nivell": 3,
+      "classes": {
+        "teoria": 1,
+        "duracio_t": 2,
+        "problemes": 1,
+        "duracio_p": 2,
+        "laboratori": 0,
+        "duracio_l": 0
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 5,
+        "matins": 3,
+        "capacitat": 60,
+        "tipus_subgrup": "P",
+        "subgrup_per_alumnes": false,
+        "valor": 4
+      }
+    }
+  ],
+  "correquisits":[
+    {
+      "a1":"IC",
+      "a2":"FM"
+    }
+  ]
+}

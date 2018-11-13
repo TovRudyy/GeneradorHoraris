@@ -23,7 +23,7 @@ public class Horari {
      * Afegeix totes les assignacions passades pel paràmetre al map de la classe horari.
      * @param conjuntAssignacions ArrayList amb tot el conjunt d'assignacions que hem d'assignar al nostre horari.
      */
-    public void afegeixAssignacions (ArrayList<assignacio> conjuntAssignacions) {
+    private void afegeixAssignacions (ArrayList<assignacio> conjuntAssignacions) {
         for (assignacio a : conjuntAssignacions)
             this.conjuntAssignacions.put((a.getIdAssig()+a.getIdGrup()), a);
     }

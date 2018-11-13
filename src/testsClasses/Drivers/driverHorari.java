@@ -23,23 +23,22 @@ class driverHorari {
         out.println("Selecciona la funcio que vols provar introduint el seu codi associat: ");
         printCodis();
         out.println("Aquesta classe genera horaris a partir d'un conjunt d'asignacions.");
-        out.println("Com que una assignacio te molts atributs i elements que depenent defactors superiors(d'assignatures, grups, etc), aquest driver llegeix un conjunt d'assignatures is restriccions d'u fitxer JSON i et genera les assignacions automaticament.");
-        out.println("Aquests fitxer son 2, ambdos situats a la carpeta \"Data\", subcarpeta \"Drivers_Input\", i es diuen Horari_InputList (per la constructora) i Horari_AddList (per afegir assignacions).");
+        out.println("Com que una assignacio te molts atributs i elements que depenent de factors superiors(d'assignatures, aules, etc), aquest driver llegeix un conjunt d'aules, assignatures i restriccions d'u fitxer JSON i et genera les assignacions automaticament.");
+        out.println("Aquests esta situat a la carpeta \"Data\", subcarpeta \"Drivers_Input\", i es diu Horari_InputList.json.");
     }
 
     private static void printCodis() {
         out.println("\t1) Constructora");
-        out.println("\t2) Afegir asignacions");
-        out.println("\t3) Crear Horari");
-        out.println("\t4) Escriure Horari");
-        out.println("\t5) Sortir");
+        out.println("\t2) Crear Horari");
+        out.println("\t3) Escriure Horari");
+        out.println("\t4) Sortir");
     }
 
     private static void executar() {
         try{
             int codi;
             out.println("Introdueix un codi: ");
-            while((codi = keyboard.nextInt()) != 5){
+            while((codi = keyboard.nextInt()) != 4){
                 switch (codi){
                     case -1:
                         printCodis();
@@ -48,12 +47,9 @@ class driverHorari {
                         constructor_Test();
                         break;
                     case 2:
-                        add_Assignacions_Test();
-                        break;
-                    case 3:
                         make_Horari_Test();
                         break;
-                    case 4:
+                    case 3:
                         write_Horari_Test();
                         break;
                     default:
@@ -74,18 +70,19 @@ class driverHorari {
     }
 
     private static void write_Horari_Test() {
-
+        horari.printHorari();
     }
 
     private static void make_Horari_Test() {
-
-    }
-
-    private static void add_Assignacions_Test() {
-
+        horari.findHorari();
     }
 
     private static void constructor_Test() {
-        horari = new Horari(Lector_Drivers_JSON.llegitFitxer_Horari_InputList());
+        try {
+            horari = new Horari(Lector_Drivers_JSON.llegitFitxer_Horari_InputList());
+        }catch(Exception e){
+            out.println("Hi ha algun problema amb l'arxiu.");
+            out.println("Missatge: " + e.getMessage());
+        }
     }
 }
