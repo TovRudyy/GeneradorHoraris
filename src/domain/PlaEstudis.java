@@ -166,7 +166,7 @@ public class PlaEstudis {
     /**
      *
      */
-    public void afegirRestriccionsNivell () {
+    private void afegirRestriccionsNivell () {
         HashMap<Integer, ArrayList<String>> nivellsIassignatures = new HashMap<>();
 
         for (Map.Entry<String,assignatura> a_aux : assignatures.entrySet()) {

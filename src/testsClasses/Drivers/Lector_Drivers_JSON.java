@@ -90,7 +90,7 @@ class Lector_Drivers_JSON {
         Map<String, Aula> aules;
         JSONArray au = (JSONArray) obj.get("aules");
         if(au == null)  throw new IOException("No hi ha aules");
-        aules = llegirAules(au);
+        aules = crearAules(au);
 
         ArrayList<assignacio> assignacions = new ArrayList<>();
         for(assignatura a: assigs.values()){
@@ -192,8 +192,45 @@ class Lector_Drivers_JSON {
         }
     }
 
-    private static Map<String, Aula> llegirAules(JSONArray obj) throws ParseException, IOException, Aula_Exception{
+    private static Map<String, Aula> crearAules(JSONArray obj) throws Aula_Exception{
         Map<String, Aula> aules = new TreeMap<>();
+        for (Object anObj : obj) {
+            JSONObject aulaJ = (JSONObject) anObj;
+            String nom = (String) aulaJ.get("nom");
+            int capacitat = ((Long) aulaJ.get("capacitat")).intValue();
+            if(capacitat < 0) throw new Aula_Exception("La capacitat ha de ser un natural");
+            Tipus_Aula tipus = Tipus_Aula.string_to_Tipus_Aula((String) aulaJ.get("tipus"));
+            aules.put(nom, new Aula(nom, capacitat, tipus));
+        }
+        return aules;
+    }
+
+    private static void afegeixCorrequisits2(PlaEstudis plaEstudis, JSONArray corequisits){
+        for(Object c: corequisits){
+            JSONObject cc = (JSONObject) c;
+            String[] a = new String[2];
+            a[0] = (String) cc.get("a1");
+            a[1] = (String) cc .get("a2");
+            plaEstudis.afegirCorrequisits(a);   //afegim aquests nous correquisits
+        }
+    }
+
+    static PlaEstudis llegirPlaEstudis() throws ParseException, IOException, Aula_Exception {
+        JSONParser parser = new JSONParser();
+        JSONObject obj = (JSONObject) parser.parse(new FileReader("data/Drivers_Input/PlaEstudis_InputPla.json"));
+        PlaEstudis plaEstudis = new PlaEstudis((String) obj.get("nom"));
+        JSONArray assignatures = (JSONArray) obj.get("assignatures");
+        if(assignatures != null) for(assignatura a: afegeixAssignatures(assignatures).values()) plaEstudis.addAssignatura(a);
+        JSONArray corequisits = (JSONArray) obj.get("corequisits");
+        if(corequisits != null) afegeixCorrequisits2(plaEstudis, corequisits);
+
+        return plaEstudis;
+    }
+
+    static Map<String, Aula> llegirAules(String fitxer) throws ParseException, IOException, Aula_Exception{
+        Map<String, Aula> aules = new TreeMap<>();
+        JSONParser parser = new JSONParser();
+        JSONArray obj = (JSONArray) parser.parse(new FileReader(fitxer));
         for (Object anObj : obj) {
             JSONObject aulaJ = (JSONObject) anObj;
             String nom = (String) aulaJ.get("nom");
