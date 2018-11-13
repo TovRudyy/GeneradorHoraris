@@ -204,6 +204,11 @@ public class Horari {
         }
     }
 
+    /**
+     * Processa les classes que hem triat per a forma el horari i l'agrupa en aquells que es produeixen el mateix dia,
+     * a la mateix hora i ho mostra en diverses taules, una per cada Aula diferent. Nomes escriu taules
+     * per aquelles Aules en les que es fa alguna classe
+     */
     public void printHorariAules(){
         Set<String> aules = new TreeSet<>();
         for(assignacio a: conjuntAssignacions.values()) for (Classe c : a.getSeleccionades()) aules.add(c.getIdAula());
@@ -269,6 +274,10 @@ public class Horari {
         }
     }
 
+    /**
+     * Processa les classes que hem triat per a forma el horari i l'agrupa en aquells que es produeixen el mateix dia,
+     * a la mateix hora i ho mostra en diverses taules, una per assignatura.
+     */
     public void printHorariAssignatures(){
         Set<String> assigs = new TreeSet<>();
         for(assignacio a: conjuntAssignacions.values()) assigs.add(a.getIdAssig());
@@ -342,7 +351,7 @@ public class Horari {
         PrintStream old = System.out;
         // S'indica a java que passi a utilitzar el nou stream
         System.setOut(ps);
-        printHorariAssignatures();
+        printHorari();
         // Es restaura el stream original:
         System.out.flush();
         System.setOut(old);
