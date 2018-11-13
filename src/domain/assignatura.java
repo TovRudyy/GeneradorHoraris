@@ -38,6 +38,7 @@ public class assignatura {
         this.id = id;
         this.nom = nom;
         this.nivell = nivell;
+        grups = new TreeMap<>();
     }
 
 
@@ -65,6 +66,9 @@ public class assignatura {
         return nivell;
     }
 
+    public RestriccioCorequisit getCorequisits() {
+        return corequisits;
+    }
 
     /**
      * Es guarden tots els grups que pertanyen a aquesta assignatura.
@@ -117,6 +121,9 @@ public class assignatura {
 
     }
 
+    public Map<String, grup> getGrups() {
+        return grups;
+    }
 
 
     /**
