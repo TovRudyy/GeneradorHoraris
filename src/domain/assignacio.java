@@ -39,8 +39,9 @@ public class assignacio {
      * @param numeroClasses Numero de classes a la semana (tenint en compte que una assignació només serà de TEORIA,PROBLEMES o LABORATORI)
      * @param duracioClasses Duració de les seves classes.
      * @param horariGrup    Indica si la assignatura és de matins o tardes.
+     * @param aules
      */
-    public assignacio (String idGrup, int cap, Tipus_Aula tAula, String idAssig, int nivellAssig, int numeroClasses, int duracioClasses, String horariGrup) {
+    public assignacio(String idGrup, int cap, Tipus_Aula tAula, String idAssig, int nivellAssig, int numeroClasses, int duracioClasses, String horariGrup, Map<String, Aula> aules) {
         this.idGrup = idGrup;
         this.capacitat = cap;
         this.tAula = tAula;
@@ -55,7 +56,7 @@ public class assignacio {
         if (horariGrup.equals("T")) this.inici_possible = 14;
         else if (horariGrup.equals("M")) this.final_possible = 14;
 
-        this.possibles_classes  = generaPossiblesClasses();
+        this.possibles_classes  = generaPossiblesClasses(aules);
         this.numeroClassesRestants = numeroClasses;
     }
 
@@ -106,10 +107,7 @@ public class assignacio {
      * d'aules possibles (que siguin del tipus necessari) i amb tots els intervals d'hores possibles.
      * @return Un map que conté tot el conjunt de possibilitats d'aquesta assignació.
      */
-    public Map<String, Map<DiaSetmana, ArrayList<Classe>>> generaPossiblesClasses() {
-
-        Map<String, Aula> aules = ControladorAules.getAules();
-
+    private Map<String, Map<DiaSetmana, ArrayList<Classe>>> generaPossiblesClasses(Map<String, Aula> aules) {
         Map<String, Map<DiaSetmana, ArrayList<Classe>>> totesClasses = new HashMap<>();
 
         for (Aula aula : aules.values()) {

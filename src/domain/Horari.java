@@ -4,7 +4,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 import java.util.*;
-import java.util.concurrent.LinkedBlockingQueue;
 import java.util.Stack;
 
 
@@ -46,7 +45,7 @@ public class Horari {
      * @param index Indica quina assignació estem tractant en aquesta iteració.
      * @return Un booleà que indica si el horari és possible o no.
      */
-    public boolean selectClasse (int index) {
+    private boolean selectClasse (int index) {
         ArrayList<assignacio> l = new ArrayList<>( conjuntAssignacions.values());
 
         if (index < l.size()) {

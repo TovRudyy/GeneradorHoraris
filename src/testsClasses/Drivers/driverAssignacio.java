@@ -11,7 +11,14 @@ import static testsClasses.Drivers.MainDriver.keyboard;
 
 class driverAssignacio {
 
-    private static assignacio ass = new assignacio("10", 60, Tipus_Aula.TEORIA, "FM", 1, 2, 2, "M");
+    private static Map<String, Aula> aules = Map.ofEntries(
+            Map.entry("AulaT", new Aula("AulaT", 9999999, Tipus_Aula.TEORIA)),
+            Map.entry("AulaP", new Aula("AulaP", 9999999, Tipus_Aula.PROBLEMES)),
+            Map.entry("AulaLI", new Aula("AulaLI", 9999999, Tipus_Aula.LAB_INFORMATICA)),
+            Map.entry("AulaLF", new Aula("AulaLF", 9999999, Tipus_Aula.LAB_FISICA)),
+            Map.entry("AulaLE", new Aula("AulaLE", 9999999, Tipus_Aula.LAB_ELECTRONICA))
+    );
+    private static assignacio ass = new assignacio("10", 60, Tipus_Aula.TEORIA, "FM", 1, 2, 2, "M", aules);
 
     static void main() {
         printMenu();
@@ -31,16 +38,15 @@ class driverAssignacio {
         out.println("\t1) Constructora");
         out.println("\t2) Getters");
         out.println("\t3) Setters");
-        out.println("\t4) Generador de Classes");
-        out.println("\t5) Afegir possible Classe");
-        out.println("\t6) Forward Checking");
-        out.println("\t7) Eliminar classes no seleccionades");
-        out.println("\t8) Seleccionar classe");
-        out.println("\t9) Deseleccionar classe");
-        out.println("\t10) Obtenir classes seleccionades");
-        out.println("\t11) Consultora combinacio possible");
-        out.println("\t12) To String");
-        out.println("\t13) Sortir");
+        out.println("\t4) Afegir possible Classe");
+        out.println("\t5) Forward Checking");
+        out.println("\t6) Eliminar classes no seleccionades");
+        out.println("\t7) Seleccionar classe");
+        out.println("\t8) Deseleccionar classe");
+        out.println("\t9) Obtenir classes seleccionades");
+        out.println("\t10) Consultora combinacio possible");
+        out.println("\t11) To String");
+        out.println("\t12) Sortir");
 
     }
 
@@ -48,7 +54,7 @@ class driverAssignacio {
         try{
             int codi;
             out.println("Introdueix un codi: ");
-            while((codi = keyboard.nextInt()) != 13){
+            while((codi = keyboard.nextInt()) != 12){
                 switch (codi){
                     case -1:
                         printCodis();
@@ -63,30 +69,27 @@ class driverAssignacio {
                         setters_Test();
                         break;
                     case 4:
-                        genera_Possibles_Classes_Test();
-                        break;
-                    case 5:
                         afegeix_possibilitat_Test();
                         break;
-                    case 6:
+                    case 5:
                         forward_Checking_Test();
                         break;
-                    case 7:
+                    case 6:
                         nomes_Seleccionades_Test();
                         break;
-                    case 8:
+                    case 7:
                         afegir_Seleccionada_Test();
                         break;
-                    case 9:
+                    case 8:
                         eliminar_Seleccionada_Test();
                         break;
-                    case 10:
+                    case 9:
                         get_Seleccionades_Test();
                         break;
-                    case 11:
+                    case 10:
                         is_Empty_Test();
                         break;
-                    case 12:
+                    case 11:
                         to_String_Test();
                         break;
                     default:
@@ -109,7 +112,7 @@ class driverAssignacio {
         out.println("Introdueix els seguents atributs, separats per un espai:");
         out.println("\tId_Grup<String> Capacitat<int> Tipus<Tipus_Aula> Id_Assignatura<String> nivellAssignatura<int> nombreClasses<int> duracioClasses<int> horariGrup<M | T>");
         try{
-            ass = new assignacio(keyboard.next(), keyboard.nextInt(), Tipus_Aula.string_to_Tipus_Aula(keyboard.next()), keyboard.next(), keyboard.nextInt(), keyboard.nextInt(), keyboard.nextInt(), keyboard.next());
+            ass = new assignacio(keyboard.next(), keyboard.nextInt(), Tipus_Aula.string_to_Tipus_Aula(keyboard.next()), keyboard.next(), keyboard.nextInt(), keyboard.nextInt(), keyboard.nextInt(), keyboard.next(), aules);
         }catch(IllegalArgumentException iae){
             out.println("Has introduit algun dels atributs incorrectament.");
         }catch(Aula_Exception ae){
@@ -177,17 +180,6 @@ class driverAssignacio {
             default:
                 keyboard.nextLine();
                 out.println("Codi d'opcio no valid.");
-        }
-    }
-
-    private static void genera_Possibles_Classes_Test() {
-        out.println("Aquestes son les classes que s'han generat: ");
-        for(Map<DiaSetmana, ArrayList<Classe>> m: ass.generaPossiblesClasses().values()){
-            for(ArrayList<Classe> a: m.values()){
-                for(Classe c: a){
-                    out.println("\t" + c.toString());
-                }
-            }
         }
     }
 

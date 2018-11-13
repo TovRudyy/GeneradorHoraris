@@ -165,12 +165,12 @@ public class assignatura {
             grup g = g_aux.getValue();
             assignacio a;
             if (Tipus_Aula.es_Laboratori(g.getTipus()))
-                a = new assignacio(g.getId(), g.getCapacitat(), g.getTipus(), id, nivell, classes_laboratori, duracio_laboratori,g.getHorariAssig());
+                a = new assignacio(g.getId(), g.getCapacitat(), g.getTipus(), id, nivell, classes_laboratori, duracio_laboratori,g.getHorariAssig(),ControladorAules.getAules() );
 
             else if (g.getTipus() == Tipus_Aula.TEORIA)
-                a = new assignacio(g.getId(), g.getCapacitat(), g.getTipus(),id, nivell, classes_teoria, duracio_teoria, g.getHorariAssig());
+                a = new assignacio(g.getId(), g.getCapacitat(), g.getTipus(),id, nivell, classes_teoria, duracio_teoria, g.getHorariAssig(),ControladorAules.getAules() );
 
-            else a = new assignacio(g.getId(), g.getCapacitat(), g.getTipus(),id, nivell, classes_problemes, duracio_problemes, g.getHorariAssig());
+            else a = new assignacio(g.getId(), g.getCapacitat(), g.getTipus(),id, nivell, classes_problemes, duracio_problemes, g.getHorariAssig(),ControladorAules.getAules() );
 
 
             //aqui copiem les restriccions que té un grup a la seva assignacio

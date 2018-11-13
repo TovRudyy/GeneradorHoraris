@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 
+import domain.assignacio;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -79,5 +80,12 @@ class Lector_Drivers_JSON {
             }
         }
         return classes;
+    }
+
+    static ArrayList<assignacio> llegitFitxer_Horari_InputList() {
+        return null;
+    }
+    static ArrayList<assignacio> llegitFitxer_Horari_AddList() {
+        return null;
     }
 }
