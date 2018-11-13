@@ -40,5 +40,8 @@ public class RestriccioSubgrup extends Restriccio {
         return (other/10 == me/10);
     }
 
-
+    @Override
+    public String toString() {
+        return "Pare: " + pare.toString();
+    }
 }
