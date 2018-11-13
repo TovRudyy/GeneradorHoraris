@@ -36,7 +36,7 @@ public abstract class Restriccio {
      * @return Una arrayList amb totes les possibilitats que hem podat.
      */
     public ArrayList<Classe> deletePossibilities (Map<String, Map<DiaSetmana, ArrayList<Classe>>> possibles_classes, Classe c) {
-        ArrayList<Classe> result = new ArrayList<>();
+        ArrayList<Classe> result = new ArrayList<Classe>();
 
         for (Map.Entry<String, Map<DiaSetmana, ArrayList<Classe>>> aula: possibles_classes.entrySet()) {
             String id_aula = aula.getKey();

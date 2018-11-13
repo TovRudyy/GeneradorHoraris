@@ -49,7 +49,7 @@ public class MainDriver {
                         printMenu();
                         break;
                     case 7:
-                        driverRestriccioCorequisit.main();
+                        driverRestriccioCorrequisit.main();
                         printMenu();
                         break;
                     case 8:

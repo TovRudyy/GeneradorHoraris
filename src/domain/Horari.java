@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 import java.util.*;
+import java.util.concurrent.LinkedBlockingQueue;
 import java.util.Stack;
 
 
@@ -23,7 +24,7 @@ public class Horari {
      * Afegeix totes les assignacions passades pel paràmetre al map de la classe horari.
      * @param conjuntAssignacions ArrayList amb tot el conjunt d'assignacions que hem d'assignar al nostre horari.
      */
-    private void afegeixAssignacions (ArrayList<assignacio> conjuntAssignacions) {
+    public void afegeixAssignacions (ArrayList<assignacio> conjuntAssignacions) {
         for (assignacio a : conjuntAssignacions)
             this.conjuntAssignacions.put((a.getIdAssig()+a.getIdGrup()), a);
     }
@@ -45,8 +46,8 @@ public class Horari {
      * @param index Indica quina assignació estem tractant en aquesta iteració.
      * @return Un booleà que indica si el horari és possible o no.
      */
-    private boolean selectClasse (int index) {
-        ArrayList<assignacio> l = new ArrayList<>( conjuntAssignacions.values());
+    public boolean selectClasse (int index) {
+        ArrayList<assignacio> l = new ArrayList<assignacio>( conjuntAssignacions.values());
 
         if (index < l.size()) {
             assignacio a = l.get(index);
@@ -152,7 +153,7 @@ public class Horari {
         System.out.format(formatHeader, "   Hora/Dia", "      DILLUNS", "      DIMARTS", "     DIMECRES", "      DIJOUS", "     DIVENDRES");
         System.out.format("+---------------+--------------------+--------------------+--------------------+--------------------+--------------------+\n");
 
-        ArrayList<ArrayList<Queue<String>>> horaris = new ArrayList<>();
+        ArrayList<ArrayList<Queue<String>>> horaris = new ArrayList<ArrayList<Queue<String>>>();
         for(int i=0; i<12; ++i){
             horaris.add(new ArrayList<>());
             for(int j=0; j<5; ++j){

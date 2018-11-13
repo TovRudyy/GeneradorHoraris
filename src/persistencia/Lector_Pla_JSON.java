@@ -123,7 +123,7 @@ public final class Lector_Pla_JSON {
             throw new Exception("Error with data/PlaEstudis folder!");
         }
 
-        ArrayList<PlaEstudis> plansEstudis = new ArrayList<>();
+        ArrayList<PlaEstudis> plansEstudis = new ArrayList<PlaEstudis>();
         for (File pe_file : Objects.requireNonNull(PEfolder.listFiles())) {
             System.err.println("DEGUB: The following PlaEstudis file is being readed: " + "'" + pe_file.getAbsolutePath());
             try{
@@ -139,7 +139,7 @@ public final class Lector_Pla_JSON {
     public static ArrayList<assignatura> llegeixAssignatura(String path) throws Aula_Exception, IOException, ParseException{
         JSONParser parser = new JSONParser();
         JSONArray assigs = (JSONArray) parser.parse(new FileReader(path));
-        ArrayList<assignatura> assignatures = new ArrayList<>();
+        ArrayList<assignatura> assignatures = new ArrayList<assignatura>();
         for(Object a : assigs) assignatures.add(creaAssignatura((JSONObject) a));
         return  assignatures;
 

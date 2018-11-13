@@ -157,7 +157,7 @@ public class assignatura {
      * una assignacio serà la relació entre una assignatura i un dels seus grups.
      */
     public ArrayList<assignacio> getAssignacions () {
-        ArrayList <assignacio> result = new ArrayList<>();
+        ArrayList <assignacio> result = new ArrayList<assignacio>();
 
         RestriccioOcupacio r = new RestriccioOcupacio();
 

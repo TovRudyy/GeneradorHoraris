@@ -20,7 +20,7 @@ public class assignacio {
     private int numeroClasses, duracioClasses, numeroClassesRestants; //numero i duracio de les classes
     private int inici_possible, final_possible;
     private Map<String, Map<DiaSetmana, ArrayList<Classe>>> possibles_classes;
-    private ArrayList<Classe> classes_seleccionades = new ArrayList<>();
+    private ArrayList<Classe> classes_seleccionades = new ArrayList<Classe>();
 
     //RESTRICCIONS
     private RestriccioOcupacio ocupacio = new RestriccioOcupacio();
@@ -112,7 +112,7 @@ public class assignacio {
 
         for (Aula aula : aules.values()) {
             if (aula.getTipus() == tAula && aula.getCapacitat() >= this.capacitat) {   //mirem que l'aula i el grup sigui compatible
-                ArrayList<Classe> t = new ArrayList<>();
+                ArrayList<Classe> t = new ArrayList<Classe>();
 
                 for (DiaSetmana dia : DiaSetmana.values()) {
 
@@ -156,7 +156,7 @@ public class assignacio {
      * @return Totes les Classe que en aquest moment de la execució encara són possibles d'assignar.
      */
     public ArrayList<Classe> getAllPossibleClasses () {
-        ArrayList<Classe> c = new ArrayList<>();
+        ArrayList<Classe> c = new ArrayList<Classe>();
         for (String nomAula : possibles_classes.keySet()) {
             for (DiaSetmana dia: possibles_classes.get(nomAula).keySet() ) {
                 for (Classe classe : possibles_classes.get(nomAula).get(dia)){
@@ -195,7 +195,7 @@ public class assignacio {
      */
 
     public ArrayList<Classe> forwardChecking (Classe c) {
-        ArrayList<Classe> result = new ArrayList<>();
+        ArrayList<Classe> result = new ArrayList<Classe>();
         result.addAll( ocupacio.deletePossibilities(possibles_classes, c));
 
         if (subgrup != null) result.addAll( subgrup.deletePossibilities(possibles_classes, c));

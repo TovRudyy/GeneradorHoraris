@@ -132,7 +132,7 @@ public class PlaEstudis {
 
 
 
-        ArrayList<assignacio> assignacions = new ArrayList<>();
+        ArrayList<assignacio> assignacions = new ArrayList<assignacio>();
         for (Map.Entry<String, assignatura> assig : assignatures.entrySet()) {
             assignatura a = assig.getValue();
             a.noSolapis_Teoria_i_Problemes();
