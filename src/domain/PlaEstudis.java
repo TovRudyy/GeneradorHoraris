@@ -125,18 +125,17 @@ public class PlaEstudis {
 
     /**
      * Genera un horari per aquest pla d'estudis.
+     * @param aules conjunt d'aules amb les que generar l'horari
      */
-    public void generaHorari () {
+    public void generaHorari (Map<String, Aula> aules) {
         //Timer start
         Instant start = Instant.now();
-
-
 
         ArrayList<assignacio> assignacions = new ArrayList<assignacio>();
         for (Map.Entry<String, assignatura> assig : assignatures.entrySet()) {
             assignatura a = assig.getValue();
             a.noSolapis_Teoria_i_Problemes();
-            assignacions.addAll(a.getAssignacions(ControladorAules.getAules()));
+            assignacions.addAll(a.getAssignacions(aules));
         }
 
         afegirRestriccionsNivell(); //afeim a les assignatures les seves restriccions de nivell

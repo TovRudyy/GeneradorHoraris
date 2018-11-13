@@ -39,7 +39,7 @@ public class tests_main {
 
 
         //ara ja ho tenim tot carregat
-        plaEstudis.generaHorari();
+        plaEstudis.generaHorari(aules);
 
     }
 }

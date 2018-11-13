@@ -155,6 +155,7 @@ public class assignatura {
     /**
      * @return Retorna una arrayList amb tot el conjunt de assignacions generades, tenint en compte que
      * una assignacio serà la relació entre una assignatura i un dels seus grups.
+     * @param aules conjunt d'aules amb les que fer les assignacions
      */
     public ArrayList<assignacio> getAssignacions (Map<String, Aula> aules) {
         ArrayList <assignacio> result = new ArrayList<assignacio>();

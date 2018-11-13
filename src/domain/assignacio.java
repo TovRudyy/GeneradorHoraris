@@ -106,6 +106,7 @@ public class assignacio {
      * Genera i retorna totes les possibilitats de la assignació, resultat de entrellaçar la assignació amb tot el conjunt
      * d'aules possibles (que siguin del tipus necessari) i amb tots els intervals d'hores possibles.
      * @return Un map que conté tot el conjunt de possibilitats d'aquesta assignació.
+     * @param aules conjunt d'aules amb les que fer les classes
      */
     private Map<String, Map<DiaSetmana, ArrayList<Classe>>> generaPossiblesClasses(Map<String, Aula> aules) {
         Map<String, Map<DiaSetmana, ArrayList<Classe>>> totesClasses = new HashMap<>();

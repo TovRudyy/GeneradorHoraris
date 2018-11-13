@@ -63,7 +63,7 @@ public class ControladorPlaEstudis {
      * @param id Identificador del pla d'estudis.
      */
     public void generarHorari(String id) {
-        getPlaEstudi(id).generaHorari();
+        getPlaEstudi(id).generaHorari(ControladorAules.getAules());
     }
 
     /**
