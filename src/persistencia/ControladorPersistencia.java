@@ -14,7 +14,7 @@ import java.util.TreeMap;
 public class ControladorPersistencia {
 
     public ArrayList<PlaEstudis> llegeixDadesPE() {
-        ArrayList<PlaEstudis> ret = new ArrayList<>();
+        ArrayList<PlaEstudis> ret = new ArrayList<PlaEstudis>();
         try {
             ret = Lector_Pla_JSON.llegirCarpetaPlans();
         } catch (Exception e) {
@@ -54,7 +54,7 @@ public class ControladorPersistencia {
     }
 
     public ArrayList<assignatura> llegeixAssignatura(String path) {
-        ArrayList<assignatura> noves = new ArrayList<>();
+        ArrayList<assignatura> noves = new ArrayList<assignatura>();
         try {
             noves = Lector_Pla_JSON.llegeixAssignatura(path);
             return noves;

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class RestriccioCorequisit extends Restriccio {
 
     //conte les assignatures amb les que es correquisit
-    private ArrayList<String> assignatures = new ArrayList<>();
+    private ArrayList<String> assignatures = new ArrayList<String>();
 
     public RestriccioCorequisit(){
     }

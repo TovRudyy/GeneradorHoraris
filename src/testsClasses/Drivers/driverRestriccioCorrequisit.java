@@ -15,7 +15,7 @@ import static java.lang.System.out;
 import static testsClasses.Drivers.MainDriver.keyboard;
 
 
-class driverRestriccioCorequisit {
+class driverRestriccioCorrequisit {
 
     private static RestriccioCorequisit corequisit = new RestriccioCorequisit();
 

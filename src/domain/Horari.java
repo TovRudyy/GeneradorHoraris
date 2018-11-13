@@ -47,7 +47,7 @@ public class Horari {
      * @return Un booleà que indica si el horari és possible o no.
      */
     public boolean selectClasse (int index) {
-        ArrayList<assignacio> l = new ArrayList<>( conjuntAssignacions.values());
+        ArrayList<assignacio> l = new ArrayList<assignacio>( conjuntAssignacions.values());
 
         if (index < l.size()) {
             assignacio a = l.get(index);
@@ -153,7 +153,7 @@ public class Horari {
         System.out.format(formatHeader, "   Hora/Dia", "      DILLUNS", "      DIMARTS", "     DIMECRES", "      DIJOUS", "     DIVENDRES");
         System.out.format("+---------------+--------------------+--------------------+--------------------+--------------------+--------------------+\n");
 
-        ArrayList<ArrayList<Queue<String>>> horaris = new ArrayList<>();
+        ArrayList<ArrayList<Queue<String>>> horaris = new ArrayList<ArrayList<Queue<String>>>();
         for(int i=0; i<12; ++i){
             horaris.add(new ArrayList<>());
             for(int j=0; j<5; ++j){
