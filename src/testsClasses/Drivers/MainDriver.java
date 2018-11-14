@@ -62,12 +62,10 @@ public class MainDriver {
                         break;
                     case 10:
                         driverHorari.main();
-                        //TODO
                         printMenu();
                         break;
                     case 11:
                         driverPlaEstudis.main();
-                        //TODO
                         printMenu();
                         break;
                     default:

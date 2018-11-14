@@ -11,7 +11,7 @@ import java.util.InputMismatchException;
 
 class driverHorari {
 
-    private static Horari horari = new Horari(new ArrayList<assignacio>());
+    private static Horari horari = new Horari(new ArrayList<>());
 
     static void main() {
         printMenu();
@@ -31,14 +31,17 @@ class driverHorari {
         out.println("\t1) Constructora");
         out.println("\t2) Crear Horari");
         out.println("\t3) Escriure Horari");
-        out.println("\t4) Sortir");
+        out.println("\t4) Escriure Horari per Aula");
+        out.println("\t5) Escriure Horari per Assignatura");
+        out.println("\t6) To String");
+        out.println("\t7) Sortir");
     }
 
     private static void executar() {
         try{
             int codi;
             out.println("Introdueix un codi: ");
-            while((codi = keyboard.nextInt()) != 4){
+            while((codi = keyboard.nextInt()) != 7){
                 switch (codi){
                     case -1:
                         printCodis();
@@ -51,6 +54,15 @@ class driverHorari {
                         break;
                     case 3:
                         write_Horari_Test();
+                        break;
+                    case 4:
+                        write_Horari_Aules_Test();
+                        break;
+                    case 5:
+                        write_Horari_Assignatures_Test();
+                        break;
+                    case 6:
+                        to_String_Test();
                         break;
                     default:
                         keyboard.nextLine();
@@ -67,6 +79,18 @@ class driverHorari {
             executar();
         }
 
+    }
+
+    private static void to_String_Test() {
+        out.println(horari.toString());
+    }
+
+    private static void write_Horari_Aules_Test() {
+        horari.printHorariAules();
+    }
+
+    private static void write_Horari_Assignatures_Test() {
+        horari.printHorariAssignatures();
     }
 
     private static void write_Horari_Test() {

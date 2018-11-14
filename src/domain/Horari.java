@@ -2,9 +2,8 @@ package domain;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
-import java.util.Stack;
 
 
 public class Horari {
@@ -46,7 +45,7 @@ public class Horari {
      * @return Un booleà que indica si el horari és possible o no.
      */
     private boolean selectClasse (int index) {
-        ArrayList<assignacio> l = new ArrayList<assignacio>( conjuntAssignacions.values());
+        ArrayList<assignacio> l = new ArrayList<>(conjuntAssignacions.values());
 
         if (index < l.size()) {
             assignacio a = l.get(index);
@@ -55,7 +54,7 @@ public class Horari {
             for (Classe c: possibleClasses )
             {
                 a.afegirSeleccionada(c);    //tambe fa el update de les que falten
-                Stack<Classe> eliminades = new Stack();
+                Stack<Classe> eliminades = new Stack<>();
                 eliminades.addAll(forward_checking (c)); //forward checking
 
                 boolean valid = checkNotEmpty ();
@@ -71,7 +70,7 @@ public class Horari {
                     else   //si encara hem d'assignar classes a aquesta assignacio
                         r = selectClasse(index);
 
-                    if (r) return r;
+                    if (r) return true;
                 }
 
                 else {  //la combinacio es invalida. Per tant revertim els canvis i agafem la seguent Classe
@@ -152,7 +151,7 @@ public class Horari {
         System.out.format(formatHeader, "   Hora/Dia", "      DILLUNS", "      DIMARTS", "     DIMECRES", "      DIJOUS", "     DIVENDRES");
         System.out.format("+---------------+--------------------+--------------------+--------------------+--------------------+--------------------+\n");
 
-        ArrayList<ArrayList<Queue<String>>> horaris = new ArrayList<ArrayList<Queue<String>>>();
+        ArrayList<ArrayList<Queue<String>>> horaris = new ArrayList<>();
         for(int i=0; i<12; ++i){
             horaris.add(new ArrayList<>());
             for(int j=0; j<5; ++j){
@@ -164,7 +163,6 @@ public class Horari {
                 int dia = 0;
                 switch (c.getDia()) {
                     case DILLUNS:
-                        dia = 0;
                         break;
                     case DIMARTS:
                         dia = 1;
@@ -219,7 +217,7 @@ public class Horari {
             System.out.format(formatHeader, "   Hora/Dia", "      DILLUNS", "      DIMARTS", "     DIMECRES", "      DIJOUS", "     DIVENDRES");
             System.out.format("+---------------+--------------------+--------------------+--------------------+--------------------+--------------------+\n");
 
-            ArrayList<ArrayList<Queue<String>>> horaris = new ArrayList<ArrayList<Queue<String>>>();
+            ArrayList<ArrayList<Queue<String>>> horaris = new ArrayList<>();
             for(int i=0; i<12; ++i){
                 horaris.add(new ArrayList<>());
                 for(int j=0; j<5; ++j){
@@ -232,7 +230,6 @@ public class Horari {
                     int dia = 0;
                     switch (c.getDia()) {
                         case DILLUNS:
-                            dia = 0;
                             break;
                         case DIMARTS:
                             dia = 1;
@@ -269,8 +266,8 @@ public class Horari {
                 }
                 ++hora0; ++hora1;
                 System.out.format("+---------------+--------------------+--------------------+--------------------+--------------------+--------------------+\n");
-                System.out.println();
             }
+            System.out.println();
         }
     }
 
@@ -288,7 +285,7 @@ public class Horari {
             System.out.format(formatHeader, "   Hora/Dia", "      DILLUNS", "      DIMARTS", "     DIMECRES", "      DIJOUS", "     DIVENDRES");
             System.out.format("+---------------+--------------------+--------------------+--------------------+--------------------+--------------------+\n");
 
-            ArrayList<ArrayList<Queue<String>>> horaris = new ArrayList<ArrayList<Queue<String>>>();
+            ArrayList<ArrayList<Queue<String>>> horaris = new ArrayList<>();
             for(int i=0; i<12; ++i){
                 horaris.add(new ArrayList<>());
                 for(int j=0; j<5; ++j){
@@ -301,7 +298,6 @@ public class Horari {
                     int dia = 0;
                     switch (c.getDia()) {
                         case DILLUNS:
-                            dia = 0;
                             break;
                         case DIMARTS:
                             dia = 1;
@@ -338,8 +334,8 @@ public class Horari {
                 }
                 ++hora0; ++hora1;
                 System.out.format("+---------------+--------------------+--------------------+--------------------+--------------------+--------------------+\n");
-                System.out.println();
             }
+            System.out.println();
         }
     }
 
@@ -356,12 +352,6 @@ public class Horari {
         System.out.flush();
         System.setOut(old);
         //Es transforma baos en un String
-        String ret = null;
-        try {
-            ret = baos.toString("UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-        return ret;
+        return baos.toString(StandardCharsets.UTF_8);
     }
 }
