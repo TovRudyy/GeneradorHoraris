@@ -28,7 +28,7 @@ public class ControladorPlaEstudis {
     //???
     /**
      *
-     * @return
+     *
      */
     public ArrayList<String> getInfoPlans(){
         ArrayList<String> ret = new ArrayList<String>();

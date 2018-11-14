@@ -1,15 +1,21 @@
+RM=rm -rf
+
 SRC_DIR=src
 PRSNT_DIR=presentacio
 DMN_DIR=domain
 PERS_DIR=persistencia
-DRIVERS_DIR=testsClasses/Drivers
+TEST_DIR=testsClasses
+DRIVERS_DIR=Drivers
 EXTRNL_LIB_DIR=lib/json-simple-1.1.jar
-BIN_DIR=src/classes
+DOCS_DIR=docs
+BIN_DIR=bin
 
 JFLAGS= -d $(BIN_DIR) -sourcepath $(SRC_DIR) -cp $(EXTRNL_LIB_DIR)
 
 JC=javac
-JVR=java
+JV=java
+JR=/opt/java/jdk1.8.0_191/bin/jar
+JD=/opt/java/jdk1.8.0_191/bin/javadoc
 
 .SUFFIXES: .java .class
 .java.class:
@@ -34,29 +40,48 @@ CLASSES=\
 	$(SRC_DIR)/$(DMN_DIR)/Tipus_Aula.java			\
 	$(SRC_DIR)/$(PRSNT_DIR)/ControladorPresentacioMenuPrincipal.java	\
 	$(SRC_DIR)/$(PRSNT_DIR)/ControladorPresentacioPlaEstudis.java		\
-	$(SRC_DIR)/$(DRIVERS_DIR)/driverAssignacio.java		\
-	$(SRC_DIR)/$(DRIVERS_DIR)/driverAssignatura.java	\
-	$(SRC_DIR)/$(DRIVERS_DIR)/driverAula.java		\
-	$(SRC_DIR)/$(DRIVERS_DIR)/driverClasse.java		\
-	$(SRC_DIR)/$(DRIVERS_DIR)/driverHorari.java		\
-	$(SRC_DIR)/$(DRIVERS_DIR)/driverPlaEstudis.java		\
-	$(SRC_DIR)/$(DRIVERS_DIR)/driverRestriccioCorrequisit.java		\
-	$(SRC_DIR)/$(DRIVERS_DIR)/driverRestriccioSubgrup.java	\
-	$(SRC_DIR)/$(DRIVERS_DIR)/driverTipus_Aula.java		\
-	$(SRC_DIR)/$(DRIVERS_DIR)/Lector_Drivers_JSON.java	\
-	$(SRC_DIR)/$(DRIVERS_DIR)/MainDriver.java		\
+	$(SRC_DIR)/$(TEST_DIR)/$(DRIVERS_DIR)/driverAssignacio.java		\
+	$(SRC_DIR)/$(TEST_DIR)/$(DRIVERS_DIR)/driverAssignatura.java	\
+	$(SRC_DIR)/$(TEST_DIR)/$(DRIVERS_DIR)/driverAula.java		\
+	$(SRC_DIR)/$(TEST_DIR)/$(DRIVERS_DIR)/driverClasse.java		\
+	$(SRC_DIR)/$(TEST_DIR)/$(DRIVERS_DIR)/driverHorari.java		\
+	$(SRC_DIR)/$(TEST_DIR)/$(DRIVERS_DIR)/driverPlaEstudis.java		\
+	$(SRC_DIR)/$(TEST_DIR)/$(DRIVERS_DIR)/driverRestriccioCorrequisit.java		\
+	$(SRC_DIR)/$(TEST_DIR)/$(DRIVERS_DIR)/driverRestriccioSubgrup.java	\
+	$(SRC_DIR)/$(TEST_DIR)/$(DRIVERS_DIR)/driverTipus_Aula.java		\
+	$(SRC_DIR)/$(TEST_DIR)/$(DRIVERS_DIR)/Lector_Drivers_JSON.java	\
+	$(SRC_DIR)/$(TEST_DIR)/$(DRIVERS_DIR)/MainDriver.java		\
 	$(SRC_DIR)/Main.java					\
 
 
 MAIN=Main
+DRIVER=MainDriver
 
-default: classes
+help : 
+	@echo "make {run|rundriver|jar|runjar|doc|clean|cleanall}"
+
+default : classes
 
 classes: $(CLASSES:.java=.class)
 
-run: $(SRC_DIR)/Main.java
-	$(JVR) -cp $(SRC_DIR)/classes/:$(EXTRNL_LIB_DIR) $(MAIN)
+run : $(BIN_DIR)/$(MAIN).class
+	$(JV) -cp $(BIN_DIR):$(EXTRNL_LIB_DIR) $(MAIN)
 
-clean:
-	$(RM) $(BIN_DIR)/presentacio/*.class $(BIN_DIR)/domain/*.class $(BIN_DIR)/persistencia/*.class 
+rundriver : $(BIN_DIR)/$(TEST_DIR)/$(DRIVERS_DIR)/$(DRIVER).class
+	$(JV) -cp $(BIN_DIR):$(EXTRNL_LIB_DIR) $(TEST_DIR).$(DRIVERS_DIR).$(DRIVER)
 
+jar :
+	$(JR) cvfe GeneradorHoraris.jar Main bin 
+
+runjar :
+	$(JV) -jar GeneradorHoraris.jar
+
+doc : 
+	$(JD) -encoding UTF-8 -d  $(DOCS_DIR)/javadoc -exclude org -sourcepath $(SRC_DIR) -subpackages .
+
+clean :
+	$(RM) $(BIN_DIR)/*
+
+cleanall :
+	$(RM) *.jar $(BIN_DIR)/* $(DOCS_DIR)/javadoc
+	

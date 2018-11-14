@@ -8,7 +8,6 @@ public class RestriccioSubgrup extends Restriccio {
 
     /**
      * @param pare és l'objecte grup de l'assignacio
-     * @return cert si el grup de l'assignacio solapa Classe amb amb el seu grup de teoria, fals si no
      */
     public RestriccioSubgrup(grup pare) {
         this.pare = pare;
@@ -31,6 +30,8 @@ public class RestriccioSubgrup extends Restriccio {
 
 
     /**
+     * @param g1 id d'un grup que ja té horari assignat
+     * @param g2 id del grup que s'està comprovant la restricció
      * @return Booleà que indica si el grup g2 és subgrup del grup g1.
      */
     public boolean checkSub (String g1, String g2) {

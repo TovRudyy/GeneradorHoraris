@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @Author: David
+ * @author: David
  */
 
 public class assignacio {
