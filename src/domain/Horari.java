@@ -64,7 +64,7 @@ public class Horari {
             ArrayList<Classe> possibleClasses = a.getAllPossibleClasses();
            // a.printPossiblesClasses();
             for (Classe c : possibleClasses) {
-                c.showClasse();
+               // c.showClasse();
                 a.afegirSeleccionada(c);    //tambe fa el update de les que falten
                 Stack<Classe> eliminades = new Stack<>();
                 eliminades.addAll(forward_checking(c)); //forward checking
@@ -351,15 +351,36 @@ public class Horari {
     }
 
 
+    /**
+     * @return Retorna una string amb el horari que hem generat
+     */
     public String toString() {
         // Es crea un nou stream
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         PrintStream ps = new PrintStream(baos);
         // Es salva el stream vell
         PrintStream old = System.out;
+
+
+        //INDIQUEM DE QUINA MANERA VOLEM MOSTRAR EL HORARI
+        System.out.println("Pots mostrar el horari de diferents maneres\n" +
+                "1. Horari sencer\n" +
+                "2. Horari per assignatures\n" +
+                "3. Horari per aules\n ");
+        Scanner reader = new Scanner(System.in);
+        int opcio = reader.nextInt();
+
+
+
         // S'indica a java que passi a utilitzar el nou stream
         System.setOut(ps);
-        printHorariAssignatures();
+
+        if (opcio == 1) printHorari();
+        else if (opcio == 2) printHorariAssignatures();
+        else printHorariAules();
+
+
+
         // Es restaura el stream original:
         System.out.flush();
         System.setOut(old);

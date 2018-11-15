@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.ArrayList;
+import java.util.Map;
 import java.util.Stack;
 
 public class RestriccioSubgrup extends Restriccio {
@@ -13,33 +15,33 @@ public class RestriccioSubgrup extends Restriccio {
         this.pare = pare;
     }
 
-    /**
-     * @param c1 Primera possibilitat.
-     * @param c2 Segona possibilitat.
-     * @return Retorna un booleà que indica si el grup de c2 és subgrup del grup de c1.
-     */
-    public boolean checkCorrecte (Classe c1, Classe c2 ) {
-        if ( c1.getId_assig().equals(c2.getId_assig()) &&  (checkSub (c2.getId_grup(), c1.getId_grup()) ) &&    //son subgrup
-                (c1.getDia().equals(c2.getDia())) &&    //mateix dia i les hores es solapen amb el de teoria
-                (solapenHores(c1.getHoraInici(), c1.getHoraFi(), c2.getHoraInici(), c2.getHoraFi()))) {
-            return false;
+
+    public ArrayList<Classe> deletePossibilities (Map<String, Map<DiaSetmana, ArrayList<Classe>>> possibles_classes, Classe c) {
+        //primerament comprovem si aquesta assignacio es un subgrup de la nova classe que hem agafat
+        //si es cert haurem de podar, altrament ja hem acabat
+        ArrayList<Classe> eliminades = new ArrayList<>();
+
+        //no cal comprovar que siguin de la mateixa assignatura perque ho comprovem abans de cridar la funcio. Sera un prerequisit.
+        if (c.getId_grup().equals (pare.getId())) { //si el que hem agafat te el id del seu grup de teoria
+
+            for (Map.Entry<String, Map<DiaSetmana, ArrayList<Classe>>> aula: possibles_classes.entrySet()) {
+                String id_aula = aula.getKey();
+                ArrayList<Classe> classes = possibles_classes.get(id_aula).get(c.getDia());
+                    for (Classe classe_aux : classes)
+                    {
+                        if (solapenHores(classe_aux.getHoraInici(), classe_aux.getHoraFi(), c.getHoraInici(), c.getHoraFi()))
+                            eliminades.add(classe_aux);
+                    }
+            }
         }
 
-        return true;
-    }
+        for (Classe c_aux: eliminades)  //eliminem les classes amb les que hi ha conflicte
+            possibles_classes.get(c_aux.getIdAula()).get(c_aux.getDia()).remove (c_aux);
 
 
-    /**
-     * @param g1 id d'un grup que ja té horari assignat
-     * @param g2 id del grup que s'està comprovant la restricció
-     * @return Booleà que indica si el grup g2 és subgrup del grup g1.
-     */
-    public boolean checkSub (String g1, String g2) {
-        int other = Integer.parseInt(g1);
-        if (other%10 != 0) return false;
-        int me = Integer.parseInt(g2);
-        return (other/10 == me/10);
+        return eliminades;
     }
+
 
     @Override
     public String toString() {

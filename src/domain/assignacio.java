@@ -206,7 +206,8 @@ public class assignacio {
         ArrayList<Classe> result = new ArrayList<Classe>();
         result.addAll( ocupacio.deletePossibilities(possibles_classes, c));
 
-        if (subgrup != null) result.addAll( subgrup.deletePossibilities(possibles_classes, c));
+        if (subgrup != null && c.getId_assig().equals(idAssig))
+            result.addAll( subgrup.deletePossibilities(possibles_classes, c));
 
         if (corequisit != null) result.addAll(corequisit.deletePossibilities(possibles_classes, c));
 

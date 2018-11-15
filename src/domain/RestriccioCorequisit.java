@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class RestriccioCorequisit extends Restriccio {
 
@@ -38,19 +39,39 @@ public class RestriccioCorequisit extends Restriccio {
     }
 
 
-    /**
-     * @param c1 Primera possibilitat.
-     * @param c2 Segona possibilitat.
-     * @return Retorna un booleà que indica si c2 és correquisit amb c1.
-     */
-    public boolean checkCorrecte (Classe c1, Classe c2 ) {    //hem de comprovar si la c2 es un correquisit
-        if (esCorrequisit (c2.getId_assig()) && (c1.getDia().equals(c2.getDia())) &&
-           (solapenHores(c1.getHoraInici(), c1.getHoraFi(), c2.getHoraInici(), c2.getHoraFi())) &&
-           (c1.getId_grup().equals(c2.getId_grup())) )
-                return false;
 
-        return true;
+    /** Aquesta part es per comprovar fer el podat **/
+
+    public ArrayList<Classe> deletePossibilities (Map<String, Map<DiaSetmana, ArrayList<Classe>>> possibles_classes, Classe c) {
+        //primerament comprovem si aquesta assignacio es un correquisit de la nova classe que hem agafat
+        //si es cert haurem de podar, altrament ja hem acabat
+        ArrayList<Classe> eliminades = new ArrayList<>();
+        String id_aula = c.getIdAula();
+        DiaSetmana dia = c.getDia();
+
+        if (esCorrequisit(c.getId_assig())) {
+            //comprovem si estem un dels seus correquisits
+
+            ArrayList<Classe> classes = new ArrayList<>();
+            if (possibles_classes.containsKey(id_aula) && possibles_classes.get(id_aula).containsKey(dia))
+                classes = possibles_classes.get(id_aula).get(dia);
+
+            for (Classe classe_aux : classes)
+            {
+                if (solapenHores(classe_aux.getHoraInici(), classe_aux.getHoraFi(), c.getHoraInici(), c.getHoraFi()))
+                            eliminades.add(classe_aux);
+            }
+
+
+            for (Classe c_aux: eliminades)  //eliminem les classes amb les que hi ha conflicte
+                possibles_classes.get(c_aux.getIdAula()).get(c_aux.getDia()).remove (c_aux);
+
+        }
+        return eliminades;
     }
+
+
+
 
     /**
      * @param id_assig Identificador de una assignatura.
@@ -58,7 +79,6 @@ public class RestriccioCorequisit extends Restriccio {
      */
     public boolean esCorrequisit (String id_assig) {
         return assignatures.contains(id_assig);
-
     }
 
     /**

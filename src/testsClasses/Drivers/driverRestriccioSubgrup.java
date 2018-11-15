@@ -51,10 +51,10 @@ class driverRestriccioSubgrup  {
                         constructor_Test();
                         break;
                     case 2:
-                        check_Sub_Test();
+                       // check_Sub_Test();
                         break;
                     case 3:
-                        check_Restriccio_Test();
+                       // check_Restriccio_Test();
                         break;
                     case 4:
                         delete_Possibilities_Test();
@@ -119,7 +119,7 @@ class driverRestriccioSubgrup  {
             out.println("\t" + c.toString());
         }
     }
-
+/*
     private static void check_Restriccio_Test() {
         out.println("Aquesta funcio, declarada com a abstracte per Restriccio, determina si dues Classes son compatibles segons el criteri de cada tipus de Restriccio.");
         out.println("Per probarla s'ha de crear dues Classes, que seran els parametres de la funcio.");
@@ -166,7 +166,7 @@ class driverRestriccioSubgrup  {
             out.println("Els codis que has introduit no segueixen el format correcte.");
         }
     }
-
+*/
     private static void constructor_Test() {
         out.println("La Classe RestriccioSubgrup te un unic atribut que es un grup. Aquest es el grup pare del grup que conte la instancia de RestriccioSubgrup.");
         out.println("Introdueix els seguents atributs, separats per un espai: ");

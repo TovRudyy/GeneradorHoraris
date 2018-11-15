@@ -70,7 +70,7 @@ class driverRestriccioCorrequisit {
                         es_Corequisit_Test();
                         break;
                     case 6:
-                        check_Restriccio_Test();
+                      //  check_Restriccio_Test();
                         break;
                     case 7:
                         delete_Possibilities_Test();
@@ -144,7 +144,7 @@ class driverRestriccioCorrequisit {
             out.println("\t" + c.toString());
         }
     }
-
+/*
     private static void check_Restriccio_Test() {
         out.println("Aquesta funcio, declarada com a abstracte per Restriccio, determina si dues Classes son compatibles segons el criteri de cada tipus de Restriccio.");
         out.println("Per probarla s'ha de crear dues Classes, que seran els parametres de la funcio.");
@@ -179,7 +179,7 @@ class driverRestriccioCorrequisit {
         }
         out.println("Resultat: " + corequisit.checkCorrecte(a, b));
     }
-
+*/
     private static void es_Corequisit_Test() {
         out.println("Introdueix l'identificador de la asignatura per saber si es corequisit:");
         out.println("Identificador<String>");

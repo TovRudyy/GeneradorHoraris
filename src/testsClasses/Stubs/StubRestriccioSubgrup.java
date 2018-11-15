@@ -13,7 +13,7 @@ public class StubRestriccioSubgrup extends domain.RestriccioSubgrup {
     public StubRestriccioSubgrup() {
         super(new GrupStub("0"));
     }
-
+/*
     @Override
     public boolean checkCorrecte(Classe c1, Classe c2) {
         System.out.println("checkCorrecte invocat");
@@ -25,7 +25,7 @@ public class StubRestriccioSubgrup extends domain.RestriccioSubgrup {
         System.out.println("checkSub invocat");
         return false;
     }
-
+*/
     @Override
     public boolean solapenHores(int ai, int af, int bi, int bf) {
         System.out.println("solapenHores invocat");

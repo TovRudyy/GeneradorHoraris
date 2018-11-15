@@ -53,7 +53,7 @@ class driverRestriccioOcupacio  {
                         no_Solapis_Test();
                         break;
                     case 2:
-                        check_Restriccio_Test();
+                        //check_Restriccio_Test();
                         break;
                     case 3:
                         delete_Possibilities_Test();
@@ -121,7 +121,7 @@ class driverRestriccioOcupacio  {
             out.println("\t" + c.toString());
         }
     }
-
+/*
     private static void check_Restriccio_Test() {
         out.println("Aquesta funcio, declarada com a abstracte per Restriccio, determina si dues Classes son compatibles segons el criteri de cada tipus de Restriccio.");
         out.println("Per probarla s'ha de crear dues Classes, que seran els parametres de la funcio.");
@@ -155,7 +155,7 @@ class driverRestriccioOcupacio  {
         }
         out.println("Resultat: " + rest.checkCorrecte(a, b));
     }
-
+*/
     private static void no_Solapis_Test() {
         out.println("Aquesta funcio esta implementada a la classe Restriccio, i comprova si dos intervals de temps es solapen.");
         out.println("Introdueix els seguents valors, separats per un espai:");
