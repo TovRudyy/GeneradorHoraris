@@ -171,7 +171,7 @@ class driverPlaEstudis {
     private static void constructor_Test() {
         out.println("Es procedeix a llegir les Aules:");
         try{
-            aules = Lector_Drivers_JSON.llegirAules("data/Drivers_Input/PlaEstudis_InputAules.json");
+            aules = Lector_Drivers_JSON.llegirAules();
         }catch(Exception e){
             out.println("Hi ha algun problema amb el fitxer d'Aules");
             out.println(e.getMessage());

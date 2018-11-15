@@ -228,10 +228,10 @@ class Lector_Drivers_JSON {
         return plaEstudis;
     }
 
-    static Map<String, Aula> llegirAules(String fitxer) throws ParseException, IOException, Aula_Exception{
+    static Map<String, Aula> llegirAules() throws ParseException, IOException, Aula_Exception{
         Map<String, Aula> aules = new TreeMap<>();
         JSONParser parser = new JSONParser();
-        JSONArray obj = (JSONArray) parser.parse(new FileReader(fitxer));
+        JSONArray obj = (JSONArray) parser.parse(new FileReader("data/Drivers_Input/PlaEstudis_InputAules.json"));
         for (Object anObj : obj) {
             JSONObject aulaJ = (JSONObject) anObj;
             String nom = (String) aulaJ.get("nom");

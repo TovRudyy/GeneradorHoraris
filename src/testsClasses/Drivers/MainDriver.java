@@ -7,10 +7,9 @@ import static java.lang.System.out;
 
 public class MainDriver {
 
-    static Scanner keyboard;
+    static Scanner keyboard = new Scanner(System.in);
 
     public static void main(String[] args) {
-        keyboard = new Scanner(System.in);
         printMenu();
         executar();
     }
