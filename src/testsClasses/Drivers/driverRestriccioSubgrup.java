@@ -83,8 +83,8 @@ class driverRestriccioSubgrup  {
         out.println("Aquest fitxer es troba dins la carpeta \"Data\", subcarpeta \"Drivers_Input\", i el seu nom ha de ser \"RestriccioSubgrup_InputMap.json\".");
         out.println("Ja et proporcionem un fitxer creat amb dades de mostra fetes, que pots utilitzar perfectament.");
         out.println("Aquestes dades consisteixen en totes les Classes possibles de dues hores, de dues Assignatures diferents(A i TC), cadascuna amb 3 grups(10, 11 i 12), repetit per cada dia i en dues Aules diferents(Aula1 i Aula2).");
-        out.println("Quan tinguis el fitxer llest per ser llegit, apreta el boto \"Enter\": ");
-        keyboard.next();
+        out.println("Quan tinguis el fitxer llest per ser llegit, escriu \"C\" i apreta \"Enter\": ");
+        if(!keyboard.next().equals("C")) return;
         Map<String, Map<DiaSetmana, ArrayList<Classe>>> classes;
         try {
             classes = Lector_Drivers_JSON.llegirFitxer_RestriccioSubgrup_InputMap();

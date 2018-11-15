@@ -4,13 +4,14 @@ import domain.*;
 
 import java.util.InputMismatchException;
 import java.util.Map;
+import java.util.TreeMap;
 
 import static java.lang.System.out;
 import static testsClasses.Drivers.MainDriver.keyboard;
 
 class driverAssignacio {
 
-    private static Map<String, Aula> aules;
+    private static Map<String, Aula> aules = new TreeMap<>();
 
     private static assignacio ass = new assignacio("10", 60, Tipus_Aula.TEORIA, "FM", 1, 2, 2, "M", aules);
 
@@ -26,13 +27,18 @@ class driverAssignacio {
         aules.put("AulaLI", new Aula("AulaLI", 9999999, Tipus_Aula.LAB_INFORMATICA));
         aules.put("AulaLF", new Aula("AulaLF", 9999999, Tipus_Aula.LAB_FISICA));
         aules.put("AulaLE", new Aula("AulaLE", 9999999, Tipus_Aula.LAB_ELECTRONICA));
+        aules.put("AulaT2", new Aula("AulaT2", 9999999, Tipus_Aula.TEORIA));
+        aules.put("AulaP2", new Aula("AulaP2", 9999999, Tipus_Aula.PROBLEMES));
+        aules.put("AulaLI2", new Aula("AulaLI2", 9999999, Tipus_Aula.LAB_INFORMATICA));
+        aules.put("AulaLF2", new Aula("AulaLF2", 9999999, Tipus_Aula.LAB_FISICA));
+        aules.put("AulaLE2", new Aula("AulaLE2", 9999999, Tipus_Aula.LAB_ELECTRONICA));
     }
 
     private static void printMenu() {
         out.println("Driver de la Classe Assignacio.");
         out.println("Selecciona la funcio que vols provar introduint el seu codi associat:");
         printCodis();
-        out.println("Aquest driver mante una unica instancia de Aula, que va sobreescribint cada cop que proves la constructora.");
+        out.println("Aquest driver mante una unica instancia d'Assignacio, que va sobreescribint cada cop que proves la constructora.");
         out.println("Al principi, aquesta instancia esta inicialitzada amb uns valors trivials.");
         out.println("Tot i que son funcions separades, et recomanem que just despres de crear una nova assignacio, fagis el setSubgrup(si es un subgrup) i setCorequisit(si te corequisits).");
     }
@@ -164,8 +170,9 @@ class driverAssignacio {
         switch (keyboard.nextInt()){
             case 1:
                 RestriccioCorequisit corequisit = new RestriccioCorequisit();
-                out.println("Introdueix totes les Assignatures(nomes identificadors) que son correquisits de la Assignatura d'aquesta assignacio separats per un espai:");
-                while(keyboard.hasNext()) corequisit.addAssignatura(keyboard.next());
+                out.println("Introdueix totes les Assignatures(nomes identificadors) que son correquisits de la Assignatura d'aquesta assignacio separats per un espai amb un \".\" al final de la linia:");
+                String s;
+                while(!(s = keyboard.next()).equals(".")) corequisit.addAssignatura(s);
                 ass.afegirCorrequisit(corequisit);
                 out.println("S'ha afegit el seguent corequisit: " + corequisit.toString());
                 break;
@@ -188,17 +195,19 @@ class driverAssignacio {
 
     private static void afegeix_possibilitat_Test() {
         out.println("Introdueix la classe que vols afegir a la llista de possibilitats:");
-        out.println("\tId_Assignatura<String> Id_Grup<String> Id_Aula<String>, Dia<DiaSetmana> HoraInicia<int> HoraFinal<int>");
+        out.println("\tId_Aula<String>, Dia<DiaSetmana> HoraInicia<int> HoraFinal<int>");
         try{
-            String as = keyboard.next(), g = keyboard.next(), au = keyboard.next(), dia = keyboard.next();
+            String au = keyboard.next(), dia = keyboard.next();
             int ini = keyboard.nextInt(), fin = keyboard.nextInt();
             if(ini > fin){
                 out.println("L'hora final ha de ser posterior a la inicial.");
                 return;
             }
-            ass.afegeixPossibilitat(new Classe(as, g, DiaSetmana.string_To_DiaSetmana(dia), ini, fin, au));
+            ass.afegeixPossibilitat(new Classe(ass.getIdAssig(), ass.getIdGrup(), DiaSetmana.string_To_DiaSetmana(dia), ini, fin, au));
         }catch(IllegalArgumentException iae){
             out.println("Has introduit algun dels atributs incorrectament.");
+        }catch(NullPointerException npe){
+            out.println("Aquesta Aula no es valida.");
         }
     }
 
@@ -222,22 +231,22 @@ class driverAssignacio {
     }
 
     private static void nomes_Seleccionades_Test() {
-        out.println("Aquestes son totes les possibilitats que quedaven i han sigut eliminades:");
+        out.println("Aquestes son totes les possibilitats que hi havien i han sigut eliminades:");
         for(Classe c: ass.nomesSeleccionades()) out.println("\t" + c.toString());
     }
 
     private static void afegir_Seleccionada_Test() {
         out.println("Introdueix la classe que vols afegir a la llista de possibilitats:");
         out.println("Tingues en compte que no es comprova que aquesta classe sigui una de les possibles.");
-        out.println("\tId_Assignatura<String> Id_Grup<String> Id_Aula<String>, Dia<DiaSetmana> HoraInicia<int> HoraFinal<int>");
+        out.println("\tId_Aula<String>, Dia<DiaSetmana> HoraInicia<int> HoraFinal<int>");
         try{
-            String as = keyboard.next(), g = keyboard.next(), au = keyboard.next(), dia = keyboard.next();
+            String au = keyboard.next(), dia = keyboard.next();
             int ini = keyboard.nextInt(), fin = keyboard.nextInt();
             if(ini > fin){
                 out.println("L'hora final ha de ser posterior a la inicial.");
                 return;
             }
-            ass.afegirSeleccionada(new Classe(as, g, DiaSetmana.string_To_DiaSetmana(dia), ini, fin, au));
+            ass.afegirSeleccionada(new Classe(ass.getIdAssig(), ass.getIdGrup(), DiaSetmana.string_To_DiaSetmana(dia), ini, fin, au));
         }catch(IllegalArgumentException iae){
             out.println("Has introduit algun dels atributs incorrectament.");
         }

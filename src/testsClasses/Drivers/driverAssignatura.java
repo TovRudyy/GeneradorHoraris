@@ -12,7 +12,7 @@ import static testsClasses.Drivers.MainDriver.keyboard;
 class driverAssignatura {
 
 
-    private static Map<String, Aula> aules;
+    private static Map<String, Aula> aules = new TreeMap<>();
 
     private static assignatura ass = new assignatura("AI","Assignatura_Inicial", 0);
 
@@ -116,7 +116,7 @@ class driverAssignatura {
         out.println("\t2) Classes");
         switch(keyboard.nextInt()){
             case 1:
-                out.println("Introdueix el nombre de grups que vols introduir a la assignatura:");
+                out.println("Introdueix el nombre de grups + subgrups que vols introduir a la assignatura:");
                 TreeMap<String, grup> grups = new TreeMap<>();
                 int n = keyboard.nextInt();
                 out.println("Introdueix els seguents atributs per cada grup, separats per un espai:(-1 per sortir)");
@@ -176,7 +176,7 @@ class driverAssignatura {
                 break;
             case 5:
                 out.println("Corequisit: ");
-                out.println(ass.getCorequisits().toString());
+                out.println("\t" + ass.getCorequisits().toString());
                 break;
             case 6:
                 out.println("Grups: ");
@@ -193,7 +193,7 @@ class driverAssignatura {
                 out.println("Classes: ");
                 ass.showClasses();
                 out.println("Corequisit: ");
-                out.println(ass.getCorequisits().toString());
+                out.println("\t" + ass.getCorequisits().toString());
                 out.println("Grups: ");
                 ass.showGrups();
                 out.println("Assignacions: ");

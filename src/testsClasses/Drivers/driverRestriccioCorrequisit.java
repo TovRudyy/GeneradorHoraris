@@ -124,7 +124,7 @@ class driverRestriccioCorrequisit {
             return;
         }
         out.println("Fitxer llegit. Ara introdueix la Classe que vols utilitzar per eliminar les incompatibles: ");
-        out.println("Recorda que els corequisits de la asignatura que introdueixis a continuacio seran tots els que hi ha actualment dins del corequisit.");
+        out.println("Recorda que els corequisits de totes les assignatures llegides del fitxer seran tots els que hi ha actualment dins del corequisit.");
         out.println("\tId_Assignatura<String> Id_Grup<String> Id_Aula<String> Dia<DiaSetmana> HoraInici<int> HoraFinal<int>");
         Classe cl;
         try{

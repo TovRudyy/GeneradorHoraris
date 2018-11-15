@@ -348,7 +348,7 @@ public class Horari {
         PrintStream old = System.out;
         // S'indica a java que passi a utilitzar el nou stream
         System.setOut(ps);
-        printHorari();
+        printHorariAssignatures();
         // Es restaura el stream original:
         System.out.flush();
         System.setOut(old);

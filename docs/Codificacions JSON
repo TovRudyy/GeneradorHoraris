@@ -1,0 +1,61 @@
+Objectes Basics:
+    Assignatura:
+        {
+            "codi": Codi de la assignatura <String> (Ex: A, F, etc)
+            "nom": Nom de la assignatura <String> (Ex: Algorismia, Fisica, etc)
+            "nivell": Nivell de la assignatura <int> (Ex: 1, 2, etc)
+            "classes":  {
+                            Conte el nombre i la duracio de totes les classes
+                            Si alguna assignatura no te classes d'algun tipus, el valor ha de ser 0
+                            "teoria": nombre de sessions de teoria <int>
+                            "duracio_t": duracio de les sessions de teoria <int>
+                            "problemes": nombre de sessions de problemes <int>
+                            "duracio_p": duracio de les sessions de problemes <int>
+                            "laboratori": nombre de sessions de laboratori <int>
+                            "duracio_l": duracio de les sessions de laboratori <int>
+                        }
+            "grups":    {
+                            "automatic": Indica si es vol que el programa generi automaticament
+                                            els grups a partir d'un parametre o si es vol introduir
+                                            cada grup per separat.
+                                            Depenent del seu valor, el contingut canvia bastant
+                        }
+                        {
+                            Amb automatic = TRUE
+                            "nombre": Nombre de grups de la assignatura <int>
+                            "matins": Nombre de grups que han de ser de matins <int>
+                            "capacitat": Capacitat dels grups <int> (Tots els grups tindran la mateixa)
+                            "tipus_subgrup": Tipus de les sessions de Subgrup <Tipus_Aula> (No pot ser teoria)
+                            "subgrup_per_alumnes" Indica la manera de generar els subgrups de cada grup.
+                                                    Si true, es genera els subgrups per nombre d'alumnes, el parametre
+                                                        "valor" indica el nombre d'alumnes que ha de tenir cada subgrup, i es
+                                                        generen tots els necessaris per cobrir tota la capacitat del grup.
+                                                        Es possible que l'ultim subgrup tingui menys alumnes
+                                                    Si false, es crea un determinat nombre de subgrups, i la capacitat total del grup
+                                                        es divideix entre tots els subgrups. El parametre "valor" indica
+                                                        aquesta quantitat de subgrups.
+                            "valor": valor a utilitzar per generar subgrups
+                        }
+                        {
+                            Amb automatic = FALSE
+                            "tipus_subgrup": Tipus de les sessions de Subgrup <Tipus_Aula> (No pot ser teoria)
+                            "grups": Array que conte cada grup:
+                                    "grup" =    {
+                                                    "nom": Nom del grup <int> (Ha de seguir la codificacio establerta, del tipus FIB)
+                                                    "horari": Lletra indicant si el grup es de matins o de tardes <"M" | "T">
+                                                    "capacitat", "subgrup_per_alumnes" i "valor" tenen el mateix significat que abans
+                                                }
+                        }
+        }
+
+    Corequisit:
+        {
+            "a1" i "a2": codis de les asignatures que son corequisits entre elles
+        }
+
+    Aula:
+        {
+            "nom": Nom de l'aula<String>
+            "capacitat": Capacitat de l'aula <int>
+            "tipus": Tipus de l'aula <Tipus_Aula>
+        }

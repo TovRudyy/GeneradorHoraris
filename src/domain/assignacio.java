@@ -160,9 +160,7 @@ public class assignacio {
         ArrayList<Classe> c = new ArrayList<Classe>();
         for (String nomAula : possibles_classes.keySet()) {
             for (DiaSetmana dia: possibles_classes.get(nomAula).keySet() ) {
-                for (Classe classe : possibles_classes.get(nomAula).get(dia)){
-                    c.add(classe);
-                }
+                c.addAll(possibles_classes.get(nomAula).get(dia));
             }
 
         }

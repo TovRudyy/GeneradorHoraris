@@ -470,7 +470,6 @@
         "valor": 4
       }
     } ,
-
     {
       "codi": "EDA",
       "nom": "Estructures de dades i disseny d'algorismes",
@@ -536,12 +535,87 @@
         "subgrup_per_alumnes": false,
         "valor": 4
       }
+    },
+    {
+      "codi": "PROP",
+      "nom": "Projecte de Programacio",
+      "nivell": 5,
+      "classes": {
+        "teoria": 1,
+        "duracio_t": 2,
+        "problemes": 1,
+        "duracio_p": 2,
+        "laboratori": 0,
+        "duracio_l": 0
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 4,
+        "matins": 3,
+        "capacitat": 60,
+        "tipus_subgrup": "P",
+        "subgrup_per_alumnes": true,
+        "valor": 15
+      }
+    },
+    {
+      "codi": "TC",
+      "nom": "Teoria de la computacio",
+      "nivell": 51,
+      "classes": {
+        "teoria": 1,
+        "duracio_t": 2,
+        "problemes": 1,
+        "duracio_p": 2,
+        "laboratori": 0,
+        "duracio_l": 0
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 1,
+        "matins": 0,
+        "capacitat": 60,
+        "tipus_subgrup": "P",
+        "subgrup_per_alumnes": true,
+        "valor": 20
+      }
+    },
+    {
+      "codi": "A",
+      "nom": "Algorismia",
+      "nivell": 51,
+      "classes": {
+        "teoria": 1,
+        "duracio_t": 2,
+        "problemes": 1,
+        "duracio_p": 2,
+        "laboratori": 0,
+        "duracio_l": 0
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 1,
+        "matins": 0,
+        "capacitat": 60,
+        "tipus_subgrup": "P",
+        "subgrup_per_alumnes": true,
+        "valor": 20
+      }
     }
+
   ],
   "corequisits":[
     {
       "a1":"IC",
       "a2":"FM"
+    },
+    {
+      "a1":"TC",
+      "a2":"PROP"
+    },
+    {
+      "a1":"A",
+      "a2":"PROP"
     }
   ]
 }

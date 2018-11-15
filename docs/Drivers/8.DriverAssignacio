@@ -1,0 +1,197 @@
+El DriverAssignacio s'encarrega de provar la Classe Assignacio
+Aquesta classe utilitza les classes Aula, Classe, les 3 Restriccions i la enumeració Tipus_Aula
+Les aules que s'utilitzen venen predefinides i no es poden modificar. Hi ha dues de cada tipus i amb capacitat suficient per a qualsevol classe.
+Aules: {AulaT, AulaP, AulaLI, AulaLF, AulaLE, AulaT2, AulaP2, AulaLI2, AulaLF2, AulaLE2}
+Donat que s'utilitzen alguns HashMaps, es possible que el resultat d'algunes proves tingui diferent ordre.
+
+Joc de Prova:
+
+    Prova1: Crear una assignacio (Codi = 1):
+
+        Entrada1: 11 30 P TC 4 1 2 M
+        Sortida1:
+
+    Prova2: Establir les Restriccions (Codi = 3):
+
+        Corequisit:
+            Entrada: A PROP .
+            Sortida:
+
+        Subgrup:
+            Entrada: 10 60 M T
+            Sortida:
+
+    Prova3: Obtenir informacio (Codi = 2):
+        Opcio 5
+            Sortida:
+                        Identificador assignatura: TC
+                        Identificador grup: 11
+                        Classes possibles:
+                        	TC : 11 : AulaP : DILLUNS : 8 : 10
+                        	TC : 11 : AulaP : DILLUNS : 9 : 11
+                        	TC : 11 : AulaP : DILLUNS : 10 : 12
+                        	TC : 11 : AulaP : DILLUNS : 11 : 13
+                        	TC : 11 : AulaP : DILLUNS : 12 : 14
+                        	TC : 11 : AulaP : DIMARTS : 8 : 10
+                        	TC : 11 : AulaP : DIMARTS : 9 : 11
+                        	TC : 11 : AulaP : DIMARTS : 10 : 12
+                        	TC : 11 : AulaP : DIMARTS : 11 : 13
+                        	TC : 11 : AulaP : DIMARTS : 12 : 14
+                        	TC : 11 : AulaP : DIMECRES : 8 : 10
+                        	TC : 11 : AulaP : DIMECRES : 9 : 11
+                        	TC : 11 : AulaP : DIMECRES : 10 : 12
+                        	TC : 11 : AulaP : DIMECRES : 11 : 13
+                        	TC : 11 : AulaP : DIMECRES : 12 : 14
+                        	TC : 11 : AulaP : DIJOUS : 8 : 10
+                        	TC : 11 : AulaP : DIJOUS : 9 : 11
+                        	TC : 11 : AulaP : DIJOUS : 10 : 12
+                        	TC : 11 : AulaP : DIJOUS : 11 : 13
+                        	TC : 11 : AulaP : DIJOUS : 12 : 14
+                        	TC : 11 : AulaP : DIVENDRES : 8 : 10
+                        	TC : 11 : AulaP : DIVENDRES : 9 : 11
+                        	TC : 11 : AulaP : DIVENDRES : 10 : 12
+                        	TC : 11 : AulaP : DIVENDRES : 11 : 13
+                        	TC : 11 : AulaP : DIVENDRES : 12 : 14
+                        	TC : 11 : AulaP2 : DILLUNS : 8 : 10
+                        	TC : 11 : AulaP2 : DILLUNS : 9 : 11
+                        	TC : 11 : AulaP2 : DILLUNS : 10 : 12
+                        	TC : 11 : AulaP2 : DILLUNS : 11 : 13
+                        	TC : 11 : AulaP2 : DILLUNS : 12 : 14
+                        	TC : 11 : AulaP2 : DIMARTS : 8 : 10
+                        	TC : 11 : AulaP2 : DIMARTS : 9 : 11
+                        	TC : 11 : AulaP2 : DIMARTS : 10 : 12
+                        	TC : 11 : AulaP2 : DIMARTS : 11 : 13
+                        	TC : 11 : AulaP2 : DIMARTS : 12 : 14
+                        	TC : 11 : AulaP2 : DIMECRES : 8 : 10
+                        	TC : 11 : AulaP2 : DIMECRES : 9 : 11
+                        	TC : 11 : AulaP2 : DIMECRES : 10 : 12
+                        	TC : 11 : AulaP2 : DIMECRES : 11 : 13
+                        	TC : 11 : AulaP2 : DIMECRES : 12 : 14
+                        	TC : 11 : AulaP2 : DIJOUS : 8 : 10
+                        	TC : 11 : AulaP2 : DIJOUS : 9 : 11
+                        	TC : 11 : AulaP2 : DIJOUS : 10 : 12
+                        	TC : 11 : AulaP2 : DIJOUS : 11 : 13
+                        	TC : 11 : AulaP2 : DIJOUS : 12 : 14
+                        	TC : 11 : AulaP2 : DIVENDRES : 8 : 10
+                        	TC : 11 : AulaP2 : DIVENDRES : 9 : 11
+                        	TC : 11 : AulaP2 : DIVENDRES : 10 : 12
+                        	TC : 11 : AulaP2 : DIVENDRES : 11 : 13
+                        	TC : 11 : AulaP2 : DIVENDRES : 12 : 14
+                        Classes restants: 1
+
+    Prova4: Afegir una possible classe (Codi = 4):
+
+        Entrada: AulaP2 Dimarts 16 18
+        Sortida:
+
+        Entrada: AulaP2  No_Dia 14 16
+        Sortida: Has introduit algun dels atributs incorrectament.
+
+    Prova5: Fer forward checking (Codi = 5):
+
+        Entrada: TC 11 AulaP divendres 10 12
+        Sortida:    Aquestes son les possibles classes que han sigut eliminades:
+                        TC : 11 : AulaP : DIVENDRES : 8 : 10
+                        TC : 11 : AulaP : DIVENDRES : 9 : 11
+                        TC : 11 : AulaP : DIVENDRES : 10 : 12
+                        TC : 11 : AulaP : DIVENDRES : 11 : 13
+                        TC : 11 : AulaP : DIVENDRES : 12 : 14
+                        TC : 11 : AulaP2 : DIVENDRES : 8 : 10
+                        TC : 11 : AulaP2 : DIVENDRES : 9 : 11
+                        TC : 11 : AulaP2 : DIVENDRES : 10 : 12
+                        TC : 11 : AulaP2 : DIVENDRES : 11 : 13
+                        TC : 11 : AulaP2 : DIVENDRES : 12 : 14
+
+        Entrada: TC 10 AulaT dimarts 8 10
+        Sortida:    Aquestes son les possibles classes que han sigut eliminades:
+                    	TC : 11 : AulaP : DIMARTS : 8 : 10
+                    	TC : 11 : AulaP : DIMARTS : 9 : 11
+                    	TC : 11 : AulaP : DIMARTS : 10 : 12
+                    	TC : 11 : AulaP : DIMARTS : 11 : 13
+                    	TC : 11 : AulaP : DIMARTS : 12 : 14
+                    	TC : 11 : AulaP2 : DIMARTS : 8 : 10
+                    	TC : 11 : AulaP2 : DIMARTS : 9 : 11
+                    	TC : 11 : AulaP2 : DIMARTS : 10 : 12
+                    	TC : 11 : AulaP2 : DIMARTS : 11 : 13
+                    	TC : 11 : AulaP2 : DIMARTS : 12 : 14
+
+        Entrada: A 20 AulaT dilluns 10 12
+        Sortida:    Aquestes son les possibles classes que han sigut eliminades:
+
+    Prova6: Buidar la llista de possibles classes:
+
+        Sortida:    Aquestes son totes les possibilitats que hi havien i han sigut eliminades:
+                        TC : 11 : AulaP2 : DILLUNS : 8 : 10
+                        TC : 11 : AulaP2 : DILLUNS : 9 : 11
+                        TC : 11 : AulaP2 : DILLUNS : 10 : 12
+                        TC : 11 : AulaP2 : DILLUNS : 11 : 13
+                        TC : 11 : AulaP2 : DILLUNS : 12 : 14
+                        TC : 11 : AulaP2 : DIMARTS : 8 : 10
+                        TC : 11 : AulaP2 : DIMARTS : 9 : 11
+                        TC : 11 : AulaP2 : DIMARTS : 10 : 12
+                        TC : 11 : AulaP2 : DIMARTS : 11 : 13
+                        TC : 11 : AulaP2 : DIMARTS : 12 : 14
+                        TC : 11 : AulaP2 : DIMARTS : 16 : 18
+                        TC : 11 : AulaP2 : DIMECRES : 8 : 10
+                        TC : 11 : AulaP2 : DIMECRES : 9 : 11
+                        TC : 11 : AulaP2 : DIMECRES : 10 : 12
+                        TC : 11 : AulaP2 : DIMECRES : 11 : 13
+                        TC : 11 : AulaP2 : DIMECRES : 12 : 14
+                        TC : 11 : AulaP2 : DIJOUS : 8 : 10
+                        TC : 11 : AulaP2 : DIJOUS : 9 : 11
+                        TC : 11 : AulaP2 : DIJOUS : 10 : 12
+                        TC : 11 : AulaP2 : DIJOUS : 11 : 13
+                        TC : 11 : AulaP2 : DIJOUS : 12 : 14
+                        TC : 11 : AulaP2 : DIVENDRES : 8 : 10
+                        TC : 11 : AulaP2 : DIVENDRES : 9 : 11
+                        TC : 11 : AulaP2 : DIVENDRES : 10 : 12
+                        TC : 11 : AulaP2 : DIVENDRES : 11 : 13
+                        TC : 11 : AulaP2 : DIVENDRES : 12 : 14
+                        TC : 11 : AulaP : DILLUNS : 8 : 10
+                        TC : 11 : AulaP : DILLUNS : 9 : 11
+                        TC : 11 : AulaP : DILLUNS : 10 : 12
+                        TC : 11 : AulaP : DILLUNS : 11 : 13
+                        TC : 11 : AulaP : DILLUNS : 12 : 14
+                        TC : 11 : AulaP : DIMARTS : 8 : 10
+                        TC : 11 : AulaP : DIMARTS : 9 : 11
+                        TC : 11 : AulaP : DIMARTS : 10 : 12
+                        TC : 11 : AulaP : DIMARTS : 11 : 13
+                        TC : 11 : AulaP : DIMARTS : 12 : 14
+                        TC : 11 : AulaP : DIMECRES : 8 : 10
+                        TC : 11 : AulaP : DIMECRES : 9 : 11
+                        TC : 11 : AulaP : DIMECRES : 10 : 12
+                        TC : 11 : AulaP : DIMECRES : 11 : 13
+                        TC : 11 : AulaP : DIMECRES : 12 : 14
+                        TC : 11 : AulaP : DIJOUS : 8 : 10
+                        TC : 11 : AulaP : DIJOUS : 9 : 11
+                        TC : 11 : AulaP : DIJOUS : 10 : 12
+                        TC : 11 : AulaP : DIJOUS : 11 : 13
+                        TC : 11 : AulaP : DIJOUS : 12 : 14
+                        TC : 11 : AulaP : DIVENDRES : 8 : 10
+                        TC : 11 : AulaP : DIVENDRES : 9 : 11
+                        TC : 11 : AulaP : DIVENDRES : 10 : 12
+                        TC : 11 : AulaP : DIVENDRES : 11 : 13
+                        TC : 11 : AulaP : DIVENDRES : 12 : 14
+
+    Prova7: Seleccionar una classe (Codi = 7):
+
+        Entrada:    AulaP Divendres 8 10
+        Sortida:
+
+        Entrada:    AulaP Dimarts 10 12
+
+    Prova8: Eliminar una classe seleccionada (Codi = 8):
+
+        Entrada: AulaP Divendres 8 10
+        Sortida:
+
+    Prova9: Obtenir Seleccionades (Codi = 9):
+
+        Sortida:    AulaP Dimarts 10 12
+
+    Prova10: Mirar si es pot obtenir una combinacio possible (Codi = 10):
+
+        Sortida: Resultat: True
+
+    Prova11:
+        Sortida: Resultat: TC:11:30:P:M

@@ -11,62 +11,117 @@ Aquesta estructura classifica totes les classes segons la seva aula (Clau String
 En aquest driver cada Prova consta de diferents Jocs de Prova independents.
 Jocs de prova:
 
-    Prova1: Comprovar si dos intervals es solapen (Codi = 1):
-        Aquesta funcio es de la classe Restriccio
+    Prova1: Comprovar si dues classes son compatibles per subgrup (Codi = 2):
 
-        Entrada1: 8 10 10 12
-        Sortida1: False
-
-        Entrada2: 14 16 8 10
-        Sortida2: False
-
-        Entrada3: 10 13 12 14
-        Sortida3: True
-
-        Entrada 4: 10 8 12 14
-        Sortida4: Missatge indicant que les hores finals han de ser posteriors a les inicials
-
-    Prova2: Comprovar si dues classes son compatibles per ocupacio (Codi = 2):
-
-        Entrada1:   Ass1 G1 A1 Dilluns 8 10
-                    Ass2 G2 A1 Dimarts 8 10
+        Entrada1:   Ass1 10 A1 Dilluns 8 10
+                    Ass2 10 A1 Dimarts 8 10
         Sortida1:   Resultat: True
 
-        Entrada2:   Ass1 G1 A1 Dilluns 8 10
-                    Ass2 G2 A1 Dilluns 9 11
-        Sortida2:   Resultat: False
+        Entrada2:   Ass1 10 A1 Dilluns 8 10
+                    Ass2 10 A1 Dilluns 9 11
+        Sortida2:   Resultat: True
 
-        Entrada3:   Ass1 G1 A1 Dilluns 8 10
-                    Ass2 G2 A2 Dilluns 8 10
-        Sortida3:   Resultat: True
+        Entrada3:   Ass1 10 A1 Dilluns 8 10
+                    Ass1 11 A2 Dilluns 9 11
+        Sortida3:   Resultat: False
 
-    Prova3: Eliminar les classes que son incompatibles amb una classe escollida (Codi = 3):
+    Prova2: Eliminar les classes que son incompatibles amb una classe escollida (Codi = 3):
         Aquesta funcio és la que llegeix el fitxer de dades,
         i elimina totes aquelles classes que son incompatibles amb la que introdueixis
 
-        Entrada1:   Ass1 G1 Aula1 Dilluns 8 12
+        Entrada1:   A 10 Aula1 Dilluns 8 12
         Sortida1:   Classes eliminades:
-                        A : 10 : Aula1 : DILLUNS : 8 : 10
-                        A : 10 : Aula1 : DILLUNS : 9 : 11
-                        A : 10 : Aula1 : DILLUNS : 10 : 12
-                        A : 10 : Aula1 : DILLUNS : 11 : 13
-                        A : 11 : Aula1 : DILLUNS : 8 : 10
-                        A : 11 : Aula1 : DILLUNS : 9 : 11
-                        A : 11 : Aula1 : DILLUNS : 10 : 12
-                        A : 11 : Aula1 : DILLUNS : 11 : 13
-                        A : 12 : Aula1 : DILLUNS : 8 : 10
-                        A : 12 : Aula1 : DILLUNS : 9 : 11
-                        A : 12 : Aula1 : DILLUNS : 10 : 12
-                        A : 12 : Aula1 : DILLUNS : 11 : 13
+                    	A : 10 : Aula1 : DILLUNS : 8 : 10
+                        	A : 10 : Aula1 : DILLUNS : 9 : 11
+                        	A : 10 : Aula1 : DILLUNS : 10 : 12
+                        	A : 10 : Aula1 : DILLUNS : 11 : 13
+                        	A : 10 : Aula1 : DILLUNS : 12 : 14
+                        	A : 10 : Aula1 : DILLUNS : 13 : 15
+                        	A : 10 : Aula1 : DILLUNS : 14 : 16
+                        	A : 10 : Aula1 : DILLUNS : 15 : 17
+                        	A : 10 : Aula1 : DILLUNS : 16 : 18
+                        	A : 10 : Aula1 : DILLUNS : 17 : 19
+                        	A : 10 : Aula1 : DILLUNS : 18 : 20
+                        	A : 11 : Aula1 : DILLUNS : 8 : 10
+                        	A : 11 : Aula1 : DILLUNS : 9 : 11
+                        	A : 11 : Aula1 : DILLUNS : 10 : 12
+                        	A : 11 : Aula1 : DILLUNS : 11 : 13
+                        	A : 11 : Aula1 : DILLUNS : 12 : 14
+                        	A : 11 : Aula1 : DILLUNS : 13 : 15
+                        	A : 11 : Aula1 : DILLUNS : 14 : 16
+                        	A : 11 : Aula1 : DILLUNS : 15 : 17
+                        	A : 11 : Aula1 : DILLUNS : 16 : 18
+                        	A : 11 : Aula1 : DILLUNS : 17 : 19
+                        	A : 11 : Aula1 : DILLUNS : 18 : 20
+                        	A : 12 : Aula1 : DILLUNS : 8 : 10
+                        	A : 12 : Aula1 : DILLUNS : 9 : 11
+                        	A : 12 : Aula1 : DILLUNS : 10 : 12
+                        	A : 12 : Aula1 : DILLUNS : 11 : 13
+                        	A : 12 : Aula1 : DILLUNS : 12 : 14
+                        	A : 12 : Aula1 : DILLUNS : 13 : 15
+                        	A : 12 : Aula1 : DILLUNS : 14 : 16
+                        	A : 12 : Aula1 : DILLUNS : 15 : 17
+                        	A : 12 : Aula1 : DILLUNS : 16 : 18
+                        	A : 12 : Aula1 : DILLUNS : 17 : 19
+                        	A : 12 : Aula1 : DILLUNS : 18 : 20
+                        	A : 10 : Aula2 : DILLUNS : 8 : 10
+                        	A : 10 : Aula2 : DILLUNS : 9 : 11
+                        	A : 10 : Aula2 : DILLUNS : 10 : 12
+                        	A : 10 : Aula2 : DILLUNS : 11 : 13
+                        	A : 10 : Aula2 : DILLUNS : 12 : 14
+                        	A : 10 : Aula2 : DILLUNS : 13 : 15
+                        	A : 10 : Aula2 : DILLUNS : 14 : 16
+                        	A : 10 : Aula2 : DILLUNS : 15 : 17
+                        	A : 10 : Aula2 : DILLUNS : 16 : 18
+                        	A : 10 : Aula2 : DILLUNS : 17 : 19
+                        	A : 10 : Aula2 : DILLUNS : 18 : 20
+                        	A : 11 : Aula2 : DILLUNS : 8 : 10
+                        	A : 11 : Aula2 : DILLUNS : 9 : 11
+                        	A : 11 : Aula2 : DILLUNS : 10 : 12
+                        	A : 11 : Aula2 : DILLUNS : 11 : 13
+                        	A : 11 : Aula2 : DILLUNS : 12 : 14
+                        	A : 11 : Aula2 : DILLUNS : 13 : 15
+                        	A : 11 : Aula2 : DILLUNS : 14 : 16
+                        	A : 11 : Aula2 : DILLUNS : 15 : 17
+                        	A : 11 : Aula2 : DILLUNS : 16 : 18
+                        	A : 11 : Aula2 : DILLUNS : 17 : 19
+                        	A : 11 : Aula2 : DILLUNS : 18 : 20
+                        	A : 12 : Aula2 : DILLUNS : 8 : 10
+                        	A : 12 : Aula2 : DILLUNS : 9 : 11
+                        	A : 12 : Aula2 : DILLUNS : 10 : 12
+                        	A : 12 : Aula2 : DILLUNS : 11 : 13
+                        	A : 12 : Aula2 : DILLUNS : 12 : 14
+                        	A : 12 : Aula2 : DILLUNS : 13 : 15
+                        	A : 12 : Aula2 : DILLUNS : 14 : 16
+                        	A : 12 : Aula2 : DILLUNS : 15 : 17
+                        	A : 12 : Aula2 : DILLUNS : 16 : 18
+                        	A : 12 : Aula2 : DILLUNS : 17 : 19
+                        	A : 12 : Aula2 : DILLUNS : 18 : 20
 
-        Entrada2:   Ass1 G1 Aula3 Dimarts 10 12
+        Entrada2:   PROP 10 Aula1 Dimarts 10 12
         Sortida2:   Classes eliminades:
 
-        Entrada3:   Ass1 G1 Aula2 Dimecres 8 10
+        Entrada3:   TC 12 Aula3 Dimecres 8 10
         Sortida4:   Classes eliminades:
-                        A : 10 : Aula2 : DIMECRES : 8 : 10
-                        A : 10 : Aula2 : DIMECRES : 9 : 11
-                        A : 11 : Aula2 : DIMECRES : 8 : 10
-                        A : 11 : Aula2 : DIMECRES : 9 : 11
-                        A : 12 : Aula2 : DIMECRES : 8 : 10
-                        A : 12 : Aula2 : DIMECRES : 9 : 11
+                        TC : 10 : Aula1 : DIMECRES : 8 : 10
+                        TC : 10 : Aula1 : DIMECRES : 9 : 11
+                        TC : 10 : Aula1 : DIMECRES : 10 : 12
+                        TC : 10 : Aula1 : DIMECRES : 11 : 13
+                        TC : 10 : Aula1 : DIMECRES : 12 : 14
+                        TC : 10 : Aula1 : DIMECRES : 13 : 15
+                        TC : 10 : Aula1 : DIMECRES : 14 : 16
+                        TC : 10 : Aula1 : DIMECRES : 15 : 17
+                        TC : 10 : Aula1 : DIMECRES : 16 : 18
+                        TC : 10 : Aula1 : DIMECRES : 17 : 19
+                        TC : 10 : Aula1 : DIMECRES : 18 : 20
+                        TC : 10 : Aula2 : DIMECRES : 8 : 10
+                        TC : 10 : Aula2 : DIMECRES : 9 : 11
+                        TC : 10 : Aula2 : DIMECRES : 10 : 12
+                        TC : 10 : Aula2 : DIMECRES : 11 : 13
+                        TC : 10 : Aula2 : DIMECRES : 12 : 14
+                        TC : 10 : Aula2 : DIMECRES : 13 : 15
+                        TC : 10 : Aula2 : DIMECRES : 14 : 16
+                        TC : 10 : Aula2 : DIMECRES : 15 : 17
+                        TC : 10 : Aula2 : DIMECRES : 16 : 18
+                        TC : 10 : Aula2 : DIMECRES : 17 : 19
+                        TC : 10 : Aula2 : DIMECRES : 18 : 20
