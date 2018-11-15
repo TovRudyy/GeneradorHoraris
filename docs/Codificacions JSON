@@ -59,3 +59,43 @@ Objectes Basics:
             "capacitat": Capacitat de l'aula <int>
             "tipus": Tipus de l'aula <Tipus_Aula>
         }
+
+Explicacio dels fitxers:
+Fitxers de pla d'estudis:
+    Aquests fitxers son els que es troben a la Carpeta "PlaEstudis", els fitxers "PlaEstudi.json" de les carpetes "Escenari*"
+    i el fitxer "PlaEstudis_InputPla.json" de la carpeta "Drivers_Input"
+    Aquests fitxers contenen un únic objecte (un Pla d'Estudis), que te tres elements:
+            "nom": Nom del Pla <String>
+            "assignatures": Array d'objectes Assignatura(explicat a dalt)
+            "corequisits": Array d'objectes Corequisit(explicat a dalt)
+
+Fitxers d'aules:
+    Aquests fitxers son els que es troben a la Carpeta "Aules" i els fitxers "Aulari.json" de les carpetes "Escenari*"
+    Aquests fitxers contenen un unic array d'objectes Aula(explicat a dalt)
+
+Fitxers mixtos:
+    Hi ha 4 fitxers de la carpeta "Drivers_Input" que no son com cap dels anteriors i tenen un fomat especial per adaptar-se
+    a les necessitats del driver que els utilitza:
+        -Horari_InputList.json: Conte un unic objecte amb tres elements:
+            *"aules": un array d'objectes Aula com en els fitxers d'aules
+            *"assignatures": un array d'objectes Asignatura com en els fitxers de pla d'estudis
+            *"corequisits": un array d'objectes Corequisits com en els fitxers de pla d'estudis
+
+        -Restriccio*_InputMap.json: Conte una respresentacio en JSON de Map<String, Map<DiaSetmana, ArrayList<Classe>>>
+            *Array d'objectes A:
+                Un objecte A està format per:
+                    -"key": Nom d'una Aula
+                    -"value": Array d'objectes B
+                        Un objecte B està format per:
+                            -"key": Dia lectiu de la setmana (per tant, com a molt 5 objectes B per array)
+                            -"value": Array d'objectes C
+                                Un objecte C està format per:
+                                    -"id_assig": Codi de la assignatura <String>
+                                    -"id_grup": Codi del grup <int>
+                                    -"hora_inici": Hora d'inici <int>
+                                    -"hora_fi": Hora final<int> (Posterior a hora_inici)
+
+            En realitat, dins el programa tots els elements de Map<String, Map<DiaSetmana, ArrayList<Classe>>> tindrien
+            la mateixa assignatura i el mateix grup. En els drivers, permetem la diversitat degut a dos motius:
+                1. No afecta al comportament de la funcio
+                2. Permet veure els efectes de les Restriccions amb més claredat
