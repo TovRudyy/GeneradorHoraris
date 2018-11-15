@@ -35,16 +35,15 @@ class driverRestriccioOcupacio  {
 
     private static void printCodis() {
         out.println("\t1) Consultora de solapament d'hores");
-        out.println("\t2) Comprovacio de la restriccio");
-        out.println("\t3) Esborrar classes incompatibles");
-        out.println("\t4) Sortir");
+        out.println("\t2) Esborrar classes incompatibles");
+        out.println("\t3) Sortir");
     }
 
     private static void executar() {
         try{
             int codi;
             out.println("Introdueix un codi: ");
-            while((codi = keyboard.nextInt()) != 4){
+            while((codi = keyboard.nextInt()) != 3){
                 switch (codi) {
                     case -1:
                         printCodis();
@@ -53,9 +52,6 @@ class driverRestriccioOcupacio  {
                         no_Solapis_Test();
                         break;
                     case 2:
-                        //check_Restriccio_Test();
-                        break;
-                    case 3:
                         delete_Possibilities_Test();
                         break;
                     default:
@@ -78,9 +74,9 @@ class driverRestriccioOcupacio  {
     }
 
     private static void delete_Possibilities_Test() {
-        out.println("Aquesta funcio esta implementada a Restriccio, i rep com a parametres una Classe, i un conjunt de Classes classificades segons la seva aula i el Dia de la setmana.");
+        out.println("Aquesta funcio rep com a parametres una Classe, i un conjunt de Classes classificades segons la seva aula i el Dia de la setmana.");
         out.println("El resultat d'aquesta funcio es la llista de Classes que s'han eliminat del conjunt degut a que son incompatibles amb la Classe passada.");
-        out.println("El criteri que s'utilitza per determinar que son incompatibles es el provat anteriorment, i en cada subclasse de Restriccio es diferent.");
+        out.println("Dues classes son incompatibles si ocupen la mateixa aula en una mateixa hora.");
         out.println("Com que el conjunt de classes que rep aquesta funcio es bastant complex, s'ha d'introduir mitjancant un fitxer JSON.");
         out.println("Aquest fitxer es troba dins la carpeta \"Data\", subcarpeta \"Drivers_Input\", i el seu nom ha de ser \"RestriccioOcupacio_InputMap.json\".");
         out.println("Ja et proporcionem un fitxer creat amb dades de mostra fetes, que pots utilitzar perfectament.");
@@ -121,41 +117,7 @@ class driverRestriccioOcupacio  {
             out.println("\t" + c.toString());
         }
     }
-/*
-    private static void check_Restriccio_Test() {
-        out.println("Aquesta funcio, declarada com a abstracte per Restriccio, determina si dues Classes son compatibles segons el criteri de cada tipus de Restriccio.");
-        out.println("Per probarla s'ha de crear dues Classes, que seran els parametres de la funcio.");
-        out.println("Introdueix els seguents atributs, separats per un espai, per a crear la primera Classe: ");
-        out.println("\tId_Assignatura<String> Id_Grup<String> Id_Aula<String>, Dia<DiaSetmana> HoraInicia<int> HoraFinal<int>");
-        Classe a, b;
-        try{
-            String as = keyboard.next(), g = keyboard.next(), au = keyboard.next(), dia = keyboard.next();
-            int ini = keyboard.nextInt(), fin = keyboard.nextInt();
-            if(ini > fin){
-                out.println("L'hora final ha de ser posterior a la inicial.");
-                return;
-            }
-            a = new Classe(as, g, DiaSetmana.string_To_DiaSetmana(dia), ini, fin, au);
-        }catch(IllegalArgumentException iae){
-            out.println("Has introduit algun dels atributs incorrectament.");
-            return;
-        }
-        out.println("Introdueix ara els atributs de la segona Classe, en el mateix ordre que abans: ");
-        try{
-            String as = keyboard.next(), g = keyboard.next(), au = keyboard.next(), dia = keyboard.next();
-            int ini = keyboard.nextInt(), fin = keyboard.nextInt();
-            if(ini > fin){
-                out.println("L'hora final ha de ser posterior a la inicial.");
-                return;
-            }
-            b = new Classe(as, g, DiaSetmana.string_To_DiaSetmana(dia), ini, fin, au);
-        }catch(IllegalArgumentException iae){
-            out.println("Has introduit algun dels atributs incorrectament.");
-            return;
-        }
-        out.println("Resultat: " + rest.checkCorrecte(a, b));
-    }
-*/
+
     private static void no_Solapis_Test() {
         out.println("Aquesta funcio esta implementada a la classe Restriccio, i comprova si dos intervals de temps es solapen.");
         out.println("Introdueix els seguents valors, separats per un espai:");

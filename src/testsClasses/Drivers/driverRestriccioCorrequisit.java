@@ -39,17 +39,16 @@ class driverRestriccioCorrequisit {
         out.println("\t3) Getter assignatures");
         out.println("\t4) Afegir assignatura");
         out.println("\t5) Consultora corequisit");
-        out.println("\t6) Comprovacio restriccio");
-        out.println("\t7) Esborrar classes incompatibles");
-        out.println("\t8) To String");
-        out.println("\t9) Sortir");
+        out.println("\t6) Esborrar classes incompatibles");
+        out.println("\t7) To String");
+        out.println("\t8) Sortir");
     }
 
     private static void executar() {
         try{
             int codi;
             out.println("Introdueix un codi: ");
-            while((codi = keyboard.nextInt()) != 9){
+            while((codi = keyboard.nextInt()) != 8){
                 switch (codi) {
                     case -1:
                         printCodis();
@@ -70,12 +69,9 @@ class driverRestriccioCorrequisit {
                         es_Corequisit_Test();
                         break;
                     case 6:
-                      //  check_Restriccio_Test();
-                        break;
-                    case 7:
                         delete_Possibilities_Test();
                         break;
-                    case 8:
+                    case 7:
                         to_String_Test();
                         break;
                     default:
@@ -100,9 +96,9 @@ class driverRestriccioCorrequisit {
     }
 
     private static void delete_Possibilities_Test() {
-        out.println("Aquesta funcio esta implementada a Restriccio, i rep com a parametres una Classe, i un conjunt de Classes classificades segons la seva aula i el Dia de la setmana.");
+        out.println("Aquesta funcio rep com a parametres una Classe, i un conjunt de Classes classificades segons la seva aula i el Dia de la setmana.");
         out.println("El resultat d'aquesta funcio es la llista de Classes que s'han eliminat del conjunt degut a que son incompatibles amb la Classe passada.");
-        out.println("El criteri que s'utilitza per determinar que son incompatibles es el provat anteriorment, i en cada subclasse de Restriccio es diferent.");
+        out.println("Dues classes son incompatibles si violen la restriccio de corequisit.");
         out.println("Com que el conjunt de classes que rep aquesta funcio es bastant complex, s'ha d'introduir mitjancant un fitxer JSON.");
         out.println("Aquest fitxer es troba dins la carpeta \"Data\", subcarpeta \"Drivers_Input\", i el seu nom ha de ser \"RestriccioCorequisit_InputMap.json\".");
         out.println("Ja et proporcionem un fitxer creat amb dades de mostra fetes, que pots utilitzar perfectament.");
@@ -124,7 +120,7 @@ class driverRestriccioCorrequisit {
             return;
         }
         out.println("Fitxer llegit. Ara introdueix la Classe que vols utilitzar per eliminar les incompatibles: ");
-        out.println("Recorda que els corequisits de totes les assignatures llegides del fitxer seran tots els que hi ha actualment dins del corequisit.");
+        out.println("Recorda que els corequisits de totes les assignatures llegides del fitxer son els que hi ha actualment dins del corequisit.");
         out.println("\tId_Assignatura<String> Id_Grup<String> Id_Aula<String> Dia<DiaSetmana> HoraInici<int> HoraFinal<int>");
         Classe cl;
         try{
@@ -144,42 +140,7 @@ class driverRestriccioCorrequisit {
             out.println("\t" + c.toString());
         }
     }
-/*
-    private static void check_Restriccio_Test() {
-        out.println("Aquesta funcio, declarada com a abstracte per Restriccio, determina si dues Classes son compatibles segons el criteri de cada tipus de Restriccio.");
-        out.println("Per probarla s'ha de crear dues Classes, que seran els parametres de la funcio.");
-        out.println("Recorda que els corequisits guardats son de la assignatura de la primera classe que introdueixis.");
-        out.println("Introdueix els seguents atributs, separats per un espai, per a crear la primera Classe: ");
-        out.println("\tId_Assignatura<String> Id_Grup<String> Id_Aula<String>, Dia<DiaSetmana> HoraInicia<int> HoraFinal<int>");
-        Classe a, b;
-        try{
-            String as = keyboard.next(), g = keyboard.next(), au = keyboard.next(), dia = keyboard.next();
-            int ini = keyboard.nextInt(), fin = keyboard.nextInt();
-            if(ini > fin){
-                out.println("L'hora final ha de ser posterior a la inicial.");
-                return;
-            }
-            a = new Classe(as, g, DiaSetmana.string_To_DiaSetmana(dia), ini, fin, au);
-        }catch(IllegalArgumentException iae){
-            out.println("Has introduit algun dels atributs incorrectament.");
-            return;
-        }
-        out.println("Introdueix ara els atributs de la segona Classe, en el mateix ordre que abans: ");
-        try{
-            String as = keyboard.next(), g = keyboard.next(), au = keyboard.next(), dia = keyboard.next();
-            int ini = keyboard.nextInt(), fin = keyboard.nextInt();
-            if(ini > fin){
-                out.println("L'hora final ha de ser posterior a la inicial.");
-                return;
-            }
-            b = new Classe(as, g, DiaSetmana.string_To_DiaSetmana(dia), ini, fin, au);
-        }catch(IllegalArgumentException iae){
-            out.println("Has introduit algun dels atributs incorrectament.");
-            return;
-        }
-        out.println("Resultat: " + corequisit.checkCorrecte(a, b));
-    }
-*/
+
     private static void es_Corequisit_Test() {
         out.println("Introdueix l'identificador de la asignatura per saber si es corequisit:");
         out.println("Identificador<String>");
