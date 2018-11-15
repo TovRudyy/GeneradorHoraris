@@ -2,6 +2,7 @@ package domain;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
@@ -352,6 +353,11 @@ public class Horari {
         System.out.flush();
         System.setOut(old);
         //Es transforma baos en un String
-        return baos.toString(StandardCharsets.UTF_8);
+        try {
+            return baos.toString(StandardCharsets.UTF_8.name());
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return "ERROR";
     }
 }

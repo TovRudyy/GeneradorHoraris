@@ -58,11 +58,11 @@ MAIN=Main
 DRIVER=MainDriver
 
 help : 
-	@echo "make {run|rundriver|jar|runjar|doc|clean|cleanall}"
+	@echo "make {build|run|rundriver|jar|runjar|doc|clean|cleanall}"
 
-default : classes
+default : build
 
-classes: $(CLASSES:.java=.class)
+build : $(CLASSES:.java=.class)
 
 run : $(BIN_DIR)/$(MAIN).class
 	$(JV) -cp $(BIN_DIR):$(EXTRNL_LIB_DIR) $(MAIN)
