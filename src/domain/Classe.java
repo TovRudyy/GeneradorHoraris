@@ -90,13 +90,16 @@ public class Classe {
 
 
     /**
-     * Imprimeix per pantalla tota la informació de la Classe.
+     * Imprimeix per pantalla tota la informacio de la Classe.
      */
     public void showClasse () {
         System.out.println(id_assig + " : " + id_grup + " : "+ id_aula + " : " + dia+ " : " + hora_inici + " : " + hora_fi);
     }
 
     @Override
+    /**
+     * @return Retorna una string amb tota la informacio de la Classe
+     */
     public String toString() {
         return id_assig + " : " + id_grup + " : "+ id_aula + " : " + dia+ " : " + hora_inici + " : " + hora_fi;
     }

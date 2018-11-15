@@ -242,6 +242,7 @@ public class assignacio {
         if(classes_seleccionades.remove(c)) this.numeroClassesRestants += 1;
     }
 
+
     /**
      * @return ArrayList amb tot el conjunt de possibilitats que estan marcades com a definitives.
      */
@@ -249,10 +250,10 @@ public class assignacio {
         return classes_seleccionades;
     }
 
+
     /**
      * @return Un booleà que ens diu si encara tenim suficients possibilitats per assignar tot el número de classes restants.
      */
-
     public boolean isEmpty () { //si no tenim suficients possibilitats per cobrir les necessitats de l'assignatura
         if (numeroClassesRestants > (getAllPossibleClasses().size())) return true;
         return false;

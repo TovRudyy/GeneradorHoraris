@@ -7,14 +7,23 @@ public class RestriccioCorequisit extends Restriccio {
     //conte les assignatures amb les que es correquisit
     private ArrayList<String> assignatures = new ArrayList<String>();
 
+    /**
+     * Crea una instància de restriccio de correquisit.
+     */
     public RestriccioCorequisit(){
     }
 
+    /**
+     * @return True si no te correquisits i false altrament.
+     */
     public boolean isEmpty() {
         return assignatures.isEmpty();
     }
 
 
+    /**
+     * @return Les assignatures amb les que aquesta assignacio es correquisit.
+     */
     public ArrayList<String> getAssignatures () {
         return assignatures;
     }
@@ -43,11 +52,18 @@ public class RestriccioCorequisit extends Restriccio {
         return true;
     }
 
+    /**
+     * @param id_assig Identificador de una assignatura.
+     * @return True si aquesta assignatura es un dels correquisits. False altrament.
+     */
     public boolean esCorrequisit (String id_assig) {
         return assignatures.contains(id_assig);
 
     }
 
+    /**
+     * @return Una string amb tota la informació de la restriccio de correquisit.
+     */
     public String toString(){
         String ret = "";
         for (int i = 0; i < assignatures.size(); i++) {

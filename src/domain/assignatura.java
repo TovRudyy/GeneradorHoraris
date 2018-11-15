@@ -34,6 +34,12 @@ public class assignatura {
 
 
     /** Constructores **/
+    /**
+     * Crea una nova instància de assignatura.
+     * @param id Identificador de la assignatura
+     * @param nom Nom de la assignatura.
+     * @param nivell Nivell de la assignatura.
+     */
     public assignatura (String id, String nom, int nivell) {
         this.id = id;
         this.nom = nom;

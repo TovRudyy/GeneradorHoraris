@@ -22,7 +22,9 @@ public class ControladorAules {
                 afegirAulaSiNoExisteix(key, noves.get(key));
     }
 
-
+    /**
+     * @return Una arrayList amb la informació de tots els aularis.
+     */
     public ArrayList<String> getInfoAulari(){
         ArrayList<String> ret = new ArrayList<String>();
         for (Aula aula : Aulari.values()) {
@@ -84,6 +86,10 @@ public class ControladorAules {
         }
     }
 
+    /**
+     * @param file Ruta per arribar al fitxer.
+     * @return Un map amb la informacio del fitxer que ha llegit
+     */
     private Map<String, Aula> llegeixFitxer(String file) {
         return CtrlDades.llegeixFitxerAula(file);
     }
@@ -141,6 +147,11 @@ public class ControladorAules {
         Aulari.clear();
     }
 
+
+    /**
+     * Carrega el aulari i el pla d'estudis de la escena que hem carregat.
+     * @param dir Ruta d'acces a la carpeta de la escena
+     */
     public void carregaEscena(String dir) {
         Aulari.clear();
         String file = dir + EscenaAules;

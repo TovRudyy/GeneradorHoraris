@@ -25,10 +25,8 @@ public class ControladorPlaEstudis {
     }
 
 
-    //???
     /**
-     *
-     *
+     * @return Una arrayList amb la informació de els plans d'estudis disponibles.
      */
     public ArrayList<String> getInfoPlans(){
         ArrayList<String> ret = new ArrayList<String>();
@@ -155,7 +153,10 @@ public class ControladorPlaEstudis {
         System.err.println("DEBUG: s'han restaurat les dades dels Plans d'Estudis");
     }
 
-
+    /**
+     * Imprimeix per pantalla el llistat de assignatures del pla d'estudis.
+     * @param id Identificador del pla d'estudis.
+     */
     public void llistatAssignatures(String id) {
         PlaEstudis pe = getPlaEstudi(id);
         String[] noms = pe.toStringNomAssignatures();
@@ -166,7 +167,12 @@ public class ControladorPlaEstudis {
         System.out.println(noms[i]);
     }
 
-
+    /**
+     * Retorna els detalls de una assignatura concreta d'un pla d'estudis.
+     * @param id Identificador del pla d'estudis
+     * @param idAssig Identificador de la assignatura.
+     * @return
+     */
     public String getDetallAssignatura(String id, String idAssig) {
         PlaEstudis pe = getPlaEstudi(id);
         if (pe.existsAssignatura(idAssig)) {
@@ -176,6 +182,10 @@ public class ControladorPlaEstudis {
         return null;
     }
 
+    /**
+     * Guarda el horari del pla d'estudis amb el identificador donat.
+     * @param id Identificador del pla d'estudis.
+     */
     public void guardaHorari(String id) {
         PlaEstudis pe = getPlaEstudi(id);
         String h = pe.getHorari();
@@ -193,6 +203,9 @@ public class ControladorPlaEstudis {
         }
     }
 
+    /**
+     * Imprimeix per pantalla els horaris que tenim guardats i permet que l'usuari en trii un i l'imprimeixi.
+     */
     public void visualitzaHorari() {
         System.out.print("INFO: tens guardats els següents horaris:\n");
         CtrlDades.mostraFitxersHoraris();
@@ -203,6 +216,10 @@ public class ControladorPlaEstudis {
         CtrlDades.visualitzaHorari(arg);
     }
 
+    /**
+     * L'usuari introdueix una ruta de l'escena i es carreguen el seu pla d'estudis i el seu aulari.
+     * @param dir Ruta del directori de la escena.
+     */
     public void carregaEscena(String dir) {
         ConjuntPE.clear();
         String file = dir + EscenaPE;
