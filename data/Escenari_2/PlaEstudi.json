@@ -1,0 +1,53 @@
+{
+  "nom":"new_Pla",
+  "assignatures":[
+    {
+      "codi": "IC",
+      "nom": "Introduccio als computadors",
+      "nivell": 1,
+      "classes": {
+        "teoria": 2,
+        "duracio_t": 2,
+        "problemes": 0,
+        "duracio_p": 0,
+        "laboratori": 1,
+        "duracio_l": 2
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 5,
+        "matins": 4,
+        "capacitat": 68,
+        "tipus_subgrup": "L INFORMATICA",
+        "subgrup_per_alumnes": false,
+        "valor": 3
+      }
+    },
+    {
+      "codi": "FM",
+      "nom": "Fonaments matematics",
+      "nivell": 1,
+      "classes": {
+        "teoria": 1,
+        "duracio_t": 3,
+        "problemes": 1,
+        "duracio_p": 2,
+        "laboratori": 0,
+        "duracio_l": 0
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 3,
+        "matins": 4,
+        "capacitat": 66,
+        "tipus_subgrup": "P",
+        "subgrup_per_alumnes": false,
+        "valor": 3
+      }
+    }
+  ],
+  "correquisits":[
+    {
+    }
+  ]
+}

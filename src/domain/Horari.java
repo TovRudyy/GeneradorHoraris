@@ -9,7 +9,7 @@ import java.util.*;
 
 public class Horari {
 
-    private HashMap<String, assignacio> conjuntAssignacions= new HashMap<>();
+    private LinkedHashMap<String, assignacio> conjuntAssignacions= new LinkedHashMap<>();   //fem servir linked per mantenir el ordre d'entrada
 
     /**
      * Creadora de la classe Horari.
@@ -19,23 +19,34 @@ public class Horari {
         afegeixAssignacions (conjuntAssignacions);
     }
 
+
     /**
      * Afegeix totes les assignacions passades pel paràmetre al map de la classe horari.
+     * Primer afegirem les assignacions de matins i despres les de tardes per motius d'optimització de l'algorisme.
      * @param conjuntAssignacions ArrayList amb tot el conjunt d'assignacions que hem d'assignar al nostre horari.
      */
     private void afegeixAssignacions (ArrayList<assignacio> conjuntAssignacions) {
+        for (assignacio a : conjuntAssignacions)    //primer afegim les de matins i despres les de tardes
+            if (a.esMatins()) this.conjuntAssignacions.put((a.getIdAssig()+a.getIdGrup()), a);
+
         for (assignacio a : conjuntAssignacions)
-            this.conjuntAssignacions.put((a.getIdAssig()+a.getIdGrup()), a);
+            if (! a.esMatins()) this.conjuntAssignacions.put((a.getIdAssig()+a.getIdGrup()), a);
+
     }
+
+
+    /** METODES PEL CALCUL DE L'HORARI **/
 
     /**
      * Genera el horari i imprimeix per pantalla si ha trobat un horari possible o no.
      */
-    public void findHorari () {
+    public boolean findHorari () {
         boolean r = selectClasse(0);
         if (r) System.err.println("HEM TROBAT UN HORARI: ");
 
         else System.err.println("NO HEM POGUT FORMAR UN HORARI");
+
+        return r;
     }
 
 
@@ -51,34 +62,30 @@ public class Horari {
         if (index < l.size()) {
             assignacio a = l.get(index);
             ArrayList<Classe> possibleClasses = a.getAllPossibleClasses();
-
-            for (Classe c: possibleClasses )
-            {
+           // a.printPossiblesClasses();
+            for (Classe c : possibleClasses) {
+                c.showClasse();
                 a.afegirSeleccionada(c);    //tambe fa el update de les que falten
                 Stack<Classe> eliminades = new Stack<>();
-                eliminades.addAll(forward_checking (c)); //forward checking
+                eliminades.addAll(forward_checking(c)); //forward checking
 
-                boolean valid = checkNotEmpty ();
 
-                boolean r;
+                boolean valid = checkNotEmpty();
+
+                boolean r;   //inicialment el posem a true perque si altrament sempre entraria al segon bucle
                 if (valid) {
                     if (a.getNumeroClassesRestants() == 0)  //hem de saltar al seguent
                     {
                         eliminades.addAll(a.nomesSeleccionades());
                         r = selectClasse(index + 1); //passem a comprovar la seguent assignacio
-                    }
-
-                    else   //si encara hem d'assignar classes a aquesta assignacio
+                    } else   //si encara hem d'assignar classes a aquesta assignacio
                         r = selectClasse(index);
 
                     if (r) return true;
                 }
 
-                else {  //la combinacio es invalida. Per tant revertim els canvis i agafem la seguent Classe
-                    System.err.println("no es valida");
-                    revertChanges (eliminades); //afegim les possibilitats que haviem podat
-                    a.eliminarSeleccionada(c);  //revertim el canvi de les que haviem seleccionat
-                }
+                revertChanges(eliminades, c); //afegim les possibilitats que haviem podat, menys la que acabem de comprovar
+                a.eliminarSeleccionada(c);  //revertim el canvi de la que haviem seleccionat
 
             }
             return false;   //vol dir que hem mirat totes les opcions i no n'hi ha cap que funcioni
@@ -88,6 +95,8 @@ public class Horari {
         else return true;
 
     }
+
+
 
     /**
      * Recorre totes les assignacions i fa la poda de les possibilitats que ja no són viables amb la nova elecció de l'horari.
@@ -102,7 +111,6 @@ public class Horari {
             assignacio a = aux.getValue();
             ArrayList<Classe> eliminades = a.forwardChecking(c);
             totes_eliminades.addAll(eliminades);
-
         }
 
         return totes_eliminades;
@@ -118,29 +126,30 @@ public class Horari {
         for (Map.Entry<String, assignacio> aux : conjuntAssignacions.entrySet()) {
             assignacio a = aux.getValue();
             if (a.isEmpty()) {
-                System.err.println("Aquesta esta buida");
-                a.showAll();
+              //  a.showAll();
                 return false;
             }
         }
         return true;
     }
 
+
     /**
      * Torna a afegir totes aquestes possibilitats a les seves assignacions originals, revertint així els canvis.
      * @param eliminades Una pila amb totes les classes que prèviament hem "podat" perquè ja no eren viables.
      */
-    private void revertChanges (Stack<Classe> eliminades) {
-        if (! eliminades.empty()) {
-            Classe c = eliminades.pop();
-            while (!eliminades.isEmpty()) {
+    private void revertChanges (Stack<Classe> eliminades, Classe actual) {
+            while (!eliminades.empty()) {
+                Classe c = eliminades.pop();
                 assignacio a = conjuntAssignacions.get(c.getId_assig() + c.getId_grup());
                 a.afegeixPossibilitat(c);
-                c = eliminades.pop();
-            }
-        }
+           }
     }
 
+
+
+
+    /** METODES PER MOSTRAR EL HORARI **/
 
     /**
      * Processa les classes que hem triat per a forma el horari i l'agrupa en aquells que es produeixen el mateix dia,
@@ -202,6 +211,7 @@ public class Horari {
             System.out.format("+---------------+--------------------+--------------------+--------------------+--------------------+--------------------+\n");
         }
     }
+
 
     /**
      * Processa les classes que hem triat per a forma el horari i l'agrupa en aquells que es produeixen el mateix dia,
@@ -339,6 +349,7 @@ public class Horari {
             System.out.println();
         }
     }
+
 
     public String toString() {
         // Es crea un nou stream

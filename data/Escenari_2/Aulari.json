@@ -1,0 +1,18 @@
+[
+  {
+    "nom":"A6001",
+    "capacitat":120,
+    "tipus":"Teoria"
+  },
+  {
+    "nom":"A6101",
+    "capacitat":46,
+    "tipus":"Problemes"
+  },
+  {
+    "nom": "A6S001",
+    "capacitat": 50,
+    "tipus": "LI"
+  }
+
+]

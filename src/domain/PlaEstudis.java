@@ -142,7 +142,8 @@ public class PlaEstudis {
 
         //aqui tenim totes les assignacions totals
         horari = new Horari (assignacions);
-        horari.findHorari();
+        boolean b = horari.findHorari();
+        if (! b) horari = null; //vol dir que com que l'horari no es correcte simplement el borrem
 
         //Timer end
         Instant end = Instant.now();

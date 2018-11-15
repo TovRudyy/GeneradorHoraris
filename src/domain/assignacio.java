@@ -20,7 +20,7 @@ public class assignacio {
     private int numeroClasses, duracioClasses, numeroClassesRestants; //numero i duracio de les classes
     private int inici_possible, final_possible;
     private Map<String, Map<DiaSetmana, ArrayList<Classe>>> possibles_classes;
-    private ArrayList<Classe> classes_seleccionades = new ArrayList<Classe>();
+    private ArrayList<Classe> classes_seleccionades = new ArrayList<>();
 
     //RESTRICCIONS
     private RestriccioOcupacio ocupacio = new RestriccioOcupacio();
@@ -84,6 +84,13 @@ public class assignacio {
     public String getIdGrup () {
         return idGrup;
     }
+
+
+    public boolean esMatins () {
+        if (horariGrup.equals("M")) return true;
+        return false;
+    }
+
 
     /**
      * Afegeix un nou correquisit a la assignació.
@@ -184,6 +191,8 @@ public class assignacio {
     public void afegeixPossibilitat (Classe c) {
         String id_aula = c.getIdAula();
         DiaSetmana d = c.getDia();
+        possibles_classes.putIfAbsent(id_aula, new HashMap<>());
+        possibles_classes.get(id_aula).putIfAbsent(d, new ArrayList<>());
         possibles_classes.get(id_aula).get(d).add(c);   //afegim la possibilitat
     }
 
