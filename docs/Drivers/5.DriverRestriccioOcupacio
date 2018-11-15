@@ -1,0 +1,72 @@
+El DriverRestriccioOcupacio s'encarrega de provar la Classe abstracta Restriccio i la implementacio RestriccioOcupacio.
+RestriccioOcupacio utilitza la classe Classe(ja provada) i la enumeració DiaSetmana.
+Com que no te atributs, es manté una sola instancia de la classe i no es prova el constructor (nomes te el per defecte).
+A més, com que per provar una de les funcions es requereix una estructura de dades complexa i costosa d'introduir directament,
+les Classes sobre les que s'aplica la restriccio es llegiran del fitxer json "data/Drivers_Input/RestriccioOcupacio_InputMap.json".
+Aquesta ruta esta predefinida i no es pot canviar, aixi que si vols provar amb altres jocs de prova, modifica l'arxiu.
+Aquest arxiu es la representacio en JSON de l'estructura utilitzada: Map<String, Map<DiaSetmana, ArrayList<Classe>>>.
+Aquesta estructura classifica totes les classes segons la seva aula (Clau String del Map extern), i pel dia de la setmana
+(Clau DiaSetmana del Map intern).
+
+En aquest driver cada Prova consta de diferents Jocs de Prova independents.
+Jocs de prova:
+
+    Prova1: Comprovar si dos intervals es solapen (Codi = 1):
+        Aquesta funcio es de la classe Restriccio
+
+        Entrada1: 8 10 10 12
+        Sortida1: False
+
+        Entrada2: 14 16 8 10
+        Sortida2: False
+
+        Entrada3: 10 13 12 14
+        Sortida3: True
+
+        Entrada 4: 10 8 12 14
+        Sortida4: Missatge indicant que les hores finals han de ser posteriors a les inicials
+
+    Prova2: Comprovar si dues classes son compatibles per ocupacio (Codi = 2):
+
+        Entrada1:   Ass1 G1 A1 Dilluns 8 10
+                    Ass2 G2 A1 Dimarts 8 10
+        Sortida1:   Resultat: True
+
+        Entrada2:   Ass1 G1 A1 Dilluns 8 10
+                    Ass2 G2 A1 Dilluns 9 11
+        Sortida2:   Resultat: False
+
+        Entrada3:   Ass1 G1 A1 Dilluns 8 10
+                    Ass2 G2 A2 Dilluns 8 10
+        Sortida3:   Resultat: True
+
+    Prova3: Eliminar les classes que son incompatibles amb una classe escollida (Codi = 3):
+        Aquesta funcio és la que llegeix el fitxer de dades,
+        i elimina totes aquelles classes que son incompatibles amb la que introdueixis
+
+        Entrada1:   Ass1 G1 Aula1 Dilluns 8 12
+        Sortida1:   Classes eliminades:
+                        A : 10 : Aula1 : DILLUNS : 8 : 10
+                        A : 10 : Aula1 : DILLUNS : 9 : 11
+                        A : 10 : Aula1 : DILLUNS : 10 : 12
+                        A : 10 : Aula1 : DILLUNS : 11 : 13
+                        A : 11 : Aula1 : DILLUNS : 8 : 10
+                        A : 11 : Aula1 : DILLUNS : 9 : 11
+                        A : 11 : Aula1 : DILLUNS : 10 : 12
+                        A : 11 : Aula1 : DILLUNS : 11 : 13
+                        A : 12 : Aula1 : DILLUNS : 8 : 10
+                        A : 12 : Aula1 : DILLUNS : 9 : 11
+                        A : 12 : Aula1 : DILLUNS : 10 : 12
+                        A : 12 : Aula1 : DILLUNS : 11 : 13
+
+        Entrada2:   Ass1 G1 Aula3 Dimarts 10 12
+        Sortida2:   Classes eliminades:
+
+        Entrada3:   Ass1 G1 Aula2 Dimecres 8 10
+        Sortida4:   Classes eliminades:
+                        A : 10 : Aula2 : DIMECRES : 8 : 10
+                        A : 10 : Aula2 : DIMECRES : 9 : 11
+                        A : 11 : Aula2 : DIMECRES : 8 : 10
+                        A : 11 : Aula2 : DIMECRES : 9 : 11
+                        A : 12 : Aula2 : DIMECRES : 8 : 10
+                        A : 12 : Aula2 : DIMECRES : 9 : 11
