@@ -176,6 +176,7 @@ class Lector_Drivers_JSON {
         Map<String, assignatura> ass = new TreeMap<>();
         for(Object a: assignatures){
             assignatura as = creaAssignatura((JSONObject) a);
+            as.noSolapis_Teoria_i_Problemes();
             ass.put(as.getId(), as);
         }
         return ass;
