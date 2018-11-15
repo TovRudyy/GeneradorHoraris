@@ -88,7 +88,7 @@ class driverRestriccioSubgrup  {
         out.println("Com que el conjunt de classes que rep aquesta funcio es bastant complex, s'ha d'introduir mitjancant un fitxer JSON.");
         out.println("Aquest fitxer es troba dins la carpeta \"Data\", subcarpeta \"Drivers_Input\", i el seu nom ha de ser \"RestriccioSubgrup_InputMap.json\".");
         out.println("Ja et proporcionem un fitxer creat amb dades de mostra fetes, que pots utilitzar perfectament.");
-        out.println("Aquestes dades consisteixen en totes les Classes possibles de dues hores, de dues Assignatures diferents(A i TC), cadascuna amb 3 grups(10, 11 i 12), repetit per cada dia i en dues Aules diferents(Aula1 i Aula2).");
+        out.println("Aquestes dades consisteixen en totes les Classes possibles de dues hores d'una assignatura amb 6 grups(10, 11, 12, 20, 21 i 22), repetit per cada dia i en dues Aules diferents(Aula1 i Aula2).");
         out.println("Quan tinguis el fitxer llest per ser llegit, escriu \"C\" i apreta \"Enter\": ");
         if(!keyboard.next().equals("C")) return;
         Map<String, Map<DiaSetmana, ArrayList<Classe>>> classes;
