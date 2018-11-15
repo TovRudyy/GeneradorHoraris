@@ -12,18 +12,22 @@ import static testsClasses.Drivers.MainDriver.keyboard;
 class driverAssignatura {
 
 
-    private static Map<String, Aula> aules = Map.ofEntries(
-            Map.entry("AulaT", new Aula("AulaT", 9999999, Tipus_Aula.TEORIA)),
-            Map.entry("AulaP", new Aula("AulaP", 9999999, Tipus_Aula.PROBLEMES)),
-            Map.entry("AulaLI", new Aula("AulaLI", 9999999, Tipus_Aula.LAB_INFORMATICA)),
-            Map.entry("AulaLF", new Aula("AulaLF", 9999999, Tipus_Aula.LAB_FISICA)),
-            Map.entry("AulaLE", new Aula("AulaLE", 9999999, Tipus_Aula.LAB_ELECTRONICA))
-    );
+    private static Map<String, Aula> aules;
+
     private static assignatura ass = new assignatura("AI","Assignatura_Inicial", 0);
 
     static void main() {
+        initAules();
         printMenu();
         executar();
+    }
+
+    private static void initAules() {
+        aules.put("AulaT", new Aula("AulaT", 9999999, Tipus_Aula.TEORIA));
+        aules.put("AulaP", new Aula("AulaP", 9999999, Tipus_Aula.PROBLEMES));
+        aules.put("AulaLI", new Aula("AulaLI", 9999999, Tipus_Aula.LAB_INFORMATICA));
+        aules.put("AulaLF", new Aula("AulaLF", 9999999, Tipus_Aula.LAB_FISICA));
+        aules.put("AulaLE", new Aula("AulaLE", 9999999, Tipus_Aula.LAB_ELECTRONICA));
     }
 
     private static void printMenu() {
