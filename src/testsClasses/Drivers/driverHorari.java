@@ -3,9 +3,8 @@ package testsClasses.Drivers;
 import domain.Horari;
 import domain.assignacio;
 
-import static testsClasses.Drivers.MainDriver.keyboard;
 import static java.lang.System.out;
-import static testsClasses.Drivers.MainDriver.output;
+import static testsClasses.Drivers.MainDriver.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -92,7 +91,7 @@ class driverHorari {
 
     private static void executar_Joc_de_Proves() {
         try{
-            keyboard = new Scanner(new FileReader("data/Jocs_de_Prova_Drivers/11.DriverHorari"));
+            keyboard = new Scanner(new FileReader("data/Jocs_de_Prova_Drivers/10.DriverHorari"));
             output = new PrintStream(new File("data/Jocs_de_Prova_Drivers/Sortida_Jocs"));
         }catch(FileNotFoundException fnfe){
             out.println(fnfe.getMessage());
@@ -100,23 +99,31 @@ class driverHorari {
     }
 
     private static void to_String_Test() {
-        out.println(horari.toString());
+        output.println(horari.toString());
     }
 
     private static void write_Horari_Aules_Test() {
+        captura();
         horari.printHorariAules();
+        allibera();
     }
 
     private static void write_Horari_Assignatures_Test() {
+        captura();
         horari.printHorariAssignatures();
+        allibera();
     }
 
     private static void write_Horari_Test() {
+        captura();
         horari.printHorari();
+        allibera();
     }
 
     private static void make_Horari_Test() {
+        captura();
         horari.findHorari();
+        allibera();
     }
 
     private static void constructor_Test() {
@@ -125,8 +132,8 @@ class driverHorari {
             for(assignacio a : ass) out.println(a.toString());
             horari = new Horari(ass);
         }catch(Exception e){
-            out.println("Hi ha algun problema amb l'arxiu.");
-            out.println("Missatge: " + e.getMessage());
+            output.println("Hi ha algun problema amb l'arxiu.");
+            output.println("Missatge: " + e.getMessage());
         }
     }
 }

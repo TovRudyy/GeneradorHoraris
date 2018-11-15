@@ -105,7 +105,7 @@ class driverRestriccioCorrequisit {
     }
 
     private static void to_String_Test() {
-        out.println("Resultat: " + corequisit.toString());
+        output.println("Resultat: " + corequisit.toString());
 
     }
 
@@ -123,14 +123,14 @@ class driverRestriccioCorrequisit {
         try {
             classes = Lector_Drivers_JSON.llegirFitxer_RestriccioCorequisit_InputMap();
         }catch(FileNotFoundException fnfe){
-            out.println("El fitxer no s'ha trobat.");
+            output.println("El fitxer no s'ha trobat.");
             return;
         }catch(ParseException pe){
-            out.println("El fitxer no te un format correcte.");
+            output.println("El fitxer no te un format correcte.");
             return;
         }catch(IOException ioe){
-            out.println("Hi ha hagut algun problema amb el fitxer:");
-            out.println(ioe.getMessage());
+            output.println("Hi ha hagut algun problema amb el fitxer:");
+            output.println(ioe.getMessage());
             return;
         }
         out.println("Fitxer llegit. Ara introdueix la Classe que vols utilitzar per eliminar les incompatibles: ");
@@ -141,45 +141,45 @@ class driverRestriccioCorrequisit {
             String as = keyboard.next(), g = keyboard.next(), au = keyboard.next(), dia = keyboard.next();
             int ini = keyboard.nextInt(), fin = keyboard.nextInt();
             if(ini > fin){
-                out.println("L'hora final ha de ser posterior a la inicial.");
+                output.println("L'hora final ha de ser posterior a la inicial.");
                 return;
             }
             cl = new Classe(as, g, DiaSetmana.string_To_DiaSetmana(dia), ini, fin, au);
         }catch(IllegalArgumentException iae){
-            out.println("Has introduit algun dels atributs incorrectament.");
+            output.println("Has introduit algun dels atributs incorrectament.");
             return;
         }
-        out.println("Classes eliminades: ");
+        output.println("Classes eliminades: ");
         for(Classe c: corequisit.deletePossibilities(classes, cl)){
-            out.println("\t" + c.toString());
+            output.println("\t" + c.toString());
         }
     }
 
     private static void es_Corequisit_Test() {
         out.println("Introdueix l'identificador de la asignatura per saber si es corequisit:");
         out.println("Identificador<String>");
-        out.println("Resultat: " + corequisit.esCorrequisit(keyboard.next()));
+        output.println("Resultat: " + corequisit.esCorrequisit(keyboard.next()));
     }
 
     private static void add_Assignatura_Test() {
         out.println("Introdueix l'identificador de la assignatura a afegir:");
         out.println("Identificador<String>");
-        if(corequisit.addAssignatura(keyboard.next())) out.println("S'ha afegit la assignatura");
-        else out.println("No s'ha pogut afegir la assignatura");
+        if(corequisit.addAssignatura(keyboard.next())) output.println("S'ha afegit la assignatura");
+        else output.println("No s'ha pogut afegir la assignatura");
     }
 
     private static void get_Assignatures_Test() {
-        out.println("Resultat: ");
-        for(String s:corequisit.getAssignatures()) out.println("\t" + s);
+        output.println("Resultat: ");
+        for(String s:corequisit.getAssignatures()) output.println("\t" + s);
     }
 
     private static void is_Empty_Test() {
-        out.println("Resultat: " + corequisit.isEmpty());
+        output.println("Resultat: " + corequisit.isEmpty());
     }
 
     private static void constructor_Test() {
         out.println("La classe RestriccioCorequisit nomes te una constructora per defecte, per tant no necessita parametres.");
         corequisit = new RestriccioCorequisit();
-        out.println("Ja s'ha reiniciat el corequisit.");
+        output.println("Ja s'ha reiniciat el corequisit.");
     }
 }

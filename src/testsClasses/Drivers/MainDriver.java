@@ -9,7 +9,8 @@ import static java.lang.System.out;
 public class MainDriver {
 
     static Scanner keyboard = new Scanner(System.in);
-    static PrintStream output;
+    static PrintStream output = System.out;
+    private static PrintStream old;
 
     public static void main(String[] args) {
         printMenu();
@@ -112,5 +113,15 @@ public class MainDriver {
         out.println("\t10) Horari");
         out.println("\t11) Pla d'Estudis");
         out.println("\t12) Sortir");
+    }
+
+    static void captura(){
+        old = System.out;
+        System.setOut(output);
+    }
+
+    static void allibera(){
+        System.out.flush();
+        System.setOut(old);
     }
 }

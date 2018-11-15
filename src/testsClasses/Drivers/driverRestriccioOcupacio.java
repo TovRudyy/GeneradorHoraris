@@ -99,14 +99,14 @@ class driverRestriccioOcupacio  {
         try {
             classes = Lector_Drivers_JSON.llegirFitxer_RestriccioOcupacio_InputMap();
         }catch(FileNotFoundException fnfe){
-            out.println("El fitxer no s'ha trobat.");
+            output.println("El fitxer no s'ha trobat.");
             return;
         }catch(ParseException pe){
-            out.println("El fitxer no te un format correcte.");
+            output.println("El fitxer no te un format correcte.");
             return;
         }catch(IOException ioe){
-            out.println("Hi ha hagut algun problema amb el fitxer:");
-            out.println(ioe.getMessage());
+            output.println("Hi ha hagut algun problema amb el fitxer:");
+            output.println(ioe.getMessage());
             return;
         }
         out.println("Fitxer llegit. Ara introdueix la Classe que vols utilitzar per eliminar les incompatibles: ");
@@ -116,17 +116,17 @@ class driverRestriccioOcupacio  {
             String as = keyboard.next(), g = keyboard.next(), au = keyboard.next(), dia = keyboard.next();
             int ini = keyboard.nextInt(), fin = keyboard.nextInt();
             if(ini > fin){
-                out.println("L'hora final ha de ser posterior a la inicial.");
+                output.println("L'hora final ha de ser posterior a la inicial.");
                 return;
             }
             cl = new Classe(as, g, DiaSetmana.string_To_DiaSetmana(dia), ini, fin, au);
         }catch(IllegalArgumentException iae){
-            out.println("Has introduit algun dels atributs incorrectament.");
+            output.println("Has introduit algun dels atributs incorrectament.");
             return;
         }
-        out.println("Classes eliminades: ");
+        output.println("Classes eliminades: ");
         for(Classe c: rest.deletePossibilities(classes, cl)){
-            out.println("\t" + c.toString());
+            output.println("\t" + c.toString());
         }
     }
 
@@ -136,10 +136,10 @@ class driverRestriccioOcupacio  {
         out.println("\tIniciA<int> FinalA<int> IniciB<int> FinalB<int>");
         int ai = keyboard.nextInt(), af = keyboard.nextInt(), bi = keyboard.nextInt(), bf = keyboard.nextInt();
         if(af < ai || bf < bi){
-            out.println("Les hores finals han de ser posteriors a les inicials.");
+            output.println("Les hores finals han de ser posteriors a les inicials.");
             return;
         }
-        out.println("Resultat: " + rest.solapenHores(ai, af, bi, bf));
+        output.println("Resultat: " + rest.solapenHores(ai, af, bi, bf));
     }
 
 }

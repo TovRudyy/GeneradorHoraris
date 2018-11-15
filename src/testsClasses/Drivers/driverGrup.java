@@ -98,26 +98,26 @@ class driverGrup {
         out.println("\t6) Tots");
         switch (keyboard.nextInt()) {
             case 1:
-                out.println("Identificador : " + grup.getId());
+                output.println("Identificador : " + grup.getId());
                 break;
             case 2:
-                out.println("Capacitat : " + grup.getCapacitat());
+                output.println("Capacitat : " + grup.getCapacitat());
                 break;
             case 3:
-                out.println("Tipus_Aula : " + grup.getTipus());
+                output.println("Tipus_Aula : " + grup.getTipus());
                 break;
             case 4:
-                out.println("Horari : " + grup.getHorariAssig());
+                output.println("Horari : " + grup.getHorariAssig());
                 break;
             case 5:
-                out.println("Subgrup : " + grup.getSubgrup().toString());
+                output.println("Subgrup : " + grup.getSubgrup().toString());
                 break;
             case 6:
-                out.println("Identificador : " + grup.getId());
-                out.println("Capacitat : " + grup.getCapacitat());
-                out.println("Tipus_Aula : " + grup.getTipus());
-                out.println("Horari : " + grup.getHorariAssig());
-                out.println("Subgrup : " + grup.getSubgrup().toString());
+                output.println("Identificador : " + grup.getId());
+                output.println("Capacitat : " + grup.getCapacitat());
+                output.println("Tipus_Aula : " + grup.getTipus());
+                output.println("Horari : " + grup.getHorariAssig());
+                output.println("Subgrup : " + grup.getSubgrup().toString());
                 break;
             default:
                 out.println("Codi d'opcio no valid.");
@@ -136,10 +136,10 @@ class driverGrup {
             grup = new grup(id, cap, hor, Tipus_Aula.string_to_Tipus_Aula(keyboard.next()));
             grup.afegirRestriccio(new StubRestriccioSubgrup());
         }catch(Aula_Exception ae){
-            out.println(ae.getMessage());
+            output.println(ae.getMessage());
             keyboard.nextLine();
         }catch (InputMismatchException ime){
-            out.println("Has introduit algun atribut incorrectament");
+            output.println("Has introduit algun atribut incorrectament");
             keyboard.nextLine();
         }
     }

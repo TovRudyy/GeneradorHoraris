@@ -129,7 +129,7 @@ class driverAssignacio {
 
     private static void executar_Joc_de_Proves() {
         try{
-            keyboard = new Scanner(new FileReader("data/Jocs_de_Prova_Drivers/9.DriverAssignacio"));
+            keyboard = new Scanner(new FileReader("data/Jocs_de_Prova_Drivers/8.DriverAssignacio"));
             output = new PrintStream(new File("data/Jocs_de_Prova_Drivers/Sortida_Jocs"));
         }catch(FileNotFoundException fnfe){
             out.println(fnfe.getMessage());
@@ -142,9 +142,9 @@ class driverAssignacio {
         try{
             ass = new assignacio(keyboard.next(), keyboard.nextInt(), Tipus_Aula.string_to_Tipus_Aula(keyboard.next()), keyboard.next(), keyboard.nextInt(), keyboard.nextInt(), keyboard.nextInt(), keyboard.next(), aules);
         }catch(IllegalArgumentException iae){
-            out.println("Has introduit algun dels atributs incorrectament.");
+            output.println("Has introduit algun dels atributs incorrectament.");
         }catch(Aula_Exception ae){
-            out.println(ae.getMessage());
+            output.println(ae.getMessage());
         }
     }
 
@@ -157,24 +157,24 @@ class driverAssignacio {
         out.println("\t5) Tots");
         switch (keyboard.nextInt()){
             case 1:
-                out.println("Identificador assignatura: " + ass.getIdAssig());
+                output.println("Identificador assignatura: " + ass.getIdAssig());
                 break;
             case 2:
-                out.println("Identificador grup: " + ass.getIdGrup());
+                output.println("Identificador grup: " + ass.getIdGrup());
                 break;
             case 3:
-                out.println("Classes posibles: ");
-                for(Classe c: ass.getAllPossibleClasses()) out.println("\t" + c.toString());
+                output.println("Classes posibles: ");
+                for(Classe c: ass.getAllPossibleClasses()) output.println("\t" + c.toString());
                 break;
             case 4:
-                out.println("Classes restants: " + ass.getNumeroClassesRestants());
+                output.println("Classes restants: " + ass.getNumeroClassesRestants());
                 break;
             case 5:
-                out.println("Identificador assignatura: " + ass.getIdAssig());
-                out.println("Identificador grup: " + ass.getIdGrup());
-                out.println("Classes posibles: ");
-                for(Classe c: ass.getAllPossibleClasses()) out.println("\t" + c.toString());
-                out.println("Classes restants: " + ass.getNumeroClassesRestants());
+                output.println("Identificador assignatura: " + ass.getIdAssig());
+                output.println("Identificador grup: " + ass.getIdGrup());
+                output.println("Classes posibles: ");
+                for(Classe c: ass.getAllPossibleClasses()) output.println("\t" + c.toString());
+                output.println("Classes restants: " + ass.getNumeroClassesRestants());
                 break;
             default:
                 keyboard.nextLine();
@@ -193,7 +193,7 @@ class driverAssignacio {
                 String s;
                 while(!(s = keyboard.next()).equals(".")) corequisit.addAssignatura(s);
                 ass.afegirCorrequisit(corequisit);
-                out.println("S'ha afegit el seguent corequisit: " + corequisit.toString());
+                output.println("S'ha afegit el seguent corequisit: " + corequisit.toString());
                 break;
             case 2:
                 out.println("Introdueix les dades del grup del qual el grup de la assignacio es subgrup: ");
@@ -201,9 +201,9 @@ class driverAssignacio {
                 try {
                     ass.afegirSubgrup(new RestriccioSubgrup(new grup(keyboard.next(), keyboard.nextInt(), keyboard.next(), Tipus_Aula.string_to_Tipus_Aula(keyboard.next()))));
                 }catch(Aula_Exception ae){
-                    out.println(ae.getMessage());
+                    output.println(ae.getMessage());
                 }catch (InputMismatchException ime){
-                    out.println("Has introduit algun atribut incorrectament");
+                    output.println("Has introduit algun atribut incorrectament");
                 }
                 break;
             default:
@@ -219,14 +219,14 @@ class driverAssignacio {
             String au = keyboard.next(), dia = keyboard.next();
             int ini = keyboard.nextInt(), fin = keyboard.nextInt();
             if(ini > fin){
-                out.println("L'hora final ha de ser posterior a la inicial.");
+                output.println("L'hora final ha de ser posterior a la inicial.");
                 return;
             }
             ass.afegeixPossibilitat(new Classe(ass.getIdAssig(), ass.getIdGrup(), DiaSetmana.string_To_DiaSetmana(dia), ini, fin, au));
         }catch(IllegalArgumentException iae){
-            out.println("Has introduit algun dels atributs incorrectament.");
+            output.println("Has introduit algun dels atributs incorrectament.");
         }catch(NullPointerException npe){
-            out.println("Aquesta Aula no es valida.");
+            output.println("Aquesta Aula no es valida.");
         }
     }
 
@@ -238,11 +238,11 @@ class driverAssignacio {
             String as = keyboard.next(), g = keyboard.next(), au = keyboard.next(), dia = keyboard.next();
             int ini = keyboard.nextInt(), fin = keyboard.nextInt();
             if(ini > fin){
-                out.println("L'hora final ha de ser posterior a la inicial.");
+                output.println("L'hora final ha de ser posterior a la inicial.");
                 return;
             }
-            out.println("Aquestes son les possibles classes que han sigut eliminades:");
-            for(Classe c :ass.forwardChecking(new Classe(as, g, DiaSetmana.string_To_DiaSetmana(dia), ini, fin, au))) out.println("\t" + c.toString());
+            output.println("Aquestes son les possibles classes que han sigut eliminades:");
+            for(Classe c :ass.forwardChecking(new Classe(as, g, DiaSetmana.string_To_DiaSetmana(dia), ini, fin, au))) output.println("\t" + c.toString());
         }catch(IllegalArgumentException iae){
             out.println("Has introduit algun dels atributs incorrectament.");
         }
@@ -250,8 +250,8 @@ class driverAssignacio {
     }
 
     private static void nomes_Seleccionades_Test() {
-        out.println("Aquestes son totes les possibilitats que hi havien i han sigut eliminades:");
-        for(Classe c: ass.nomesSeleccionades()) out.println("\t" + c.toString());
+        output.println("Aquestes son totes les possibilitats que hi havien i han sigut eliminades:");
+        for(Classe c: ass.nomesSeleccionades()) output.println("\t" + c.toString());
     }
 
     private static void afegir_Seleccionada_Test() {
@@ -262,12 +262,12 @@ class driverAssignacio {
             String au = keyboard.next(), dia = keyboard.next();
             int ini = keyboard.nextInt(), fin = keyboard.nextInt();
             if(ini > fin){
-                out.println("L'hora final ha de ser posterior a la inicial.");
+                output.println("L'hora final ha de ser posterior a la inicial.");
                 return;
             }
             ass.afegirSeleccionada(new Classe(ass.getIdAssig(), ass.getIdGrup(), DiaSetmana.string_To_DiaSetmana(dia), ini, fin, au));
         }catch(IllegalArgumentException iae){
-            out.println("Has introduit algun dels atributs incorrectament.");
+            output.println("Has introduit algun dels atributs incorrectament.");
         }
     }
 
@@ -279,26 +279,26 @@ class driverAssignacio {
             String as = keyboard.next(), g = keyboard.next(), au = keyboard.next(), dia = keyboard.next();
             int ini = keyboard.nextInt(), fin = keyboard.nextInt();
             if(ini > fin){
-                out.println("L'hora final ha de ser posterior a la inicial.");
+                output.println("L'hora final ha de ser posterior a la inicial.");
                 return;
             }
             ass.eliminarSeleccionada(new Classe(as, g, DiaSetmana.string_To_DiaSetmana(dia), ini, fin, au));
         }catch(IllegalArgumentException iae){
-            out.println("Has introduit algun dels atributs incorrectament.");
+            output.println("Has introduit algun dels atributs incorrectament.");
         }
     }
 
     private static void get_Seleccionades_Test() {
-        out.println("Aquestes son les Classes seleccionades: ");
-        for(Classe c:ass.getSeleccionades()) out.println("\t" + c.toString());
+        output.println("Aquestes son les Classes seleccionades: ");
+        for(Classe c:ass.getSeleccionades()) output.println("\t" + c.toString());
     }
 
     private static void is_Empty_Test() {
         out.println("Aquesta funcio retorna true si no queden prous classes possibles com per satisfer les necessitats:");
-        out.println("Resultat: " + ass.isEmpty());
+        output.println("Resultat: " + ass.isEmpty());
     }
 
     private static void to_String_Test() {
-        out.println("Resultat: " + ass.toString());
+        output.println("Resultat: " + ass.toString());
     }
 }

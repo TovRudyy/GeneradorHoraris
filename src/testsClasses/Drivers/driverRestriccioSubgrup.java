@@ -95,49 +95,50 @@ class driverRestriccioSubgrup  {
         try {
             classes = Lector_Drivers_JSON.llegirFitxer_RestriccioSubgrup_InputMap();
         }catch(FileNotFoundException fnfe){
-            out.println("El fitxer no s'ha trobat.");
+            output.println("El fitxer no s'ha trobat.");
             return;
         }catch(ParseException pe){
-            out.println("El fitxer no te un format correcte.");
+            output.println("El fitxer no te un format correcte.");
             return;
         }catch(IOException ioe){
-            out.println("Hi ha hagut algun problema amb el fitxer:");
-            out.println(ioe.getMessage());
+            output.println("Hi ha hagut algun problema amb el fitxer:");
+            output.println(ioe.getMessage());
             return;
         }
         out.println("Fitxer llegit. Ara introdueix la Classe que vols utilitzar per eliminar les incompatibles: ");
+        out.println("Recorda que nomes s'eliminen classes de subgrup al seleccionar una classe del grup pare.");
+        out.println("Aixo es aixi perque l'algorisme sempre tracta els pares abans que els subgrups.");
         out.println("\tId_Assignatura<String> Id_Grup<String> Id_Aula<String> Dia<DiaSetmana> HoraInici<int> HoraFinal<int>");
         Classe cl;
         try{
             String as = keyboard.next(), g = keyboard.next(), au = keyboard.next(), dia = keyboard.next();
             int ini = keyboard.nextInt(), fin = keyboard.nextInt();
             if(ini > fin){
-                out.println("L'hora final ha de ser posterior a la inicial.");
+                output.println("L'hora final ha de ser posterior a la inicial.");
                 return;
             }
             cl = new Classe(as, g, DiaSetmana.string_To_DiaSetmana(dia), ini, fin, au);
         }catch(IllegalArgumentException iae){
-            out.println("Has introduit algun dels atributs incorrectament.");
+            output.println("Has introduit algun dels atributs incorrectament.");
             return;
         }
-        out.println("Classes eliminades: ");
+        output.println("Classes eliminades: ");
         for(Classe c: rest.deletePossibilities(classes, cl)){
-            out.println("\t" + c.toString());
+            output.println("\t" + c.toString());
         }
     }
 
     private static void constructor_Test() {
         out.println("La Classe RestriccioSubgrup te un unic atribut que es un grup. Aquest es el grup pare del grup que conte la instancia de RestriccioSubgrup.");
-        out.println("A efectes d'aquest driver, el grup pare que posis no tindra cap efecte pel que fa a la funcio de esborrar classes incompatibles,");
-        out.println("\tja que la comprovacio es fa seguint la codificacio, i no el grup guardat (que s'usa amb fins de consulta).");
+        out.println("A efectes d'aquest driver, el grup pare que posis sera el pare de tots els grups que es llegeixin.");
         out.println("Introdueix els seguents atributs, separats per un espai: ");
         out.println("\tIdentificador<String> Capacitat<int> Horari<M | T> Tipus<Tipus_Aula>");
         try {
             rest = new RestriccioSubgrup(new grup(keyboard.next(), keyboard.nextInt(), keyboard.next(), Tipus_Aula.string_to_Tipus_Aula(keyboard.next())));
         }catch(Aula_Exception ae){
-            out.println(ae.getMessage());
+            output.println(ae.getMessage());
         }catch (InputMismatchException ime){
-            out.println("Has introduit algun atribut incorrectament");
+            output.println("Has introduit algun atribut incorrectament");
         }
     }
 
