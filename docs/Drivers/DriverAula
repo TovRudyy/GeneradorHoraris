@@ -1,0 +1,85 @@
+El DriverAula s'encarrega deprovar la classe Aula.
+Utilitza també la Enumeració Tipus_Aula, ja provada en un driver anterior.
+Com que només es manté una instancia, les sortides de les funcions dels jocs de prova seran les corresponents a la
+entrada respectiva en la Constructora
+
+Jocs de Prova:
+
+    Prova1: Crear una nova Aula (Codi = 1):
+
+        Entrada1: Aula1 60 Teoria
+        Sortida1:
+
+        Entrada2: Aula2 30 Problemes
+        Sortida2:
+
+        Entrada3: Aula3 20 LI
+        Sortida3:
+
+        Entrada4: Aula4 Not_A_Number Teoria
+        Sortida4: Missatge indicant que has introduit algun atribut incorrectament
+
+        Entrada5: Aula5 60 Not_A_Tipus
+        Sortida5: Missatge d'error indicant que no hi ha cap Tipus_Aula associat
+
+        Entrada6: Aula6 Not_A_Number Not_A_Tipus
+        Sortida6: Missatge indicant que has introduit algun atribut incorrectament
+
+    Prova2: Obtenir informacio de l'Aula (Codi = 2):
+        Escollint la opcio 4
+
+        Sortida1:   Identificador : Aula1
+                    Capacitat : 60
+                    Tipus_Aula : TEORIA
+
+        Sortida2:   Identificador : Aula2
+                    Capacitat : 30
+                    Tipus_Aula : PROBLEMES
+
+        Sortida3:   Identificador : Aula3
+                    Capacitat : 20
+                    Tipus_Aula : LAB_INFORMATICA
+
+    Prova3: Obtenir representacio en String (Codi = 3):
+
+        Sortida1: Aula en format String: Aula1:60:TEORIA
+
+        Sortida2: Aula en format String: Aula2:30:PROBLEMES
+
+        Sortida3: Aula en format String: Aula3:20:LAB_INFORMATICA
+
+
+Si vols que executar els jocs de prova tots de cop, copia el seguent a la consola:
+    1
+    Aula1 60 Teoria
+    2 4
+    3
+    1
+    Aula2 30 Problemes
+    2 4
+    3
+    1
+    Aula3 20 LI
+    2 4
+    3
+    1
+    Aula4 Not_A_Number Teoria
+    1
+    Aula5 60 Not_A_Tipus
+    1
+    Aula6 Not_A_Number Not_A_Tipus
+
+L'ordre de les sortides serà el següent (amb indicacions del Driver pel mig):
+
+    Prova 1 - Sortida 1
+    Prova 2 - Sortida 1
+    Prova 3 - Sortida 1
+    Prova 1 - Sortida 2
+    Prova 2 - Sortida 2
+    Prova 3 - Sortida 2
+    Prova 1 - Sortida 3
+    Prova 2 - Sortida 3
+    Prova 3 - Sortida 3
+    Prova 1 - Sortida 4
+    Prova 1 - Sortida 5
+    Prova 1 - Sortida 6

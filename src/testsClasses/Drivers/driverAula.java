@@ -104,6 +104,7 @@ class driverAula  {
             out.println(ae.getMessage());
         }catch(InputMismatchException ime){
             out.println("Has introduit algun atribut incorrectament.");
+            keyboard.nextLine();
         }
     }
 

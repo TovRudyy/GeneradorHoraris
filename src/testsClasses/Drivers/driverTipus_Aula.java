@@ -40,7 +40,7 @@ class driverTipus_Aula {
                         printCodis();
                         break;
                     case 1:
-                        for (Tipus_Aula tp : Tipus_Aula.values()) out.println(tp);
+                        for (Tipus_Aula tp : Tipus_Aula.values()) out.println("\t" + tp);
                         break;
                     case 2:
                         Tipus_Aula.escriure_codis_valids();
