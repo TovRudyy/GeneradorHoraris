@@ -103,6 +103,7 @@ class driverGrup {
                 break;
             default:
                 out.println("Codi d'opcio no valid.");
+                keyboard.nextLine();
         }
     }
 
@@ -110,12 +111,18 @@ class driverGrup {
         out.println("Introdueix els seguents atributs, separats per un espai:");
         out.println("\tIdentificador<String> Capacitat<int> Horari<M | T> Tipus<Tipus_Aula>");
         try {
-            grup = new grup(keyboard.next(), keyboard.nextInt(), keyboard.next(), Tipus_Aula.string_to_Tipus_Aula(keyboard.next()));
+            String id = keyboard.next();
+            int cap = keyboard.nextInt();
+            String hor = keyboard.next();
+            if(!hor.equals("M") && !hor.equals("T")) throw new InputMismatchException();
+            grup = new grup(id, cap, hor, Tipus_Aula.string_to_Tipus_Aula(keyboard.next()));
             grup.afegirRestriccio(new StubRestriccioSubgrup());
         }catch(Aula_Exception ae){
             out.println(ae.getMessage());
+            keyboard.nextLine();
         }catch (InputMismatchException ime){
             out.println("Has introduit algun atribut incorrectament");
+            keyboard.nextLine();
         }
     }
 }

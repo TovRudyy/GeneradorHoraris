@@ -1,5 +1,6 @@
 El DriverAula s'encarrega deprovar la classe Aula.
 Utilitza també la Enumeració Tipus_Aula, ja provada en un driver anterior.
+Cada entrada en la constructora representa un joc de proves diferent.
 Com que només es manté una instancia, les sortides de les funcions dels jocs de prova seran les corresponents a la
 entrada respectiva en la Constructora
 
