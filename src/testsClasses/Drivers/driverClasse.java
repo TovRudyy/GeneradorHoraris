@@ -3,10 +3,16 @@ package testsClasses.Drivers;
 import domain.Classe;
 import domain.DiaSetmana;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.PrintStream;
 import java.util.InputMismatchException;
+import java.util.Scanner;
 
 import static java.lang.System.out;
 import static testsClasses.Drivers.MainDriver.keyboard;
+import static testsClasses.Drivers.MainDriver.output;
 
 
 class driverClasse  {
@@ -31,14 +37,15 @@ class driverClasse  {
         out.println("\t1) Constructora");
         out.println("\t2) Getters");
         out.println("\t3) To String");
-        out.println("\t4) Sortir");
+        out.println("\t4) Executar Joc de Proves");
+        out.println("\t5) Sortir");
     }
 
     private static void executar() {
         try{
             int codi;
             out.println("Introdueix un codi: ");
-            while((codi = keyboard.nextInt()) != 4){
+            while((codi = keyboard.nextInt()) != 5){
                 switch (codi){
                     case -1:
                         printCodis();
@@ -51,6 +58,9 @@ class driverClasse  {
                         break;
                     case 3:
                         out.println("Classe en format String: " + classe.toString());
+                        break;
+                    case 4:
+                        executar_Joc_de_Proves();
                         break;
                     default:
                         keyboard.nextLine();
@@ -65,6 +75,15 @@ class driverClasse  {
             printCodis();
             keyboard.nextLine();
             executar();
+        }
+    }
+
+    private static void executar_Joc_de_Proves() {
+        try{
+            keyboard = new Scanner(new FileReader("data/Jocs_de_Prova_Drivers/3.DriverClasse"));
+            output = new PrintStream(new File("data/Jocs_de_Prova_Drivers/Sortida_Jocs"));
+        }catch(FileNotFoundException fnfe){
+            out.println(fnfe.getMessage());
         }
     }
 

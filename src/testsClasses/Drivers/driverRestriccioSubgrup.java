@@ -3,14 +3,15 @@ package testsClasses.Drivers;
 import domain.*;
 import org.json.simple.parser.ParseException;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Map;
+import java.util.Scanner;
 
 import static java.lang.System.out;
 import static testsClasses.Drivers.MainDriver.keyboard;
+import static testsClasses.Drivers.MainDriver.output;
 
 
 class driverRestriccioSubgrup  {
@@ -33,14 +34,15 @@ class driverRestriccioSubgrup  {
     private static void printCodis() {
         out.println("\t1) Constructora");
         out.println("\t2) Esborrar classes incompatibles");
-        out.println("\t3) Sortir");
+        out.println("\t3) Executar Joc de Proves");
+        out.println("\t4) Sortir");
     }
 
     private static void executar() {
         try{
             int codi;
             out.println("Introdueix un codi: ");
-            while((codi = keyboard.nextInt()) != 3){
+            while((codi = keyboard.nextInt()) != 4){
                 switch (codi) {
                     case -1:
                         printCodis();
@@ -50,6 +52,9 @@ class driverRestriccioSubgrup  {
                         break;
                     case 2:
                         delete_Possibilities_Test();
+                        break;
+                    case 3:
+                        executar_Joc_de_Proves();
                         break;
                     default:
                         keyboard.nextLine();
@@ -64,6 +69,15 @@ class driverRestriccioSubgrup  {
             printCodis();
             keyboard.nextLine();
             executar();
+        }
+    }
+
+    private static void executar_Joc_de_Proves() {
+        try{
+            keyboard = new Scanner(new FileReader("data/Jocs_de_Prova_Drivers/6.DriverRestriccioSubgrup"));
+            output = new PrintStream(new File("data/Jocs_de_Prova_Drivers/Sortida_Jocs"));
+        }catch(FileNotFoundException fnfe){
+            out.println(fnfe.getMessage());
         }
     }
 

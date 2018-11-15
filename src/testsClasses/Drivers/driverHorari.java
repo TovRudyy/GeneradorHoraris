@@ -5,9 +5,15 @@ import domain.assignacio;
 
 import static testsClasses.Drivers.MainDriver.keyboard;
 import static java.lang.System.out;
+import static testsClasses.Drivers.MainDriver.output;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.Scanner;
 
 class driverHorari {
 
@@ -34,14 +40,15 @@ class driverHorari {
         out.println("\t4) Escriure Horari per Aula");
         out.println("\t5) Escriure Horari per Assignatura");
         out.println("\t6) To String");
-        out.println("\t7) Sortir");
+        out.println("\t7) Executar Joc de Proves");
+        out.println("\t8) Sortir");
     }
 
     private static void executar() {
         try{
             int codi;
             out.println("Introdueix un codi: ");
-            while((codi = keyboard.nextInt()) != 7){
+            while((codi = keyboard.nextInt()) != 8){
                 switch (codi){
                     case -1:
                         printCodis();
@@ -64,6 +71,9 @@ class driverHorari {
                     case 6:
                         to_String_Test();
                         break;
+                    case 7:
+                        executar_Joc_de_Proves();
+                        break;
                     default:
                         keyboard.nextLine();
                         out.println("Codi no valid. Aqui tens els codis que ho son: ");
@@ -78,7 +88,15 @@ class driverHorari {
             keyboard.nextLine();
             executar();
         }
+    }
 
+    private static void executar_Joc_de_Proves() {
+        try{
+            keyboard = new Scanner(new FileReader("data/Jocs_de_Prova_Drivers/11.DriverHorari"));
+            output = new PrintStream(new File("data/Jocs_de_Prova_Drivers/Sortida_Jocs"));
+        }catch(FileNotFoundException fnfe){
+            out.println(fnfe.getMessage());
+        }
     }
 
     private static void to_String_Test() {

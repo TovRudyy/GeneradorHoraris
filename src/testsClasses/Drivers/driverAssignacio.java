@@ -2,12 +2,18 @@ package testsClasses.Drivers;
 
 import domain.*;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.PrintStream;
 import java.util.InputMismatchException;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.TreeMap;
 
 import static java.lang.System.out;
 import static testsClasses.Drivers.MainDriver.keyboard;
+import static testsClasses.Drivers.MainDriver.output;
 
 class driverAssignacio {
 
@@ -55,7 +61,8 @@ class driverAssignacio {
         out.println("\t9) Obtenir classes seleccionades");
         out.println("\t10) Consultora combinacio possible");
         out.println("\t11) To String");
-        out.println("\t12) Sortir");
+        out.println("\t12) Executar Joc de Proves");
+        out.println("\t13) Sortir");
 
     }
 
@@ -63,7 +70,7 @@ class driverAssignacio {
         try{
             int codi;
             out.println("Introdueix un codi: ");
-            while((codi = keyboard.nextInt()) != 12){
+            while((codi = keyboard.nextInt()) != 13){
                 switch (codi){
                     case -1:
                         printCodis();
@@ -101,6 +108,9 @@ class driverAssignacio {
                     case 11:
                         to_String_Test();
                         break;
+                    case 12:
+                        executar_Joc_de_Proves();
+                        break;
                     default:
                         keyboard.nextLine();
                         out.println("Codi no valid. Aqui tens els codis que ho son: ");
@@ -114,6 +124,15 @@ class driverAssignacio {
             printCodis();
             keyboard.nextLine();
             executar();
+        }
+    }
+
+    private static void executar_Joc_de_Proves() {
+        try{
+            keyboard = new Scanner(new FileReader("data/Jocs_de_Prova_Drivers/9.DriverAssignacio"));
+            output = new PrintStream(new File("data/Jocs_de_Prova_Drivers/Sortida_Jocs"));
+        }catch(FileNotFoundException fnfe){
+            out.println(fnfe.getMessage());
         }
     }
 

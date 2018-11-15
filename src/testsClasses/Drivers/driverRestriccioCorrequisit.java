@@ -5,14 +5,15 @@ import domain.DiaSetmana;
 import domain.RestriccioCorequisit;
 import org.json.simple.parser.ParseException;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Map;
+import java.util.Scanner;
 
 import static java.lang.System.out;
 import static testsClasses.Drivers.MainDriver.keyboard;
+import static testsClasses.Drivers.MainDriver.output;
 
 
 class driverRestriccioCorrequisit {
@@ -41,14 +42,15 @@ class driverRestriccioCorrequisit {
         out.println("\t5) Consultora corequisit");
         out.println("\t6) Esborrar classes incompatibles");
         out.println("\t7) To String");
-        out.println("\t8) Sortir");
+        out.println("\t8) Executar Joc de Proves");
+        out.println("\t9) Sortir");
     }
 
     private static void executar() {
         try{
             int codi;
             out.println("Introdueix un codi: ");
-            while((codi = keyboard.nextInt()) != 8){
+            while((codi = keyboard.nextInt()) != 9){
                 switch (codi) {
                     case -1:
                         printCodis();
@@ -74,6 +76,9 @@ class driverRestriccioCorrequisit {
                     case 7:
                         to_String_Test();
                         break;
+                    case 8:
+                        executar_Joc_de_Proves();
+                        break;
                     default:
                         keyboard.nextLine();
                         out.println("Codi no valid. Aqui tens els codis que ho son: ");
@@ -87,6 +92,15 @@ class driverRestriccioCorrequisit {
             printCodis();
             keyboard.nextLine();
             executar();
+        }
+    }
+
+    private static void executar_Joc_de_Proves() {
+        try{
+            keyboard = new Scanner(new FileReader("data/Jocs_de_Prova_Drivers/7.DriverRestriccioCorequisit"));
+            output = new PrintStream(new File("data/Jocs_de_Prova_Drivers/Sortida_Jocs"));
+        }catch(FileNotFoundException fnfe){
+            out.println(fnfe.getMessage());
         }
     }
 

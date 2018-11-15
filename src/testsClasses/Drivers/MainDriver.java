@@ -1,5 +1,6 @@
 package testsClasses.Drivers;
 
+import java.io.PrintStream;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -8,6 +9,7 @@ import static java.lang.System.out;
 public class MainDriver {
 
     static Scanner keyboard = new Scanner(System.in);
+    static PrintStream output;
 
     public static void main(String[] args) {
         printMenu();
@@ -72,6 +74,8 @@ public class MainDriver {
                         out.println("Codi no valid. Aqui tens els codis que ho son:");
                         printCodis();
                 }
+                keyboard = new Scanner(System.in);
+                output = System.out;
                 out.println();
                 out.println("Introdueix un codi: ");
             }

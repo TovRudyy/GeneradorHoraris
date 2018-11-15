@@ -5,10 +5,16 @@ import domain.Tipus_Aula;
 import domain.grup;
 import testsClasses.Stubs.StubRestriccioSubgrup;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.PrintStream;
 import java.util.InputMismatchException;
+import java.util.Scanner;
 
 import static java.lang.System.out;
 import static testsClasses.Drivers.MainDriver.keyboard;
+import static testsClasses.Drivers.MainDriver.output;
 
 class driverGrup {
 
@@ -35,14 +41,15 @@ class driverGrup {
     private static void printCodis() {
         out.println("\t1) Constructora");
         out.println("\t2) Getters");
-        out.println("\t3) Sortir");
+        out.println("\t3) Executar Joc de Proves");
+        out.println("\t4) Sortir");
     }
 
     private static void executar() {
         try{
             int codi;
             out.println("Introdueix un codi: ");
-            while ((codi = keyboard.nextInt()) != 3){
+            while ((codi = keyboard.nextInt()) != 4){
                 switch (codi) {
                     case -1:
                         printCodis();
@@ -52,6 +59,9 @@ class driverGrup {
                         break;
                     case 2:
                         getter_Test();
+                        break;
+                    case 3:
+                        executar_Joc_de_Proves();
                         break;
                     default:
                         keyboard.nextLine();
@@ -67,7 +77,15 @@ class driverGrup {
             keyboard.nextLine();
             executar();
         }
+    }
 
+    private static void executar_Joc_de_Proves() {
+        try{
+            keyboard = new Scanner(new FileReader("data/Jocs_de_Prova_Drivers/4.DriverGrup"));
+            output = new PrintStream(new File("data/Jocs_de_Prova_Drivers/Sortida_Jocs"));
+        }catch(FileNotFoundException fnfe){
+            out.println(fnfe.getMessage());
+        }
     }
 
     private static void getter_Test() {

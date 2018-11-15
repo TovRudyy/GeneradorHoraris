@@ -5,14 +5,15 @@ import domain.DiaSetmana;
 import domain.RestriccioOcupacio;
 import org.json.simple.parser.ParseException;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Map;
+import java.util.Scanner;
 
 import static java.lang.System.out;
 import static testsClasses.Drivers.MainDriver.keyboard;
+import static testsClasses.Drivers.MainDriver.output;
 
 
 class driverRestriccioOcupacio  {
@@ -36,14 +37,15 @@ class driverRestriccioOcupacio  {
     private static void printCodis() {
         out.println("\t1) Consultora de solapament d'hores");
         out.println("\t2) Esborrar classes incompatibles");
-        out.println("\t3) Sortir");
+        out.println("\t3) Executar Joc de Proves");
+        out.println("\t4) Sortir");
     }
 
     private static void executar() {
         try{
             int codi;
             out.println("Introdueix un codi: ");
-            while((codi = keyboard.nextInt()) != 3){
+            while((codi = keyboard.nextInt()) != 4){
                 switch (codi) {
                     case -1:
                         printCodis();
@@ -53,6 +55,9 @@ class driverRestriccioOcupacio  {
                         break;
                     case 2:
                         delete_Possibilities_Test();
+                        break;
+                    case 3:
+                        executar_Joc_de_Proves();
                         break;
                     default:
                         keyboard.nextLine();
@@ -69,8 +74,15 @@ class driverRestriccioOcupacio  {
             keyboard.nextLine();
             executar();
         }
+    }
 
-
+    private static void executar_Joc_de_Proves() {
+        try{
+            keyboard = new Scanner(new FileReader("data/Jocs_de_Prova_Drivers/5.DriverRestriccioOcupacio"));
+            output = new PrintStream(new File("data/Jocs_de_Prova_Drivers/Sortida_Jocs"));
+        }catch(FileNotFoundException fnfe){
+            out.println(fnfe.getMessage());
+        }
     }
 
     private static void delete_Possibilities_Test() {

@@ -4,11 +4,17 @@ import domain.Aula;
 import domain.PlaEstudis;
 import domain.assignatura;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.PrintStream;
 import java.util.InputMismatchException;
 import java.util.Map;
+import java.util.Scanner;
 
 import static java.lang.System.out;
 import static testsClasses.Drivers.MainDriver.keyboard;
+import static testsClasses.Drivers.MainDriver.output;
 
 class driverPlaEstudis {
 
@@ -42,14 +48,15 @@ class driverPlaEstudis {
         out.println("\t8) Generar Horari");
         out.println("\t9) Consultora Horari");
         out.println("\t10) Horari -> String");
-        out.println("\t11) Sortir");
+        out.println("\t11) Executar Joc de Proves");
+        out.println("\t12) Sortir");
     }
 
     private static void executar() {
         try{
             int codi;
             out.println("Introdueix un codi: ");
-            while((codi = keyboard.nextInt()) != 11){
+            while((codi = keyboard.nextInt()) != 12){
                 switch (codi){
                     case -1:
                         printCodis();
@@ -84,6 +91,9 @@ class driverPlaEstudis {
                     case 10:
                         horari_To_String_Test();
                         break;
+                    case 11:
+                        executar_Joc_de_Proves();
+                        break;
                     default:
                         keyboard.nextLine();
                         out.println("Codi no valid. Aqui tens els codis que ho son: ");
@@ -97,6 +107,15 @@ class driverPlaEstudis {
             printCodis();
             keyboard.nextLine();
             executar();
+        }
+    }
+
+    private static void executar_Joc_de_Proves() {
+        try{
+            keyboard = new Scanner(new FileReader("data/Jocs_de_Prova_Drivers/11.DriverPlaEstudis"));
+            output = new PrintStream(new File("data/Jocs_de_Prova_Drivers/Sortida_Jocs"));
+        }catch(FileNotFoundException fnfe){
+            out.println(fnfe.getMessage());
         }
     }
 
