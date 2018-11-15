@@ -1,0 +1,1 @@
+El directori "data/Drivers_Input" conté fitxers JSON que serveixen com a entrada pels drivers d'aquesta aplicació.  

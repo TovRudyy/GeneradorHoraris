@@ -1,12 +1,10 @@
-RM=rm -rf
-
 SRC_DIR=src
 PRSNT_DIR=presentacio
 DMN_DIR=domain
 PERS_DIR=persistencia
 TEST_DIR=testsClasses
 DRIVERS_DIR=Drivers
-EXTRNL_LIB_DIR=lib/json-simple-1.1.jar
+EXTRNL_LIB_DIR=lib/json-simple-1.1.jar:lib/junit-4.12.jar
 DOCS_DIR=docs
 BIN_DIR=bin
 
@@ -14,8 +12,10 @@ JFLAGS= -d $(BIN_DIR) -sourcepath $(SRC_DIR) -cp $(EXTRNL_LIB_DIR)
 
 JC=javac
 JV=java
-JR=/opt/java/jdk1.8.0_191/bin/jar
-JD=/opt/java/jdk1.8.0_191/bin/javadoc
+JR=/opt/java-jdk/jdk1.8.0_191/bin/jar
+JD=/opt/java-jdk/jdk1.8.0_191/bin/javadoc
+
+RM=rm -rf
 
 .SUFFIXES: .java .class
 .java.class:
@@ -71,10 +71,10 @@ rundriver : $(BIN_DIR)/$(TEST_DIR)/$(DRIVERS_DIR)/$(DRIVER).class
 	$(JV) -cp $(BIN_DIR):$(EXTRNL_LIB_DIR) $(TEST_DIR).$(DRIVERS_DIR).$(DRIVER)
 
 jar :
-	$(JR) cvfe GeneradorHoraris.jar Main bin 
+	$(JR) cvfe  GeneradorHoraris.jar bin/Main bin lib 
 
 runjar :
-	$(JV) -jar GeneradorHoraris.jar
+	$(JV) -jar GeneradorHoraris.jar bin/Main.class bin
 
 doc : 
 	$(JD) -encoding UTF-8 -d  $(DOCS_DIR)/javadoc -exclude org -sourcepath $(SRC_DIR) -subpackages .

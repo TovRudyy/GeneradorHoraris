@@ -1,0 +1,4 @@
+El directori "data/Escenaris" està destinat perquè l'usuari guardi els diferents escenaris de l'aplicació. Cada escenari consisteix en una carpeta que conté a dins 2 fitxers amb noms específcis:
+    1 fitxer "Aulari.json" : descriu les aules de l'escenari.
+    1 fitxer "PlaEstudis.json" : descriu el PlaEstudis de l'escenari.
+Aquests fitxers seran processats automàticament pel l'aplicació si el usuari ho indica. 

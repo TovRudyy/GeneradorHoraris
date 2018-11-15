@@ -1,0 +1,2 @@
+EL directori "data/PlaEstudis" conté fitxers JSON descrivint un Pla d'Estudi cadascun. Quan el programa inicia l'execució, llegeix tots els fitxers d'aquests carpeta i intenta carregar els plans d'estudis definits. 
+ 
