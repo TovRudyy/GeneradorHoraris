@@ -1,3 +1,4 @@
+TODO revisar
 El DriverRestriccioOcupacio s'encarrega de provar la Classe abstracta Restriccio i la implementacio RestriccioOcupacio.
 RestriccioOcupacio utilitza la classe Classe(ja provada) i la enumeració DiaSetmana.
 Com que no te atributs, es manté una sola instancia de la classe i no es prova el constructor (nomes te el per defecte).
