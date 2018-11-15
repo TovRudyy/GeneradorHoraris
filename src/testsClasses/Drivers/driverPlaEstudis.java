@@ -142,7 +142,6 @@ class driverPlaEstudis {
 
     private static void get_Id_Test() {
         out.println("Identificador: " + pla.getID());
-
     }
 
     private static void eliminar_Assignatura_Test() {
@@ -172,6 +171,7 @@ class driverPlaEstudis {
         out.println("Es procedeix a llegir les Aules:");
         try{
             aules = Lector_Drivers_JSON.llegirAules();
+            out.println("Aules llegides");
         }catch(Exception e){
             out.println("Hi ha algun problema amb el fitxer d'Aules");
             out.println(e.getMessage());
@@ -187,6 +187,7 @@ class driverPlaEstudis {
             case "I":
                 try {
                     pla = Lector_Drivers_JSON.llegirPlaEstudis();
+                    out.println("Pla llegit");
                 }catch(Exception e){
                     out.println("Hi ha algun error amb el fitxer");
                     out.println(e.getMessage());
