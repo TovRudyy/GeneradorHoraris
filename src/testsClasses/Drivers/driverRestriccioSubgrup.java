@@ -40,7 +40,7 @@ class driverRestriccioSubgrup  {
         try{
             int codi;
             out.println("Introdueix un codi: ");
-            while((codi = keyboard.nextInt()) != 5){
+            while((codi = keyboard.nextInt()) != 3){
                 switch (codi) {
                     case -1:
                         printCodis();
@@ -48,7 +48,7 @@ class driverRestriccioSubgrup  {
                     case 1:
                         constructor_Test();
                         break;
-                    case 4:
+                    case 2:
                         delete_Possibilities_Test();
                         break;
                     default:
