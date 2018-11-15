@@ -90,7 +90,6 @@ public class PlaEstudis {
     /**
      * @return Una string amb tota la informació de totes les assignatures que conte el pla d'estudis.
      */
-
     public String toStringAssignatures() {
         String ret = new String();
         for (assignatura assig : assignatures.values()) {
@@ -165,7 +164,7 @@ public class PlaEstudis {
 
 
     /**
-     *
+     * Computa totes les assignatures i crea les restriccions de nivell entre les assignatures amb el mateix nivell
      */
     private void afegirRestriccionsNivell () {
         HashMap<Integer, ArrayList<String>> nivellsIassignatures = new HashMap<>();
@@ -192,18 +191,6 @@ public class PlaEstudis {
         }
 
     }
-
-
-
-
-
-
-//    /**
-//     * Mostra per pantalla el horari d'aquest pla d'estudis.
-//     */
-//    public void printHorari(){
-//        horari.printHorari();
-//    }
 
 
 
