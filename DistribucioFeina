@@ -1,4 +1,4 @@
-David:
+David: Pujol:
     -assignacio
     -assignatura
     -grup
@@ -14,7 +14,7 @@ David:
     -Relacio amb llibreries externes
 
 
-Olek:
+Oleksandr Rudyy:
     -ControladorPresentacioMenuPrincipal
     -ControladorPresentacioPlaEstudis
     -ControladorPersistencia
@@ -30,7 +30,7 @@ Olek:
     -Makefile
 
 
-Victor:
+Victor Divi:
     -Lector_Aules_JSON
     -Lector_Pla_JSON
     -Aula

@@ -39,7 +39,7 @@ public class assignacioTest {
      */
     @Test
     public void getIdAssig() {
-        assertEquals(ass.getIdAssig(), "TC");
+        assertEquals("TC", ass.getIdAssig());
     }
 
     /**
@@ -47,7 +47,7 @@ public class assignacioTest {
      */
     @Test
     public void getIdGrup() {
-        assertEquals(ass.getIdGrup(), "10" );
+        assertEquals("10", ass.getIdGrup() );
     }
 
     /**
@@ -65,9 +65,9 @@ public class assignacioTest {
     public void getAllPossibleClasses() {
         for(Classe c:ass.getAllPossibleClasses()){
             assertTrue(c.getIdAula().equals("Aula1") || c.getIdAula().equals("Aula2"));
-            assertEquals(c.getId_assig(), "TC");
-            assertEquals(c.getId_grup(), "10");
-            assertEquals(c.getDurada(), 2);
+            assertEquals("TC", c.getId_assig());
+            assertEquals("10", c.getId_grup());
+            assertEquals(2, c.getDurada());
             assertTrue(c.getHoraInici() >= 8 && c.getHoraInici() <= 12 );
             assertTrue(c.getHoraFi() >= 10 && c.getHoraFi() <= 14 );
         }
@@ -87,7 +87,7 @@ public class assignacioTest {
     @Test
     public void forwardChecking() {
         for(Classe c: ass.forwardChecking(new Classe("LI", "10", DiaSetmana.DIMARTS, 10, 12, "Aula2"))){
-            assertEquals(c.getDia(), DiaSetmana.DIMARTS);
+            assertEquals(DiaSetmana.DIMARTS, c.getDia());
             assertTrue((10 <= c.getHoraInici() && 12 > c.getHoraInici()) || (10 < c.getHoraFi() && 12 >= c.getHoraFi()));
         }
     }
@@ -108,7 +108,7 @@ public class assignacioTest {
     public void afegirSeleccionada() {
         int in = ass.getNumeroClassesRestants();
         ass.afegirSeleccionada(new Classe("TC", "10", DiaSetmana.string_To_DiaSetmana("dilluns"), 10, 12, "Aula1"));
-        assertEquals(ass.getNumeroClassesRestants(), in-1);
+        assertEquals(in-1,ass.getNumeroClassesRestants());
     }
 
     /**
@@ -130,7 +130,7 @@ public class assignacioTest {
         ass.afegirSeleccionada(c);
         ArrayList<Classe> arrayList = new ArrayList<>();
         arrayList.add(c);
-        assertEquals(ass.getSeleccionades(), arrayList);
+        assertEquals(arrayList, ass.getSeleccionades());
     }
 
     /**
@@ -148,6 +148,6 @@ public class assignacioTest {
      */
     @Test
     public void toStringTest() {
-        assertEquals(ass.toString(), "TC:10:60:TEORIA:M");
+        assertEquals("TC:10:60:TEORIA:M", ass.toString());
     }
 }

@@ -1,0 +1,13 @@
+El funcionament de cada Driver està explicat dins del propi Driver.
+Pel que fa a passar els jocs de proves automaticament, cada driver te una opcio en el menu
+    que fa que el driver comenci a llegir d'un fitxer i escrigui els resultats obtinguts en un altre.
+Aquests fitxers estan situats a la carpeta "/data/Jocs_de_Prova_Drivers/" i cada driver en te un de diferent.
+Tots aquests fitxers ja venen amb un Joc de Proves fet, amb la seva sortida esperada en el fitxer "Sortides_Esperades",
+    situat a la mateixa carpeta.
+Quan el driver passa a llegir del fitxer, escriu el resultat en el fitxer "Sortida_Jocs", que es comú per tots els
+    drivers i es va sobreescribint cada cop que un driver llegeix un joc de proves.
+Els fitxers de jocs de proves contenen bàsicament els codis necessaris per executar les funcionalitats a provar
+    i les dades que aquestes necessiten per ser provades.
+Per tal que funcionin correctament, els fitxers han de finalitzar amb el codi de "Sortir" de cada driver, ja que, de lo
+    contrari, el driver intenta seguir llegint del fitxer i llença una Excepció (perque el fitxer està tot llegit).
+A més, els fitxers de Jocs de Proves estan predefinits, i no es pot modificar el seu nom ni la ruta.
