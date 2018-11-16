@@ -12,6 +12,7 @@ public class MainJUnit {
             System.out.println(failure.toString());
         }
 
-        System.out.println(result.wasSuccessful());
+        if(result.wasSuccessful()) System.out.println("Tots els tests han passat satisfactoriament.");
+        else System.out.println("Algun dels tests ha fallat");
     }
 }
