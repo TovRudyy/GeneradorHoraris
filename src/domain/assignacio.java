@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ *
+ Assignacio conte informacio sobre assignatura i grup els quals son els seus identificadors. A mes, ens serveix com a objecte on crear l'horari per al grup d'una assignatura, es a dir, Assignacio reuneix el conjunt d'objectes Classe que formen l'horari d'un grup.
  * @author: David
  */
 

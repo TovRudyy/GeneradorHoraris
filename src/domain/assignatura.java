@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 
 /**
+ * Contee informació sobre l'assignatura aixi com restriccions que l'afecten directament.
  * @author David Pujol
  * Date: 07/10/18
  */

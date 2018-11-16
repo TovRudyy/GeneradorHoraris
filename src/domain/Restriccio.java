@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.lang.Object;
 
 /**
+ * Abstreu els tipus de restriccions que existeixen.
  * @author David Pujol
  * Date: 07/10/2018
  */

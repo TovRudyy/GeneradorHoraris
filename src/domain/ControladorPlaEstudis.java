@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.Scanner;
 
 /**
+ * Controlador del pla d'estudis que permet tant llegir-lo com modificar-lo.
  * @author Olek
  */
 

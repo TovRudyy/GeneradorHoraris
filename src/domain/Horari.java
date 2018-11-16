@@ -7,7 +7,9 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 /**
- * @Autor David Pujol
+ * La classe Horari contee l'algorisme de backtracking encarregat de trobar un horari valid
+ * donat el conjunt de dades de totes les Assignacions.
+ * @author David Pujol
  */
 
 public class Horari {

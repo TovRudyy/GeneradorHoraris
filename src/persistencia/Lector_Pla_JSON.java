@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.*;
 
 /**
+ * Dur a terme la lectura d'un pla d'estudi introduit en JSON.
  * @author Victor Divi
  */
 

@@ -3,5 +3,5 @@ domain
 persistencia
 presentacio
 testsClasses.Drivers
+testsClasses.JUnit
 testsClasses.Stubs
-testsClasses.Tests

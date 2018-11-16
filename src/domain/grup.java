@@ -1,7 +1,8 @@
 package domain;
 
-import java.util.ArrayList;
+
 /**
+ * Implementa l'abstraccio de "grup d'una assignatura".
  * @author David Pujol
  */
 

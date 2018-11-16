@@ -9,6 +9,7 @@ import java.util.TreeMap;
 
 
 /**
+ * Controlador del aulari permetent tant llegir com modificar el aulari.
  * @author Olek
  */
 

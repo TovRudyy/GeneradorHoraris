@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 /**
+ * Controlador de el lector de Aules i de pla d'estudis.
  * @author Olek
  */
 

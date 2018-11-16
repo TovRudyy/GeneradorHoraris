@@ -59,9 +59,9 @@ public final class Lector_Aules_JSON {
      * Afegeix les aules del fitxer al map passat per parametre.
      * @param aules Conjunt preexistent d'aules
      * @param fitxer Ruta al fitxer
-     * @throws ParseException
-     * @throws IOException
-     * @throws Aula_Exception
+     * @throws ParseException Excepcio de Parse.
+     * @throws IOException Excepcio input/output (a la lectura)
+     * @throws Aula_Exception Excepcio de aula.
      */
     public static void afegirAules(Map<String, Aula>aules, String fitxer) throws  ParseException, IOException, Aula_Exception{
         aules.putAll(llegirAules(fitxer));

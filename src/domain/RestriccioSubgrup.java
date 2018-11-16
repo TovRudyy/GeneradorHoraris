@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.Map;
 
 /**
- * @Autor David Pujol
+ * Implementa la restriccio subgrup.
+ * @author David Pujol
  */
 
 public class RestriccioSubgrup extends Restriccio {

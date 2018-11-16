@@ -5,7 +5,8 @@ import java.util.Map;
 
 
 /**
- * @Author David Pujol
+ * Implementa la restriccio de ocupacio.
+ * @author David Pujol
  */
 
 

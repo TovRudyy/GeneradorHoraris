@@ -1,9 +1,8 @@
 package domain;
 
 /**
+ * Implementa l'abstracció d'una Aula.
  * @author Victor
- * Aula.
- * El seu tipus d'Aula mai pot ser LAB
  */
 public class Aula {
 

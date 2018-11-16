@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.Map;
 
 /**
- * @Author David Pujol
+ * Implementa la restriccio de correquisit.
+ * @author David Pujol
  */
 
 public class RestriccioCorequisit extends Restriccio {

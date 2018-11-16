@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * PlaEstudis permet agrupar les Assignatures en conjunts de dades independents d'altres
+ * plans d'estudis.
  * @author Olek
  * Date: 06/10/2018
  */

@@ -1,6 +1,7 @@
 package domain;
 
 /**
+ * Aquesta Classe serveix per relacionar Aula amb una data concreta i el grup d'una assignatura, per tant és la unitat de dades que processa l'algorisme a l'hora d'assignar un hoari a una assignacio.
  * @author Olek
  */
 
