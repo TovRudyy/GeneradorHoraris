@@ -4,15 +4,15 @@ DMN_DIR=domain
 PERS_DIR=persistencia
 TEST_DIR=testsClasses
 DRIVERS_DIR=Drivers
-EXTRNL_LIB_DIR=lib/json-simple-1.1.jar:lib/junit-4.12.jar
+EXTRNL_LIB_DIR=lib/json-simple-1.1.jar:lib/junit-4.12.jar:lib/hamcrest-core-1.3.jar
 DOCS_DIR=docs
 BIN_DIR=bin
 
 
 JAVAC=javac
 JAVA=java
-JAR=/opt/java/jdk1.8.0_191/bin/jar
-JAVADOC=/opt/java/jdk1.8.0_191/bin/javadoc
+JAR=/opt/java-jdk/jdk1.8.0_191/bin/jar
+JAVADOC=/opt/java-jdk/jdk1.8.0_191/bin/javadoc
 export CLASSPATH=$(BIN_DIR):$(EXTRNL_LIB_DIR)
 
 JFLAGS= -d $(BIN_DIR) -sourcepath $(SRC_DIR)
@@ -20,7 +20,7 @@ RM=rm -rf
 
 MAIN=Main
 DRIVER=MainDriver
-JUNIT=assignacioTest
+JUNIT=MainJUnit
 
 help : 
 	@echo "make {build|run|rundriver|runjunit|jar|runjar|doc|clean|cleanall}"
@@ -41,7 +41,7 @@ runjunit : $(BIN_DIR)/$(TEST_DIR)/JUnit/$(JUNIT).class
 	$(JAVA) $(TEST_DIR).JUnit.$(JUNIT)
 
 jar :
-	cd bin && cp ../lib/json* ../lib/junit*  . && $(JAR) cvfm GeneradorHoraris.jar ../Manifest.txt . && rm json* junit*
+	cd bin && cp ../lib/json* ../lib/junit*  ../lib/hamc* . && $(JAR) cvfm GeneradorHoraris.jar ../Manifest.txt . && rm json* junit* hamc*
 
 runjar :
 	 $(JAVA) -jar bin/GeneradorHoraris.jar

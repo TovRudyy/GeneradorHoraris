@@ -1,0 +1,13 @@
+Carpeta arrel del projecte.
+Conté:
+
+bin: carpeta amb els binaris .class generats.
+data: carpeta de dades que utilitza l'aplicacio.
+docs: carpeta amb la documentacio del projecte.
+lib: carpeta amb les llibreries externes.
+src: carpeta amb els fitxers font.
+Autors: autors
+DistribucioFeina: fitxer que descriu la repartició de la feina entre ls integrants del grup.
+Makefile
+Manifest.txt: fitxer necessari per la generació del .jar del projecte.
+README.install: instruccions per a la instal·lacio.

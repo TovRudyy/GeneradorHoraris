@@ -10,5 +10,7 @@ Directori "Escenaris": aquesta carpeta està creada perquè l'usuari tingui un l
 
 Directori "Horaris": en aquesta carpeta és on per defecte es guarden els horaris generats per l'aplicació. 
 
+Drectori "Jocs_de_Prova_Drivers": conté jocs de prova pels drivers.
+
 
 

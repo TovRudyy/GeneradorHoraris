@@ -1,0 +1,12 @@
+EL directori "docs" conté tots els fitxers relacionats amb la documentació del projecte.
+
+javadoc
+Jocs_de_Prova_Drivers
+CodificacionsJSON
+diagrama_casos_d'us.pdf
+DiagramaClassesUML.jpg
+ExplicacioAlgorisme.pdf
+ManualDrivers.txt
+ManualUsuari.pdf
+ModelConceptualDades-EspecificaioDetallada.pdf
+relacio_llibreries_externes.txt
