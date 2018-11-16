@@ -12,6 +12,10 @@ import java.util.Scanner;
 import static java.lang.System.out;
 import static testsClasses.Drivers.MainDriver.*;
 
+/**
+ * @author Victor
+ */
+
 class driverPlaEstudis {
 
     private static PlaEstudis pla = new PlaEstudis("Pla_Test");
@@ -22,6 +26,9 @@ class driverPlaEstudis {
         executar();
     }
 
+    /**
+     * Imprimeix un menu amb les opcions disponibles per a l'usuari.
+     */
     private static void printMenu() {
         out.println("Driver de la Classe Pla d'Estudis");
         out.println("Selecciona la funcio que vols provar introduint el seu codi associat: ");
@@ -33,6 +40,9 @@ class driverPlaEstudis {
         out.println("Les Aules amb les que es fara l'horari son les que es llegeixen de l'arxiu \"PlaEstudis_InputAules.json\", situat a la mateixa carpeta.");
     }
 
+    /**
+     * Imprimeix els codis per a accedir a les diferents funcionalitats.
+     */
     private static void printCodis() {
         out.println("\t1) Constructora");
         out.println("\t2) Consultar assignatura");
@@ -47,6 +57,9 @@ class driverPlaEstudis {
         out.println("\t11) Sortir");
     }
 
+    /**
+     * Executa la opcio que hagi elegit el usuari.
+     */
     private static void executar() {
         try{
             int codi;
@@ -102,6 +115,9 @@ class driverPlaEstudis {
         }
     }
 
+    /**
+     * Executa el joc de proves associat al driver.
+     */
     private static void executar_Joc_de_Proves() {
         try{
             keyboard = new Scanner(new FileReader("data/Jocs_de_Prova_Drivers/11.DriverPlaEstudis"));
@@ -111,6 +127,9 @@ class driverPlaEstudis {
         }
     }
 
+    /**
+     * Imprimeix una string amb el horari del pla d'estudi (si n'hi ha).
+     */
     private static void horari_To_String_Test() {
         captura();
         InputStream old = System.in;
@@ -125,15 +144,24 @@ class driverPlaEstudis {
         System.setIn(old);
     }
 
+    /**
+     * Comprova si el pla d'estudis test te un horari o no.
+     */
     private static void has_Horari_Test() {
         out.println("S'indica si el Pla d'Estudis te un horari ja calculat");
         output.println("Resultat: " + pla.hasHorari());
     }
 
+    /**
+     * Genera un horari per al test donat.
+     */
     private static void generar_Horari_Test() {
         pla.generaHorari(aules);
     }
 
+    /**
+     * Imprimeix la informacio concreta de una assignatura.
+     */
     private static void assigs_String_Test() {
         out.println("Tira la opcio que vulguis:");
         out.println("\t1) Noms (Totes)");
@@ -155,21 +183,33 @@ class driverPlaEstudis {
         }
     }
 
+    /**
+     * Mostra les assignatures del pla d'estudis.
+     */
     private static void show_Assignatures_Test() {
         captura();
         pla.showAssignatures();
         allibera();
     }
 
+    /**
+     * Retorna el identificador del pla d'estudis.
+     */
     private static void get_Id_Test() {
         output.println("Identificador: " + pla.getID());
     }
 
+    /**
+     * Elimina una assignatura.
+     */
     private static void eliminar_Assignatura_Test() {
         out.println("Introdueix l'Identificador de la assignatura a eliminar:");
         pla.eliminarAssignatura(keyboard.next());
     }
 
+    /**
+     * Comprova si una assignatura existeix.
+     */
     private static void exists_Assignatura_Test() {
         out.println("Introdueix l'Identificador de la assignatura a consultar si existeix:");
         String id = keyboard.next();
@@ -177,6 +217,9 @@ class driverPlaEstudis {
 
     }
 
+    /**
+     * Construeix dinamicament un test.
+     */
     private static void constructor_Test() {
         output.println("Es procedeix a llegir les Aules:");
         try{

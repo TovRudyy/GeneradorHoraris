@@ -2,8 +2,7 @@ package domain;
 
 import java.util.ArrayList;
 /**
- * @author David Pujol,
- * Date: 07/10/18
+ * @author David Pujol
  */
 
 public class grup {
@@ -32,7 +31,7 @@ public class grup {
     }
 
 
-    /** Mètodes públics **/
+    /** Metodes publics **/
 
     /**
      * @return Retorna el id del grup.
@@ -65,15 +64,15 @@ public class grup {
     }
 
     /**
-     * @return Retorna la restricció de subgrup d'aquest grup.
+     * @return Retorna la restriccio de subgrup d'aquest grup.
      */
     public RestriccioSubgrup getSubgrup () {
         return subgrup;
     }
 
     /**
-     * Guarda la nova restricció de subgrup en aquest grup.
-     * @param r Una nova restricció de subgrup.
+     * Guarda la nova restriccio de subgrup en aquest grup.
+     * @param r Una nova restriccio de subgrup.
      */
     public void afegirRestriccio (RestriccioSubgrup r) {
         this.subgrup = r;
@@ -81,7 +80,7 @@ public class grup {
 
     @Override
     /**
-     * @return Retorna una string amb la informació del id del grup, la seva capacitat, si és de mati o tarde i
+     * @return Retorna una string amb la informacio del id del grup, la seva capacitat, si es de mati o tarde i
      * finalment el tipus d'aula que necessita.
      */
     public String toString() {

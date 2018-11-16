@@ -3,6 +3,10 @@ package domain;
 import java.util.ArrayList;
 import java.util.Map;
 
+/**
+ * @Author David Pujol
+ */
+
 public class RestriccioCorequisit extends Restriccio {
 
     //conte les assignatures amb les que es correquisit
@@ -10,7 +14,7 @@ public class RestriccioCorequisit extends Restriccio {
 
 
     /**
-     * Crea una instància de restriccio de correquisit.
+     * Crea una instancia de restriccio de correquisit.
      */
     public RestriccioCorequisit(){
     }
@@ -89,7 +93,7 @@ public class RestriccioCorequisit extends Restriccio {
 
 
     /**
-     * @return Una string amb tota la informació de la restriccio de correquisit.
+     * @return Una string amb tota la informacio de la restriccio de correquisit.
      */
     public String toString(){
         String ret = "";

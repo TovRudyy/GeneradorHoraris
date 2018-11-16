@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author Rudyy, Oleksandr
+ * @author Olek
  * Date: 06/10/2018
  */
 
@@ -28,7 +28,9 @@ public class PlaEstudis {
         this.id = id;
     }
 
-    /** Mètodes **/
+
+
+    /** Metodes **/
 
     /**
      * Afegeix aquesta assignatura al conjunt d'assignatures global del pla d'estudis.
@@ -66,7 +68,7 @@ public class PlaEstudis {
 
 
     /**
-     * @return Ens indica si aquest pla d'estudis ja té un horari prèviament generat.
+     * @return Ens indica si aquest pla d'estudis ja te un horari previament generat.
      */
     public boolean hasHorari() {
         return (horari != null);
@@ -88,7 +90,7 @@ public class PlaEstudis {
     }
 
     /**
-     * @return Una string amb tota la informació de totes les assignatures que conte el pla d'estudis.
+     * @return Una string amb tota la informacio de totes les assignatures que conte el pla d'estudis.
      */
     public String toStringAssignatures() {
         String ret = new String();
@@ -102,7 +104,7 @@ public class PlaEstudis {
 
     /**
      * @param idAssig Identificador d'una assignatura.
-     * @return Una string amb tota la informació de la assignatura que indica el identificador passat per paràmetre.
+     * @return Una string amb tota la informacio de la assignatura que indica el identificador passat per parametre.
      */
     public String detallsAssignatura(String idAssig) {
         return assignatures.get(idAssig).toStringComplet();
@@ -215,7 +217,6 @@ public class PlaEstudis {
      *  Elimina la assignatura amb aquest identificador del conjunt total d'assignatures del pla d'estudis.
      * @param id Identificador d'una assignatura.
      */
-
     public boolean eliminarAssignatura(String id) {
         if (assignatures.remove(id) == null) {
             System.err.println("ERROR: no existeix l'assignatura " + id);

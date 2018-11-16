@@ -3,6 +3,12 @@ package domain;
 import java.util.ArrayList;
 import java.util.Map;
 
+
+/**
+ * @Author David Pujol
+ */
+
+
 public class RestriccioOcupacio extends Restriccio {
 
     /**

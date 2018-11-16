@@ -15,6 +15,10 @@ import static java.lang.System.out;
 import static testsClasses.Drivers.MainDriver.keyboard;
 import static testsClasses.Drivers.MainDriver.output;
 
+/**
+ * @author Victor
+ */
+
 class driverAssignacio {
 
     private static Map<String, Aula> aules = new TreeMap<>();
@@ -27,6 +31,9 @@ class driverAssignacio {
         executar();
     }
 
+    /**
+     * Inicialitza unes instancies de la classe aula.
+     */
     private static void initAules() {
         aules.put("AulaT", new Aula("AulaT", 9999999, Tipus_Aula.TEORIA));
         aules.put("AulaP", new Aula("AulaP", 9999999, Tipus_Aula.PROBLEMES));
@@ -40,6 +47,9 @@ class driverAssignacio {
         aules.put("AulaLE2", new Aula("AulaLE2", 9999999, Tipus_Aula.LAB_ELECTRONICA));
     }
 
+    /**
+     * Imprimeix un menu amb les opcions.
+     */
     private static void printMenu() {
         out.println("Driver de la Classe Assignacio.");
         out.println("Selecciona la funcio que vols provar introduint el seu codi associat:");
@@ -49,6 +59,9 @@ class driverAssignacio {
         out.println("Tot i que son funcions separades, et recomanem que just despres de crear una nova assignacio, fagis el setSubgrup(si es un subgrup) i setCorequisit(si te corequisits).");
     }
 
+    /**
+     * Imprimeix les opcions possibles i el codi que cal introduir.
+     */
     private static void printCodis() {
         out.println("\t1) Constructora");
         out.println("\t2) Getters");
@@ -66,6 +79,9 @@ class driverAssignacio {
 
     }
 
+    /**
+     * Executa la opcio en funcio del codi introduit per l'usuari.
+     */
     private static void executar() {
         try{
             int codi;
@@ -127,6 +143,9 @@ class driverAssignacio {
         }
     }
 
+    /**
+     * Executa el joc de proves d'aquest driver i a mes a mes, mostre el output esperat.
+     */
     private static void executar_Joc_de_Proves() {
         try{
             keyboard = new Scanner(new FileReader("data/Jocs_de_Prova_Drivers/8.DriverAssignacio"));
@@ -136,6 +155,9 @@ class driverAssignacio {
         }
     }
 
+    /**
+     * Permet a l'usuari introduir inputs per a construir de forma dinamica un test.
+     */
     private static void constructor_Test() {
         out.println("Introdueix els seguents atributs, separats per un espai:");
         out.println("\tId_Grup<String> Capacitat<int> Tipus<Tipus_Aula> Id_Assignatura<String> nivellAssignatura<int> nombreClasses<int> duracioClasses<int> horariGrup<M | T>");
@@ -148,6 +170,9 @@ class driverAssignacio {
         }
     }
 
+    /**
+     * Retorna la informa associada al test que hem escrit.
+     */
     private static void getters_Test() {
         out.println("Tria el getter que vols provar introduint el seu codi associat: ");
         out.println("\t1) Assignatura");
@@ -182,6 +207,9 @@ class driverAssignacio {
         }
     }
 
+    /**
+     * Fa un set de un valor triat per l'usuari.
+     */
     private static void setters_Test() {
         out.println("Tria el setter que vols provar introduint el seu codi associat: ");
         out.println("\t1) RestriccioCorequisit");
@@ -212,6 +240,9 @@ class driverAssignacio {
         }
     }
 
+    /**
+     * Afegeix una altre possibilitat (Classe) a la assignacio.
+     */
     private static void afegeix_possibilitat_Test() {
         out.println("Introdueix la classe que vols afegir a la llista de possibilitats:");
         out.println("\tId_Aula<String>, Dia<DiaSetmana> HoraInicia<int> HoraFinal<int>");
@@ -230,6 +261,9 @@ class driverAssignacio {
         }
     }
 
+    /**
+     * Simula el forward checking de l'algorisme en funcio del test.
+     */
     private static void forward_Checking_Test() {
         out.println("Introdueix la classe amb la que vols podar les possibilitats:");
         out.println("Tingues en compte que no es comprova que aquesta classe sigui una de les possibles.");
@@ -249,11 +283,17 @@ class driverAssignacio {
 
     }
 
+    /**
+     * Testeja la funcio que elimina totes les funcions que quedaven
+     */
     private static void nomes_Seleccionades_Test() {
         output.println("Aquestes son totes les possibilitats que hi havien i han sigut eliminades:");
         for(Classe c: ass.nomesSeleccionades()) output.println("\t" + c.toString());
     }
 
+    /**
+     * Afegeix a la assignacio una Classe com a seleccionada i actualitza el nombre de classes restants.
+     */
     private static void afegir_Seleccionada_Test() {
         out.println("Introdueix la classe que vols afegir a la llista de possibilitats:");
         out.println("Tingues en compte que no es comprova que aquesta classe sigui una de les possibles.");
@@ -271,6 +311,9 @@ class driverAssignacio {
         }
     }
 
+    /**
+     * Elimina una Classe com a seleccionada.
+     */
     private static void eliminar_Seleccionada_Test() {
         out.println("Introdueix la classe que vols eliminar de la llista de possibilitats:");
         out.println("Tingues en compte que no es llença cap error si la classe no es seleccionada (pero tampoc te cap efecte secundari).");
@@ -288,16 +331,25 @@ class driverAssignacio {
         }
     }
 
+    /**
+     * Retorna les seleccionades que tenim del nostre Test.
+     */
     private static void get_Seleccionades_Test() {
         output.println("Aquestes son les Classes seleccionades: ");
         for(Classe c:ass.getSeleccionades()) output.println("\t" + c.toString());
     }
 
+    /**
+     * Comprova que el test no sigui buit.
+     */
     private static void is_Empty_Test() {
         out.println("Aquesta funcio retorna true si no queden prous classes possibles com per satisfer les necessitats:");
         output.println("Resultat: " + ass.isEmpty());
     }
 
+    /**
+     * Escriu per pantalla el resultat del test
+     */
     private static void to_String_Test() {
         output.println("Resultat: " + ass.toString());
     }

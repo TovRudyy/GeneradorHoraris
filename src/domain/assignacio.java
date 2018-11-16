@@ -30,13 +30,13 @@ public class assignacio {
 
     /** Constructors **/
     /**
-     *  Creadora de la classe assignació.
+     *  Creadora de la classe assignacio.
      * @param idGrup String amb el id del grup
      * @param cap   Enter amb la capacitat del grup
      * @param tAula Indica el tipus de l'aula que requereix el grup.
      * @param idAssig   String amb el identificador de la assignatura.
      * @param nivellAssig   Nivell al que pertany la assignatura.
-     * @param numeroClasses Numero de classes a la semana (tenint en compte que una assignació només serà de TEORIA,PROBLEMES o LABORATORI)
+     * @param numeroClasses Numero de classes a la semana (tenint en compte que una assignacio nomes sera de TEORIA,PROBLEMES o LABORATORI)
      * @param duracioClasses Duració de les seves classes.
      * @param horariGrup    Indica si la assignatura és de matins o tardes.
      * @param aules Conjunt d'aules amb les que es generen les possibles classes de la assignacio
@@ -62,7 +62,7 @@ public class assignacio {
     /** Public **/
 
     /**
-     * Imprimeix per pantalla tota la informació de la assignació.
+     * Imprimeix per pantalla tota la informacio de la assignacio.
      */
     public void showAll () {
         System.out.println (idGrup + ":" + capacitat + ":"+ tAula + ":" + idAssig +":"+ nivellAssig + ""+ horariGrup + " " + inici_possible + " " + final_possible + " " + duracioClasses);
@@ -71,17 +71,25 @@ public class assignacio {
 
 
     /**
-     * @return El id de la assignatura de la assignació.
+     * @return El id de la assignatura de la assignacio.
      */
     public String getIdAssig() {
         return idAssig;
     }
 
     /**
-     * @return El id del grup de la assignació.
+     * @return El id del grup de la assignacio.
      */
     public String getIdGrup () {
         return idGrup;
+    }
+
+
+    /**
+     * @return El map on te enmagatzemades totes les seves possibilitats
+     */
+    public Map<String, Map<DiaSetmana, ArrayList<Classe>>> getClassesMap () {
+        return possibles_classes;
     }
 
 
@@ -95,7 +103,7 @@ public class assignacio {
 
 
     /**
-     * Afegeix un nou correquisit a la assignació.
+     * Afegeix un nou correquisit a la assignacio.
      * @param c Un nou correquisit.
      */
     public void afegirCorrequisit (RestriccioCorequisit c) {
@@ -103,8 +111,8 @@ public class assignacio {
     }
 
     /**
-     * Afegeix la restricció de subgrup a la assignació.
-     * @param r Rep per paràmetre la restricció de subgrup.
+     * Afegeix la restriccio de subgrup a la assignacio.
+     * @param r Rep per parametre la restriccio de subgrup.
      */
     public void afegirSubgrup (RestriccioSubgrup r) {
         subgrup = r;
@@ -112,7 +120,7 @@ public class assignacio {
 
 
     /**
-     * Genera i retorna totes les possibilitats de la assignació, resultat de entrellaçar la assignació amb tot el conjunt
+     * Genera i retorna totes les possibilitats de la assignacio, resultat de entrellaçar la assignació amb tot el conjunt
      * d'aules possibles (que siguin del tipus necessari) i amb tots els intervals d'hores possibles.
      * @return Un map que conté tot el conjunt de possibilitats d'aquesta assignació.
      * @param aules conjunt d'aules amb les que fer les classes
@@ -146,8 +154,7 @@ public class assignacio {
 
 
     /**
-     *
-     * @return Totes les Classe que en aquest moment de la execució encara són possibles d'assignar.
+     * @return Totes les Classe que en aquest moment de la execucio encara son possibles d'assignar.
      */
     public ArrayList<Classe> getAllPossibleClasses () {
         ArrayList<Classe> c = new ArrayList<Classe>();
@@ -171,7 +178,7 @@ public class assignacio {
 
 
     /**
-     * Afegeix aquesta nova Classe al conjunt de possibilitats que manté aquesta assignació.
+     * Afegeix aquesta nova Classe al conjunt de possibilitats que mante aquesta assignacio.
      * @param c Una classe que representarà una nova possibilitat de la classe assignació.
      */
     public void afegeixPossibilitat (Classe c) {
@@ -179,13 +186,14 @@ public class assignacio {
         DiaSetmana d = c.getDia();
         possibles_classes.putIfAbsent(id_aula, new HashMap<>());
         possibles_classes.get(id_aula).putIfAbsent(d, new ArrayList<>());
-        possibles_classes.get(id_aula).get(d).add(c);   //afegim la possibilitat
+        if (! possibles_classes.get(id_aula).get(d).contains(c))
+             possibles_classes.get(id_aula).get(d).add(c);   //afegim la possibilitat
     }
 
     /**
-     * Dur a terme el podat de les seves possibilitats després de "agafar" una nova Classe a l'horari.
-     * @param c La Classe que representa la última Classe que hem triat perquè formi part del nostre horari.
-     * @return Una arrayList amb les possibilitats que hem "podat" ja que ja no són possibles.
+     * Dur a terme el podat de les seves possibilitats despres de "agafar" una nova Classe a l'horari.
+     * @param c La Classe que representa la ultima Classe que hem triat perque formi part del nostre horari.
+     * @return Una arrayList amb les possibilitats que hem "podat" ja que ja no son possibles.
      */
 
     public ArrayList<Classe> forwardChecking (Classe c) {
@@ -204,7 +212,7 @@ public class assignacio {
 
 
     /**
-     * Elimina totes les possibilitats de la assignació menys aquelles que hem seleccionat per l'horari.
+     * Elimina totes les possibilitats de la assignacio menys aquelles que hem seleccionat per l'horari.
      * @return ArrayList amb totes aquelles classes que hem "podat".
      */
     public ArrayList<Classe> nomesSeleccionades () {
@@ -241,7 +249,7 @@ public class assignacio {
 
 
     /**
-     * @return Un booleà que ens diu si encara tenim suficients possibilitats per assignar tot el número de classes restants.
+     * @return Un boolea que ens diu si encara tenim suficients possibilitats per assignar tot el numero de classes restants.
      */
     public boolean isEmpty () { //si no tenim suficients possibilitats per cobrir les necessitats de l'assignatura
         if (numeroClassesRestants > (getAllPossibleClasses().size())) return true;
@@ -251,7 +259,7 @@ public class assignacio {
 
     @Override
     /**
-     * @return Una string amb el id de la assignatura, grup, la capacitat, el tipus d'aula necessària i si és de Matins o Tardes.
+     * @return Una string amb el id de la assignatura, grup, la capacitat, el tipus d'aula necessaria i si és de Matins o Tardes.
      */
     public String toString() {
         return idAssig + ":" + idGrup + ":" + capacitat + ":" + tAula + ":" + horariGrup;

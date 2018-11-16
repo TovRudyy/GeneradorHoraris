@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 
 /**
- * @author David Pujol,
+ * @author David Pujol
  * Date: 07/10/18
  */
 
@@ -48,7 +48,7 @@ public class assignatura {
     }
 
 
-    /** Mètodes públics **/
+    /** Metodes publics **/
 
 
     /**
@@ -87,13 +87,13 @@ public class assignatura {
 
 
     /**
-     * El sistema modificarà el nombre i la durada de les classes de teoria, problemes i laboratori.
-     * @param nTeoria Número de classes de teoria a la setmana.
+     * El sistema modificara el nombre i la durada de les classes de teoria, problemes i laboratori.
+     * @param nTeoria Numero de classes de teoria a la setmana.
      * @param dTeoria Duració de les classes de teoria.
-     * @param nProblemes  Número de classes de problemes a la setmana.
-     * @param dProblemes Duració de les classes de problemes.
-     * @param nLaboratori Número de classes de laboratori a la setmana.
-     * @param dLaboratori Duració de les classes de laboratori.
+     * @param nProblemes  Numero de classes de problemes a la setmana.
+     * @param dProblemes Duracio de les classes de problemes.
+     * @param nLaboratori Numero de classes de laboratori a la setmana.
+     * @param dLaboratori Duracio de les classes de laboratori.
      */
     public void setClasses (int nTeoria, int dTeoria, int nLaboratori, int dLaboratori, int nProblemes, int dProblemes) {
         classes_teoria = nTeoria;
@@ -114,7 +114,7 @@ public class assignatura {
     }
 
     /**
-     * Imprimeix per pantalla la informació dels diferents grups que formen la assignatura.
+     * Imprimeix per pantalla la informacio dels diferents grups que formen la assignatura.
      */
     public void showGrups () {
 
@@ -133,7 +133,7 @@ public class assignatura {
 
 
     /**
-     * Fa un recorregut en tots els seus grups, i afegeix restriccions perquè
+     * Fa un recorregut en tots els seus grups, i afegeix restriccions perque
      * en cap cas, els grups de teoria es solapin amb els seus subgrups de
      * problemes o laboratori.
      */
@@ -160,7 +160,7 @@ public class assignatura {
 
     /**
      * @return Retorna una arrayList amb tot el conjunt de assignacions generades, tenint en compte que
-     * una assignacio serà la relació entre una assignatura i un dels seus grups.
+     * una assignacio sera la relacio entre una assignatura i un dels seus grups.
      * @param aules conjunt d'aules amb les que fer les assignacions
      */
     public ArrayList<assignacio> getAssignacions (Map<String, Aula> aules) {
@@ -191,9 +191,9 @@ public class assignatura {
 
 
     /**
-     * Afegeix un nou correquisit en aquesta assignatura amb relacio amb la assignatura que té com a id
-     * el paràmetre passat.
-     * @param new_correquisit Una string amb el id de la assignatura amb la que és correquisit
+     * Afegeix un nou correquisit en aquesta assignatura amb relacio amb la assignatura que te com a id
+     * el parametre passat.
+     * @param new_correquisit Una string amb el id de la assignatura amb la que es correquisit
      */
     public void addCorrequisit (String new_correquisit) {
         corequisits.addAssignatura(new_correquisit);

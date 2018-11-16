@@ -14,6 +14,10 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * @author Victor
+ */
+
 class driverHorari {
 
     private static Horari horari = new Horari(new ArrayList<>());
@@ -23,6 +27,9 @@ class driverHorari {
         executar();
     }
 
+    /**
+     * Imprimeix un menu amb les opcions disponibles per a l'usuari.
+     */
     private static void printMenu() {
         out.println("Driver de la Classe Horari.");
         out.println("Selecciona la funcio que vols provar introduint el seu codi associat: ");
@@ -32,6 +39,9 @@ class driverHorari {
         out.println("Aquests esta situat a la carpeta \"Data\", subcarpeta \"Drivers_Input\", i es diu Horari_InputList.json.");
     }
 
+    /**
+     * Imprimeix els codis per a accedir a les diferents funcionalitats.
+     */
     private static void printCodis() {
         out.println("\t1) Constructora");
         out.println("\t2) Crear Horari");
@@ -43,6 +53,9 @@ class driverHorari {
         out.println("\t8) Sortir");
     }
 
+    /**
+     * Executa la opcio que hagi elegit el usuari.
+     */
     private static void executar() {
         try{
             int codi;
@@ -89,6 +102,9 @@ class driverHorari {
         }
     }
 
+    /**
+     * Executa el joc de proves associat al driver.
+     */
     private static void executar_Joc_de_Proves() {
         try{
             keyboard = new Scanner(new FileReader("data/Jocs_de_Prova_Drivers/10.DriverHorari"));
@@ -98,34 +114,53 @@ class driverHorari {
         }
     }
 
+    /**
+     * Imprimeix per pantalla una string amb el horari.
+     */
     private static void to_String_Test() {
         output.println(horari.toString());
     }
 
+
+    /**
+     * Imprimeix el horari del test en funcio de les aules.
+     */
     private static void write_Horari_Aules_Test() {
         captura();
         horari.printHorariAules();
         allibera();
     }
 
+    /**
+     * Imprimeix el horari del test per assignatures.
+     */
     private static void write_Horari_Assignatures_Test() {
         captura();
         horari.printHorariAssignatures();
         allibera();
     }
 
+    /**
+     * Imprimeix el horari del test.
+     */
     private static void write_Horari_Test() {
         captura();
         horari.printHorari();
         allibera();
     }
 
+    /**
+     * Genera el horari per al test.
+     */
     private static void make_Horari_Test() {
         captura();
         horari.findHorari();
         allibera();
     }
 
+    /**
+     * Construeix dinamicament un test per a aquest driver.
+     */
     private static void constructor_Test() {
         try {
             ArrayList<assignacio> ass = Lector_Drivers_JSON.llegitFitxer_Horari_InputList();

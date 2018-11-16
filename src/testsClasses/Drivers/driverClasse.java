@@ -14,6 +14,9 @@ import static java.lang.System.out;
 import static testsClasses.Drivers.MainDriver.keyboard;
 import static testsClasses.Drivers.MainDriver.output;
 
+/**
+ * @author Victor
+ */
 
 class driverClasse  {
 
@@ -24,6 +27,9 @@ class driverClasse  {
         executar();
     }
 
+    /**
+     * Imprimeix un menu amb les opcions disponibles per a l'usuari.
+     */
     private static void printMenu() {
         out.println("Driver de la Classe Classe.");
         out.println("Selecciona la funcio que vols provar introduint el seu codi associat: ");
@@ -33,6 +39,9 @@ class driverClasse  {
         out.println("Com pots veure, no hi ha setters. Aixo es perque Classe es una classe de dades interna, que no necessita ser modificada mai.");
     }
 
+    /**
+     * Imprimeix els codis per a accedir a les diferents funcionalitats.
+     */
     private static void printCodis() {
         out.println("\t1) Constructora");
         out.println("\t2) Getters");
@@ -41,6 +50,9 @@ class driverClasse  {
         out.println("\t5) Sortir");
     }
 
+    /**
+     * Executa la opcio que hagi elegit el usuari.
+     */
     private static void executar() {
         try{
             int codi;
@@ -78,6 +90,9 @@ class driverClasse  {
         }
     }
 
+    /**
+     * Executa el joc de proves associat al driver.
+     */
     private static void executar_Joc_de_Proves() {
         try{
             keyboard = new Scanner(new FileReader("data/Jocs_de_Prova_Drivers/3.DriverClasse"));
@@ -87,6 +102,9 @@ class driverClasse  {
         }
     }
 
+    /**
+     * Imprimeix un atribut triat per l'usuari del test.
+     */
     private static void getter_Test() {
         out.println("Tria el getter que vols provar introduint el seu codi associat: ");
         out.println("\t1) Assignatura");
@@ -134,6 +152,9 @@ class driverClasse  {
         }
     }
 
+    /**
+     * Construeix un test de forma dinamica.
+     */
     private static void constructor_test() {
         out.println("Introdueix els seguent atributs, separats per un espai:");
         out.println("\tId_Assignatura<String> Id_Grup<String> Id_Aula<String>, Dia<DiaSetmana> HoraInicial<int> HoraFinal<int>");

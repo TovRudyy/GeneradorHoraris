@@ -16,6 +16,10 @@ import static java.lang.System.out;
 import static testsClasses.Drivers.MainDriver.keyboard;
 import static testsClasses.Drivers.MainDriver.output;
 
+/**
+ * @author Victor
+ */
+
 class driverGrup {
 
     private static grup grup = new grup("Id_Inicial", 0, "M", Tipus_Aula.TEORIA);
@@ -26,6 +30,9 @@ class driverGrup {
         executar();
     }
 
+    /**
+     * Imprimeix per pantalla el menu amb totes les funcionalitats accessibles per a l'usuari.
+     */
     private static void printMenu() {
         out.println("Driver de la Classe Grup.");
         out.println("Selecciona la funcio que vols provar introduint el seu codi associat: ");
@@ -38,6 +45,9 @@ class driverGrup {
         out.println("En aquest driver s'utilitza un Stub de la classe RestriccioSubgrup. Per aixo, al provar el getter de subgrup, et sortiran uns valors per defecte");
     }
 
+    /**
+     * Codis per accedir a les opcions donades.
+     */
     private static void printCodis() {
         out.println("\t1) Constructora");
         out.println("\t2) Getters");
@@ -45,6 +55,9 @@ class driverGrup {
         out.println("\t4) Sortir");
     }
 
+    /**
+     * Executa la opcio triada per l'usuari.
+     */
     private static void executar() {
         try{
             int codi;
@@ -79,6 +92,9 @@ class driverGrup {
         }
     }
 
+    /**
+     * Executa el joc de proves associat a aquest driver.
+     */
     private static void executar_Joc_de_Proves() {
         try{
             keyboard = new Scanner(new FileReader("data/Jocs_de_Prova_Drivers/4.DriverGrup"));
@@ -88,6 +104,9 @@ class driverGrup {
         }
     }
 
+    /**
+     * Imprimeix un atribut triat per l'usuari del test.
+     */
     private static void getter_Test() {
         out.println("Tria el getter que vols provar introduint el seu codi associat: ");
         out.println("\t1) Identificador");
@@ -125,6 +144,9 @@ class driverGrup {
         }
     }
 
+    /**
+     * Construeix un test de forma dinamica.
+     */
     private static void constructor_Test() {
         out.println("Introdueix els seguents atributs, separats per un espai:");
         out.println("\tIdentificador<String> Capacitat<int> Horari<M | T> Tipus<Tipus_Aula>");

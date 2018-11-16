@@ -13,6 +13,9 @@ import static java.lang.System.out;
 import static testsClasses.Drivers.MainDriver.keyboard;
 import static testsClasses.Drivers.MainDriver.output;
 
+/**
+ * @author Victor
+ */
 
 class driverRestriccioSubgrup  {
 
@@ -23,6 +26,9 @@ class driverRestriccioSubgrup  {
         executar();
     }
 
+    /**
+     * Imprimeix un menu amb totes les funcionalitat accessibles per a l'usuari.
+     */
     private static void printMenu() {
         out.println("Driver de la Classe RestriccioSubgrup.");
         out.println("Selecciona la funcio que vols provar introduint el seu codi associat: ");
@@ -31,6 +37,9 @@ class driverRestriccioSubgrup  {
         out.println("Al principi, aquesta instancia esta inicialitzada amb uns valors trivials.");
     }
 
+    /**
+     * Dona els codis necessaris per a accedir a les diferents funcionalitats.
+     */
     private static void printCodis() {
         out.println("\t1) Constructora");
         out.println("\t2) Esborrar classes incompatibles");
@@ -38,6 +47,9 @@ class driverRestriccioSubgrup  {
         out.println("\t4) Sortir");
     }
 
+    /**
+     * Executa la funcio triada per l'usuari.
+     */
     private static void executar() {
         try{
             int codi;
@@ -72,6 +84,9 @@ class driverRestriccioSubgrup  {
         }
     }
 
+    /**
+     * Executa el joc de proves associat a aquest driver.
+     */
     private static void executar_Joc_de_Proves() {
         try{
             keyboard = new Scanner(new FileReader("data/Jocs_de_Prova_Drivers/6.DriverRestriccioSubgrup"));
@@ -81,6 +96,9 @@ class driverRestriccioSubgrup  {
         }
     }
 
+    /**
+     * Poda les possibilitats que ja no puguin tenir lloc si hem elegit una Classe donada.
+     */
     private static void delete_Possibilities_Test() {
         out.println("Aquesta funcio rep com a parametres una Classe, i un conjunt de Classes classificades segons la seva aula i el Dia de la setmana.");
         out.println("El resultat d'aquesta funcio es la llista de Classes que s'han eliminat del conjunt degut a que son incompatibles amb la Classe passada.");
@@ -128,6 +146,9 @@ class driverRestriccioSubgrup  {
         }
     }
 
+    /**
+     * Construeix dinamicament un test per al driver.
+     */
     private static void constructor_Test() {
         out.println("La Classe RestriccioSubgrup te un unic atribut que es un grup. Aquest es el grup pare del grup que conte la instancia de RestriccioSubgrup.");
         out.println("A efectes d'aquest driver, el grup pare que posis sera el pare de tots els grups que es llegeixin.");

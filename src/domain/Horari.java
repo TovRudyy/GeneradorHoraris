@@ -6,6 +6,9 @@ import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
+/**
+ * @Autor David Pujol
+ */
 
 public class Horari {
 
@@ -57,11 +60,11 @@ public class Horari {
 
 
     /**
-     * Implementa el algorisme que calcularà un horari per les diferents assignacions prèviament guardades
+     * Implementa el algorisme que calculara un horari per les diferents assignacions previament guardades
      * i que compleixin totes les restriccions.
      *
-     * @param index Indica quina assignació estem tractant en aquesta iteració.
-     * @return Un booleà que indica si el horari és possible o no.
+     * @param index Indica quina assignacio estem tractant en aquesta iteracio.
+     * @return Un boolea que indica si el horari es possible o no.
      */
     //retorna true si ja ha acabat o false si encara no
     public boolean selectClasse (int index) {
@@ -89,9 +92,10 @@ public class Horari {
 
                     if (r) return r;
                 }
-                else
-                    revertChanges(eliminades, c); a.eliminarSeleccionada(c);
 
+
+                revertChanges(eliminades, c);
+                a.eliminarSeleccionada(c);
             }
 
             return false;   //vol dir que hem mirat totes les opcions i no n'hi ha cap que funcioni
@@ -103,7 +107,7 @@ public class Horari {
 
 
     /**
-     * Recorre totes les assignacions i fa la poda de les possibilitats que ja no són viables amb la nova elecció de l'horari.
+     * Recorre totes les assignacions i fa la poda de les possibilitats que ja no son viables amb la nova eleccio de l'horari.
      *
      * @param c Nova classe seleccionada per l'horari
      * @return Una pila amb totes les possibilitats que les assignacions han eliminat en aquesta "poda"
@@ -125,13 +129,13 @@ public class Horari {
 
     /**
      * Torna a afegir totes aquestes possibilitats a les seves assignacions originals, revertint així els canvis.
-     * @param eliminades Una pila amb totes les classes que prèviament hem "podat" perquè ja no eren viables.
+     * @param eliminades Una pila amb totes les classes que previament hem "podat" perque ja no eren viables.
      */
     private void revertChanges(Stack<Classe> eliminades, Classe actual) {
         while (!eliminades.empty()) {
             Classe c = eliminades.pop();
             assignacio a = conjuntAssignacions.get(c.getId_assig() + c.getId_grup());
-          //  if (c != actual)
+            if (c != actual)
             a.afegeixPossibilitat(c);
         }
     }

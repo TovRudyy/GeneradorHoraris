@@ -1,10 +1,12 @@
 package presentacio;
 
-import domain.ControladorAules;
-import domain.ControladorPlaEstudis;
-import domain.PlaEstudis;
 
 import java.util.Scanner;
+
+
+/**
+ * @author Olek
+ */
 
 public class ControladorPresentacioPlaEstudis {
 

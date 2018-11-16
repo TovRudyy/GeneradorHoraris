@@ -15,6 +15,9 @@ import static java.lang.System.out;
 import static testsClasses.Drivers.MainDriver.keyboard;
 import static testsClasses.Drivers.MainDriver.output;
 
+/**
+ * @author Victor
+ */
 
 class driverRestriccioCorrequisit {
 
@@ -25,6 +28,9 @@ class driverRestriccioCorrequisit {
         executar();
     }
 
+    /**
+     * Imprimeix un menu amb totes les funcionalitat accessibles per a l'usuari.
+     */
     private static void printMenu() {
         out.println("Driver de la Classe RestriccioCorequisit.");
         out.println("Selecciona la funcio que vols provar introduint el seu codi associat: ");
@@ -34,6 +40,9 @@ class driverRestriccioCorrequisit {
         out.println("La Classe RestriccioCorequisit mante una llista d'assignatures que son corequisit de l'assignatura que conte la instancia de RestriccioCorequisit.");
     }
 
+    /**
+     * Dona els codis necessaris per a accedir a les diferents funcionalitats.
+     */
     private static void printCodis() {
         out.println("\t1) Constructora");
         out.println("\t2) Consultora llistat buit");
@@ -46,6 +55,9 @@ class driverRestriccioCorrequisit {
         out.println("\t9) Sortir");
     }
 
+    /**
+     * Executa la funcio triada per l'usuari.
+     */
     private static void executar() {
         try{
             int codi;
@@ -95,6 +107,9 @@ class driverRestriccioCorrequisit {
         }
     }
 
+    /**
+     * Executa el joc de proves associat a aquest driver.
+     */
     private static void executar_Joc_de_Proves() {
         try{
             keyboard = new Scanner(new FileReader("data/Jocs_de_Prova_Drivers/7.DriverRestriccioCorequisit"));
@@ -104,11 +119,17 @@ class driverRestriccioCorrequisit {
         }
     }
 
+    /**
+     * Retorna una string amb el resultat.
+     */
     private static void to_String_Test() {
         output.println("Resultat: " + corequisit.toString());
 
     }
 
+    /**
+     * Poda les possibilitats que ja no puguin tenir lloc si hem elegit una Classe donada.
+     */
     private static void delete_Possibilities_Test() {
         out.println("Aquesta funcio rep com a parametres una Classe, i un conjunt de Classes classificades segons la seva aula i el Dia de la setmana.");
         out.println("El resultat d'aquesta funcio es la llista de Classes que s'han eliminat del conjunt degut a que son incompatibles amb la Classe passada.");
@@ -155,12 +176,18 @@ class driverRestriccioCorrequisit {
         }
     }
 
+    /**
+     * Donat el identificador de una assignatura, comprova si es un correquisit.
+     */
     private static void es_Corequisit_Test() {
         out.println("Introdueix l'identificador de la asignatura per saber si es corequisit:");
         out.println("Identificador<String>");
         output.println("Resultat: " + corequisit.esCorrequisit(keyboard.next()));
     }
 
+    /**
+     * Afegeix una assignatura com a a correquisit.
+     */
     private static void add_Assignatura_Test() {
         out.println("Introdueix l'identificador de la assignatura a afegir:");
         out.println("Identificador<String>");
@@ -168,15 +195,24 @@ class driverRestriccioCorrequisit {
         else output.println("No s'ha pogut afegir la assignatura");
     }
 
+    /**
+     * Imprimeix per pantalla les assignatures que son els seus correquisits.
+     */
     private static void get_Assignatures_Test() {
         output.println("Resultat: ");
         for(String s:corequisit.getAssignatures()) output.println("\t" + s);
     }
 
+    /**
+     * Comprova si despres de fer la poda, les possibilitats s'han quedat buides.
+     */
     private static void is_Empty_Test() {
         output.println("Resultat: " + corequisit.isEmpty());
     }
 
+    /**
+     * Construeix dinamicament un test per al driver.
+     */
     private static void constructor_Test() {
         out.println("La classe RestriccioCorequisit nomes te una constructora per defecte, per tant no necessita parametres.");
         corequisit = new RestriccioCorequisit();

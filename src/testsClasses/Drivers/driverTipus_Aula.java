@@ -14,6 +14,10 @@ import static java.lang.System.out;
 import static testsClasses.Drivers.MainDriver.keyboard;
 import static testsClasses.Drivers.MainDriver.output;
 
+/**
+ * @author Victor
+ */
+
 class driverTipus_Aula {
 
 
@@ -23,6 +27,9 @@ class driverTipus_Aula {
         executar();
     }
 
+    /**
+     * Imprimeix un menu amb totes les funcionalitat accessibles per a l'usuari.
+     */
     private static void printMenu(){
         out.println("Driver de la Enumeracio Tipus_Aula.");
         out.println("Selecciona la funcio que vols provar introduint el seu codi associat:");
@@ -30,6 +37,9 @@ class driverTipus_Aula {
         out.println("La primera opcio (Escriure tipus) no es una funcio en si, sino que esta per a que puguis veure tots els tipus d'aula que hi ha actualment.");
     }
 
+    /**
+     * Dona els codis necessaris per a accedir a les diferents funcionalitats.
+     */
     private static void printCodis(){
         out.println("\t1) Escriure tipus");
         out.println("\t2) Escriure codis valids");
@@ -40,6 +50,9 @@ class driverTipus_Aula {
         out.println("\t7) Sortir");
     }
 
+    /**
+     * Executa la funcio triada per l'usuari.
+     */
     private static void executar(){
         try {
             int codi;
@@ -83,6 +96,9 @@ class driverTipus_Aula {
         }
     }
 
+    /**
+     * Executa el joc de proves associat a aquest driver.
+     */
     private static void executar_Joc_de_Proves() {
         try{
             keyboard = new Scanner(new FileReader("data/Jocs_de_Prova_Drivers/1.DriverTipus_Aula"));
@@ -92,6 +108,9 @@ class driverTipus_Aula {
         }
     }
 
+    /**
+     * Construeix un test.
+     */
     private static void get_Short_Test() {
         out.println("Tria la opcio que vols introduint el seu codi associat: ");
         out.println("\t1) Introduir un unic string, que sera convertit a Tipus_Aula, i obtenir la seva abreviacio");
@@ -116,6 +135,9 @@ class driverTipus_Aula {
         }
     }
 
+    /**
+     * Comprova si donat un test, aquest es o no un laboratori.
+     */
     private static void es_Laboratori_Test() {
         out.println("Tria la opcio que vols introduint el seu codi associat: ");
         out.println("\t1) Introduir un unic string, que sera convertit a Tipus_Aula, i consultar si es Laboratori o no");
@@ -140,6 +162,9 @@ class driverTipus_Aula {
         }
     }
 
+    /**
+     * Imprimeix una string amb la informacio guardada en el test.
+     */
     private static void String_To_Tipus_Aula_Test() {
         out.println("Introdueix un string: ");
         String s = keyboard.next();

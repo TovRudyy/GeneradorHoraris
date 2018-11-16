@@ -11,8 +11,16 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 
+/**
+ * @author Olek
+ */
+
 public class ControladorPersistencia {
 
+    /**
+     * Llegeix de un fitxer diversos plans d'estudis.
+     * @return Retorna una array amb tots els plans d'estudis llegits.
+     */
     public ArrayList<PlaEstudis> llegeixDadesPE() {
         ArrayList<PlaEstudis> ret = new ArrayList<PlaEstudis>();
         try {
@@ -23,6 +31,11 @@ public class ControladorPersistencia {
         return ret;
     }
 
+    /**
+     * Llegeix de un fitxer un pla d'estudis concret.
+     * @param file Ruta del fitxer.
+     * @return La instancia del pla d'estudis creat.
+     */
     public PlaEstudis llegeixPE(String file) {
         PlaEstudis ret = null;
         try {
@@ -33,6 +46,10 @@ public class ControladorPersistencia {
         return ret;
     }
 
+    /**
+     * Llegeix de un fitxer un conjunt d'aules.
+     * @return Un map amb la informacio de les diferents aules.
+     */
     public Map<String, Aula> llegeixDadesAules() {
         Map<String, Aula> ret = new TreeMap<>();
         try {
@@ -43,6 +60,11 @@ public class ControladorPersistencia {
         return ret;
     }
 
+    /**
+     * Llegeix de un fitxer un conjunt d'aules.
+     * @param path Ruta al fitxer.
+     * @return Les instancies de aules creades.
+     */
     public Map<String, Aula> llegeixFitxerAula(String path) {
         Map<String, Aula> noves = new TreeMap<>();
         try {
@@ -53,6 +75,11 @@ public class ControladorPersistencia {
         return noves;
     }
 
+    /**
+     * Llegeix de un fitxer un conjunt d'assignatures.
+     * @param path Ruta al fitxer.
+     * @return Les instancies d'assignatura creades.
+     */
     public ArrayList<assignatura> llegeixAssignatura(String path) {
         ArrayList<assignatura> noves = new ArrayList<assignatura>();
         try {
@@ -64,6 +91,12 @@ public class ControladorPersistencia {
         }
     }
 
+    /**
+     * Guarda a una ruta donada un horari en format txt.
+     * @param horari El horari en format String
+     * @param file La ruta on voleu guardar-ho
+     * @return Una string amb el horari
+     */
     public String guardaHorari(String horari, String file) {
         BufferedWriter bw = null;
         FileWriter fw = null;
@@ -92,6 +125,10 @@ public class ControladorPersistencia {
         return ret;
     }
 
+    /**
+     * Mostra per pantalla un horari donat a partir del seu fitxer.
+     * @param file Ruta al fitxer
+     */
     public void visualitzaHorari(String file) {
         file = "data/Horaris/" + file;
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
@@ -105,6 +142,9 @@ public class ControladorPersistencia {
         }
     }
 
+    /**
+     * Mostra per pantalla les diferents opcions de horaris que tenim.
+     */
     public void mostraFitxersHoraris() {
         File dir = new File("data/Horaris");
         File[] horaris = dir.listFiles();

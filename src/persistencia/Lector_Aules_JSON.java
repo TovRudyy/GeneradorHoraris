@@ -16,6 +16,10 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.TreeMap;
 
+/**
+ * @author Victor Divi
+ */
+
 public final class Lector_Aules_JSON {
 
     private Lector_Aules_JSON() {
@@ -27,6 +31,14 @@ public final class Lector_Aules_JSON {
         return aules_dades;
     }
 
+    /**
+     * Llegeix de un fitxer un conjunt d'aules i les instancia en format map.
+     * @param fitxer Ruta del fitxer
+     * @return Un map amb el conjunt de aules llegit.
+     * @throws ParseException
+     * @throws IOException
+     * @throws Aula_Exception
+     */
     public static Map<String, Aula> llegirAules(String fitxer) throws ParseException, IOException, Aula_Exception{
         Map<String, Aula> aules = new TreeMap<>();
         JSONParser parser = new JSONParser();
@@ -43,10 +55,23 @@ public final class Lector_Aules_JSON {
         return aules;
     }
 
+    /**
+     * Afegeix les aules del fitxer al map passat per parametre.
+     * @param aules Conjunt preexistent d'aules
+     * @param fitxer Ruta al fitxer
+     * @throws ParseException
+     * @throws IOException
+     * @throws Aula_Exception
+     */
     public static void afegirAules(Map<String, Aula>aules, String fitxer) throws  ParseException, IOException, Aula_Exception{
         aules.putAll(llegirAules(fitxer));
     }
 
+    /**
+     * Llegeix la carpeta preestablerta d'aules i les instancia en un map.
+     * @return Un map amb les instancies de aula creades.
+     * @throws Aula_Exception
+     */
     public static Map<String, Aula> llegirCarpetaAules()  throws Aula_Exception{
         File AUfolder = new File("data/Aules");
         if (!AUfolder.isDirectory()) throw new Aula_Exception("Error with data/Aules folder!");

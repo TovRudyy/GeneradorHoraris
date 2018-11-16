@@ -10,6 +10,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
 
+/**
+ * @author Olek
+ */
 
 public class ControladorPlaEstudis {
 
@@ -26,7 +29,7 @@ public class ControladorPlaEstudis {
 
 
     /**
-     * @return Una arrayList amb la informació de els plans d'estudis disponibles.
+     * @return Una arrayList amb la informacio de els plans d'estudis disponibles.
      */
     public ArrayList<String> getInfoPlans(){
         ArrayList<String> ret = new ArrayList<String>();
@@ -40,7 +43,7 @@ public class ControladorPlaEstudis {
 
     /**
      * @param id Identificador del pla d'estudis
-     * @return Un booleà que indica si hi ha un pla d'estudis amb aquest identificador.
+     * @return Un boolea que indica si hi ha un pla d'estudis amb aquest identificador.
      */
     public boolean exists(String id) {
         return (getPlaEstudi(id) != null);
@@ -57,7 +60,7 @@ public class ControladorPlaEstudis {
     }
 
     /**
-     * Genera un horari pel pla d'estudis amb el id del paràmetre.
+     * Genera un horari pel pla d'estudis amb el id del parametre.
      * @param id Identificador del pla d'estudis.
      */
     public void generarHorari(String id) {
@@ -92,7 +95,7 @@ public class ControladorPlaEstudis {
 
 
     /**
-     * Retorna el pla d'estudis que té com a identificador el valor passat per paràmetre.
+     * Retorna el pla d'estudis que té com a identificador el valor passat per parametre.
      * @param id Identificador del pla d'estudis.
      */
     private PlaEstudis getPlaEstudi(String id) {
@@ -145,7 +148,7 @@ public class ControladorPlaEstudis {
     }
 
     /**
-     * Reinicia totes les dades del pla d'estudis amb la informació llegida directament dels fitxers.
+     * Reinicia totes les dades del pla d'estudis amb la informacio llegida directament dels fitxers.
      */
     public void resetData() {
         ConjuntPE.clear();

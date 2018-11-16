@@ -1,10 +1,5 @@
 package domain;
 
-
-// He fet una enumeracio i un atribut de classe en comptes de subclasses perque de moment tenen exactament el mateix comportament
-
-
-
 /**
  * @author Victor
  * Aula.

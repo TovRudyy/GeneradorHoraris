@@ -14,6 +14,10 @@ import java.util.TreeMap;
 import static java.lang.System.out;
 import static testsClasses.Drivers.MainDriver.*;
 
+/**
+ * @author Victor
+ */
+
 class driverAssignatura {
 
 
@@ -27,6 +31,9 @@ class driverAssignatura {
         executar();
     }
 
+    /**
+     * Inicialitza unes instancies de la classe aula.
+     */
     private static void initAules() {
         aules.put("AulaT", new Aula("AulaT", 9999999, Tipus_Aula.TEORIA));
         aules.put("AulaP", new Aula("AulaP", 9999999, Tipus_Aula.PROBLEMES));
@@ -35,6 +42,9 @@ class driverAssignatura {
         aules.put("AulaLE", new Aula("AulaLE", 9999999, Tipus_Aula.LAB_ELECTRONICA));
     }
 
+    /**
+     * Imprimeix un menu amb les opcions.
+     */
     private static void printMenu() {
         out.println("Driver de la Classe Assignatura.");
         out.println("Selecciona la funcio que vols provar introduint el seu codi associat: ");
@@ -43,6 +53,9 @@ class driverAssignatura {
         out.println("Al principi, aquesta instancia esta inicialitzada amb uns valors trivials.");
     }
 
+    /**
+     * Executa la opcio en funcio del codi introduit per l'usuari.
+     */
     private static void executar() {
         try{
             int codi;
@@ -90,6 +103,9 @@ class driverAssignatura {
         }
     }
 
+    /**
+     * Executa el joc de proves d'aquest driver i a mes a mes, mostre el output esperat.
+     */
     private static void executar_Joc_de_Proves() {
         try{
             keyboard = new Scanner(new FileReader("data/Jocs_de_Prova_Drivers/9.DriverAssignatura"));
@@ -99,12 +115,18 @@ class driverAssignatura {
         }
     }
 
+    /**
+     * Afegeix un correquisit a la assignatura.
+     */
     private static void afegir_corequisit_Test() {
         out.println("Introdueix l'identificador de la assignatura corequisit:");
         out.println("\tIdentificador<String>");
         ass.addCorrequisit(keyboard.next());
     }
 
+    /**
+     * Retorna una string del test, tant sigui curta o completa.
+     */
     private static void to_String_Test() {
         output.println("Versio curta: ");
         output.println("\t" + ass.toString());
@@ -113,6 +135,9 @@ class driverAssignatura {
 
     }
 
+    /**
+     * Crea les restriccions de subgrup corresponents.
+     */
     private static void no_Solapis_Test() {
         out.println("Aquesta funcio s'encarrega de afegir a cada grup les seves restriccions de subgrup");
         output.println("\tSubgrups abans de la funcio:");
@@ -127,6 +152,9 @@ class driverAssignatura {
         }
     }
 
+    /**
+     * Fa un setter de un atribut concret de la assignatura.
+     */
     private static void setters_Test() {
         out.println("Tria el setter que vols provar introduient el seu codia associat: ");
         out.println("\t1) Grups");
@@ -167,6 +195,9 @@ class driverAssignatura {
         }
     }
 
+    /**
+     * Fa un getter de un atribut concret de la assignatura.
+     */
     private static void getters_Test() {
         out.println("Tria el getter que vols provar introduint el seu codi associat: ");
         out.println("\t1) Identificador");
@@ -228,6 +259,9 @@ class driverAssignatura {
         }
     }
 
+    /**
+     * Construeix el test.
+     */
     private static void constructor_Test() {
         out.println("Introdueix els seguent atributs, separats per un espai:");
         out.println("\tIdentificador<String> Nom<String(sense espais)> Nivell<int>");
@@ -238,6 +272,9 @@ class driverAssignatura {
         }
     }
 
+    /**
+     * Imprimeix els codis amb les opcions que te disponibles l'usuari.
+     */
     private static void printCodis() {
         out.println("\t1) Constructora");
         out.println("\t2) Getters");

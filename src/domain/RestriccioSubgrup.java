@@ -3,6 +3,10 @@ package domain;
 import java.util.ArrayList;
 import java.util.Map;
 
+/**
+ * @Autor David Pujol
+ */
+
 public class RestriccioSubgrup extends Restriccio {
 
     private grup pare;
@@ -49,7 +53,9 @@ public class RestriccioSubgrup extends Restriccio {
         return eliminades;
     }
 
-
+    /**
+     * @return Una string amb la informacio de la restriccio (qui es el seu grup de teoria).
+     */
     @Override
     public String toString() {
         return "Pare: " + pare.toString();

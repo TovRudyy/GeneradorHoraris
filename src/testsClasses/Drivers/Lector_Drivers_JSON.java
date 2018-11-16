@@ -11,8 +11,17 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+/**
+ * @author Victor
+ */
+
 class Lector_Drivers_JSON {
 
+    /**
+     * @return Un map amb totes les Restriccions de ocupacio llegides pel fitxer.
+     * @throws ParseException
+     * @throws IOException
+     */
     static Map<String, Map<DiaSetmana, ArrayList<Classe>>> llegirFitxer_RestriccioOcupacio_InputMap() throws ParseException, IOException {
         JSONParser parser = new JSONParser();
         Map<String, Map<DiaSetmana, ArrayList<Classe>>> classes = new TreeMap<>();
@@ -34,6 +43,11 @@ class Lector_Drivers_JSON {
         return classes;
     }
 
+    /**
+     * @return Un map amb totes les Restriccions de subgrup llegides pel fitxer.
+     * @throws ParseException
+     * @throws IOException
+     */
     static Map<String, Map<DiaSetmana, ArrayList<Classe>>> llegirFitxer_RestriccioSubgrup_InputMap() throws ParseException, IOException {
         JSONParser parser = new JSONParser();
         Map<String, Map<DiaSetmana, ArrayList<Classe>>> classes = new TreeMap<>();
@@ -56,6 +70,11 @@ class Lector_Drivers_JSON {
         return classes;
     }
 
+    /**
+     * @return Un map amb totes les Restriccions de correquisit llegides pel fitxer.
+     * @throws ParseException
+     * @throws IOException
+     */
     static Map<String, Map<DiaSetmana, ArrayList<Classe>>> llegirFitxer_RestriccioCorequisit_InputMap() throws ParseException, IOException {
         JSONParser parser = new JSONParser();
         Map<String, Map<DiaSetmana, ArrayList<Classe>>> classes = new TreeMap<>();
@@ -78,6 +97,12 @@ class Lector_Drivers_JSON {
         return classes;
     }
 
+    /**
+     * @return Una arrayList amb les assignacions resultants de processar un fitxer amb tota la informacio necessaria.
+     * @throws ParseException
+     * @throws IOException
+     * @throws Aula_Exception
+     */
     static ArrayList<assignacio> llegitFitxer_Horari_InputList() throws ParseException, IOException, Aula_Exception {
         JSONParser parser = new JSONParser();
         JSONObject obj = (JSONObject) parser.parse(new FileReader("data/Drivers_Input/Horari_InputList.json"));
@@ -99,6 +124,12 @@ class Lector_Drivers_JSON {
         return assignacions;
     }
 
+    /**
+     * Crea una assignatura.
+     * @param ass Un objecte JSON amb la informacio
+     * @return La assignatura creada
+     * @throws Aula_Exception
+     */
     private static assignatura creaAssignatura(JSONObject ass) throws Aula_Exception {
         String codi = (String) ass.get("codi");
         String nom = (String) ass.get("nom");
@@ -172,6 +203,12 @@ class Lector_Drivers_JSON {
         return assig;
     }
 
+    /**
+     * Llegeix un fitxer amb assignatures i crea un map amb aquestes.
+     * @param assignatures Un objecte JSON on conte les diferents assignatures llegides.
+     * @return Un map amb les diferents assignatures creades.
+     * @throws Aula_Exception
+     */
     private static Map<String, assignatura> afegeixAssignatures(JSONArray assignatures) throws Aula_Exception{
         Map<String, assignatura> ass = new TreeMap<>();
         for(Object a: assignatures){
@@ -182,6 +219,11 @@ class Lector_Drivers_JSON {
         return ass;
     }
 
+    /**
+     * Afegeix els correquisits corresponents a les assignatures pertinents.
+     * @param corequisits Un objecte amb els correquisits llegits.
+     * @param assigs El map amb les diferents assignatures.
+     */
     private static void afegeixCorrequisits(JSONArray corequisits, Map<String, assignatura> assigs){
         for(Object c: corequisits){
             JSONObject cc = (JSONObject) c;
@@ -193,6 +235,12 @@ class Lector_Drivers_JSON {
         }
     }
 
+    /**
+     * Llegeix la informacio de les aules i crea les instancies correctament.
+     * @param obj Un objecte JSON amb la informacio de les aules.
+     * @return Un map amb les diferents aules creades.
+     * @throws Aula_Exception
+     */
     private static Map<String, Aula> crearAules(JSONArray obj) throws Aula_Exception{
         Map<String, Aula> aules = new TreeMap<>();
         for (Object anObj : obj) {
@@ -206,6 +254,11 @@ class Lector_Drivers_JSON {
         return aules;
     }
 
+    /**
+     * Afegeix un conjunt de correquisits a un pla d'estudis.
+     * @param plaEstudis El pla d'estudis que tractem
+     * @param corequisits La array amb tots els correquisits que volem afegir.
+     */
     private static void afegeixCorrequisits2(PlaEstudis plaEstudis, JSONArray corequisits){
         for(Object c: corequisits){
             JSONObject cc = (JSONObject) c;
@@ -216,6 +269,13 @@ class Lector_Drivers_JSON {
         }
     }
 
+    /**
+     * Llegeix un pla d'estudis i crea la instancia corresponent.
+     * @return El pla d'estudis corresponent.
+     * @throws ParseException
+     * @throws IOException
+     * @throws Aula_Exception
+     */
     static PlaEstudis llegirPlaEstudis() throws ParseException, IOException, Aula_Exception {
         JSONParser parser = new JSONParser();
         JSONObject obj = (JSONObject) parser.parse(new FileReader("data/Drivers_Input/PlaEstudis_InputPla.json"));
@@ -228,6 +288,13 @@ class Lector_Drivers_JSON {
         return plaEstudis;
     }
 
+    /**
+     * Llegeix un conjunt d'aules i crea un map amb les diferents instancies.
+     * @return El map amb les instancies creades corresponents.
+     * @throws ParseException
+     * @throws IOException
+     * @throws Aula_Exception
+     */
     static Map<String, Aula> llegirAules() throws ParseException, IOException, Aula_Exception{
         Map<String, Aula> aules = new TreeMap<>();
         JSONParser parser = new JSONParser();

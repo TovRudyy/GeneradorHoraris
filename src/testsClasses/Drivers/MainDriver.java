@@ -6,6 +6,10 @@ import java.util.Scanner;
 
 import static java.lang.System.out;
 
+/**
+ * @author Victor
+ */
+
 public class MainDriver {
 
     static Scanner keyboard = new Scanner(System.in);
@@ -17,6 +21,9 @@ public class MainDriver {
         executar();
     }
 
+    /**
+     * Permet a l'usuari introduir un codi i executar diverses funcionalitats corresponents.
+     */
     private static void executar(){
         try {
             int codi;
@@ -88,6 +95,9 @@ public class MainDriver {
         }
     }
 
+    /**
+     * Imprimeix un menu de benvinguda amb alguna informacio rellevant.
+     */
     private static void printMenu() {
         out.println("Benvingut al menu principal dels drivers.");
         out.println("Selecciona el driver que vols utilitzar introduint el seu codi associat:");
@@ -100,6 +110,9 @@ public class MainDriver {
         out.println("Si vols tronar a consultar els codis, pots introduir el codi -1 (tambe valid en tots els drivers).");
     }
 
+    /**
+     * Imprimeix els codis corresponents a les diferents funcionalitats.
+     */
     private static void printCodis(){
         out.println("\t1) Tipus Aula");
         out.println("\t2) Aula");
@@ -115,11 +128,17 @@ public class MainDriver {
         out.println("\t12) Sortir");
     }
 
+    /**
+     * Captura un horari creat.
+     */
     static void captura(){
         old = System.out;
         System.setOut(output);
     }
 
+    /**
+     * Allibera el horari creat.
+     */
     static void allibera(){
         System.out.flush();
         System.setOut(old);

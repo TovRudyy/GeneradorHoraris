@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.lang.Object;
 
 /**
- * @author Rudyy, Oleksandr
+ * @author David Pujol
  * Date: 07/10/2018
  */
 public abstract class Restriccio {
@@ -17,7 +17,7 @@ public abstract class Restriccio {
      * @param af Hora final de la primera classe.
      * @param bi Hora inici de la segona classe.
      * @param bf Hora final de la segona classe.
-     * @return Un booleà que indica si les hores de les dues classes es solapen o no.
+     * @return Un boolea que indica si les hores de les dues classes es solapen o no.
      */
     public boolean solapenHores(int ai, int af, int bi, int bf) {
         if ((bi >= ai &&  bi < af) || (bf > ai && bf < af) ||

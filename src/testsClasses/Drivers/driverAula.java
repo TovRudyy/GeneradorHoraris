@@ -15,6 +15,9 @@ import static java.lang.System.out;
 import static testsClasses.Drivers.MainDriver.keyboard;
 import static testsClasses.Drivers.MainDriver.output;
 
+/**
+ * @author Victor
+ */
 
 class driverAula  {
 
@@ -25,6 +28,9 @@ class driverAula  {
         executar();
     }
 
+    /**
+     * Imprimeix un menu amb les opcions disponibles de l'usuari.
+     */
     private static void printMenu() {
         out.println("Driver de la Classe Aula.");
         out.println("Selecciona la funcio que vols provar introduint el seu codi associat:");
@@ -34,6 +40,9 @@ class driverAula  {
         out.println("Com pots veure, no hi ha setters. Aixo es perque no permetem modificar les aules un cop creades.");
     }
 
+    /**
+     * Imprimeix els codis per a accedir a les diferents opcions.
+     */
     private static void printCodis() {
         out.println("\t1) Constructora");
         out.println("\t2) Getters");
@@ -42,6 +51,9 @@ class driverAula  {
         out.println("\t5) Sortir");
     }
 
+    /**
+     * Executa la funcionalitat triada per l'usuari.
+     */
     private static void executar() {
         try{
             int codi;
@@ -79,6 +91,9 @@ class driverAula  {
         }
     }
 
+    /**
+     * Executa el joc de proves preparat per aquest driver.
+     */
     private static void executar_Joc_de_Proves() {
         try{
             keyboard = new Scanner(new FileReader("data/Jocs_de_Prova_Drivers/2.DriverAula"));
@@ -88,6 +103,9 @@ class driverAula  {
         }
     }
 
+    /**
+     * Fa un getter per un atribut concret del test.
+     */
     private static void getter_test() {
         out.println("Tria el getter que vols provar introduint el seu codi associat: ");
         out.println("\t1) Identificador");
@@ -114,6 +132,9 @@ class driverAula  {
         }
     }
 
+    /**
+     * Construeix dinamicament un test per al driver.
+     */
     private static void constructor_Test() {
         out.println("Introdueix els seguents atributs, separats per un espai:");
         out.println("\tIdentificador<String> Capacitat<int> Tipus_Aula<Tipus_Aula>");

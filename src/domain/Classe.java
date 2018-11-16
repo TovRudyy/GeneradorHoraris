@@ -1,5 +1,9 @@
 package domain;
 
+/**
+ * @author Olek
+ */
+
 public class Classe {
 
     private String id_assig;

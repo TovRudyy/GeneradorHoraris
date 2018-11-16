@@ -7,6 +7,11 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
 
+
+/**
+ * @author Olek
+ */
+
 public class ControladorAules {
 
     static ControladorPersistencia CtrlDades = new ControladorPersistencia();

@@ -15,6 +15,9 @@ import static java.lang.System.out;
 import static testsClasses.Drivers.MainDriver.keyboard;
 import static testsClasses.Drivers.MainDriver.output;
 
+/**
+ * @author Victor
+ */
 
 class driverRestriccioOcupacio  {
 
@@ -25,6 +28,9 @@ class driverRestriccioOcupacio  {
         executar();
     }
 
+    /**
+     * Imprimeix un menu amb totes les funcionalitat accessibles per a l'usuari.
+     */
     private static void printMenu() {
         out.println("Driver de la Classe RestriccioOcupacio.");
         out.println("Selecciona la funcio que vols provar introduint el seu codi associat: ");
@@ -34,6 +40,9 @@ class driverRestriccioOcupacio  {
         out.println("Aquest driver tambe prova les funcions propies de la classe abstracte Restriccio");
     }
 
+    /**
+     * Dona els codis necessaris per a accedir a les diferents funcionalitats.
+     */
     private static void printCodis() {
         out.println("\t1) Consultora de solapament d'hores");
         out.println("\t2) Esborrar classes incompatibles");
@@ -41,6 +50,9 @@ class driverRestriccioOcupacio  {
         out.println("\t4) Sortir");
     }
 
+    /**
+     * Executa la funcio triada per l'usuari.
+     */
     private static void executar() {
         try{
             int codi;
@@ -76,6 +88,9 @@ class driverRestriccioOcupacio  {
         }
     }
 
+    /**
+     * Executa el joc de proves associat a aquest driver.
+     */
     private static void executar_Joc_de_Proves() {
         try{
             keyboard = new Scanner(new FileReader("data/Jocs_de_Prova_Drivers/5.DriverRestriccioOcupacio"));
@@ -85,6 +100,9 @@ class driverRestriccioOcupacio  {
         }
     }
 
+    /**
+     * Poda les possibilitats que ja no puguin tenir lloc si hem elegit una Classe donada.
+     */
     private static void delete_Possibilities_Test() {
         out.println("Aquesta funcio rep com a parametres una Classe, i un conjunt de Classes classificades segons la seva aula i el Dia de la setmana.");
         out.println("El resultat d'aquesta funcio es la llista de Classes que s'han eliminat del conjunt degut a que son incompatibles amb la Classe passada.");
@@ -130,6 +148,9 @@ class driverRestriccioOcupacio  {
         }
     }
 
+    /**
+     * Comprova que dues Classes no es solapin en el temps.
+     */
     private static void no_Solapis_Test() {
         out.println("Aquesta funcio esta implementada a la classe Restriccio, i comprova si dos intervals de temps es solapen.");
         out.println("Introdueix els seguents valors, separats per un espai:");
