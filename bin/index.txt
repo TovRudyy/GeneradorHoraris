@@ -1,1 +1,0 @@
-El directori "bin" conté els fitxers .class generats pel Makefile.  
