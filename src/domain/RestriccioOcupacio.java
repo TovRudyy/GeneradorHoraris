@@ -1,11 +1,21 @@
 package domain;
 
-import java.util.Stack;
 import java.util.ArrayList;
 import java.util.Map;
 
 public class RestriccioOcupacio extends Restriccio {
 
+    /**
+     * Crea una instancia de la classe RestriccioOcupacio.
+     */
+    public RestriccioOcupacio () {
+    }
+
+    /**
+     * @param possibles_classes Map amb totes les possibilitats de la assignacio.
+     * @param c Classe que el horari acaba de seleccionar.
+     * @return Retorna una array list amb les classes que hem eliminat.
+     */
     public ArrayList<Classe> deletePossibilities (Map<String, Map<DiaSetmana, ArrayList<Classe>>> possibles_classes, Classe c) {
         String id_aula = c.getIdAula();
         DiaSetmana dia = c.getDia();

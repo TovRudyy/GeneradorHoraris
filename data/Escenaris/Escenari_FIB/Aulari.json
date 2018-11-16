@@ -35,6 +35,11 @@
     "tipus":"Teoria"
   },
   {
+    "nom":"A5201",
+    "capacitat":50,
+    "tipus":"Teoria"
+  },
+  {
     "nom":"A5104",
     "capacitat":40,
     "tipus":"Problemes"

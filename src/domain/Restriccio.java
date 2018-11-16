@@ -26,7 +26,12 @@ public abstract class Restriccio {
         return false;
     }
 
-
+    /**
+     *
+     * @param possibles_classes Map amb totes les possibilitats de la assignacio.
+     * @param c Classe que el horari acaba de seleccionar.
+     * @return Retorna una array list amb les classes que hem eliminat.
+     */
     public abstract ArrayList<Classe> deletePossibilities (Map<String, Map<DiaSetmana, ArrayList<Classe>>> possibles_classes, Classe c);
 
 
