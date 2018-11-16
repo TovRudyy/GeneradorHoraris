@@ -6,7 +6,7 @@ import org.junit.runner.notification.Failure;
 
 public class MainJUnit {
     public static void main(String[] args) {
-        Result result = JUnitCore.runClasses(HorariTest.class);
+        Result result = JUnitCore.runClasses(assignacioTest.class);
 
         for(Failure failure: result.getFailures()){
             System.out.println(failure.toString());
