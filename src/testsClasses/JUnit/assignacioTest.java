@@ -52,7 +52,6 @@ public class assignacioTest {
             assertTrue(c.getHoraInici() >= 8 && c.getHoraInici() <= 12 );
             assertTrue(c.getHoraFi() >= 10 && c.getHoraFi() <= 14 );
         }
-
     }
 
     @Test
@@ -62,6 +61,10 @@ public class assignacioTest {
 
     @Test
     public void forwardChecking() {
+        for(Classe c: ass.forwardChecking(new Classe("LI", "10", DiaSetmana.DIMARTS, 10, 12, "Aula2"))){
+            assertEquals(c.getDia(), DiaSetmana.DIMARTS);
+            assertTrue((10 <= c.getHoraInici() && 12 > c.getHoraInici()) || (10 < c.getHoraFi() && 12 >= c.getHoraFi()));
+        }
     }
 
     @Test
