@@ -3,10 +3,16 @@ package testsClasses.Drivers;
 import domain.Classe;
 import domain.DiaSetmana;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.PrintStream;
 import java.util.InputMismatchException;
+import java.util.Scanner;
 
 import static java.lang.System.out;
 import static testsClasses.Drivers.MainDriver.keyboard;
+import static testsClasses.Drivers.MainDriver.output;
 
 
 class driverClasse  {
@@ -31,14 +37,15 @@ class driverClasse  {
         out.println("\t1) Constructora");
         out.println("\t2) Getters");
         out.println("\t3) To String");
-        out.println("\t4) Sortir");
+        out.println("\t4) Executar Joc de Proves");
+        out.println("\t5) Sortir");
     }
 
     private static void executar() {
         try{
             int codi;
             out.println("Introdueix un codi: ");
-            while((codi = keyboard.nextInt()) != 4){
+            while((codi = keyboard.nextInt()) != 5){
                 switch (codi){
                     case -1:
                         printCodis();
@@ -50,7 +57,10 @@ class driverClasse  {
                         getter_Test();
                         break;
                     case 3:
-                        out.println("Classe en format String: " + classe.toString());
+                        output.println("Classe en format String: " + classe.toString());
+                        break;
+                    case 4:
+                        executar_Joc_de_Proves();
                         break;
                     default:
                         keyboard.nextLine();
@@ -68,6 +78,15 @@ class driverClasse  {
         }
     }
 
+    private static void executar_Joc_de_Proves() {
+        try{
+            keyboard = new Scanner(new FileReader("data/Jocs_de_Prova_Drivers/3.DriverClasse"));
+            output = new PrintStream(new File("data/Jocs_de_Prova_Drivers/Sortida_Jocs"));
+        }catch(FileNotFoundException fnfe){
+            out.println(fnfe.getMessage());
+        }
+    }
+
     private static void getter_Test() {
         out.println("Tria el getter que vols provar introduint el seu codi associat: ");
         out.println("\t1) Assignatura");
@@ -80,34 +99,34 @@ class driverClasse  {
         out.println("\t8) Tots");
         switch (keyboard.nextInt()){
             case 1:
-                out.println("Identificador assignatura: " + classe.getId_assig());
+                output.println("Identificador assignatura: " + classe.getId_assig());
                 break;
             case 2:
-                out.println("Identificador grup: " + classe.getId_grup());
+                output.println("Identificador grup: " + classe.getId_grup());
                 break;
             case 3:
-                out.println("Identificador aula: " + classe.getIdAula());
+                output.println("Identificador aula: " + classe.getIdAula());
                 break;
             case 4:
-                out.println("Dia: " + classe.getDia());
+                output.println("Dia: " + classe.getDia());
                 break;
             case 5:
-                out.println("Hora inicial: " + classe.getHoraInici());
+                output.println("Hora inicial: " + classe.getHoraInici());
                 break;
             case 6:
-                out.println("Hora final: " + classe.getHoraFi());
+                output.println("Hora final: " + classe.getHoraFi());
                 break;
             case 7:
-                out.println("Durada: " + classe.getDurada());
+                output.println("Durada: " + classe.getDurada());
                 break;
             case 8:
-                out.println("Identificador assignatura: " + classe.getId_assig());
-                out.println("Identificador grup: " + classe.getId_grup());
-                out.println("Identificador aula: " + classe.getIdAula());
-                out.println("Dia: " + classe.getDia());
-                out.println("Hora inicial: " + classe.getHoraInici());
-                out.println("Hora final: " + classe.getHoraFi());
-                out.println("Durada: " + classe.getDurada());
+                output.println("Identificador assignatura: " + classe.getId_assig());
+                output.println("Identificador grup: " + classe.getId_grup());
+                output.println("Identificador aula: " + classe.getIdAula());
+                output.println("Dia: " + classe.getDia());
+                output.println("Hora inicial: " + classe.getHoraInici());
+                output.println("Hora final: " + classe.getHoraFi());
+                output.println("Durada: " + classe.getDurada());
                 break;
             default:
                 keyboard.nextLine();
@@ -122,12 +141,12 @@ class driverClasse  {
             String as = keyboard.next(), g = keyboard.next(), au = keyboard.next(), dia = keyboard.next();
             int ini = keyboard.nextInt(), fin = keyboard.nextInt();
             if(ini >= fin){
-                out.println("L'hora final ha de ser posterior a la inicial.");
+                output.println("L'hora final ha de ser posterior a la inicial.");
                 return;
             }
             classe = new Classe(as, g, DiaSetmana.string_To_DiaSetmana(dia), ini, fin, au);
         }catch(IllegalArgumentException | InputMismatchException iae){
-            out.println("Has introduit algun dels atributs incorrectament.");
+            output.println("Has introduit algun dels atributs incorrectament.");
             keyboard.nextLine();
         }
     }

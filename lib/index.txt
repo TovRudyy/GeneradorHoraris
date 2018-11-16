@@ -1,0 +1,3 @@
+El directori "lib" conté les llibreries externes que utilitza l'aplicació. "lib" conté:
+    json-simple-1.1.jar: llibrería externa que utilitza l'aplicaió per processar els fitxers d'entrada JSON. 
+    junit-4.12.jar: llibrería externa que utilitza l'aplicació per executar testos JUnit. 

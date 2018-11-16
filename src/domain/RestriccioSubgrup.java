@@ -2,7 +2,6 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.Map;
-import java.util.Stack;
 
 public class RestriccioSubgrup extends Restriccio {
 
@@ -21,13 +20,21 @@ public class RestriccioSubgrup extends Restriccio {
         //si es cert haurem de podar, altrament ja hem acabat
         ArrayList<Classe> eliminades = new ArrayList<>();
 
+
         //no cal comprovar que siguin de la mateixa assignatura perque ho comprovem abans de cridar la funcio. Sera un prerequisit.
         if (c.getId_grup().equals (pare.getId())) { //si el que hem agafat te el id del seu grup de teoria
 
             for (Map.Entry<String, Map<DiaSetmana, ArrayList<Classe>>> aula: possibles_classes.entrySet()) {
                 String id_aula = aula.getKey();
-                ArrayList<Classe> classes = possibles_classes.get(id_aula).get(c.getDia());
-                    for (Classe classe_aux : classes)
+
+                ArrayList<Classe> classes = new ArrayList<>();
+                DiaSetmana dia = c.getDia();
+
+                if (possibles_classes.get(id_aula).containsKey(dia))
+                    classes = possibles_classes.get(id_aula).get(dia);
+
+
+                for (Classe classe_aux : classes)
                     {
                         if (solapenHores(classe_aux.getHoraInici(), classe_aux.getHoraFi(), c.getHoraInici(), c.getHoraFi()))
                             eliminades.add(classe_aux);

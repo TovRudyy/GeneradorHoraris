@@ -1,0 +1,9 @@
+El directori "src" conté els codis font de l'aplicació. "src" conté:
+
+-persistència: fitxers font que pertanyen a la capa de persistència.
+-domain: fitxers font que pertanyen a la capa de domini.
+-presentació: fitxers font que pertanyen a la capa de presentació.
+-testClasses
+    .-Drivers: fitxers font dels drivers.
+    .-JUnit: fitxer font del test JUnit.
+    .-Stubs: fitxers font dels stubs.

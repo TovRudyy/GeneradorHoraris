@@ -8,6 +8,7 @@ public class RestriccioCorequisit extends Restriccio {
     //conte les assignatures amb les que es correquisit
     private ArrayList<String> assignatures = new ArrayList<String>();
 
+
     /**
      * Crea una instància de restriccio de correquisit.
      */
@@ -40,36 +41,41 @@ public class RestriccioCorequisit extends Restriccio {
 
 
 
-    /** Aquesta part es per comprovar fer el podat **/
 
+    /**
+     * @param possibles_classes Map amb totes les possibilitats de la assignacio.
+     * @param c Classe que el horari acaba de seleccionar.
+     * @return Retorna una array list amb les classes que hem eliminat.
+     */
     public ArrayList<Classe> deletePossibilities (Map<String, Map<DiaSetmana, ArrayList<Classe>>> possibles_classes, Classe c) {
         //primerament comprovem si aquesta assignacio es un correquisit de la nova classe que hem agafat
         //si es cert haurem de podar, altrament ja hem acabat
         ArrayList<Classe> eliminades = new ArrayList<>();
-        String id_aula = c.getIdAula();
         DiaSetmana dia = c.getDia();
 
         if (esCorrequisit(c.getId_assig())) {
             //comprovem si estem un dels seus correquisits
 
-            ArrayList<Classe> classes = new ArrayList<>();
-            if (possibles_classes.containsKey(id_aula) && possibles_classes.get(id_aula).containsKey(dia))
-                classes = possibles_classes.get(id_aula).get(dia);
+            for (Map.Entry<String, Map<DiaSetmana, ArrayList<Classe>>> aula : possibles_classes.entrySet()) {
+                String id_aula = aula.getKey();
 
-            for (Classe classe_aux : classes)
-            {
-                if (solapenHores(classe_aux.getHoraInici(), classe_aux.getHoraFi(), c.getHoraInici(), c.getHoraFi()))
-                            eliminades.add(classe_aux);
+                ArrayList<Classe> classes = new ArrayList<>();
+                if (possibles_classes.get(id_aula).containsKey(dia))
+                    classes = possibles_classes.get(id_aula).get(dia);
+
+                for (Classe classe_aux : classes) {
+                    if (solapenHores(classe_aux.getHoraInici(), classe_aux.getHoraFi(), c.getHoraInici(), c.getHoraFi()))
+                        eliminades.add(classe_aux);
+                }
             }
 
-
-            for (Classe c_aux: eliminades)  //eliminem les classes amb les que hi ha conflicte
-                possibles_classes.get(c_aux.getIdAula()).get(c_aux.getDia()).remove (c_aux);
+            for (Classe c_aux : eliminades) {  //eliminem les classes amb les que hi ha conflicte
+                    possibles_classes.get(c_aux.getIdAula()).get(c_aux.getDia()).remove(c_aux);
+            }
 
         }
         return eliminades;
     }
-
 
 
 
@@ -80,6 +86,7 @@ public class RestriccioCorequisit extends Restriccio {
     public boolean esCorrequisit (String id_assig) {
         return assignatures.contains(id_assig);
     }
+
 
     /**
      * @return Una string amb tota la informació de la restriccio de correquisit.

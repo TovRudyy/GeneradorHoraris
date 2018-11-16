@@ -1,0 +1,1 @@
+El directori "data/Horaris" conté els horaris generats per l'aplicació i que l'usuari ha guardat.  

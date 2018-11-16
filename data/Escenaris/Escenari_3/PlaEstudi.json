@@ -1,0 +1,54 @@
+{
+  "nom":"FIB",
+  "assignatures":[
+    {
+      "codi": "IC",
+      "nom": "Introduccio als computadors",
+      "nivell": 1,
+      "classes": {
+        "teoria": 1,
+        "duracio_t": 2,
+        "problemes": 0,
+        "duracio_p": 0,
+        "laboratori": 1,
+        "duracio_l": 2
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 5,
+        "matins": 3,
+        "capacitat": 50,
+        "tipus_subgrup": "L INFORMATICA",
+        "subgrup_per_alumnes": false,
+        "valor": 4
+      }
+    },
+    {
+      "codi": "F",
+      "nom": "Fisica",
+      "nivell": 1,
+      "classes": {
+        "teoria": 1,
+        "duracio_t": 2,
+        "problemes": 1,
+        "duracio_p": 2,
+        "laboratori": 0,
+        "duracio_l": 0
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 5,
+        "matins": 4,
+        "capacitat": 50,
+        "tipus_subgrup": "Problemes",
+        "subgrup_per_alumnes": false,
+        "valor": 4
+      }
+    }
+
+  ],
+  "correquisits":[
+    {
+    }
+  ]
+}

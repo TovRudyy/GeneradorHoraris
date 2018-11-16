@@ -5,14 +5,15 @@ import domain.DiaSetmana;
 import domain.RestriccioCorequisit;
 import org.json.simple.parser.ParseException;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Map;
+import java.util.Scanner;
 
 import static java.lang.System.out;
 import static testsClasses.Drivers.MainDriver.keyboard;
+import static testsClasses.Drivers.MainDriver.output;
 
 
 class driverRestriccioCorrequisit {
@@ -41,14 +42,15 @@ class driverRestriccioCorrequisit {
         out.println("\t5) Consultora corequisit");
         out.println("\t6) Esborrar classes incompatibles");
         out.println("\t7) To String");
-        out.println("\t8) Sortir");
+        out.println("\t8) Executar Joc de Proves");
+        out.println("\t9) Sortir");
     }
 
     private static void executar() {
         try{
             int codi;
             out.println("Introdueix un codi: ");
-            while((codi = keyboard.nextInt()) != 8){
+            while((codi = keyboard.nextInt()) != 9){
                 switch (codi) {
                     case -1:
                         printCodis();
@@ -74,6 +76,9 @@ class driverRestriccioCorrequisit {
                     case 7:
                         to_String_Test();
                         break;
+                    case 8:
+                        executar_Joc_de_Proves();
+                        break;
                     default:
                         keyboard.nextLine();
                         out.println("Codi no valid. Aqui tens els codis que ho son: ");
@@ -90,8 +95,17 @@ class driverRestriccioCorrequisit {
         }
     }
 
+    private static void executar_Joc_de_Proves() {
+        try{
+            keyboard = new Scanner(new FileReader("data/Jocs_de_Prova_Drivers/7.DriverRestriccioCorequisit"));
+            output = new PrintStream(new File("data/Jocs_de_Prova_Drivers/Sortida_Jocs"));
+        }catch(FileNotFoundException fnfe){
+            out.println(fnfe.getMessage());
+        }
+    }
+
     private static void to_String_Test() {
-        out.println("Resultat: " + corequisit.toString());
+        output.println("Resultat: " + corequisit.toString());
 
     }
 
@@ -102,21 +116,21 @@ class driverRestriccioCorrequisit {
         out.println("Com que el conjunt de classes que rep aquesta funcio es bastant complex, s'ha d'introduir mitjancant un fitxer JSON.");
         out.println("Aquest fitxer es troba dins la carpeta \"Data\", subcarpeta \"Drivers_Input\", i el seu nom ha de ser \"RestriccioCorequisit_InputMap.json\".");
         out.println("Ja et proporcionem un fitxer creat amb dades de mostra fetes, que pots utilitzar perfectament.");
-        out.println("Aquestes dades consisteixen en totes les Classes possibles de dues hores, de dues Assignatures diferents(A i TC), cadascuna amb 3 grups(10, 11 i 12), repetit per cada dia i en dues Aules diferents(Aula1 i Aula2).");
+        out.println("Aquestes dades consisteixen en totes les Classes possibles de dues hores d'una assignatura amb 6 grups(10, 11, 12, 20, 21 i 22), repetit per cada dia i en dues Aules diferents(Aula1 i Aula2).");
         out.println("Introdueix una C per continuar o una S per sortir: ");
         if(!keyboard.next().toUpperCase().equals("C")) return;
         Map<String, Map<DiaSetmana, ArrayList<Classe>>> classes;
         try {
             classes = Lector_Drivers_JSON.llegirFitxer_RestriccioCorequisit_InputMap();
         }catch(FileNotFoundException fnfe){
-            out.println("El fitxer no s'ha trobat.");
+            output.println("El fitxer no s'ha trobat.");
             return;
         }catch(ParseException pe){
-            out.println("El fitxer no te un format correcte.");
+            output.println("El fitxer no te un format correcte.");
             return;
         }catch(IOException ioe){
-            out.println("Hi ha hagut algun problema amb el fitxer:");
-            out.println(ioe.getMessage());
+            output.println("Hi ha hagut algun problema amb el fitxer:");
+            output.println(ioe.getMessage());
             return;
         }
         out.println("Fitxer llegit. Ara introdueix la Classe que vols utilitzar per eliminar les incompatibles: ");
@@ -127,45 +141,45 @@ class driverRestriccioCorrequisit {
             String as = keyboard.next(), g = keyboard.next(), au = keyboard.next(), dia = keyboard.next();
             int ini = keyboard.nextInt(), fin = keyboard.nextInt();
             if(ini > fin){
-                out.println("L'hora final ha de ser posterior a la inicial.");
+                output.println("L'hora final ha de ser posterior a la inicial.");
                 return;
             }
             cl = new Classe(as, g, DiaSetmana.string_To_DiaSetmana(dia), ini, fin, au);
         }catch(IllegalArgumentException iae){
-            out.println("Has introduit algun dels atributs incorrectament.");
+            output.println("Has introduit algun dels atributs incorrectament.");
             return;
         }
-        out.println("Classes eliminades: ");
+        output.println("Classes eliminades: ");
         for(Classe c: corequisit.deletePossibilities(classes, cl)){
-            out.println("\t" + c.toString());
+            output.println("\t" + c.toString());
         }
     }
 
     private static void es_Corequisit_Test() {
         out.println("Introdueix l'identificador de la asignatura per saber si es corequisit:");
         out.println("Identificador<String>");
-        out.println("Resultat: " + corequisit.esCorrequisit(keyboard.next()));
+        output.println("Resultat: " + corequisit.esCorrequisit(keyboard.next()));
     }
 
     private static void add_Assignatura_Test() {
         out.println("Introdueix l'identificador de la assignatura a afegir:");
         out.println("Identificador<String>");
-        if(corequisit.addAssignatura(keyboard.next())) out.println("S'ha afegit la assignatura");
-        else out.println("No s'ha pogut afegir la assignatura");
+        if(corequisit.addAssignatura(keyboard.next())) output.println("S'ha afegit la assignatura");
+        else output.println("No s'ha pogut afegir la assignatura");
     }
 
     private static void get_Assignatures_Test() {
-        out.println("Resultat: ");
-        for(String s:corequisit.getAssignatures()) out.println("\t" + s);
+        output.println("Resultat: ");
+        for(String s:corequisit.getAssignatures()) output.println("\t" + s);
     }
 
     private static void is_Empty_Test() {
-        out.println("Resultat: " + corequisit.isEmpty());
+        output.println("Resultat: " + corequisit.isEmpty());
     }
 
     private static void constructor_Test() {
         out.println("La classe RestriccioCorequisit nomes te una constructora per defecte, per tant no necessita parametres.");
         corequisit = new RestriccioCorequisit();
-        out.println("Ja s'ha reiniciat el corequisit.");
+        output.println("Ja s'ha reiniciat el corequisit.");
     }
 }

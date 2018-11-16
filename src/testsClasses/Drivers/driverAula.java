@@ -4,10 +4,16 @@ import domain.Aula;
 import domain.Aula_Exception;
 import domain.Tipus_Aula;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.PrintStream;
 import java.util.InputMismatchException;
+import java.util.Scanner;
 
 import static java.lang.System.out;
 import static testsClasses.Drivers.MainDriver.keyboard;
+import static testsClasses.Drivers.MainDriver.output;
 
 
 class driverAula  {
@@ -32,14 +38,15 @@ class driverAula  {
         out.println("\t1) Constructora");
         out.println("\t2) Getters");
         out.println("\t3) To String");
-        out.println("\t4) Sortir");
+        out.println("\t4) Executar Joc de Proves");
+        out.println("\t5) Sortir");
     }
 
     private static void executar() {
         try{
             int codi;
             out.println("Introdueix un codi: ");
-            while((codi = keyboard.nextInt()) != 4){
+            while((codi = keyboard.nextInt()) != 5){
                 switch (codi) {
                     case -1:
                         printCodis();
@@ -51,7 +58,10 @@ class driverAula  {
                         getter_test();
                         break;
                     case 3:
-                        out.println("Aula en format String: " + aula.toString());
+                        output.println("Aula en format String: " + aula.toString());
+                        break;
+                    case 4:
+                        executar_Joc_de_Proves();
                         break;
                     default:
                         keyboard.nextLine();
@@ -69,6 +79,15 @@ class driverAula  {
         }
     }
 
+    private static void executar_Joc_de_Proves() {
+        try{
+            keyboard = new Scanner(new FileReader("data/Jocs_de_Prova_Drivers/2.DriverAula"));
+            output = new PrintStream(new File("data/Jocs_de_Prova_Drivers/Sortida_Jocs"));
+        }catch(FileNotFoundException fnfe){
+            out.println(fnfe.getMessage());
+        }
+    }
+
     private static void getter_test() {
         out.println("Tria el getter que vols provar introduint el seu codi associat: ");
         out.println("\t1) Identificador");
@@ -77,18 +96,18 @@ class driverAula  {
         out.println("\t4) Tots");
         switch(keyboard.nextInt()){
             case 1:
-                out.println("Identificador : " + aula.getId());
+                output.println("Identificador : " + aula.getId());
                 break;
             case 2:
-                out.println("Capacitat : " + aula.getCapacitat());
+                output.println("Capacitat : " + aula.getCapacitat());
                 break;
             case 3:
-                out.println("Tipus_Aula : " + aula.getTipus());
+                output.println("Tipus_Aula : " + aula.getTipus());
                 break;
             case 4:
-                out.println("Identificador : " + aula.getId());
-                out.println("Capacitat : " + aula.getCapacitat());
-                out.println("Tipus_Aula : " + aula.getTipus());
+                output.println("Identificador : " + aula.getId());
+                output.println("Capacitat : " + aula.getCapacitat());
+                output.println("Tipus_Aula : " + aula.getTipus());
                 break;
             default:
                 out.println("Codi d'opcio no valid.");
@@ -101,9 +120,9 @@ class driverAula  {
         try{
             aula = new Aula(keyboard.next(), keyboard.nextInt(), Tipus_Aula.string_to_Tipus_Aula(keyboard.next()));
         }catch(Aula_Exception ae){
-            out.println(ae.getMessage());
+            output.println(ae.getMessage());
         }catch(InputMismatchException ime){
-            out.println("Has introduit algun atribut incorrectament.");
+            output.println("Has introduit algun atribut incorrectament.");
             keyboard.nextLine();
         }
     }

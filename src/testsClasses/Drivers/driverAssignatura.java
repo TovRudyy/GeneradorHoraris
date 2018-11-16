@@ -2,12 +2,17 @@ package testsClasses.Drivers;
 
 import domain.*;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.PrintStream;
 import java.util.InputMismatchException;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.TreeMap;
 
 import static java.lang.System.out;
-import static testsClasses.Drivers.MainDriver.keyboard;
+import static testsClasses.Drivers.MainDriver.*;
 
 class driverAssignatura {
 
@@ -42,7 +47,7 @@ class driverAssignatura {
         try{
             int codi;
             out.println("Introdueix un codi: ");
-            while((codi = keyboard.nextInt()) != 7) {
+            while((codi = keyboard.nextInt()) != 8) {
                 switch (codi) {
                     case -1:
                         printCodis();
@@ -65,6 +70,9 @@ class driverAssignatura {
                     case 6:
                         to_String_Test();
                         break;
+                    case 7:
+                        executar_Joc_de_Proves();
+                        break;
                     default:
                         keyboard.nextLine();
                         out.println("Codi no valid. Aqui tens els codis que ho son: ");
@@ -82,6 +90,15 @@ class driverAssignatura {
         }
     }
 
+    private static void executar_Joc_de_Proves() {
+        try{
+            keyboard = new Scanner(new FileReader("data/Jocs_de_Prova_Drivers/9.DriverAssignatura"));
+            output = new PrintStream(new File("data/Jocs_de_Prova_Drivers/Sortida_Jocs"));
+        }catch(FileNotFoundException fnfe){
+            out.println(fnfe.getMessage());
+        }
+    }
+
     private static void afegir_corequisit_Test() {
         out.println("Introdueix l'identificador de la assignatura corequisit:");
         out.println("\tIdentificador<String>");
@@ -89,24 +106,24 @@ class driverAssignatura {
     }
 
     private static void to_String_Test() {
-        out.println("Versio curta: ");
-        out.println("\t" + ass.toString());
-        out.println("Versio completa: ");
-        out.println("\t" + ass.toStringComplet());
+        output.println("Versio curta: ");
+        output.println("\t" + ass.toString());
+        output.println("Versio completa: ");
+        output.println("\t" + ass.toStringComplet());
 
     }
 
     private static void no_Solapis_Test() {
         out.println("Aquesta funcio s'encarrega de afegir a cada grup les seves restriccions de subgrup");
-        out.println("\tSubgrups abans de la funcio:");
+        output.println("\tSubgrups abans de la funcio:");
         for(grup g: ass.getGrups().values()){
-            out.println("\t\t" + ((g.getSubgrup() == null)? "null" : g.getSubgrup().toString()));
+            output.println("\t\t" + ((g.getSubgrup() == null)? "null" : g.getSubgrup().toString()));
         }
         ass.noSolapis_Teoria_i_Problemes();
 
-        out.println("\tSubgrups despres de la funcio:");
+        output.println("\tSubgrups despres de la funcio:");
         for(grup g: ass.getGrups().values()){
-            out.println("\t\t" + g.getId() + " ->" + ((g.getSubgrup() == null)? "null" : g.getSubgrup().toString()));
+            output.println("\t\t" + g.getId() + " ->" + ((g.getSubgrup() == null)? "null" : g.getSubgrup().toString()));
         }
     }
 
@@ -126,15 +143,15 @@ class driverAssignatura {
                         String id = keyboard.next();
                         if(id.equals("-1")) return;
                         grups.put(id, new grup(id, keyboard.nextInt(), keyboard.next(), Tipus_Aula.string_to_Tipus_Aula(keyboard.next())));
-                        out.println("Grup afegit.");
+                        output.println("Grup afegit.");
                     }catch(Aula_Exception ae){
-                        out.println(ae.getMessage());
+                        output.println(ae.getMessage());
                         --i;
-                        out.println("Torna a introduir el grup.");
+                        output.println("Torna a introduir el grup.");
                     }catch (InputMismatchException ime){
-                        out.println("Has introduit algun atribut incorrectament.");
+                        output.println("Has introduit algun atribut incorrectament.");
                         --i;
-                        out.println("Torna a introduir el grup.");
+                        output.println("Torna a introduir el grup.");
                     }
                 }
                 ass.creaGrups(grups);
@@ -162,31 +179,36 @@ class driverAssignatura {
         out.println("\t8) Tots");
         switch (keyboard.nextInt()){
             case 1:
-                out.println("Identificador: " + ass.getId());
+                output.println("Identificador: " + ass.getId());
                 break;
             case 2:
-                out.println("Nom: " + ass.getNom());
+                output.println("Nom: " + ass.getNom());
                 break;
             case 3:
-                out.println("Nivell: " + ass.getNivell());
+                output.println("Nivell: " + ass.getNivell());
                 break;
             case 4:
-                out.println("Classes: ");
+                output.println("Classes: ");
+                captura();
                 ass.showClasses();
+                allibera();
                 break;
             case 5:
-                out.println("Corequisit: ");
-                out.println("\t" + ass.getCorequisits().toString());
+                output.println("Corequisit: ");
+                output.println("\t" + ass.getCorequisits().toString());
                 break;
             case 6:
-                out.println("Grups: ");
+                output.println("Grups: ");
+                captura();
                 ass.showGrups();
+                allibera();
                 break;
             case 7:
-                out.println("Assignacions: ");
-                for(assignacio a: ass.getAssignacions(aules)) out.println("\t" + a.toString());
+                output.println("Assignacions: ");
+                for(assignacio a: ass.getAssignacions(aules)) output.println("\t" + a.toString());
                 break;
             case 8:
+                captura();
                 out.println("Identificador: " + ass.getId());
                 out.println("Nom: " + ass.getNom());
                 out.println("Nivell: " + ass.getNivell());
@@ -198,6 +220,7 @@ class driverAssignatura {
                 ass.showGrups();
                 out.println("Assignacions: ");
                 for(assignacio a: ass.getAssignacions(aules)) out.println("\t" + a.toString());
+                allibera();
                 break;
             default:
                 keyboard.nextLine();
@@ -211,7 +234,7 @@ class driverAssignatura {
         try{
             ass = new assignatura(keyboard.next(), keyboard.next(), keyboard.nextInt());
         }catch(IllegalArgumentException iae){
-            out.println("Has introduit algun dels atributs incorrectament.");
+            output.println("Has introduit algun dels atributs incorrectament.");
         }
     }
 
@@ -222,6 +245,7 @@ class driverAssignatura {
         out.println("\t4) Afegir corequisit");
         out.println("\t5) Funcio anti-solapament");
         out.println("\t6) To String");
-        out.println("\t7) Sortir");
+        out.println("\t7) Executar Joc de Proves");
+        out.println("\t8) Sortir");
     }
 }

@@ -17,7 +17,7 @@ public class assignacio {
     private int capacitat, nivellAssig;
     private Tipus_Aula tAula;
     private String horariGrup;
-    private int numeroClasses, duracioClasses, numeroClassesRestants; //numero i duracio de les classes
+    private int duracioClasses, numeroClassesRestants; //numero i duracio de les classes
     private int inici_possible, final_possible;
     private Map<String, Map<DiaSetmana, ArrayList<Classe>>> possibles_classes;
     private ArrayList<Classe> classes_seleccionades = new ArrayList<>();
@@ -47,7 +47,6 @@ public class assignacio {
         this.tAula = tAula;
         this.idAssig = idAssig;
         this.nivellAssig = nivellAssig;
-        this.numeroClasses = numeroClasses;
         this.duracioClasses = duracioClasses;
         this.horariGrup = horariGrup;
 
@@ -86,6 +85,9 @@ public class assignacio {
     }
 
 
+    /**
+     * @return Retorna true si la assignatura es de matins o false altrament.
+     */
     public boolean esMatins () {
         if (horariGrup.equals("M")) return true;
         return false;
@@ -144,22 +146,6 @@ public class assignacio {
 
 
     /**
-     * Imprimeix per pantalla totes les possibilitats(Classe) que té aquesta assignació
-     */
-    public void printPossiblesClasses() {
-        for (String nomAula : possibles_classes.keySet()) {
-            for (DiaSetmana dia: possibles_classes.get(nomAula).keySet() ) {
-                for (Classe classe : possibles_classes.get(nomAula).get(dia)){
-                    classe.showClasse();
-                }
-            }
-
-        }
-
-    }
-
-
-    /**
      *
      * @return Totes les Classe que en aquest moment de la execució encara són possibles d'assignar.
      */
@@ -204,12 +190,14 @@ public class assignacio {
 
     public ArrayList<Classe> forwardChecking (Classe c) {
         ArrayList<Classe> result = new ArrayList<Classe>();
+
         result.addAll( ocupacio.deletePossibilities(possibles_classes, c));
 
         if (subgrup != null && c.getId_assig().equals(idAssig))
             result.addAll( subgrup.deletePossibilities(possibles_classes, c));
 
-        if (corequisit != null) result.addAll(corequisit.deletePossibilities(possibles_classes, c));
+        //comprovem que el grup sigui el mateix perque sino ja no caldra comprovaro
+        if (corequisit != null && c.getId_grup().equals(idGrup)) result.addAll(corequisit.deletePossibilities(possibles_classes, c));
 
         return result;
     }

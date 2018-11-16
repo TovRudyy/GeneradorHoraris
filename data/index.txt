@@ -1,0 +1,14 @@
+EL directori "data" conté els fitxers amb les quals el programa interactua directament a l'hora de carregar i/o emmagatzemar dades. El contingut de "data" consisteix en:
+
+Directori "Aules": conté fitxers JSON amb la descripció de les aules. Per defecte, quan s'inicialitza el programa llegeix tots els fitxers continguts en aquesta carpeta i intenta carregar les aules descrites.
+
+Directori "PlaEstudis": conté fitxers JSON amb la descripció de diferents plans d'estudis. Igual que per la carpeta "Aules", durant la inicialització el programa llegeix tots els fitxers contnguts en aquesta carpeta i intenta carregar els Pla Estudis definits.
+
+Directori "Drivers_Input": conté fitxers JSON que especifiquen entrades especials pels drivers del GeneradorHoraris. 
+
+Directori "Escenaris": aquesta carpeta està creada perquè l'usuari tingui un lloc on guardar els diferents escenaris (Aulari + Pla d'Estudis).
+
+Directori "Horaris": en aquesta carpeta és on per defecte es guarden els horaris generats per l'aplicació. 
+
+
+

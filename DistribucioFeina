@@ -1,0 +1,44 @@
+David: Pujol:
+    -assignacio
+    -assignatura
+    -grup
+    -Horari
+    -Restriccio
+    -RestriccioSubgrup
+    -RestriccioOcupacio
+    -RestriccionCorequisit
+
+    -Javadoc
+    -Explicacio de l'algorisme
+    -Diagrama de casos d'ús
+    -Relacio amb llibreries externes
+
+
+Oleksandr Rudyy:
+    -ControladorPresentacioMenuPrincipal
+    -ControladorPresentacioPlaEstudis
+    -ControladorPersistencia
+    -Classe
+    -ControladorAules
+    -ControladorPlaEstudis
+    -DiaSetmana
+    -PlaEstudis
+
+    -Diagrama de classes
+    -Especificacio del diagrama de classes
+    -Manual d'usuari
+    -Makefile
+
+
+Victor Divi:
+    -Lector_Aules_JSON
+    -Lector_Pla_JSON
+    -Aula
+    -Aula_Exception
+    -Tipus_Aula
+    -Drivers
+    -Lector_Drivers_JSON
+    -Stubs
+
+    -Jocs de Prova dels drivers
+    -Codificacions JSON

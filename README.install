@@ -1,0 +1,26 @@
+Requisits de l'instalació:
+    -Java JDK 8 o superior (incloent java, jar i javadoc)
+    -make
+    -Els fitxers .jar de la carpeta lib (json-simple-1.1.jar i junit-4.12.jar)
+    -El Manifest.txt de la carpeta arrel.
+    
+Abans de l'instal·lació:
+    És necessari obrir el fitxer Makefile amb un editor de text i editar les variables d'entorn:
+    *JAVAC (ruta cap a javac)
+    *JAVA (ruta cap a java)
+    *JAR (ruta cap a jar)
+    *JAVADOC (ruta cap a javadoc)
+    
+Procés d'instal·lació:
+    per compilar els .class: make build
+    per executar l'aplicació: make run
+    per executar el main dels drivers: make rundriver
+    per generar el javadoc: make doc
+    per generar el .jar de l'aplicació: make jar
+    per executar el .jar de l'aplicació: make runjar
+    per borrar elf fitxers .class: make clean
+    per borrar tots els fitxers generats pel makefile: make cleanall
+
+Observacions:
+    Per poder executar l'aplicació o els drivers és necessari haver compilat primer els fitxers .java (make build). 
+    Per poder executar "runjar" primer és necessari haver executat "make jar".

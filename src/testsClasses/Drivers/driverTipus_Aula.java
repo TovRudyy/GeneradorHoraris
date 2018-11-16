@@ -3,12 +3,21 @@ package testsClasses.Drivers;
 import domain.Aula_Exception;
 import domain.Tipus_Aula;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.PrintStream;
 import java.util.InputMismatchException;
+import java.util.Scanner;
 
 import static java.lang.System.out;
 import static testsClasses.Drivers.MainDriver.keyboard;
+import static testsClasses.Drivers.MainDriver.output;
 
 class driverTipus_Aula {
+
+
+
     static void main() {
         printMenu();
         executar();
@@ -27,20 +36,21 @@ class driverTipus_Aula {
         out.println("\t3) Conversor String -> Tipus_Aula");
         out.println("\t4) Consultora laboratori");
         out.println("\t5) Obtenir abreviacio");
-        out.println("\t6) Sortir");
+        out.println("\t6) Executar Joc de Proves");
+        out.println("\t7) Sortir");
     }
 
     private static void executar(){
         try {
             int codi;
             out.println("Introdueix un codi: ");
-            while ((codi = keyboard.nextInt()) != 6) {
+            while ((codi = keyboard.nextInt()) != 7) {
                 switch (codi) {
                     case -1:
                         printCodis();
                         break;
                     case 1:
-                        for (Tipus_Aula tp : Tipus_Aula.values()) out.println("\t" + tp);
+                        for (Tipus_Aula tp : Tipus_Aula.values()) output.println("\t" + tp);
                         break;
                     case 2:
                         Tipus_Aula.escriure_codis_valids();
@@ -53,6 +63,9 @@ class driverTipus_Aula {
                         break;
                     case 5:
                         get_Short_Test();
+                        break;
+                    case 6:
+                        executar_Joc_de_Proves();
                         break;
                     default:
                         keyboard.nextLine();
@@ -70,6 +83,15 @@ class driverTipus_Aula {
         }
     }
 
+    private static void executar_Joc_de_Proves() {
+        try{
+            keyboard = new Scanner(new FileReader("data/Jocs_de_Prova_Drivers/1.DriverTipus_Aula"));
+            output = new PrintStream(new File("data/Jocs_de_Prova_Drivers/Sortida_Jocs"));
+        }catch(FileNotFoundException fnfe){
+            out.println(fnfe.getMessage());
+        }
+    }
+
     private static void get_Short_Test() {
         out.println("Tria la opcio que vols introduint el seu codi associat: ");
         out.println("\t1) Introduir un unic string, que sera convertit a Tipus_Aula, i obtenir la seva abreviacio");
@@ -79,15 +101,15 @@ class driverTipus_Aula {
                 out.println("Introdueix un string: ");
                 try {
                     Tipus_Aula tp = Tipus_Aula.string_to_Tipus_Aula(keyboard.next());
-                    out.println(tp + " : " + Tipus_Aula.getShort(tp));
+                    output.println(tp + " : " + Tipus_Aula.getShort(tp));
                 } catch (Aula_Exception ae) {
-                    out.println("El string que has introduit no es correspon a cap Tipus_Aula i, per tant, s'ha llencat la Excepcio Aula_Exception.");
-                    out.println("Missatge d'Aula_Exception: " + ae.getMessage());
+                    output.println("El string que has introduit no es correspon a cap Tipus_Aula i, per tant, s'ha llencat la Excepcio Aula_Exception.");
+                    output.println("Missatge d'Aula_Exception: " + ae.getMessage());
                 }
                 break;
             case 2:
                 for (Tipus_Aula tp : Tipus_Aula.values())
-                    out.println(tp + " : " + Tipus_Aula.getShort(tp));
+                    output.println(tp + " : " + Tipus_Aula.getShort(tp));
                 break;
             default:
                 out.println("Codi d'opcio no valid.");
@@ -103,15 +125,15 @@ class driverTipus_Aula {
                 out.println("Introdueix un string: ");
                 try {
                     Tipus_Aula tp = Tipus_Aula.string_to_Tipus_Aula(keyboard.next());
-                    out.println(tp + " : " + Tipus_Aula.es_Laboratori(tp));
+                    output.println(tp + " : " + Tipus_Aula.es_Laboratori(tp));
                 } catch (Aula_Exception ae) {
-                    out.println("El string que has introduit no es correspon a cap Tipus_Aula i, per tant, s'ha llencat la Excepcio Aula_Exception.");
-                    out.println("Missatge d'Aula_Exception: " + ae.getMessage());
+                    output.println("El string que has introduit no es correspon a cap Tipus_Aula i, per tant, s'ha llencat la Excepcio Aula_Exception.");
+                    output.println("Missatge d'Aula_Exception: " + ae.getMessage());
                 }
                 break;
             case 2:
                 for (Tipus_Aula tp : Tipus_Aula.values())
-                    out.println(tp + " : " + Tipus_Aula.es_Laboratori(tp));
+                    output.println(tp + " : " + Tipus_Aula.es_Laboratori(tp));
                 break;
             default:
                 out.println("Codi d'opcio no valid.");
@@ -122,10 +144,10 @@ class driverTipus_Aula {
         out.println("Introdueix un string: ");
         String s = keyboard.next();
         try {
-            out.println(s + " -> " + Tipus_Aula.string_to_Tipus_Aula(s));
+            output.println(s + " -> " + Tipus_Aula.string_to_Tipus_Aula(s));
         } catch (Aula_Exception ae) {
-            out.println("El string que has introduit no es correspon a cap Tipus_Aula i, per tant, s'ha llencat la Excepcio Aula_Exception.");
-            out.println("Missatge d'Aula_Exception: " + ae.getMessage());
+            output.println("El string que has introduit no es correspon a cap Tipus_Aula i, per tant, s'ha llencat la Excepcio Aula_Exception.");
+            output.println("Missatge d'Aula_Exception: " + ae.getMessage());
         }
     }
 }

@@ -4,11 +4,13 @@ import domain.Aula;
 import domain.PlaEstudis;
 import domain.assignatura;
 
+import java.io.*;
 import java.util.InputMismatchException;
 import java.util.Map;
+import java.util.Scanner;
 
 import static java.lang.System.out;
-import static testsClasses.Drivers.MainDriver.keyboard;
+import static testsClasses.Drivers.MainDriver.*;
 
 class driverPlaEstudis {
 
@@ -33,15 +35,15 @@ class driverPlaEstudis {
 
     private static void printCodis() {
         out.println("\t1) Constructora");
-        out.println("\t2) Afegir assignatura");
-        out.println("\t3) Consultar assignatura");
-        out.println("\t4) Eliminar assignatura");
-        out.println("\t5) Getter Id");
-        out.println("\t6) Mostrar assignatures");
-        out.println("\t7) Assignatures -> String");
-        out.println("\t8) Generar Horari");
-        out.println("\t9) Consultora Horari");
-        out.println("\t10) Horari -> String");
+        out.println("\t2) Consultar assignatura");
+        out.println("\t3) Eliminar assignatura");
+        out.println("\t4) Getter Id");
+        out.println("\t5) Mostrar assignatures");
+        out.println("\t6) Assignatures -> String");
+        out.println("\t7) Generar Horari");
+        out.println("\t8) Consultora Horari");
+        out.println("\t9) Horari -> String");
+        out.println("\t10) Executar Joc de Proves");
         out.println("\t11) Sortir");
     }
 
@@ -58,31 +60,31 @@ class driverPlaEstudis {
                         constructor_Test();
                         break;
                     case 2:
-                        afegir_Assignatura_Test();
-                        break;
-                    case 3:
                         exists_Assignatura_Test();
                         break;
-                    case 4:
+                    case 3:
                         eliminar_Assignatura_Test();
                         break;
-                    case 5:
+                    case 4:
                         get_Id_Test();
                         break;
-                    case 6:
+                    case 5:
                         show_Assignatures_Test();
                         break;
-                    case 7:
+                    case 6:
                         assigs_String_Test();
                         break;
-                    case 8:
+                    case 7:
                         generar_Horari_Test();
                         break;
-                    case 9:
+                    case 8:
                         has_Horari_Test();
                         break;
-                    case 10:
+                    case 9:
                         horari_To_String_Test();
+                        break;
+                    case 10:
+                        executar_Joc_de_Proves();
                         break;
                     default:
                         keyboard.nextLine();
@@ -100,19 +102,36 @@ class driverPlaEstudis {
         }
     }
 
+    private static void executar_Joc_de_Proves() {
+        try{
+            keyboard = new Scanner(new FileReader("data/Jocs_de_Prova_Drivers/11.DriverPlaEstudis"));
+            output = new PrintStream(new File("data/Jocs_de_Prova_Drivers/Sortida_Jocs"));
+        }catch(FileNotFoundException fnfe){
+            out.println(fnfe.getMessage());
+        }
+    }
+
     private static void horari_To_String_Test() {
+        captura();
+        InputStream old = System.in;
+        try{
+            System.setIn(new FileInputStream("data/Jocs_de_Prova_Drivers/11.DriverPlaEstudis"));
+        }catch(FileNotFoundException fnfe){
+            out.println(fnfe.getMessage());
+        }
         if(pla.hasHorari()) out.println(pla.getHorari());
         else out.println("No s'ha generat cap horari.");
+        allibera();
+        System.setIn(old);
     }
 
     private static void has_Horari_Test() {
         out.println("S'indica si el Pla d'Estudis te un horari ja calculat");
-        out.println("Resultat: " + pla.hasHorari());
+        output.println("Resultat: " + pla.hasHorari());
     }
 
     private static void generar_Horari_Test() {
         pla.generaHorari(aules);
-
     }
 
     private static void assigs_String_Test() {
@@ -122,14 +141,14 @@ class driverPlaEstudis {
         out.println("\t3) Detalls complets (Una)");
         switch(keyboard.next()){
             case "1":
-                for(String n: pla.toStringNomAssignatures()) out.println(n);
+                for(String n: pla.toStringNomAssignatures()) output.println(n);
                 break;
             case "2":
-                out.println(pla.toStringAssignatures());
+                output.println(pla.toStringAssignatures());
                 break;
             case "3":
                 out.println("Introdueix l'Identificador de la assignatura a consultar:");
-                out.println(pla.detallsAssignatura(keyboard.next()));
+                output.println(pla.detallsAssignatura(keyboard.next()));
                 break;
             default:
                 out.println("Opcio no valida.");
@@ -137,11 +156,13 @@ class driverPlaEstudis {
     }
 
     private static void show_Assignatures_Test() {
+        captura();
         pla.showAssignatures();
+        allibera();
     }
 
     private static void get_Id_Test() {
-        out.println("Identificador: " + pla.getID());
+        output.println("Identificador: " + pla.getID());
     }
 
     private static void eliminar_Assignatura_Test() {
@@ -152,32 +173,21 @@ class driverPlaEstudis {
     private static void exists_Assignatura_Test() {
         out.println("Introdueix l'Identificador de la assignatura a consultar si existeix:");
         String id = keyboard.next();
-        out.println("Resultat: " + pla.existsAssignatura(id));
-
-    }
-
-    private static void afegir_Assignatura_Test() {
-        out.println("Introdueix els seguent atributs, separats per un espai:");
-        out.println("\tIdentificador<String> Nom<String(sense espais)> Nivell<int>");
-        try{
-            pla.addAssignatura(new assignatura(keyboard.next(), keyboard.next(), keyboard.nextInt()));
-        }catch(IllegalArgumentException iae){
-            out.println("Has introduit algun dels atributs incorrectament.");
-        }
+        output.println("Resultat: " + pla.existsAssignatura(id));
 
     }
 
     private static void constructor_Test() {
-        out.println("Es procedeix a llegir les Aules:");
+        output.println("Es procedeix a llegir les Aules:");
         try{
             aules = Lector_Drivers_JSON.llegirAules();
-            out.println("Aules llegides");
+            output.println("Aules llegides");
         }catch(Exception e){
-            out.println("Hi ha algun problema amb el fitxer d'Aules");
-            out.println(e.getMessage());
+            output.println("Hi ha algun problema amb el fitxer d'Aules");
+            output.println(e.getMessage());
         }
-        out.println("Es continua ara amb la creadora del Pla:");
-        out.println("Vols crear(C) o importar(I) el pla:");
+        output.println("Es continua ara amb la creadora del Pla:");
+        output.println("Vols crear(C) o importar(I) el pla:");
         String id = keyboard.next();
         switch (id.toUpperCase()) {
             case "C":
@@ -187,10 +197,10 @@ class driverPlaEstudis {
             case "I":
                 try {
                     pla = Lector_Drivers_JSON.llegirPlaEstudis();
-                    out.println("Pla llegit");
+                    output.println("Pla llegit");
                 }catch(Exception e){
-                    out.println("Hi ha algun error amb el fitxer");
-                    out.println(e.getMessage());
+                    output.println("Hi ha algun error amb el fitxer");
+                    output.println(e.getMessage());
                 }
                 break;
             default:
