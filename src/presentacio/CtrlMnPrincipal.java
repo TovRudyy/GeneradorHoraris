@@ -5,35 +5,30 @@ import domain.ControladorPlaEstudis;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author Olek
  */
 
-public class ControladorPresentacioMenuPrincipal {
+public class CtrlMnPrincipal {
     static ControladorPlaEstudis CtrlPE;
     static ControladorAules CtrlAUS;
+    static VistaGeneral vPrincipal;
 
-    ControladorPresentacioPlaEstudis PresentacioPE;
+    CtrlPlaEstudis PresentacioPE;
 
     private static final String welcome_msg = "####################################" +
             "\nGenerador d'Horaris v1.0 | @David Pujol @Víctor Diví @Oleksandr Rudyy\n" +
             "####################################";
 
-    public ControladorPresentacioMenuPrincipal() {
+    public CtrlMnPrincipal() {
         this.CtrlPE = new ControladorPlaEstudis();
         this.CtrlAUS = new ControladorAules();
-        try {
-            TimeUnit.MILLISECONDS.sleep(250);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
     public void runGeneradorHoraris() throws Exception {
         System.out.println(welcome_msg+"\n");
-        MenuPrincipal();
+        //MenuPrincipal();
     }
 
     private void MenuPrincipal() {
@@ -98,7 +93,7 @@ public class ControladorPresentacioMenuPrincipal {
                 if (CtrlPE.exists(arg)) {
                     System.out.println("INFO: has seleccionat " + arg);
                     PresentacioPE = new
-                            ControladorPresentacioPlaEstudis(arg, this);
+                            CtrlPlaEstudis(arg, this);
                     PresentacioPE.MenuPrincipal();
                 }
                 else System.err.println("ERROR: " + arg + " does not exists");

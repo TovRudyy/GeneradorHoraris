@@ -8,13 +8,13 @@ import java.util.Scanner;
  * @author Olek
  */
 
-public class ControladorPresentacioPlaEstudis {
+public class CtrlPlaEstudis {
 
-    private ControladorPresentacioMenuPrincipal master;
+    private CtrlMnPrincipal master;
     private String id_plaEstudi;
     private boolean sortir;
 
-    public ControladorPresentacioPlaEstudis(String id_pe, ControladorPresentacioMenuPrincipal master) {
+    public CtrlPlaEstudis(String id_pe, CtrlMnPrincipal master) {
         this.master = master;
         id_plaEstudi = id_pe;
         sortir = false;
