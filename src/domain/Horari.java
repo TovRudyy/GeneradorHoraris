@@ -68,7 +68,6 @@ public class Horari {
      * @param index Indica quina assignacio estem tractant en aquesta iteracio.
      * @return Un boolea que indica si el horari es possible o no.
      */
-    //retorna true si ja ha acabat o false si encara no
     public boolean selectClasse (int index) {
 
         if (index < l.size()) {
@@ -123,7 +122,6 @@ public class Horari {
      * @param c Nova classe seleccionada per l'horari
      * @return Una pila amb totes les possibilitats que les assignacions han eliminat en aquesta "poda"
      */
-
     private boolean forward_checking(Classe c, Stack<Classe> totes_eliminades) {
 
         for (Map.Entry<String, assignacio> aux : conjuntAssignacions.entrySet()) {
@@ -225,8 +223,8 @@ public class Horari {
      */
     public void printHorariAules() {
         Set<String> aules = new TreeSet<>();
-        for (assignacio a : conjuntAssignacions.values())
-            for (Classe c : a.getSeleccionades()) aules.add(c.getIdAula());
+        for (Classe c: classesSeleccionades)
+            aules.add(c.getIdAula());
 
         ArrayList<Classe> classesSeleccionades = new ArrayList<>(this.classesSeleccionades);
 
@@ -300,8 +298,8 @@ public class Horari {
         Set<String> assigs = new TreeSet<>();   //conjunt de assignatures
         ArrayList<Classe> classesSeleccionades = new ArrayList<>(this.classesSeleccionades);
 
-        for (assignacio a : conjuntAssignacions.values())
-            assigs.add(a.getIdAssig());
+        for (Classe c : classesSeleccionades)
+            assigs.add(c.getId_assig());
 
         for (String ass : assigs) {
             System.out.println("Assignatura " + ass);

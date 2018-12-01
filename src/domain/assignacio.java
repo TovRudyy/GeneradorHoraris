@@ -242,13 +242,6 @@ public class assignacio {
     }
 
 
-    /**
-     * @return ArrayList amb tot el conjunt de possibilitats que estan marcades com a definitives.
-     */
-    public ArrayList<Classe> getSeleccionades () {
-        return classes_seleccionades;
-    }
-
 
     /**
      * @return Un boolea que ens diu si encara tenim suficients possibilitats per assignar tot el numero de classes restants.
@@ -258,11 +251,6 @@ public class assignacio {
         return false;
     }
 
-
-
-    public void eliminarConcreta (Classe c) {
-        possibles_classes.get(c.getIdAula()).get(c.getDia()).remove(c);
-    }
 
 
 
