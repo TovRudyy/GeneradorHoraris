@@ -16,7 +16,7 @@ public class Horari {
 
     private LinkedHashMap<String, assignacio> conjuntAssignacions = new LinkedHashMap<>();   //fem servir linked per mantenir el ordre d'entrada
     private ArrayList<assignacio> l;
-
+    private ArrayList<Classe> classesSeleccionades = new ArrayList<>();//ho guardem en forma de stack perque quan retrocedim sempre treurem la ultima afegida
 
     /**
      * Creadora de la classe Horari.
@@ -39,7 +39,7 @@ public class Horari {
         for (assignacio a : conjuntAssignacions)    //primer afegim les de matins i despres les de tardes
             if (a.esMatins()) this.conjuntAssignacions.put((a.getIdAssig() + a.getIdGrup()), a);
 
-        for (assignacio a : conjuntAssignacions)
+        for (assignacio a : conjuntAssignacions)    //primer afegim les de matins i despres les de tardes
             if (!a.esMatins()) this.conjuntAssignacions.put((a.getIdAssig() + a.getIdGrup()), a);
 
     }
@@ -74,15 +74,19 @@ public class Horari {
         if (index < l.size()) {
             assignacio a = l.get(index);
             ArrayList<Classe> possibleClasses = a.getAllPossibleClasses();
+            //Stack <Classe> alreadyProcessed = new Stack<>();
 
             for (Classe c: possibleClasses )
             {
                 a.afegirSeleccionada(c);    //tambe fa el update de les que falten
                 Stack<Classe> eliminades = new Stack();
+
+                //alreadyProcessed.push(c);
                 boolean valid = forward_checking (c, eliminades); //forward checking
 
                 if (valid) {
                     boolean r;
+                    classesSeleccionades.add(c);
                     if (a.getNumeroClassesRestants() == 0)  //hem de saltar al seguent
                     {
                         eliminades.addAll(a.nomesSeleccionades());
@@ -95,10 +99,13 @@ public class Horari {
                     if (r) return r;
                 }
 
-
+                classesSeleccionades.remove(classesSeleccionades.size()-1);
                 revertChanges(eliminades, c);
                 a.eliminarSeleccionada(c);
             }
+
+            //anem borrant tots els que anem processant. I nomes els tornem a posar quan arribem aqui perque realment tornem enrere.
+            //revertChanges2(alreadyProcessed);
 
             return false;   //vol dir que hem mirat totes les opcions i no n'hi ha cap que funcioni
         }
@@ -106,6 +113,8 @@ public class Horari {
         else return true;
 
     }
+
+
 
 
     /**
@@ -119,6 +128,11 @@ public class Horari {
 
         for (Map.Entry<String, assignacio> aux : conjuntAssignacions.entrySet()) {
             assignacio a = aux.getValue();
+
+            //tractem aquest cas per separat perque si tenim dos classes d'una mateixa assignacio sino entrem en bucle
+            //if (a.getIdAssig().equals(c.getId_assig()) && a.getIdGrup().equals(c.getId_grup()))
+            //    a.eliminarConcreta(c);
+
             ArrayList<Classe> eliminades = a.forwardChecking(c);
             totes_eliminades.addAll(eliminades);
             if (a.isEmpty()) return false;
@@ -126,7 +140,6 @@ public class Horari {
 
         return true;
     }
-
 
 
     /**
@@ -138,7 +151,7 @@ public class Horari {
             Classe c = eliminades.pop();
             assignacio a = conjuntAssignacions.get(c.getId_assig() + c.getId_grup());
             if (c != actual)
-            a.afegeixPossibilitat(c);
+             a.afegeixPossibilitat(c);
         }
     }
 
@@ -155,19 +168,19 @@ public class Horari {
         System.out.format(formatHeader, "   Hora/Dia", "      DILLUNS", "      DIMARTS", "     DIMECRES", "      DIJOUS", "     DIVENDRES");
         System.out.format("+---------------+--------------------+--------------------+--------------------+--------------------+--------------------+\n");
 
-        ArrayList<ArrayList<Queue<String>>> horaris = new ArrayList<>();
-        for (int i = 0; i < 12; ++i) {
+        ArrayList<ArrayList<Queue<String>>> horaris = new ArrayList<>();    //inicialitzacio
+        for (int i = 0; i < 12; ++i) {  //primerament ho organitzem per hores (de 8 a 8)
             horaris.add(new ArrayList<>());
-            for (int j = 0; j < 5; ++j) {
-                horaris.get(i).add(new PriorityQueue<>());
+            for (int j = 0; j < 5; ++j) {   //ara per dies (de dilluns a divendres)
+                horaris.get(i).add(new PriorityQueue<>());  //creem 5 priority queues
             }
         }
-        for (assignacio a : conjuntAssignacions.values()) {
-            for (Classe c : a.getSeleccionades()) {
-                int dia = 0;
-                switch (c.getDia()) {
-                    case DILLUNS:
-                        break;
+
+        for (int k=0; k < classesSeleccionades.size(); ++k) {
+            Classe c = classesSeleccionades.get(k);
+            for (int i = c.getHoraInici(); i < c.getHoraFi(); ++i) {
+                int dia = 0;    //assignem un valor numeric al dia
+                switch (c.getDia()) {   //DILLUNS no cal ja que si ho es, el valor sera igualment 0
                     case DIMARTS:
                         dia = 1;
                         break;
@@ -180,15 +193,12 @@ public class Horari {
                     case DIVENDRES:
                         dia = 4;
                 }
-                int ini = c.getHoraInici(), fi = c.getHoraFi();
-                for (int i = ini; i < fi; ++i) {
-                    horaris.get(i - 8).get(dia).add("  " + c.getId_assig() + "  " + c.getId_grup() + "  " + c.getIdAula());
-                }
+                horaris.get(i - 8).get(dia).add("  " + c.getId_assig() + "  " + c.getId_grup() + "  " + c.getIdAula());
             }
         }
 
         int hora0 = 8, hora1 = 9;
-        for (ArrayList<Queue<String>> hora : horaris) {
+        for (ArrayList<Queue<String>> hora : horaris) { //obtenim una per cada hora
             boolean fi = false;
             boolean first = true;
             while (!fi) {
@@ -205,8 +215,8 @@ public class Horari {
             ++hora1;
             System.out.format("+---------------+--------------------+--------------------+--------------------+--------------------+--------------------+\n");
         }
-    }
 
+    }
 
     /**
      * Processa les classes que hem triat per a forma el horari i l'agrupa en aquells que es produeixen el mateix dia,
@@ -217,6 +227,9 @@ public class Horari {
         Set<String> aules = new TreeSet<>();
         for (assignacio a : conjuntAssignacions.values())
             for (Classe c : a.getSeleccionades()) aules.add(c.getIdAula());
+
+        ArrayList<Classe> classesSeleccionades = new ArrayList<>(this.classesSeleccionades);
+
         for (String aula : aules) {
             System.out.println("Aula " + aula);
             String formatHeader = "|%-15s|%-20s|%-20s|%-20s|%-20s|%-20s|\n";
@@ -231,31 +244,30 @@ public class Horari {
                     horaris.get(i).add(new PriorityQueue<>());
                 }
             }
-            for (assignacio a : conjuntAssignacions.values()) {
-                for (Classe c : a.getSeleccionades()) {
-                    if (!c.getIdAula().equals(aula)) continue;
-                    int dia = 0;
-                    switch (c.getDia()) {
-                        case DILLUNS:
-                            break;
-                        case DIMARTS:
-                            dia = 1;
-                            break;
-                        case DIMECRES:
-                            dia = 2;
-                            break;
-                        case DIJOUS:
-                            dia = 3;
-                            break;
-                        case DIVENDRES:
-                            dia = 4;
-                    }
-                    int ini = c.getHoraInici(), fi = c.getHoraFi();
-                    for (int i = ini; i < fi; ++i) {
-                        horaris.get(i - 8).get(dia).add("     " + c.getId_assig() + "    " + c.getId_grup());
+
+            for (int k=0; k < classesSeleccionades.size(); ++k) {
+                Classe c = classesSeleccionades.get(k);
+                if (c.getIdAula().equals(aula)) {
+                    for (int i = c.getHoraInici(); i < c.getHoraFi(); ++i) {
+                        int dia = 0;    //assignem un valor numeric al dia
+                        switch (c.getDia()) {   //DILLUNS no cal ja que si ho es, el valor sera igualment 0
+                            case DIMARTS:
+                                dia = 1;
+                                break;
+                            case DIMECRES:
+                                dia = 2;
+                                break;
+                            case DIJOUS:
+                                dia = 3;
+                                break;
+                            case DIVENDRES:
+                                dia = 4;
+                        }
+                        horaris.get(i - 8).get(dia).add("  " + c.getId_assig() + "  " + c.getId_grup() + "  ");
                     }
                 }
             }
+
 
             int hora0 = 8, hora1 = 9;
             for (ArrayList<Queue<String>> hora : horaris) {
@@ -279,13 +291,18 @@ public class Horari {
         }
     }
 
+
     /**
      * Processa les classes que hem triat per a forma el horari i l'agrupa en aquells que es produeixen el mateix dia,
      * a la mateix hora i ho mostra en diverses taules, una per assignatura.
      */
     public void printHorariAssignatures() {
-        Set<String> assigs = new TreeSet<>();
-        for (assignacio a : conjuntAssignacions.values()) assigs.add(a.getIdAssig());
+        Set<String> assigs = new TreeSet<>();   //conjunt de assignatures
+        ArrayList<Classe> classesSeleccionades = new ArrayList<>(this.classesSeleccionades);
+
+        for (assignacio a : conjuntAssignacions.values())
+            assigs.add(a.getIdAssig());
+
         for (String ass : assigs) {
             System.out.println("Assignatura " + ass);
             String formatHeader = "|%-15s|%-20s|%-20s|%-20s|%-20s|%-20s|\n";
@@ -300,29 +317,29 @@ public class Horari {
                     horaris.get(i).add(new PriorityQueue<>());
                 }
             }
-            for (assignacio a : conjuntAssignacions.values()) {
-                for (Classe c : a.getSeleccionades()) {
-                    if (!c.getId_assig().equals(ass)) continue;
-                    int dia = 0;
-                    switch (c.getDia()) {
-                        case DILLUNS:
-                            break;
-                        case DIMARTS:
-                            dia = 1;
-                            break;
-                        case DIMECRES:
-                            dia = 2;
-                            break;
-                        case DIJOUS:
-                            dia = 3;
-                            break;
-                        case DIVENDRES:
-                            dia = 4;
+
+            for (Classe c : classesSeleccionades) {
+                if (!c.getId_assig().equals(ass)) continue;
+                int dia = 0;
+                switch (c.getDia()) {
+                    case DILLUNS:
+                        break;
+                    case DIMARTS:
+                        dia = 1;
+                        break;
+                    case DIMECRES:
+                        dia = 2;
+                        break;
+                    case DIJOUS:
+                        dia = 3;
+                        break;
+                    case DIVENDRES:
+                        dia = 4;
+                        break;
                     }
-                    int ini = c.getHoraInici(), fi = c.getHoraFi();
-                    for (int i = ini; i < fi; ++i) {
-                        horaris.get(i - 8).get(dia).add("     " + c.getId_grup() + "   " + c.getIdAula());
-                    }
+                int ini = c.getHoraInici(), fi = c.getHoraFi();
+                for (int i = ini; i < fi; ++i) {
+                    horaris.get(i - 8).get(dia).add("     " + c.getId_grup() + "   " + c.getIdAula());
                 }
             }
 
@@ -347,6 +364,8 @@ public class Horari {
             System.out.println();
         }
     }
+
+
 
 
     /**

@@ -259,6 +259,13 @@ public class assignacio {
     }
 
 
+
+    public void eliminarConcreta (Classe c) {
+        possibles_classes.get(c.getIdAula()).get(c.getDia()).remove(c);
+    }
+
+
+
     @Override
     /**
      * @return Una string amb el id de la assignatura, grup, la capacitat, el tipus d'aula necessaria i si és de Matins o Tardes.
