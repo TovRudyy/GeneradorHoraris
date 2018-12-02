@@ -17,7 +17,7 @@ public class Horari {
     private LinkedHashMap<String, assignacio> conjuntAssignacions = new LinkedHashMap<>();   //fem servir linked per mantenir el ordre d'entrada
     private ArrayList<assignacio> l;
     private ArrayList<Classe> classesSeleccionades = new ArrayList<>();//ho guardem en forma de stack perque quan retrocedim sempre treurem la ultima afegida
-    private Map<String, Aula> aules = new HashMap<>();
+    private Map<String, Aula> aules;
 
     /**
      * Creadora de la classe Horari.
@@ -218,9 +218,7 @@ public class Horari {
      * per aquelles Aules en les que es fa alguna classe
      */
     public void printHorariAules() {
-        Set<String> aules = new TreeSet<>();
-        for (Classe c : classesSeleccionades)
-            aules.add(c.getIdAula());
+        Set<String> aules = new TreeSet<>(this.aules.keySet());
 
         ArrayList<Classe> classesSeleccionades = new ArrayList<>(this.classesSeleccionades);
 
