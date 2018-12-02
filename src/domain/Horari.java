@@ -382,10 +382,10 @@ public class Horari {
             //Ara modifiquem la classe amb les noves dades i la provem d'afegir
             Classe m = borrada;
             assignacio a = conjuntAssignacions.get(m.getId_assig() + m.getId_grup());
-
+            int horaFi = m.getDurada() + horaNova;
 
             //comprovem que les noves dades son correctes abans de recolocarla (el dia no cal comprovar-lo)
-            if (horaNova+m.getDurada() >= 20 || horaNova < 8) {
+            if (horaFi >= 20 || horaNova < 8) {
                 System.out.println("Hora incorrecte");
                 return false;
             }
@@ -398,7 +398,6 @@ public class Horari {
             }
 
 
-            int horaFi = m.getDurada() + horaNova;
             m.setDia(diaNou);
             m.setHora_inici(horaNova);
             m.setHora_fi(horaFi);  //ara ja la tenim amb la informacio canviada
@@ -441,6 +440,8 @@ public class Horari {
         return false;
 
     }
+
+
 
 
     /**
