@@ -120,6 +120,7 @@ public class ControladorPresentacioPlaEstudis {
         mostraAssignatures();
         master.CtrlPE.eliminarAssignatura(id_plaEstudi); }
 
+
     private void getDetallsAssignatura() {
         System.out.println("INFO: pots consultar les següents assignatures:");
         master.CtrlPE.llistatAssignatures(id_plaEstudi);

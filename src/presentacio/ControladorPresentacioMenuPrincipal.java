@@ -17,6 +17,7 @@ public class ControladorPresentacioMenuPrincipal {
 
     ControladorPresentacioPlaEstudis PresentacioPE;
 
+
     private static final String welcome_msg = "####################################" +
             "\nGenerador d'Horaris v1.0 | @David Pujol @Víctor Diví @Oleksandr Rudyy\n" +
             "####################################";
@@ -182,9 +183,10 @@ public class ControladorPresentacioMenuPrincipal {
         Scanner reader = new Scanner(System.in);
         String arg;
         System.out.print("GH: introdueix el PATH on es troba el directori amb l'escenari:");
-        arg = reader.next();
+        arg = reader.next();    //aquest es el PATH de l'escenari
         CtrlAUS.carregaEscena(arg);
         CtrlPE.carregaEscena(arg);
+        CtrlPE.afegirPath (arg);
     }
 
 }

@@ -20,6 +20,7 @@ public class ControladorPlaEstudis {
     static ControladorPersistencia CtrlDades = new ControladorPersistencia();
     static ArrayList<PlaEstudis> ConjuntPE;
     static final String EscenaPE = "/PlaEstudi.json";
+    static String path = "";
 
     /**
      * Crea un nou ControladorPlaEstudis amb les dades que llegeix.
@@ -193,11 +194,21 @@ public class ControladorPlaEstudis {
     public void guardaHorari(String id) {
         PlaEstudis pe = getPlaEstudi(id);
         String h = pe.getHorari();
+
         Date date = Calendar.getInstance().getTime();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
         String strDate = dateFormat.format(date);
-        h =  pe.getID() + "\n" + "Data creació: " + strDate + "\n" + h;
-        System.out.println("GH: introdueix el nom del fitxer on vols guardar l'horari");
+
+        if (path.equals(""))
+            h =  pe.getID() + "\n" + "Data creació: " + strDate + "\n" +
+                 "El nom del pla d'estudis és : " + id + "\n\n" + h;
+
+        else
+            h =  pe.getID() + "\n" + "Data creació: " + strDate + "\n" +
+                 "El path de l'escenari corresponent es : " + path + "\n\n" + h;
+
+
+        System.out.println("GH: introdueix el nom del fitxer en el que es guardarà l'horari");
         Scanner reader = new Scanner(System.in);
         String arg;
         arg = reader.next();
@@ -209,6 +220,7 @@ public class ControladorPlaEstudis {
 
     /**
      * Imprimeix per pantalla els horaris que tenim guardats i permet que l'usuari en trii un i l'imprimeixi.
+     * A mes a mes, carrega el context corresponent a aquest horari.
      */
     public void visualitzaHorari() {
         System.out.print("INFO: tens guardats els següents horaris:\n");
@@ -218,6 +230,9 @@ public class ControladorPlaEstudis {
         String arg;
         arg = reader.next();
         CtrlDades.visualitzaHorari(arg);
+
+        //carregar aqui el context
+
     }
 
     /**
@@ -257,6 +272,10 @@ public class ControladorPlaEstudis {
 
         else
             System.out.println("Aquest pla d'estudis encara no conte cap horari");
+    }
+
+    public void afegirPath (String path) {
+        this.path = path;   //ens guardem el path per anar a l'escenari concret
     }
 
 
