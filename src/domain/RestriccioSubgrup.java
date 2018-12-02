@@ -40,10 +40,10 @@ public class RestriccioSubgrup extends Restriccio {
 
 
                 for (Classe classe_aux : classes)
-                    {
+                {
                         if (solapenHores(classe_aux.getHoraInici(), classe_aux.getHoraFi(), c.getHoraInici(), c.getHoraFi()))
                             eliminades.add(classe_aux);
-                    }
+                }
             }
         }
 

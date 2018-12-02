@@ -101,6 +101,25 @@ public class Classe {
         System.out.println(id_assig + " : " + id_grup + " : "+ id_aula + " : " + dia+ " : " + hora_inici + " : " + hora_fi);
     }
 
+
+    public void setDia (DiaSetmana d) {
+        dia = d;
+    }
+
+    public void setHora_inici (int h) {
+        hora_inici = h;
+    }
+
+    public void setHora_fi (int h) {
+        hora_fi = h;
+    }
+
+    public void setAula (String a) {
+        id_aula = a;
+    }
+
+
+
     @Override
     /**
      * @return Retorna una string amb tota la informacio de la Classe

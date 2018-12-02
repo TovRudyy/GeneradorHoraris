@@ -70,6 +70,9 @@ public class ControladorPresentacioPlaEstudis {
                     master.CtrlPE.guardaHorari(id_plaEstudi);
                 else System.err.println("ERROR: " + id_plaEstudi + " does not have any Horari");
                 break;
+            case "modifica entrada":
+                master.CtrlPE.modificaEntrada(id_plaEstudi);
+                break;
             case "exit":
                 sortir = true;
                 break;
@@ -89,6 +92,7 @@ public class ControladorPresentacioPlaEstudis {
                 "- Consultar Aules (show aules) | afegir una aula (add aula) | eliminar una aula (rm aula)\n " +
                 "- Restaurar dades aules (reset aules)\n " +
                 "- Generar Horari (gen horari) | consultar Horari (show horari) | guardar horari (save horari)\n " +
+                "- Modificar una de les entrades del horari per una de diferent (modifica entrada)\n" +
                 "- Sortir del pla d'estudis (exit)\n " +
                 "- Sortir del Generador (quit)\n ");
     }

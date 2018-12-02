@@ -232,4 +232,32 @@ public class ControladorPlaEstudis {
             ConjuntPE.add(pe);
     }
 
+
+    public void modificaEntrada (String id) {
+        PlaEstudis pe = getPlaEstudi(id);
+        if (pe.hasHorari()) {
+            Scanner reader = new Scanner(System.in);
+
+            System.out.println("Modifica una entrada del horari per una d'altre: ");
+            System.out.println("Introdueix el nom de la assignatura, el grup, el dia i la hora");
+            String assig = reader.next();
+            String grup = reader.next();
+            DiaSetmana diaSetmana = DiaSetmana.string_To_DiaSetmana(reader.next());
+            int hora = reader.nextInt();
+
+            System.out.println("Introdueix el nou dia, hora i identificador de l'aula ");
+            DiaSetmana diaNou = DiaSetmana.string_To_DiaSetmana(reader.next());
+            int horaNova = reader.nextInt();
+            String aulaNova = reader.next();
+
+            boolean result = pe.modificaEntrada(assig, grup, diaSetmana, hora, diaNou, horaNova, aulaNova);
+            if (result) System.out.println("S'ha modificat la entrada del horari indicada");
+            else System.out.println("No hem pogut modifica la entrada a causa que incompleix alguna restriccio");
+        }
+
+        else
+            System.out.println("Aquest pla d'estudis encara no conte cap horari");
+    }
+
+
 }

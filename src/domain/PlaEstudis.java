@@ -50,24 +50,6 @@ public class PlaEstudis {
         return this.id;
     }
 
-//
-//    /**
-//     *
-//     * @return un element String[] amb els identificadors de totes les assignatures del pla d'estudis
-//     */
-//    public String[] getAssignatures(){
-//        String[] id_assignatures;
-//        int i;
-//
-//        id_assignatures = new String[assignatures.size()];
-//        i = 0;
-//        for (Map.Entry<String, assignatura> a : assignatures.entrySet()) {
-//            id_assignatures[i] = a.getKey();
-//            i++;
-//        }
-//        return id_assignatures;
-//    }
-
 
     /**
      * @return Ens indica si aquest pla d'estudis ja te un horari previament generat.
@@ -112,6 +94,7 @@ public class PlaEstudis {
         return assignatures.get(idAssig).toStringComplet();
     }
 
+
     /**
      * @return Una array de string amb tots els noms de les diferents assignatures del pla d'estudis.
      */
@@ -144,7 +127,7 @@ public class PlaEstudis {
         afegirRestriccionsNivell(); //afeim a les assignatures les seves restriccions de nivell
 
         //aqui tenim totes les assignacions totals
-        horari = new Horari (assignacions);
+        horari = new Horari (assignacions, aules);
         boolean b = horari.findHorari();
         if (! b) horari = null; //vol dir que com que l'horari no es correcte simplement el borrem
 
@@ -226,6 +209,11 @@ public class PlaEstudis {
         }
         System.err.println("DEBUG: s'ha eliminat l'assignatura " + id);
         return true;
+    }
+
+
+    public boolean modificaEntrada (String assig, String grup, DiaSetmana d, int h, DiaSetmana diaNou, int horaNova, String aulaNova) {
+        return horari.modificaClasse(assig, grup, d, h, diaNou, horaNova, aulaNova);
     }
 
 }

@@ -17,15 +17,17 @@ public class Horari {
     private LinkedHashMap<String, assignacio> conjuntAssignacions = new LinkedHashMap<>();   //fem servir linked per mantenir el ordre d'entrada
     private ArrayList<assignacio> l;
     private ArrayList<Classe> classesSeleccionades = new ArrayList<>();//ho guardem en forma de stack perque quan retrocedim sempre treurem la ultima afegida
+    private Map<String, Aula> aules = new HashMap<>();
 
     /**
      * Creadora de la classe Horari.
      *
      * @param conjuntAssignacions ArrayList amb tot el conjunt d'assignacions que hem d'assignar al nostre horari.
      */
-    public Horari(ArrayList<assignacio> conjuntAssignacions) {
+    public Horari(ArrayList<assignacio> conjuntAssignacions, Map<String, Aula> aules) {
         afegeixAssignacions(conjuntAssignacions);
-        this.l = new ArrayList<> (this.conjuntAssignacions.values());
+        this.l = new ArrayList<>(this.conjuntAssignacions.values());
+        this.aules = aules;
     }
 
 
@@ -68,20 +70,19 @@ public class Horari {
      * @param index Indica quina assignacio estem tractant en aquesta iteracio.
      * @return Un boolea que indica si el horari es possible o no.
      */
-    public boolean selectClasse (int index) {
+    public boolean selectClasse(int index) {
 
         if (index < l.size()) {
             assignacio a = l.get(index);
             ArrayList<Classe> possibleClasses = a.getAllPossibleClasses();
             //Stack <Classe> alreadyProcessed = new Stack<>();
 
-            for (Classe c: possibleClasses )
-            {
+            for (Classe c : possibleClasses) {
                 a.afegirSeleccionada(c);    //tambe fa el update de les que falten
                 Stack<Classe> eliminades = new Stack();
 
                 //alreadyProcessed.push(c);
-                boolean valid = forward_checking (c, eliminades); //forward checking
+                boolean valid = forward_checking(c, eliminades); //forward checking
 
                 if (valid) {
                     boolean r;
@@ -90,15 +91,13 @@ public class Horari {
                     {
                         eliminades.addAll(a.nomesSeleccionades());
                         r = selectClasse(index + 1); //passem a comprovar la seguent assignacio
-                    }
-
-                    else   //si encara hem d'assignar classes a aquesta assignacio
+                    } else   //si encara hem d'assignar classes a aquesta assignacio
                         r = selectClasse(index);
 
                     if (r) return r;
                 }
 
-                classesSeleccionades.remove(classesSeleccionades.size()-1);
+                classesSeleccionades.remove(classesSeleccionades.size() - 1);
                 revertChanges(eliminades, c);
                 a.eliminarSeleccionada(c);
             }
@@ -107,13 +106,9 @@ public class Horari {
             //revertChanges2(alreadyProcessed);
 
             return false;   //vol dir que hem mirat totes les opcions i no n'hi ha cap que funcioni
-        }
-
-        else return true;
+        } else return true;
 
     }
-
-
 
 
     /**
@@ -142,6 +137,7 @@ public class Horari {
 
     /**
      * Torna a afegir totes aquestes possibilitats a les seves assignacions originals, revertint així els canvis.
+     *
      * @param eliminades Una pila amb totes les classes que previament hem "podat" perque ja no eren viables.
      */
     private void revertChanges(Stack<Classe> eliminades, Classe actual) {
@@ -149,7 +145,7 @@ public class Horari {
             Classe c = eliminades.pop();
             assignacio a = conjuntAssignacions.get(c.getId_assig() + c.getId_grup());
             if (c != actual)
-             a.afegeixPossibilitat(c);
+                a.afegeixPossibilitat(c);
         }
     }
 
@@ -174,7 +170,7 @@ public class Horari {
             }
         }
 
-        for (int k=0; k < classesSeleccionades.size(); ++k) {
+        for (int k = 0; k < classesSeleccionades.size(); ++k) {
             Classe c = classesSeleccionades.get(k);
             for (int i = c.getHoraInici(); i < c.getHoraFi(); ++i) {
                 int dia = 0;    //assignem un valor numeric al dia
@@ -223,7 +219,7 @@ public class Horari {
      */
     public void printHorariAules() {
         Set<String> aules = new TreeSet<>();
-        for (Classe c: classesSeleccionades)
+        for (Classe c : classesSeleccionades)
             aules.add(c.getIdAula());
 
         ArrayList<Classe> classesSeleccionades = new ArrayList<>(this.classesSeleccionades);
@@ -243,7 +239,7 @@ public class Horari {
                 }
             }
 
-            for (int k=0; k < classesSeleccionades.size(); ++k) {
+            for (int k = 0; k < classesSeleccionades.size(); ++k) {
                 Classe c = classesSeleccionades.get(k);
                 if (c.getIdAula().equals(aula)) {
                     for (int i = c.getHoraInici(); i < c.getHoraFi(); ++i) {
@@ -334,7 +330,7 @@ public class Horari {
                     case DIVENDRES:
                         dia = 4;
                         break;
-                    }
+                }
                 int ini = c.getHoraInici(), fi = c.getHoraFi();
                 for (int i = ini; i < fi; ++i) {
                     horaris.get(i - 8).get(dia).add("     " + c.getId_grup() + "   " + c.getIdAula());
@@ -364,6 +360,87 @@ public class Horari {
     }
 
 
+
+    public boolean modificaClasse(String idAssig, String idGrup, DiaSetmana diaAntic, int horaAntiga, DiaSetmana diaNou, int horaNova, String aulaNova) {
+        //la eliminem de les seleccionades fins al moment
+        Classe borrada = null;
+        int i = 0;
+        boolean found = false;
+        while (!found && i < classesSeleccionades.size()) {
+            Classe c = classesSeleccionades.get(i);
+            if (c.getId_assig().equals(idAssig) && c.getId_grup().equals(idGrup) && c.getHoraInici() == horaAntiga && c.getDia().equals(diaAntic)) {
+                borrada = c;
+                classesSeleccionades.remove(c);
+                conjuntAssignacions.get(c.getId_assig() + c.getId_grup()).eliminarSeleccionada(c);    //tambe la eliminem de les seleccionades de la assignacio
+                found = true;
+            }
+            ++i;
+        }
+
+
+        if (borrada != null) {  //ens assegurem que nomes ho fem si hem trobat la classe especificada
+            //Ara modifiquem la classe amb les noves dades i la provem d'afegir
+            Classe m = borrada;
+            assignacio a = conjuntAssignacions.get(m.getId_assig() + m.getId_grup());
+
+
+            //comprovem que les noves dades son correctes abans de recolocarla (el dia no cal comprovar-lo)
+            if (horaNova+m.getDurada() >= 20 || horaNova < 8) {
+                System.out.println("Hora incorrecte");
+                return false;
+            }
+
+            //comprovem que l'aula existeix i que compleix els requisits.
+            if (!(aules.containsKey(aulaNova) && aules.get(aulaNova).getCapacitat() <= a.getCapacitat() &&
+               aules.get(aulaNova).getTipus() == a.getTipus())) {
+                System.out.println("La aula no es correcte");
+                return false;
+            }
+
+
+            int horaFi = m.getDurada() + horaNova;
+            m.setDia(diaNou);
+            m.setHora_inici(horaNova);
+            m.setHora_fi(horaFi);  //ara ja la tenim amb la informacio canviada
+            m.setAula(aulaNova);
+
+
+            a.afegirSeleccionada(m);
+            //ara comprovem si la podem afegir
+
+            for (Classe c : classesSeleccionades) {
+                if (solapenHores(c.getHoraInici(), c.getHoraFi(), m.getHoraInici(), m.getHoraFi())
+                    && c.getDia().equals(m.getDia())) {
+                    if (c.getIdAula().equals(m.getIdAula())) {
+                        System.out.println("Tenim un conflicte amb " + c.getId_assig() + " "+ c.getId_grup() + " de ocupacio.");
+                        return false;  //restriccio ocupacio
+
+                    }
+                    int c1 = Integer.parseInt(c.getId_grup());
+                    int m1 = Integer.parseInt(m.getId_grup());
+
+                    //error amb un subgrup
+                    if ((c.getId_assig().equals(m.getId_assig())) && (c1 % 10 == 0) && (c1 / 10 == m1 / 10)) {
+                        System.out.println("Tenim un conflicte amb " + c.getId_assig() +" " + c.getId_grup() + " de subgrup");
+                        return false;
+                    }
+
+                    //les assignatures han de ser correquisit i els grups han de coincidir
+                    if (a.corequisit.esCorrequisit(c.getId_assig()) && c.getId_grup().equals(m.getId_grup())) {
+                        System.out.println("Tenim un conflicte amb " + c.getId_assig() + " " + c.getId_grup() + " de correquisit");
+                        return false;
+                    }
+                }
+
+            }
+            classesSeleccionades.add(m);
+            return true;
+
+        }
+        System.out.println("No hem trobat la classe indicada");
+        return false;
+
+    }
 
 
     /**
@@ -405,5 +482,14 @@ public class Horari {
         }
         return "ERROR";
     }
-}
 
+
+    //aquesta funcio cal modificarli el scope perque tant les restriccions com el horari hi puguin accedir
+    public boolean solapenHores(int ai, int af, int bi, int bf) {
+        if ((bi >= ai && bi < af) || (bf > ai && bf < af) ||
+                (ai >= bi && ai < bf) || (af > bi && af < bf)) return true;
+
+        return false;
+    }
+
+}

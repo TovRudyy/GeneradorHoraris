@@ -26,7 +26,7 @@ public class assignacio {
 
     //RESTRICCIONS
     private RestriccioOcupacio ocupacio = new RestriccioOcupacio();
-    private RestriccioCorequisit corequisit = null;
+    protected RestriccioCorequisit corequisit = null;
     private RestriccioSubgrup subgrup = null;
 
 
@@ -84,6 +84,21 @@ public class assignacio {
      */
     public String getIdGrup () {
         return idGrup;
+    }
+
+    /**
+     * @return Un enter amb el nombre d'alumnes del grup.
+     */
+    public int getCapacitat () {
+        return capacitat;
+    }
+
+
+    /**
+     * @return El tipus de classe que es.
+     */
+    public Tipus_Aula getTipus () {
+        return tAula;
     }
 
 
