@@ -13,7 +13,7 @@ import java.util.Scanner;
 public class CtrlMnPrincipal {
     static ControladorPlaEstudis CtrlPE;
     static ControladorAules CtrlAUS;
-    static VistaGeneral vPrincipal;
+    static VistaPrincipal vPrincipal;
 
     CtrlPlaEstudis PresentacioPE;
 

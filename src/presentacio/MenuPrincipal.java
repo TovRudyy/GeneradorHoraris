@@ -1,62 +1,50 @@
 package presentacio;
 
-import javafx.scene.control.*;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.SeparatorMenuItem;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
-import java.util.ArrayList;
-
-public class TopMenu {
+public class MenuPrincipal {
     VBox layout;
-    MenuBar menu;
 
-    public TopMenu () {
+    public MenuPrincipal() {
         layout = new VBox();
-        menu = new MenuBar();
-
-        inicialitza();
+        buildLayout();
     }
 
-    private void inicialitza() {
-        initMenus();
-
+    public Pane getLayout() {
+        return this.layout;
     }
 
-    private void initMenus() {
-        // - Menu Fitxer
+    private void buildLayout() {
+        //Creacio Menus:
+        MenuBar menu = new MenuBar();
+        //Menu Fitxer
         Menu menuFile = new Menu();
         menuFile.setText("Fitxer");
-
-        // -- Menu Carregar
+        //Menu Carregar
         Menu load = new Menu("Carregar");
-        // --- Submenu carregar fitxer Aulari
+        //Submenu carregar Aulari
         MenuItem loadAulari = new MenuItem("Carregar Aulari");
         load.getItems().addAll(loadAulari);
-        // --- Submenu carregar fitxer Pla Estudi
+        //Submenu carregar PlaEstudi
         MenuItem loadPla = new MenuItem("Carregar Pla Estudis");
         load.getItems().addAll(loadPla);
-
         menuFile.getItems().addAll(load);
-
-
-        // -- Menu Sortir
+        //Menu Sortir
         MenuItem exit = new MenuItem("Sortir");
         exit.setOnAction(e -> VistaDialeg.terminate());
         menuFile.getItems().add(new SeparatorMenuItem());
         menuFile.getItems().addAll(exit);
-
         menu.getMenus().add(menuFile);
-
         // - Menu Vista
         Menu menuView = new Menu("Vista");
-        // -- CheckMenu Aulari
-        CheckMenuItem aulari = new CheckMenuItem("Aulari");
-        aulari.setOnAction(e -> vistaAulari(aulari));
-        menuView.getItems().add(aulari);
-        // -- CheckMenu Plans Estudi
-        CheckMenuItem plans = new CheckMenuItem("Plans Estudi");
-        menuView.getItems().add(plans);
-
         menu.getMenus().add(menuView);
-    }
 
+        //Addicio elements a topLayout
+        layout.getChildren().add(menu);
+    }
 }
