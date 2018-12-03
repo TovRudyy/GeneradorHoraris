@@ -20,7 +20,7 @@ public class ControladorPlaEstudis {
     static ControladorPersistencia CtrlDades = new ControladorPersistencia();
     static ArrayList<PlaEstudis> ConjuntPE;
     static final String EscenaPE = "/PlaEstudi.json";
-    static String path = "";
+    static String path = "";    //aquest path ens indica el ultim path guardat fins al moment
 
     /**
      * Crea un nou ControladorPlaEstudis amb les dades que llegeix.
@@ -198,11 +198,9 @@ public class ControladorPlaEstudis {
         Date date = Calendar.getInstance().getTime();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
         String strDate = dateFormat.format(date);
-
         if (path.equals(""))
             h =  pe.getID() + "\n" + "Data creació: " + strDate + "\n" +
-                 "El nom del pla d'estudis és : " + id + "\n\n" + h;
-
+                    "L'identificador del pla d'estudis es : " + id + "\n\n" + h;
         else
             h =  pe.getID() + "\n" + "Data creació: " + strDate + "\n" +
                  "El path de l'escenari corresponent es : " + path + "\n\n" + h;
@@ -222,17 +220,15 @@ public class ControladorPlaEstudis {
      * Imprimeix per pantalla els horaris que tenim guardats i permet que l'usuari en trii un i l'imprimeixi.
      * A mes a mes, carrega el context corresponent a aquest horari.
      */
-    public void visualitzaHorari() {
+    public String visualitzaHorari() {
         System.out.print("INFO: tens guardats els següents horaris:\n");
         CtrlDades.mostraFitxersHoraris();
         System.out.print("INFO: indica l'horari que vols visualitzar:");
         Scanner reader = new Scanner(System.in);
         String arg;
         arg = reader.next();
-        CtrlDades.visualitzaHorari(arg);
-
-        //carregar aqui el context
-
+        return CtrlDades.visualitzaHorari(arg);
+        //pot ser que retornem una path per a carregar una escena, o el nom de un pe, que estara a la carpeta per defecte
     }
 
     /**
@@ -240,6 +236,7 @@ public class ControladorPlaEstudis {
      * @param dir Ruta del directori de la escena.
      */
     public void carregaEscena(String dir) {
+        System.out.println(dir);
         ConjuntPE.clear();
         String file = dir + EscenaPE;
         PlaEstudis pe = CtrlDades.llegeixPE(file);
@@ -248,6 +245,10 @@ public class ControladorPlaEstudis {
     }
 
 
+    /**
+     * Ens permet modificar una entrada del horari generat per un pla d'estudi per una d'altre (sempre que les restriccions ho permetin).
+     * @param id Identificador del pla d'estudi
+     */
     public void modificaEntrada (String id) {
         PlaEstudis pe = getPlaEstudi(id);
         if (pe.hasHorari()) {
@@ -274,6 +275,10 @@ public class ControladorPlaEstudis {
             System.out.println("Aquest pla d'estudis encara no conte cap horari");
     }
 
+    /**
+     * Afegeix aquest path al controlador de pla d'estudi.
+     * @param path Path per a trobar una escena donada.
+     */
     public void afegirPath (String path) {
         this.path = path;   //ens guardem el path per anar a l'escenari concret
     }

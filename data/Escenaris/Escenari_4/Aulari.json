@@ -1,20 +1,5 @@
 [
   {
-    "nom":"A5001",
-    "capacitat":120,
-    "tipus":"Teoria"
-  },
-  {
-    "nom":"A5002",
-    "capacitat":120,
-    "tipus":"Teoria"
-  },
-  {
-    "nom":"A5E01",
-    "capacitat":140,
-    "tipus":"Teoria"
-  },
-  {
     "nom":"A5E02",
     "capacitat":140,
     "tipus":"Teoria"
@@ -248,11 +233,6 @@
     "nom":"C6S309",
     "capacitat":21,
     "tipus":"LI"
-  },
-  {
-    "nom":"A1S101",
-    "capacitat":20,
-    "tipus":"LF"
   },
   {
     "nom":"A1S102",

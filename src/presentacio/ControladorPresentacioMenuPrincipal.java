@@ -98,15 +98,16 @@ public class ControladorPresentacioMenuPrincipal {
                 System.err.println("DEBUG msg: arg = " + arg);
                 if (CtrlPE.exists(arg)) {
                     System.out.println("INFO: has seleccionat " + arg);
-                    PresentacioPE = new
-                            ControladorPresentacioPlaEstudis(arg, this);
+                    PresentacioPE = new ControladorPresentacioPlaEstudis(arg, this);
                     PresentacioPE.MenuPrincipal();
                 }
                 else System.err.println("ERROR: " + arg + " does not exists");
                 break;
+
             case "show horari":
-                CtrlPE.visualitzaHorari();
+                showHorari();
                 break;
+
             case "load scene":
                 carregaEscena();
                 break;
@@ -187,6 +188,28 @@ public class ControladorPresentacioMenuPrincipal {
         CtrlAUS.carregaEscena(arg);
         CtrlPE.carregaEscena(arg);
         CtrlPE.afegirPath (arg);
+    }
+
+    protected void showHorari () {
+        String arg = CtrlPE.visualitzaHorari();
+        System.out.println(arg);
+        char firstChar = arg.charAt(0);
+        if (firstChar != '/') {    //nomes entrem si no era un path
+            System.out.println("INFO: Hem carregat el pla d'estudis" + arg);
+            CtrlAUS = new ControladorAules();
+            CtrlPE = new ControladorPlaEstudis();   //els tornem a deixar en la opcio per defecte
+            PresentacioPE = new ControladorPresentacioPlaEstudis(arg, this);
+            PresentacioPE.MenuPrincipal();  //carreguem el menu principal
+            //no acabem de llegir be el pla d'estudis. Les aules si.
+        }
+
+        else if (firstChar == '/') {    //hem de comprovar que no es un path
+            System.out.println("INFO: Carreguem la informacio del seguent path :" + arg);
+            CtrlAUS.carregaEscena(arg);
+            CtrlPE.carregaEscena(arg);
+            CtrlPE.afegirPath (arg);
+        }
+
     }
 
 }

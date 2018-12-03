@@ -52,6 +52,7 @@ public class ControladorPersistencia {
      * @return Un map amb la informacio de les diferents aules.
      */
     public Map<String, Aula> llegeixDadesAules() {
+        System.out.println("Llegim la carpeta per defecte");
         Map<String, Aula> ret = new TreeMap<>();
         try {
             ret = Lector_Aules_JSON.llegirCarpetaAules();
@@ -130,17 +131,31 @@ public class ControladorPersistencia {
      * Mostra per pantalla un horari donat a partir del seu fitxer.
      * @param file Ruta al fitxer
      */
-    public void visualitzaHorari(String file) {
+    public String visualitzaHorari(String file) {
         file = "data/Horaris/" + file;
+        String result = "";
+
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+            System.out.println("\n\n");
             String line = null;
+            String missatge1 = "El path de l'escenari corresponent es : ";  //missatge si sí que te un path
+            String missatge2 = "L'identificador del pla d'estudis es : ";   //missatge en el cas que no tingui un path
             while ((line = br.readLine()) != null) {
-                System.out.println(line);
+                if (line.contains(missatge1))
+                    result = line.substring(missatge1.length());
+
+                else if(line.contains(missatge2))
+                    result = line.substring(missatge2.length());
+
+                else
+                    System.out.println(line);
             }
         } catch (Exception e) {
             System.err.println("ERROR: we could not visualize the file");
             e.printStackTrace();
         }
+
+        return result;
     }
 
     /**

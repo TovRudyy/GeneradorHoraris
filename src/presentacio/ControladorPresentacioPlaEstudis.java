@@ -30,7 +30,6 @@ public class ControladorPresentacioPlaEstudis {
     private void executeActionsMenuPrincipal() {
         Scanner reader = new Scanner(System.in);
         String cmd;
-        String arg;
         while ((cmd = reader.nextLine()).equals("")) { /*No llegeix si no s'introdueix res per teclat*/ }
         switch (cmd) {
             case "show assig":
