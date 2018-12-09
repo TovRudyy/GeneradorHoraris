@@ -2,6 +2,7 @@ package domain;
 
 
 import persistencia.ControladorPersistencia;
+import sun.awt.SunHints;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -318,5 +319,9 @@ public class ControladorPlaEstudis {
         PlaEstudis pe = CtrlDades.llegeixPE(absolutePath);
         if (pe != null)
             ConjuntPE.add(pe);
+    }
+
+    public boolean existsPlaEstudi(String pe) {
+        return (getPlaEstudi(pe) != null);
     }
 }

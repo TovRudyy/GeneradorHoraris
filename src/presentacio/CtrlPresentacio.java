@@ -2,6 +2,7 @@ package presentacio;
 
 import domain.ControladorAules;
 import domain.ControladorPlaEstudis;
+import domain.ControladorUtils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 public class CtrlPresentacio {
     static ControladorPlaEstudis CtrlPE;
     static ControladorAules CtrlAUS;
+    ControladorUtils CtrlUtils;
 
     static ArrayList<AulaFX> aules;
 
@@ -19,6 +21,7 @@ public class CtrlPresentacio {
     public CtrlPresentacio() {
         this.CtrlPE = new ControladorPlaEstudis();
         this.CtrlAUS = new ControladorAules();
+        this.CtrlUtils = new ControladorUtils();
         this.aules = new ArrayList<AulaFX>();
 
         populate_Aules(aules);
@@ -150,5 +153,17 @@ public class CtrlPresentacio {
 
     public void CarregarFitxerPlaEstudis(String fitxer) {
         CtrlPE.carregarFitxerPlaEstudis(fitxer);
+    }
+
+    public boolean existsPlaEstudi(String pe) {
+        return CtrlPE.existsPlaEstudi(pe);
+    }
+
+    public ArrayList<String> getDiesSetmana() {
+        return CtrlUtils.getDiesSetmana();
+    }
+
+    public ArrayList<String> getHoresHorari() {
+        return CtrlUtils.getHoresHorari();
     }
 }

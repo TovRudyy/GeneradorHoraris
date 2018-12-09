@@ -39,8 +39,20 @@ public class SeccioPlans {
         arbre.setShowRoot(false);
         arbre.setMinSize(400,700);
         layout.getChildren().add(arbre);
-
+        //Boto generar Horari
+        Button genHorari = new Button("Generar Horari");
+        genHorari.setOnAction(e -> generarHorari());
+        layout.getChildren().add(genHorari);
         layout.setPadding(new Insets(10));
+    }
+
+    private void generarHorari() {
+        String pe = arbre.getSelectionModel().getSelectedItem().getValue();
+        System.err.println("DEBUG: es vol generar l'horari de "+ pe);
+        if (VistaPrincipal.ctrl.existsPlaEstudi(pe)) {
+
+            VistaHorari horari = new VistaHorari(pe);
+        }
     }
 
     private static void afegeixPlans(TreeItem<String> root) {
