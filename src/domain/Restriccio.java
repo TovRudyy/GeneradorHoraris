@@ -1,17 +1,15 @@
 package domain;
 
-import java.util.Map;
-import java.util.Stack;
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.lang.Object;
+import java.util.Map;
 
 /**
  * Abstreu els tipus de restriccions que existeixen.
  * @author David Pujol
  * Date: 07/10/2018
  */
-public abstract class Restriccio {
+public abstract class Restriccio implements Serializable {
 
     /**
      * @param ai Hora inici de la primera classe

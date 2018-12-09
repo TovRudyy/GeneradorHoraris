@@ -2,6 +2,7 @@ package domain;
 
 // Aquesta classe ens permet tenir tota la informacio necessaria per a calcular l'horari d'un subgrup concret
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,7 +13,7 @@ import java.util.Map;
  * @author: David
  */
 
-public class assignacio {
+public class assignacio implements Serializable {
 
     /** Atributs **/
     private String idGrup, idAssig;

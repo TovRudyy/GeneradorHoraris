@@ -1,8 +1,9 @@
 package domain;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
-import java.util.ArrayList;
 
 
 /**
@@ -12,7 +13,7 @@ import java.util.ArrayList;
  */
 
 
-public class assignatura {
+public class assignatura implements Serializable {
     /** Atributs **/
 
     private String id;  //identificador de la assignatura

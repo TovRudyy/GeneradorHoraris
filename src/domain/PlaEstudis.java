@@ -1,5 +1,6 @@
 package domain;
 
+import java.io.Serializable;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ import java.util.Map;
  * Date: 06/10/2018
  */
 
-public class PlaEstudis {
+public class PlaEstudis implements Serializable {
     /**Atributs **/
     private String id;  //Acrònim del Pla d'Estudis
     private HashMap<String,assignatura> assignatures = new HashMap<>(); //Assignatures pertanyents al pla d'estudis
