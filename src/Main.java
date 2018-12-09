@@ -1,12 +1,19 @@
-import presentacio.ControladorPresentacioMenuPrincipal;
+import javafx.application.Application;
+import presentacio.CtrlMnPrincipal;
+import presentacio.CtrlPresentacio;
+import presentacio.VistaPrincipal;
 
 public class Main {
+
     public static void main(String[] args) {
-        ControladorPresentacioMenuPrincipal GH = new ControladorPresentacioMenuPrincipal();
-        try {
-            GH.runGeneradorHoraris();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        //Per utilitzar la GUI:
+        Application.launch(VistaPrincipal.class, args);
+        //Per utilitzar la CLI:
+//        CtrlMnPrincipal GH = new CtrlMnPrincipal();
+//        try {
+//            GH.runGeneradorHoraris();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }
 }

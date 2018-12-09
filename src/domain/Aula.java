@@ -50,5 +50,21 @@ public class Aula {
     public String toString() {
         return  (id +":" + capacitat + ":" + tipus);
     }
+
+    public void setCapacitat(int nou) {
+        this.capacitat = nou;
+    }
+
+    public void setId(String newValue) {
+        this.id = newValue;
+    }
+
+    public void setTipus(String tipus) {
+        try {
+            this.tipus = Tipus_Aula.string_to_Tipus_Aula(tipus);
+        } catch (Aula_Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
 

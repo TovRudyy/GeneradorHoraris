@@ -87,4 +87,12 @@ public class grup {
     public String toString() {
         return idGrup + ":" + capacitat + ":" + horariGrup + ":" + tipus;
     }
+
+    public boolean esSubgrup() {
+        return !this.tipus.equals(Tipus_Aula.TEORIA);
+    }
+
+    public String getTipusAula() {
+        return this.tipus.toString();
+    }
 }

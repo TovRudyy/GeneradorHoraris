@@ -582,9 +582,6 @@ public class Horari {
 
     }
 
-
-
-
     /**
      * @return Retorna una string amb el horari que hem generat
      */
@@ -624,7 +621,6 @@ public class Horari {
         }
         return "ERROR";
     }
-
 
     //aquesta funcio cal modificarli el scope perque tant les restriccions com el horari hi puguin accedir
     public boolean solapenHores(int ai, int af, int bi, int bf) {

@@ -164,4 +164,50 @@ public class ControladorAules {
         Aulari = llegeixFitxer(file);
     }
 
+    public void setCapacitatAula(String id, int nou) {
+        Aulari.get(id).setCapacitat(nou);
+    }
+
+    public boolean setIdentificadorAula(String id, String newValue) {
+        if (Aulari.containsKey(newValue))
+            return false;
+        Aula aux = Aulari.get(id);
+        Aulari.remove(id);
+        aux.setId(newValue);
+        Aulari.put(aux.getId(), aux);
+        return true;
+    }
+
+    public void setTipusAula(String id, String tipus) {
+        Aulari.get(id).setTipus(tipus);
+    }
+
+    public boolean afegirAula(String id, int capacitat, String tipus) {
+        if (Aulari.containsKey(id))
+            return false;
+        Aula nova = null;
+        try {
+            nova = new Aula(id, capacitat, Tipus_Aula.string_to_Tipus_Aula(tipus));
+        } catch (Aula_Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        Aulari.put(id, nova);
+        return true;
+    }
+
+    public void removeAula(String id) {
+        Aulari.remove(id);
+    }
+
+    public void borrarAulari() {
+        Aulari.clear();
+    }
+
+    public void carregarFitxerAules(String absolutePath) {
+        Map<String, Aula> noves = llegeixFitxer(absolutePath);
+        for (String key : noves.keySet()) {
+            afegirAulaSiNoExisteix(key, noves.get(key));
+        }
+    }
 }
