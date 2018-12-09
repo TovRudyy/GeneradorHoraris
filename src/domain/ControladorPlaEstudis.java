@@ -40,8 +40,6 @@ public class ControladorPlaEstudis {
         return ret;
     }
 
-
-
     /**
      * @param id Identificador del pla d'estudis
      * @return Un boolea que indica si hi ha un pla d'estudis amb aquest identificador.
@@ -58,6 +56,16 @@ public class ControladorPlaEstudis {
     public String toStringAssignatures(String id) {
         PlaEstudis pe = getPlaEstudi(id);
         return pe.toStringAssignatures();
+    }
+
+    /**
+     *
+     * @param id Identificador del pla d'Estudis
+     * @return un ArrayList amb l'identificador de totes les assignatures del pla
+     */
+    public ArrayList<String> getAssignatures(String id) {
+        PlaEstudis pe = getPlaEstudi(id);
+        return pe.getAssignatures();
     }
 
     /**
@@ -232,4 +240,83 @@ public class ControladorPlaEstudis {
             ConjuntPE.add(pe);
     }
 
+    public String getNomAssignatura(String assig, String id) {
+        PlaEstudis pe = getPlaEstudi(id);
+        return pe.getNomAssignatura(assig);
+    }
+
+    public int getNivellAssignatura(String assig, String id) {
+        PlaEstudis pe = getPlaEstudi(id);
+        return pe.getNivellAssignatura(assig);
+    }
+
+    public int getQtClassesTeoriaAssignatura(String assig, String id) {
+        PlaEstudis pe = getPlaEstudi(id);
+        return pe.getQtClassesTeoriaAssignatura(assig);
+    }
+
+    public int getDuradaClassesTeoriaAssignatura(String assig, String id) {
+        PlaEstudis pe = getPlaEstudi(id);
+        return pe.getDuradaClassesTeoriaAssignatura(assig);
+    }
+
+    public int getQtClassesProblemesAssignatura(String assig, String id) {
+        PlaEstudis pe = getPlaEstudi(id);
+        return pe.getQtClassesProblemesAssignatura(assig);
+    }
+
+    public int getDuradaClassesProblemesAssignatura(String assig, String id) {
+        PlaEstudis pe = getPlaEstudi(id);
+        return pe.getDuradaClassesProblemesAssignatura(assig);
+    }
+
+    public int getQtClassesLaboratoriAssignatura(String assig, String id) {
+        PlaEstudis pe = getPlaEstudi(id);
+        return pe.getQtClassesLaboratoriAssignatura(assig);
+    }
+
+    public int getDuradaClassesLaboratoriAssignatura(String assig, String id) {
+        PlaEstudis pe = getPlaEstudi(id);
+        return pe.getDuradaClassesLaboratoriAssignatura(assig);
+    }
+
+    public ArrayList<String> getGrupsAssignatura(String assig, String id) {
+        PlaEstudis pe = getPlaEstudi(id);
+        return pe.getGrupsAssignatura(assig);
+    }
+
+    public int getCapacitatGrup(String grup, String assig, String id) {
+        PlaEstudis pe = getPlaEstudi(id);
+        return pe.getCapacitatGrup(grup, assig);
+    }
+
+    public String getHorariGrup(String grup, String assig, String id) {
+        PlaEstudis pe = getPlaEstudi(id);
+        return pe.getHorariGrup(grup, assig);
+    }
+
+    public String getTipusAulaGrup(String grup, String assig, String id) {
+        PlaEstudis pe = getPlaEstudi(id);
+        return pe.getTipusAulaGrup(grup, assig);
+    }
+
+    public ArrayList<String> getSubgrupsGrup(String grup, String assig, String id) {
+        PlaEstudis pe = getPlaEstudi(id);
+        return pe.getSubgrupsGrup(grup, assig);
+    }
+
+    public ArrayList<String> getCorrequisitsAssignatura(String assig, String id) {
+        PlaEstudis pe = getPlaEstudi(id);
+        return pe.getCorrequisitsAssignatura(assig);
+    }
+
+    public void borrarPlansEstudis() {
+        ConjuntPE.clear();
+    }
+
+    public void carregarFitxerPlaEstudis(String absolutePath) {
+        PlaEstudis pe = CtrlDades.llegeixPE(absolutePath);
+        if (pe != null)
+            ConjuntPE.add(pe);
+    }
 }

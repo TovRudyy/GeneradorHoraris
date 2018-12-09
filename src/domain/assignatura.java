@@ -236,4 +236,69 @@ public class assignatura {
         }
         return ret;
     }
+
+    public int getQtClassesTeoria() {
+        return this.classes_teoria;
+    }
+
+    public int getDuradaClassesTeoria() {
+        return this.duracio_teoria;
+    }
+
+    public int getQtClassesProblemes() {
+        return this.classes_problemes;
+    }
+
+    public int getDuradaClassesProblemes() {
+        return this.duracio_problemes;
+    }
+
+    public int getQtClassesLaboratori() {
+        return this.classes_laboratori;
+    }
+
+    public int getDuradaClassesLaboratori() {
+        return this.duracio_laboratori;
+    }
+
+    public ArrayList<String> getGrupsTeoria() {
+        ArrayList<String> ret = new ArrayList<String>();
+        for (grup g : grups.values()) {
+            if (!g.esSubgrup()) {
+                ret.add(g.getId());
+            }
+        }
+        return ret;
+    }
+
+    public int getCapacitatGrup(String grup) {
+        return grups.get(grup).getCapacitat();
+    }
+
+    public String getHorariGrup(String grup) {
+        return grups.get(grup).getHorariAssig();
+    }
+
+    public String getTipusAulaGrup(String grup) {
+        return grups.get(grup).getTipusAula();
+    }
+
+    public ArrayList<String> getSubgrupsGrup(String grup) {
+        ArrayList<String> ret = new ArrayList<String>();
+        for (grup gr : grups.values()) {
+            String id = gr.getId();
+            if (id.charAt(0) == grup.charAt(0)) {
+                if (gr.esSubgrup()) {
+                    ret.add(id);
+                }
+            }
+        }
+        return ret;
+    }
+
+    public ArrayList<String> getCorrequisits() {
+        ArrayList<String> corr = corequisits.getAssignatures();
+        corr.remove(this.id);
+        return corr;
+    }
 }

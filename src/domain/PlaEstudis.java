@@ -104,6 +104,14 @@ public class PlaEstudis {
         return ret;
     }
 
+    public ArrayList<String> getAssignatures() {
+        ArrayList<String> ret = new ArrayList<String>();
+        for (assignatura a : assignatures.values()) {
+            ret.add(a.getId());
+        }
+        return ret;
+    }
+
     /**
      * @param idAssig Identificador d'una assignatura.
      * @return Una string amb tota la informacio de la assignatura que indica el identificador passat per parametre.
@@ -228,4 +236,72 @@ public class PlaEstudis {
         return true;
     }
 
+    /**
+     *
+     * @param assig identificador de l'assignatura
+     * @return el nom de l'assignatura
+     */
+    public String getNomAssignatura(String assig) {
+       return assignatures.get(assig).getNom();
+    }
+
+    public int getNivellAssignatura(String assig) {
+        return assignatures.get(assig).getNivell();
+
+    }
+
+    public int getQtClassesTeoriaAssignatura(String assig) {
+        return assignatures.get(assig).getQtClassesTeoria();
+    }
+
+    public int getDuradaClassesTeoriaAssignatura(String assig) {
+        return assignatures.get(assig).getDuradaClassesTeoria();
+
+    }
+
+    public int getQtClassesProblemesAssignatura(String assig) {
+        return assignatures.get(assig).getQtClassesProblemes();
+
+    }
+
+    public int getDuradaClassesProblemesAssignatura(String assig) {
+        return assignatures.get(assig).getDuradaClassesProblemes();
+
+    }
+
+    public int getQtClassesLaboratoriAssignatura(String assig) {
+        return assignatures.get(assig).getQtClassesLaboratori();
+
+    }
+
+    public int getDuradaClassesLaboratoriAssignatura(String assig) {
+        return assignatures.get(assig).getDuradaClassesLaboratori();
+    }
+
+    public ArrayList<String> getGrupsAssignatura(String assig) {
+        return assignatures.get(assig).getGrupsTeoria();
+    }
+
+    public int getCapacitatGrup(String grup, String assig) {
+        return assignatures.get(assig).getCapacitatGrup(grup);
+    }
+
+    public String getHorariGrup(String grup, String assig) {
+        return assignatures.get(assig).getHorariGrup(grup);
+
+    }
+
+    public String getTipusAulaGrup(String grup, String assig) {
+        return assignatures.get(assig).getTipusAulaGrup(grup);
+
+    }
+
+    public ArrayList<String> getSubgrupsGrup(String grup, String assig) {
+        return assignatures.get(assig).getSubgrupsGrup(grup);
+    }
+
+    public ArrayList<String> getCorrequisitsAssignatura(String assig) {
+        return assignatures.get(assig).getCorrequisits();
+
+    }
 }

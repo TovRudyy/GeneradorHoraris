@@ -34,4 +34,12 @@ public class VistaPrincipal extends Application {
         escenari.show();
     }
 
+    public static void refrescaTaulaAulari() {
+        SeccioAules.refrescaTaula();
+    }
+
+    public static void refrescaArbrePlaEstudis() {
+        SeccioPlans.refrescaArbrePlansEstudis();
+    }
+
 }
