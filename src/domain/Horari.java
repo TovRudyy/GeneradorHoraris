@@ -264,9 +264,6 @@ public class Horari {
                 }
             }
 
-
-
-
             int hora0 = 8, hora1 = 9;
             for (ArrayList<Queue<String>> hora : horaris) {
                 boolean fi = false;
@@ -399,7 +396,7 @@ public class Horari {
     }
 
 
-    public Set<ArrayList<ArrayList<Queue<String>>>> getHorariAssignatures ()
+    public Queue<ArrayList<ArrayList<Queue<String>>>> getHorariAssignatures ()
     {
         Set<String> assigs = new TreeSet<>();   //conjunt de assignatures
         ArrayList<Classe> classesSeleccionades = new ArrayList<>(this.classesSeleccionades);
@@ -407,7 +404,7 @@ public class Horari {
         for (Classe c : classesSeleccionades)
             assigs.add(c.getId_assig());
 
-        Set<ArrayList<ArrayList<Queue<String>>>> horarisAssignatures = new HashSet<>();
+        Queue<ArrayList<ArrayList<Queue<String>>>> horarisAssignatures = new PriorityQueue<>();
 
         for (String ass : assigs) {
             ArrayList<ArrayList<Queue<String>>> horaris = new ArrayList<>();
@@ -448,12 +445,13 @@ public class Horari {
     }
 
 
-    public Set<ArrayList<ArrayList<Queue<String>>>> getHorariAules ()
+    public Queue<ArrayList<ArrayList<Queue<String>>>> getHorariAules ()
     {
         Set<String> aules = new TreeSet<>(this.aules.keySet());
 
         ArrayList<Classe> classesSeleccionades = new ArrayList<>(this.classesSeleccionades);
-        Set<ArrayList<ArrayList<Queue<String>>>> horarisAules = new HashSet<>();
+
+        Queue<ArrayList<ArrayList<Queue<String>>>> horarisAules = new PriorityQueue<>();
 
         for (String aula : aules) {
             ArrayList<ArrayList<Queue<String>>> horaris = new ArrayList<>();
@@ -492,17 +490,18 @@ public class Horari {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
+    /**
+     * Operacio que ens permet modificar una de les assignacions que tenim dins de l'horari per una d'altre. Tot i aixi,
+     * abans de fer el canvi, comprovarem que no hi ha cap restriccio que ens ho impedeixi.
+     * @param idAssig
+     * @param idGrup
+     * @param diaAntic
+     * @param horaAntiga
+     * @param diaNou
+     * @param horaNova
+     * @param aulaNova
+     * @return True si hem pogut fer el canvi, false altrament.
+     */
     public boolean modificaClasse(String idAssig, String idGrup, DiaSetmana diaAntic, int horaAntiga, DiaSetmana diaNou, int horaNova, String aulaNova) {
         //la eliminem de les seleccionades fins al moment
         Classe borrada = null;
