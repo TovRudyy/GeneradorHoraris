@@ -6,7 +6,7 @@
       "nom": "Introduccio als computadors",
       "nivell": 1,
       "classes": {
-        "teoria": 2,
+        "teoria": 1,
         "duracio_t": 2,
         "problemes": 0,
         "duracio_p": 0,
@@ -16,11 +16,11 @@
       "grups": {
         "automatic": true,
         "nombre": 6,
-        "matins": 4,
+        "matins": 3,
         "capacitat": 68,
         "tipus_subgrup": "L INFORMATICA",
         "subgrup_per_alumnes": false,
-        "valor": 7
+        "valor": 5
       }
     },
     {
@@ -37,12 +37,12 @@
       },
       "grups": {
         "automatic": true,
-        "nombre": 3,
-        "matins": 2,
+        "nombre": 6,
+        "matins": 3,
         "capacitat": 66,
         "tipus_subgrup": "P",
         "subgrup_per_alumnes": false,
-        "valor": 3
+        "valor": 6
       }
     }
   ],

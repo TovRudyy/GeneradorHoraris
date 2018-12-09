@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -20,7 +21,7 @@ import java.util.Scanner;
 
 class driverHorari {
 
-    private static Horari horari = new Horari(new ArrayList<>());
+    private static Horari horari = new Horari(new ArrayList<>(), new HashMap<>());
 
     static void main() {
         printMenu();
@@ -165,7 +166,7 @@ class driverHorari {
         try {
             ArrayList<assignacio> ass = Lector_Drivers_JSON.llegitFitxer_Horari_InputList();
             for(assignacio a : ass) out.println(a.toString());
-            horari = new Horari(ass);
+            horari = new Horari(ass, new HashMap<>());
         }catch(Exception e){
             output.println("Hi ha algun problema amb l'arxiu.");
             output.println("Missatge: " + e.getMessage());

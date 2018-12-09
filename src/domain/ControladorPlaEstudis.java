@@ -21,6 +21,7 @@ public class ControladorPlaEstudis {
     static ControladorPersistencia CtrlDades = new ControladorPersistencia();
     static ArrayList<PlaEstudis> ConjuntPE;
     static final String EscenaPE = "/PlaEstudi.json";
+    static String path = "";    //aquest path ens indica el ultim path guardat fins al moment
 
     /**
      * Crea un nou ControladorPlaEstudis amb les dades que llegeix.
@@ -202,11 +203,19 @@ public class ControladorPlaEstudis {
     public void guardaHorari(String id) {
         PlaEstudis pe = getPlaEstudi(id);
         String h = pe.getHorari();
+
         Date date = Calendar.getInstance().getTime();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
         String strDate = dateFormat.format(date);
-        h =  pe.getID() + "\n" + "Data creació: " + strDate + "\n" + h;
-        System.out.println("GH: introdueix el nom del fitxer on vols guardar l'horari");
+        if (path.equals(""))
+            h =  pe.getID() + "\n" + "Data creació: " + strDate + "\n" +
+                    "L'identificador del pla d'estudis es : " + id + "\n\n" + h;
+        else
+            h =  pe.getID() + "\n" + "Data creació: " + strDate + "\n" +
+                 "El path de l'escenari corresponent es : " + path + "\n\n" + h;
+
+
+        System.out.println("GH: introdueix el nom del fitxer en el que es guardarà l'horari");
         Scanner reader = new Scanner(System.in);
         String arg;
         arg = reader.next();
@@ -218,15 +227,17 @@ public class ControladorPlaEstudis {
 
     /**
      * Imprimeix per pantalla els horaris que tenim guardats i permet que l'usuari en trii un i l'imprimeixi.
+     * A mes a mes, carrega el context corresponent a aquest horari.
      */
-    public void visualitzaHorari() {
+    public String visualitzaHorari() {
         System.out.print("INFO: tens guardats els següents horaris:\n");
         CtrlDades.mostraFitxersHoraris();
         System.out.print("INFO: indica l'horari que vols visualitzar:");
         Scanner reader = new Scanner(System.in);
         String arg;
         arg = reader.next();
-        CtrlDades.visualitzaHorari(arg);
+        return CtrlDades.visualitzaHorari(arg);
+        //pot ser que retornem una path per a carregar una escena, o el nom de un pe, que estara a la carpeta per defecte
     }
 
     /**
@@ -234,6 +245,7 @@ public class ControladorPlaEstudis {
      * @param dir Ruta del directori de la escena.
      */
     public void carregaEscena(String dir) {
+        System.out.println(dir);
         ConjuntPE.clear();
         String file = dir + EscenaPE;
         PlaEstudis pe = CtrlDades.llegeixPE(file);
@@ -324,4 +336,43 @@ public class ControladorPlaEstudis {
     public boolean existsPlaEstudi(String pe) {
         return (getPlaEstudi(pe) != null);
     }
+
+    /**
+     * Ens permet modificar una entrada del horari generat per un pla d'estudi per una d'altre (sempre que les restriccions ho permetin).
+     * @param id Identificador del pla d'estudi
+     */
+    public void modificaEntrada (String id) {
+        PlaEstudis pe = getPlaEstudi(id);
+        if (pe.hasHorari()) {
+            Scanner reader = new Scanner(System.in);
+
+            System.out.println("Modifica una entrada del horari per una d'altre: ");
+            System.out.println("Introdueix el nom de la assignatura, el grup, el dia i la hora");
+            String assig = reader.next();
+            String grup = reader.next();
+            DiaSetmana diaSetmana = DiaSetmana.string_To_DiaSetmana(reader.next());
+            int hora = reader.nextInt();
+
+            System.out.println("Introdueix el nou dia, hora i identificador de l'aula ");
+            DiaSetmana diaNou = DiaSetmana.string_To_DiaSetmana(reader.next());
+            int horaNova = reader.nextInt();
+            String aulaNova = reader.next();
+
+            boolean result = pe.modificaEntrada(assig, grup, diaSetmana, hora, diaNou, horaNova, aulaNova);
+            if (result) System.out.println("S'ha modificat la entrada del horari indicada");
+            else System.out.println("No hem pogut modifica la entrada a causa que incompleix alguna restriccio");
+        }
+
+        else
+            System.out.println("Aquest pla d'estudis encara no conte cap horari");
+    }
+
+    /**
+     * Afegeix aquest path al controlador de pla d'estudi.
+     * @param path Path per a trobar una escena donada.
+     */
+    public void afegirPath (String path) {
+        this.path = path;   //ens guardem el path per anar a l'escenari concret
+    }
+
 }

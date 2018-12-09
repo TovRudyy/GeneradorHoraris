@@ -17,6 +17,7 @@ public class CtrlMnPrincipal {
 
     CtrlPlaEstudis PresentacioPE;
 
+
     private static final String welcome_msg = "####################################" +
             "\nGenerador d'Horaris v1.0 | @David Pujol @Víctor Diví @Oleksandr Rudyy\n" +
             "####################################";
@@ -28,7 +29,7 @@ public class CtrlMnPrincipal {
 
     public void runGeneradorHoraris() throws Exception {
         System.out.println(welcome_msg+"\n");
-        //MenuPrincipal();
+        MenuPrincipal();
     }
 
     private void MenuPrincipal() {
@@ -92,15 +93,16 @@ public class CtrlMnPrincipal {
                 System.err.println("DEBUG msg: arg = " + arg);
                 if (CtrlPE.exists(arg)) {
                     System.out.println("INFO: has seleccionat " + arg);
-                    PresentacioPE = new
-                            CtrlPlaEstudis(arg, this);
+                    PresentacioPE = new CtrlPlaEstudis(arg, this);
                     PresentacioPE.MenuPrincipal();
                 }
                 else System.err.println("ERROR: " + arg + " does not exists");
                 break;
+
             case "show horari":
-                CtrlPE.visualitzaHorari();
+                showHorari();
                 break;
+
             case "load scene":
                 carregaEscena();
                 break;
@@ -177,9 +179,32 @@ public class CtrlMnPrincipal {
         Scanner reader = new Scanner(System.in);
         String arg;
         System.out.print("GH: introdueix el PATH on es troba el directori amb l'escenari:");
-        arg = reader.next();
+        arg = reader.next();    //aquest es el PATH de l'escenari
         CtrlAUS.carregaEscena(arg);
         CtrlPE.carregaEscena(arg);
+        CtrlPE.afegirPath (arg);
+    }
+
+    protected void showHorari () {
+        String arg = CtrlPE.visualitzaHorari();
+        System.out.println(arg);
+        char firstChar = arg.charAt(0);
+        if (firstChar != '/') {    //nomes entrem si no era un path
+            System.out.println("INFO: Hem carregat el pla d'estudis" + arg);
+            CtrlAUS = new ControladorAules();
+            CtrlPE = new ControladorPlaEstudis();   //els tornem a deixar en la opcio per defecte
+            PresentacioPE = new CtrlPlaEstudis(arg, this);
+            PresentacioPE.MenuPrincipal();  //carreguem el menu principal
+            //no acabem de llegir be el pla d'estudis. Les aules si.
+        }
+
+        else if (firstChar == '/') {    //hem de comprovar que no es un path
+            System.out.println("INFO: Carreguem la informacio del seguent path :" + arg);
+            CtrlAUS.carregaEscena(arg);
+            CtrlPE.carregaEscena(arg);
+            CtrlPE.afegirPath (arg);
+        }
+
     }
 
 }

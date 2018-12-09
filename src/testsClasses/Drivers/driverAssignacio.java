@@ -115,9 +115,6 @@ class driverAssignacio {
                     case 8:
                         eliminar_Seleccionada_Test();
                         break;
-                    case 9:
-                        get_Seleccionades_Test();
-                        break;
                     case 10:
                         is_Empty_Test();
                         break;
@@ -329,14 +326,6 @@ class driverAssignacio {
         }catch(IllegalArgumentException iae){
             output.println("Has introduit algun dels atributs incorrectament.");
         }
-    }
-
-    /**
-     * Retorna les seleccionades que tenim del nostre Test.
-     */
-    private static void get_Seleccionades_Test() {
-        output.println("Aquestes son les Classes seleccionades: ");
-        for(Classe c:ass.getSeleccionades()) output.println("\t" + c.toString());
     }
 
     /**

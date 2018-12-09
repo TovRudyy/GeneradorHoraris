@@ -122,18 +122,6 @@ public class assignacioTest {
     }
 
     /**
-     * Comprova les Classes que tenim seleccionades.
-     */
-    @Test
-    public void getSeleccionades() {
-        Classe c = new Classe("TC", "10", DiaSetmana.string_To_DiaSetmana("dilluns"), 10, 12, "Aula1");
-        ass.afegirSeleccionada(c);
-        ArrayList<Classe> arrayList = new ArrayList<>();
-        arrayList.add(c);
-        assertEquals(arrayList, ass.getSeleccionades());
-    }
-
-    /**
      * Comprova si el conjunt de Classes es empty o no, i si aixo es o no correcte.
      */
     @Test

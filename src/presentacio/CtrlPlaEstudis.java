@@ -30,7 +30,6 @@ public class CtrlPlaEstudis {
     private void executeActionsMenuPrincipal() {
         Scanner reader = new Scanner(System.in);
         String cmd;
-        String arg;
         while ((cmd = reader.nextLine()).equals("")) { /*No llegeix si no s'introdueix res per teclat*/ }
         switch (cmd) {
             case "show assig":
@@ -70,6 +69,9 @@ public class CtrlPlaEstudis {
                     master.CtrlPE.guardaHorari(id_plaEstudi);
                 else System.err.println("ERROR: " + id_plaEstudi + " does not have any Horari");
                 break;
+            case "modifica entrada":
+                master.CtrlPE.modificaEntrada(id_plaEstudi);
+                break;
             case "exit":
                 sortir = true;
                 break;
@@ -89,6 +91,7 @@ public class CtrlPlaEstudis {
                 "- Consultar Aules (show aules) | afegir una aula (add aula) | eliminar una aula (rm aula)\n " +
                 "- Restaurar dades aules (reset aules)\n " +
                 "- Generar Horari (gen horari) | consultar Horari (show horari) | guardar horari (save horari)\n " +
+                "- Modificar una de les entrades del horari per una de diferent (modifica entrada)\n" +
                 "- Sortir del pla d'estudis (exit)\n " +
                 "- Sortir del Generador (quit)\n ");
     }
@@ -115,6 +118,7 @@ public class CtrlPlaEstudis {
         System.out.println("INFO: pots eliminar les següents assignatures:\n");
         mostraAssignatures();
         master.CtrlPE.eliminarAssignatura(id_plaEstudi); }
+
 
     private void getDetallsAssignatura() {
         System.out.println("INFO: pots consultar les següents assignatures:");

@@ -26,7 +26,7 @@ public class assignacio {
 
     //RESTRICCIONS
     private RestriccioOcupacio ocupacio = new RestriccioOcupacio();
-    private RestriccioCorequisit corequisit = null;
+    protected RestriccioCorequisit corequisit = null;
     private RestriccioSubgrup subgrup = null;
 
 
@@ -84,6 +84,21 @@ public class assignacio {
      */
     public String getIdGrup () {
         return idGrup;
+    }
+
+    /**
+     * @return Un enter amb el nombre d'alumnes del grup.
+     */
+    public int getCapacitat () {
+        return capacitat;
+    }
+
+
+    /**
+     * @return El tipus de classe que es.
+     */
+    public Tipus_Aula getTipus () {
+        return tAula;
     }
 
 
@@ -242,13 +257,6 @@ public class assignacio {
     }
 
 
-    /**
-     * @return ArrayList amb tot el conjunt de possibilitats que estan marcades com a definitives.
-     */
-    public ArrayList<Classe> getSeleccionades () {
-        return classes_seleccionades;
-    }
-
 
     /**
      * @return Un boolea que ens diu si encara tenim suficients possibilitats per assignar tot el numero de classes restants.
@@ -257,6 +265,8 @@ public class assignacio {
         if (numeroClassesRestants > (getAllPossibleClasses().size())) return true;
         return false;
     }
+
+
 
 
     @Override
