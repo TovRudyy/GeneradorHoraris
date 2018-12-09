@@ -162,7 +162,7 @@ public class Horari {
         System.out.format(formatHeader, "   Hora/Dia", "      DILLUNS", "      DIMARTS", "     DIMECRES", "      DIJOUS", "     DIVENDRES");
         System.out.format("+---------------+--------------------+--------------------+--------------------+--------------------+--------------------+\n");
 
-        ArrayList<ArrayList<Queue<String>>> horaris = new ArrayList<>();    //inicialitzacio
+        ArrayList<ArrayList<Queue<String>>> horaris = new ArrayList<>();    //inicialitzacio de una matriu formada per 16files (hores) x 5 dies
         for (int i = 0; i < 12; ++i) {  //primerament ho organitzem per hores (de 8 a 8)
             horaris.add(new ArrayList<>());
             for (int j = 0; j < 5; ++j) {   //ara per dies (de dilluns a divendres)
@@ -191,6 +191,8 @@ public class Horari {
             }
         }
 
+        //quan sortim d'aqui ja tenim la nostre matriu organitzada amb 16 files i 5 columnes. Cada "quadrat" conte una queue amb tots els seus valors
+
         int hora0 = 8, hora1 = 9;
         for (ArrayList<Queue<String>> hora : horaris) { //obtenim una per cada hora
             boolean fi = false;
@@ -211,6 +213,8 @@ public class Horari {
         }
 
     }
+
+
 
     /**
      * Processa les classes que hem triat per a forma el horari i l'agrupa en aquells que es produeixen el mateix dia,
@@ -259,6 +263,8 @@ public class Horari {
                     }
                 }
             }
+
+
 
 
             int hora0 = 8, hora1 = 9;
@@ -356,6 +362,144 @@ public class Horari {
             System.out.println();
         }
     }
+
+
+
+    public ArrayList<ArrayList<Queue<String>>> getHorariSencer ()
+    {
+        ArrayList<ArrayList<Queue<String>>> horaris = new ArrayList<>();    //inicialitzacio de una matriu formada per 16files (hores) x 5 dies
+        for (int i = 0; i < 12; ++i) {  //primerament ho organitzem per hores (de 8 a 8)
+            horaris.add(new ArrayList<>());
+            for (int j = 0; j < 5; ++j) {   //ara per dies (de dilluns a divendres)
+                horaris.get(i).add(new PriorityQueue<>());  //creem 5 priority queues
+            }
+        }
+
+        for (int k = 0; k < classesSeleccionades.size(); ++k) {
+            Classe c = classesSeleccionades.get(k);
+            for (int i = c.getHoraInici(); i < c.getHoraFi(); ++i) {
+                int dia = 0;    //assignem un valor numeric al dia
+                switch (c.getDia()) {   //DILLUNS no cal ja que si ho es, el valor sera igualment 0
+                    case DIMARTS:
+                        dia = 1;
+                        break;
+                    case DIMECRES:
+                        dia = 2;
+                        break;
+                    case DIJOUS:
+                        dia = 3;
+                        break;
+                    case DIVENDRES:
+                        dia = 4;
+                }
+                horaris.get(i - 8).get(dia).add("  " + c.getId_assig() + "  " + c.getId_grup() + "  " + c.getIdAula());
+            }
+        }
+        return horaris;
+    }
+
+
+    public Set<ArrayList<ArrayList<Queue<String>>>> getHorariAssignatures ()
+    {
+        Set<String> assigs = new TreeSet<>();   //conjunt de assignatures
+        ArrayList<Classe> classesSeleccionades = new ArrayList<>(this.classesSeleccionades);
+
+        for (Classe c : classesSeleccionades)
+            assigs.add(c.getId_assig());
+
+        Set<ArrayList<ArrayList<Queue<String>>>> horarisAssignatures = new HashSet<>();
+
+        for (String ass : assigs) {
+            ArrayList<ArrayList<Queue<String>>> horaris = new ArrayList<>();
+            for (int i = 0; i < 12; ++i) {
+                horaris.add(new ArrayList<>());
+                for (int j = 0; j < 5; ++j) {
+                    horaris.get(i).add(new PriorityQueue<>());
+                }
+            }
+
+            for (Classe c : classesSeleccionades) {
+                if (!c.getId_assig().equals(ass)) continue;
+                int dia = 0;
+                switch (c.getDia()) {
+                    case DILLUNS:
+                        break;
+                    case DIMARTS:
+                        dia = 1;
+                        break;
+                    case DIMECRES:
+                        dia = 2;
+                        break;
+                    case DIJOUS:
+                        dia = 3;
+                        break;
+                    case DIVENDRES:
+                        dia = 4;
+                        break;
+                }
+                int ini = c.getHoraInici(), fi = c.getHoraFi();
+                for (int i = ini; i < fi; ++i) {
+                    horaris.get(i - 8).get(dia).add("     " + c.getId_grup() + "   " + c.getIdAula());
+                }
+            }
+            horarisAssignatures.add(horaris);
+        }
+        return horarisAssignatures;
+    }
+
+
+    public Set<ArrayList<ArrayList<Queue<String>>>> getHorariAules ()
+    {
+        Set<String> aules = new TreeSet<>(this.aules.keySet());
+
+        ArrayList<Classe> classesSeleccionades = new ArrayList<>(this.classesSeleccionades);
+        Set<ArrayList<ArrayList<Queue<String>>>> horarisAules = new HashSet<>();
+
+        for (String aula : aules) {
+            ArrayList<ArrayList<Queue<String>>> horaris = new ArrayList<>();
+            for (int i = 0; i < 12; ++i) {
+                horaris.add(new ArrayList<>());
+                for (int j = 0; j < 5; ++j) {
+                    horaris.get(i).add(new PriorityQueue<>());
+                }
+            }
+
+            for (int k = 0; k < classesSeleccionades.size(); ++k) {
+                Classe c = classesSeleccionades.get(k);
+                if (c.getIdAula().equals(aula)) {
+                    for (int i = c.getHoraInici(); i < c.getHoraFi(); ++i) {
+                        int dia = 0;    //assignem un valor numeric al dia
+                        switch (c.getDia()) {   //DILLUNS no cal ja que si ho es, el valor sera igualment 0
+                            case DIMARTS:
+                                dia = 1;
+                                break;
+                            case DIMECRES:
+                                dia = 2;
+                                break;
+                            case DIJOUS:
+                                dia = 3;
+                                break;
+                            case DIVENDRES:
+                                dia = 4;
+                        }
+                        horaris.get(i - 8).get(dia).add("  " + c.getId_assig() + "  " + c.getId_grup() + "  ");
+                    }
+                }
+            }
+            horarisAules.add(horaris);
+        }
+        return horarisAules;
+    }
+
+
+
+
+
+
+
+
+
+
 
 
 
