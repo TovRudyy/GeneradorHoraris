@@ -55,6 +55,11 @@ public class SeccioPlans {
                 ArrayList<ArrayList<Queue<String>>> horari = VistaPrincipal.ctrl.getHorariSencer(pe);
                 VistaHorari horari_dibuixat = new VistaHorari(pe, horari);
             }
+            else
+                PopUpWindow.display("ERROR", "No s'ha trobat un horari vàlid per " + pe);
+        }
+        else {
+            PopUpWindow.display("ERROR", "No existeix el pla d'estudis " + pe);
         }
     }
 
