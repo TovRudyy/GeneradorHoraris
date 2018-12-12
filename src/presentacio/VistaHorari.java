@@ -7,6 +7,7 @@ import javafx.geometry.VPos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -15,6 +16,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
+import java.util.Queue;
 
 public class VistaHorari {
     Stage escenari;
@@ -22,9 +24,11 @@ public class VistaHorari {
     VBox layout;
     GridPane matriuLayout;
     String plaEstudi;
+    ArrayList<ArrayList<Queue<String>>> horari;
 
-    public VistaHorari(String pla) {
+    public VistaHorari(String pla, ArrayList<ArrayList<Queue<String>>> horari) {
         this.plaEstudi = pla;
+        this.horari = horari;
         escenari = new Stage();
         escena = new Scene(buildHorari());
         escenari.setTitle("Horari de " + pla);
@@ -50,6 +54,27 @@ public class VistaHorari {
     private void dibuixaHorari() {
         dibuixaDies(1,1);
         dibuixaHores(0,2);
+        afegeixHorariSencer(1,2);
+    }
+
+    private void afegeixHorariSencer(int x, int y) {
+        int dia = x;
+        for (ArrayList<Queue<String>> dies : horari) {
+            for (Queue<String> sessions : dies) {
+                ListView<String> classes = new ListView();
+                String classe;
+                while ((classe = sessions.poll()) != null) {
+                    classes.getItems().add(classe);
+                }
+                matriuLayout.add(classes, dia, y);
+                dia++;
+            }
+            y++;
+            dia = x;
+        }
+    }
+
+    private void afegeix_dades() {
     }
 
     private void dibuixaHores(int x, int y) {

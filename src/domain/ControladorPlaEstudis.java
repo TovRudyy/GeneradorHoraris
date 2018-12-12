@@ -6,10 +6,7 @@ import sun.awt.SunHints;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * Controlador del pla d'estudis que permet tant llegir-lo com modificar-lo.
@@ -375,4 +372,13 @@ public class ControladorPlaEstudis {
         this.path = path;   //ens guardem el path per anar a l'escenari concret
     }
 
+    public boolean generaHorari(String id) {
+        PlaEstudis pe = getPlaEstudi(id);
+        return pe.generaHorari(ControladorAules.getAules());
+    }
+
+    public ArrayList<ArrayList<Queue<String>>> getHorariSencer(String id) {
+        PlaEstudis pe = getPlaEstudi(id);
+        return pe.getHorariSencer();
+    }
 }
