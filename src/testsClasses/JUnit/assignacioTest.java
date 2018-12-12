@@ -101,25 +101,6 @@ public class assignacioTest {
         assertTrue(ass.getAllPossibleClasses().isEmpty());
     }
 
-    /**
-     * Comprova la operacio d'afegir una Classe seleccionada.
-     */
-    @Test
-    public void afegirSeleccionada() {
-        int in = ass.getNumeroClassesRestants();
-        ass.afegirSeleccionada(new Classe("TC", "10", DiaSetmana.string_To_DiaSetmana("dilluns"), 10, 12, "Aula1"));
-        assertEquals(in-1,ass.getNumeroClassesRestants());
-    }
-
-    /**
-     * Comprova el resultat d'eliminar una Classe seleccionada.
-     */
-    @Test
-    public void eliminarSeleccionada() {
-        int in = ass.getNumeroClassesRestants();
-        ass.eliminarSeleccionada(new Classe("TC", "10", DiaSetmana.string_To_DiaSetmana("dilluns"), 10, 12, "Aula1"));
-        assertTrue(ass.getNumeroClassesRestants() == in+1 || ass.getNumeroClassesRestants() == in);
-    }
 
     /**
      * Comprova si el conjunt de Classes es empty o no, i si aixo es o no correcte.

@@ -75,35 +75,41 @@ public class Horari {
         if (index < l.size()) {
             assignacio a = l.get(index);
             ArrayList<Classe> possibleClasses = a.getAllPossibleClasses();
-            //Stack <Classe> alreadyProcessed = new Stack<>();
 
-            for (Classe c : possibleClasses) {
-                a.afegirSeleccionada(c);    //tambe fa el update de les que falten
+            System.out.println("Les seves classes possibles son");
+            for (int i=0; i < possibleClasses.size(); ++i) {
+                Classe d = possibleClasses.get(i);
+                d.showClasse();
+            }
+
+            for (int i=0; i < possibleClasses.size(); ++i) {
+                Classe c = possibleClasses.get(i);
+                System.out.println("Seleccionem: ");
+                c.showClasse();
+                a.afegirSeleccionada();    //aixo cal??
                 Stack<Classe> eliminades = new Stack();
 
-                //alreadyProcessed.push(c);
-                boolean valid = forward_checking(c, eliminades); //forward checking
 
-                if (valid) {
-                    boolean r;
-                    classesSeleccionades.add(c);
-                    if (a.getNumeroClassesRestants() == 0)  //hem de saltar al seguent
-                    {
-                        eliminades.addAll(a.nomesSeleccionades());
-                        r = selectClasse(index + 1); //passem a comprovar la seguent assignacio
-                    } else   //si encara hem d'assignar classes a aquesta assignacio
-                        r = selectClasse(index);
+                boolean valid = forward_checking(c, eliminades); //forward checking
+                classesSeleccionades.add(c);
+
+
+                if (valid)
+                {
+                    boolean r = false;
+                    if (a.getNumeroClassesRestants() == 0) {
+                        r = selectClasse(index + 1);
+                    }
 
                     if (r) return r;
                 }
 
-                classesSeleccionades.remove(classesSeleccionades.size() - 1);
-                revertChanges(eliminades, c);
-                a.eliminarSeleccionada(c);
+                if (! (valid && a.getNumeroClassesRestants() != 0)) {
+                    classesSeleccionades.remove(classesSeleccionades.size() - 1);
+                    revertChanges(eliminades, c);
+                    a.eliminarSeleccionada();
+                }
             }
-
-            //anem borrant tots els que anem processant. I nomes els tornem a posar quan arribem aqui perque realment tornem enrere.
-            //revertChanges2(alreadyProcessed);
 
             return false;   //vol dir que hem mirat totes les opcions i no n'hi ha cap que funcioni
         } else return true;
@@ -121,14 +127,11 @@ public class Horari {
 
         for (Map.Entry<String, assignacio> aux : conjuntAssignacions.entrySet()) {
             assignacio a = aux.getValue();
-
-            //tractem aquest cas per separat perque si tenim dos classes d'una mateixa assignacio sino entrem en bucle
-            //if (a.getIdAssig().equals(c.getId_assig()) && a.getIdGrup().equals(c.getId_grup()))
-            //    a.eliminarConcreta(c);
-
+           // if (! (a.getIdAssig().equals(c.getId_assig()) && (a.getIdGrup().equals(c.getId_grup()))) ) {    //no tractem la assignacio que acabem d'afegir
             ArrayList<Classe> eliminades = a.forwardChecking(c);
             totes_eliminades.addAll(eliminades);
             if (a.isEmpty()) return false;
+          //  }
         }
 
         return true;
@@ -144,10 +147,11 @@ public class Horari {
         while (!eliminades.empty()) {
             Classe c = eliminades.pop();
             assignacio a = conjuntAssignacions.get(c.getId_assig() + c.getId_grup());
-            if (c != actual)
-                a.afegeixPossibilitat(c);
+           // if (c != actual)
+            a.afegeixPossibilitat(c);
         }
     }
+
 
 
     /** METODES PER MOSTRAR EL HORARI **/
@@ -490,6 +494,7 @@ public class Horari {
     }
 
 
+
     /**
      * Operacio que ens permet modificar una de les assignacions que tenim dins de l'horari per una d'altre. Tot i aixi,
      * abans de fer el canvi, comprovarem que no hi ha cap restriccio que ens ho impedeixi.
@@ -502,17 +507,18 @@ public class Horari {
      * @param aulaNova
      * @return True si hem pogut fer el canvi, false altrament.
      */
+
     public boolean modificaClasse(String idAssig, String idGrup, DiaSetmana diaAntic, int horaAntiga, DiaSetmana diaNou, int horaNova, String aulaNova) {
         //la eliminem de les seleccionades fins al moment
         Classe borrada = null;
         int i = 0;
         boolean found = false;
         while (!found && i < classesSeleccionades.size()) {
-            Classe c = classesSeleccionades.get(i);
+            Classe c = classesSeleccionades.get(i); //seleccionem una de les classes seleccionades
             if (c.getId_assig().equals(idAssig) && c.getId_grup().equals(idGrup) && c.getHoraInici() == horaAntiga && c.getDia().equals(diaAntic)) {
-                borrada = c;
+                borrada = c;    //entrem aqui si hem trobat la classe
                 classesSeleccionades.remove(c);
-                conjuntAssignacions.get(c.getId_assig() + c.getId_grup()).eliminarSeleccionada(c);    //tambe la eliminem de les seleccionades de la assignacio
+                conjuntAssignacions.get(c.getId_assig() + c.getId_grup()).eliminarSeleccionada();    //tambe la eliminem de les seleccionades de la assignacio
                 found = true;
             }
             ++i;
@@ -544,8 +550,6 @@ public class Horari {
             m.setHora_fi(horaFi);  //ara ja la tenim amb la informacio canviada
             m.setAula(aulaNova);
 
-
-            a.afegirSeleccionada(m);
             //ara comprovem si la podem afegir
 
             for (Classe c : classesSeleccionades) {
@@ -573,6 +577,7 @@ public class Horari {
                 }
 
             }
+            a.afegirSeleccionada();
             classesSeleccionades.add(m);
             return true;
 

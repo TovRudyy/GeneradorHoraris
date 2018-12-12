@@ -22,7 +22,6 @@ public class assignacio {
     private int duracioClasses, numeroClassesRestants; //numero i duracio de les classes
     private int inici_possible, final_possible;
     private Map<String, Map<DiaSetmana, ArrayList<Classe>>> possibles_classes;
-    private ArrayList<Classe> classes_seleccionades = new ArrayList<>();
 
     //RESTRICCIONS
     private RestriccioOcupacio ocupacio = new RestriccioOcupacio();
@@ -238,22 +237,20 @@ public class assignacio {
         return (eliminades);   //aqui ja no hi ha les que hem anat agafant
     }
 
+
     /**
-     * Afegeix una nova Classe com a definitiva.
-     * @param c Classe que l'horari ha triat com a definitiva.
+     * Li resta una al numero de classes restants
      */
-    public void afegirSeleccionada (Classe c) {
-        classes_seleccionades.add(c);
+    public void afegirSeleccionada () {
         this.numeroClassesRestants -= 1;
     }
 
 
     /**
-     * Elimina una nova Classe que ara ha deixat de ser definitiva.
-     * @param c Classe que l'horari ha eliminat de la selecció final.
+     * Li suma una al numero de classes restants
      */
-    public void eliminarSeleccionada (Classe c) {
-        if(classes_seleccionades.remove(c)) this.numeroClassesRestants += 1;
+    public void eliminarSeleccionada () {
+        this.numeroClassesRestants += 1;
     }
 
 

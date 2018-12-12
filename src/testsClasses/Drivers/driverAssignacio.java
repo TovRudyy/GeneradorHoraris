@@ -110,10 +110,10 @@ class driverAssignacio {
                         nomes_Seleccionades_Test();
                         break;
                     case 7:
-                        afegir_Seleccionada_Test();
+                       // afegir_Seleccionada_Test();
                         break;
                     case 8:
-                        eliminar_Seleccionada_Test();
+                       // eliminar_Seleccionada_Test();
                         break;
                     case 10:
                         is_Empty_Test();
@@ -288,45 +288,6 @@ class driverAssignacio {
         for(Classe c: ass.nomesSeleccionades()) output.println("\t" + c.toString());
     }
 
-    /**
-     * Afegeix a la assignacio una Classe com a seleccionada i actualitza el nombre de classes restants.
-     */
-    private static void afegir_Seleccionada_Test() {
-        out.println("Introdueix la classe que vols afegir a la llista de possibilitats:");
-        out.println("Tingues en compte que no es comprova que aquesta classe sigui una de les possibles.");
-        out.println("\tId_Aula<String>, Dia<DiaSetmana> HoraInicia<int> HoraFinal<int>");
-        try{
-            String au = keyboard.next(), dia = keyboard.next();
-            int ini = keyboard.nextInt(), fin = keyboard.nextInt();
-            if(ini > fin){
-                output.println("L'hora final ha de ser posterior a la inicial.");
-                return;
-            }
-            ass.afegirSeleccionada(new Classe(ass.getIdAssig(), ass.getIdGrup(), DiaSetmana.string_To_DiaSetmana(dia), ini, fin, au));
-        }catch(IllegalArgumentException iae){
-            output.println("Has introduit algun dels atributs incorrectament.");
-        }
-    }
-
-    /**
-     * Elimina una Classe com a seleccionada.
-     */
-    private static void eliminar_Seleccionada_Test() {
-        out.println("Introdueix la classe que vols eliminar de la llista de possibilitats:");
-        out.println("Tingues en compte que no es llença cap error si la classe no es seleccionada (pero tampoc te cap efecte secundari).");
-        out.println("\tId_Assignatura<String> Id_Grup<String> Id_Aula<String>, Dia<DiaSetmana> HoraInicia<int> HoraFinal<int>");
-        try{
-            String as = keyboard.next(), g = keyboard.next(), au = keyboard.next(), dia = keyboard.next();
-            int ini = keyboard.nextInt(), fin = keyboard.nextInt();
-            if(ini > fin){
-                output.println("L'hora final ha de ser posterior a la inicial.");
-                return;
-            }
-            ass.eliminarSeleccionada(new Classe(as, g, DiaSetmana.string_To_DiaSetmana(dia), ini, fin, au));
-        }catch(IllegalArgumentException iae){
-            output.println("Has introduit algun dels atributs incorrectament.");
-        }
-    }
 
     /**
      * Comprova que el test no sigui buit.
