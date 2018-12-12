@@ -381,4 +381,24 @@ public class ControladorPlaEstudis {
         PlaEstudis pe = getPlaEstudi(id);
         return pe.getHorariSencer();
     }
+
+    public void exportarHorariTXT(String path, String id) {
+        PlaEstudis pe = getPlaEstudi(id);
+        String h = pe.toStringSencer();
+
+        Date date = Calendar.getInstance().getTime();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+        String strDate = dateFormat.format(date);
+        if (path.equals(""))
+            h =  pe.getID() + "\n" + "Data creació: " + strDate + "\n" +
+                    "L'identificador del pla d'estudis es : " + id + "\n\n" + h;
+        else
+            h =  pe.getID() + "\n" + "Data creació: " + strDate + "\n" +
+                    "El path de l'escenari corresponent es : " + path + "\n\n" + h;
+
+        String aux;
+        if ( (aux = CtrlDades.guardaHorariGUI(h, path)) != null) {
+            System.out.println("INFO: s'ha guardat l'horari en " + aux);
+        }
+    }
 }

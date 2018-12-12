@@ -1,21 +1,24 @@
 package presentacio;
 
+import javafx.embed.swing.SwingFXUtils;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TableColumn;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.RowConstraints;
-import javafx.scene.layout.VBox;
+import javafx.scene.image.WritableImage;
+import javafx.scene.layout.*;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Queue;
 
@@ -49,29 +52,68 @@ public class VistaHorari {
         //Dibuixo l'horari en sí
         dibuixaHorari(horari);
         layout.getChildren().add(matriuLayout);
+        afegeixBotons();
         return layout;
     }
 
     private void dibuixaHorari(ArrayList<ArrayList<Queue<String>>> horari) {
-        afegeixBotons(0,1);
         dibuixaDies(2,1);
         dibuixaHores(1,2);
         afegeixHorariSencer(2,2, horari);
     }
 
-    private void afegeixBotons(int x, int y) {
-        VBox buttonLayout = new VBox();
+    private void afegeixBotons() {
+        HBox buttonLayout = new HBox();
         Button saveHorari = new Button("Guardar");
         saveHorari.setOnAction(e -> guardarHorariSencer());
-        Button exportarHorari = new Button("Exportar");
-        exportarHorari.setOnAction(e -> exportarHorariSencer());
+        Button exportarPNG = new Button("Exportar PNG");
+        exportarPNG.setOnAction(e -> exportarPNG());
+        Button exportarTXT = new Button("Exportar TXT");
+        exportarTXT.setOnAction(e -> exportarTXT());
         Button exit = new Button("Sortir");
         exit.setOnAction(e -> escenari.close());
-        buttonLayout.getChildren().addAll(saveHorari, exportarHorari,exit);
-        matriuLayout.add(buttonLayout,x,y);
+        buttonLayout.getChildren().addAll(saveHorari, exportarPNG, exportarTXT, exit);
+        layout.getChildren().add(buttonLayout);
     }
 
-    private void exportarHorariSencer() {
+    private void exportarTXT() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Exportar Horari");
+        fileChooser.setInitialDirectory(new File("data/Horaris"));
+        Stage escenari = getFileChooserStage();
+        File fitxer = fileChooser.showSaveDialog(escenari);
+        if (fitxer != null) {
+            try {
+                VistaPrincipal.ctrl.exportarHorariTXT(fitxer.getAbsolutePath(), this.plaEstudi);
+
+            } catch (Exception e) {
+                // TODO: handle exception here
+                PopUpWindow.display("Export Error", "Error al exportar l'horari a TXT");
+            }
+        }
+    }
+
+    public void exportarPNG() {
+        WritableImage image = matriuLayout.snapshot(new SnapshotParameters(), null);
+        // TODO: probably use a file chooser here
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Exportar Horari");
+        fileChooser.setInitialDirectory(new File("data/"));
+        Stage escenari = getFileChooserStage();
+        File fitxer = fileChooser.showSaveDialog(escenari);
+        if (fitxer != null) {
+            try {
+                ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", fitxer);
+            } catch (IOException e) {
+                // TODO: handle exception here
+                PopUpWindow.display("Export Error", "Error al exportar l'horari a PNG");
+            }
+        }
+    }
+
+    private Stage getFileChooserStage() {
+        Stage escenari = new Stage();
+        return escenari;
     }
 
     private void guardarHorariSencer() {
@@ -93,9 +135,6 @@ public class VistaHorari {
             y++;
             dia = x;
         }
-    }
-
-    private void afegeix_dades() {
     }
 
     private void dibuixaHores(int x, int y) {

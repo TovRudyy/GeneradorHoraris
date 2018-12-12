@@ -175,4 +175,8 @@ public class CtrlPresentacio {
     public ArrayList<ArrayList<Queue<String>>> getHorariSencer(String pe) {
         return CtrlPE.getHorariSencer(pe);
     }
+
+    public void exportarHorariTXT(String absolutePath, String pe) {
+        CtrlPE.exportarHorariTXT(absolutePath, pe);
+    }
 }

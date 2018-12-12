@@ -301,4 +301,8 @@ public class PlaEstudis {
         }
         return horari.getHorariSencer();
     }
+
+    public String toStringSencer() {
+        return horari.toStringSencer();
+    }
 }
