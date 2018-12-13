@@ -372,10 +372,12 @@ public class ControladorPlaEstudis {
         this.path = path;   //ens guardem el path per anar a l'escenari concret
     }
 
+
     public boolean generaHorari(String id) {
         PlaEstudis pe = getPlaEstudi(id);
         return pe.generaHorari(ControladorAules.getAules());
     }
+
 
     public ArrayList<ArrayList<Queue<String>>> getHorariSencer(String id) {
         PlaEstudis pe = getPlaEstudi(id);

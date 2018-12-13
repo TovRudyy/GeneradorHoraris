@@ -2,9 +2,7 @@ package domain;
 
 // Aquesta classe ens permet tenir tota la informacio necessaria per a calcular l'horari d'un subgrup concret
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  *
@@ -21,7 +19,7 @@ public class assignacio {
     private String horariGrup;
     private int duracioClasses, numeroClassesRestants; //numero i duracio de les classes
     private int inici_possible, final_possible;
-    private Map<String, Map<DiaSetmana, ArrayList<Classe>>> possibles_classes;
+    private Map<String, Map<DiaSetmana, LinkedList<Classe>>> possibles_classes;
 
     //RESTRICCIONS
     private RestriccioOcupacio ocupacio = new RestriccioOcupacio();
@@ -102,14 +100,6 @@ public class assignacio {
 
 
     /**
-     * @return El map on te enmagatzemades totes les seves possibilitats
-     */
-    public Map<String, Map<DiaSetmana, ArrayList<Classe>>> getClassesMap () {
-        return possibles_classes;
-    }
-
-
-    /**
      * @return Retorna true si la assignatura es de matins o false altrament.
      */
     public boolean esMatins () {
@@ -126,6 +116,7 @@ public class assignacio {
         this.corequisit = c;
     }
 
+
     /**
      * Afegeix la restriccio de subgrup a la assignacio.
      * @param r Rep per parametre la restriccio de subgrup.
@@ -141,8 +132,8 @@ public class assignacio {
      * @return Un map que conté tot el conjunt de possibilitats d'aquesta assignació.
      * @param aules conjunt d'aules amb les que fer les classes
      */
-    private Map<String, Map<DiaSetmana, ArrayList<Classe>>> generaPossiblesClasses(Map<String, Aula> aules) {
-        Map<String, Map<DiaSetmana, ArrayList<Classe>>> totesClasses = new HashMap<>();
+    private Map<String, Map<DiaSetmana, LinkedList<Classe>>> generaPossiblesClasses(Map<String, Aula> aules) {
+        Map<String, Map<DiaSetmana, LinkedList<Classe>>> totesClasses = new LinkedHashMap<>();
 
         for (Aula aula : aules.values()) {
             if (aula.getTipus() == tAula && aula.getCapacitat() >= this.capacitat) {   //mirem que l'aula i el grup sigui compatible
@@ -154,10 +145,10 @@ public class assignacio {
                         Classe aux = new Classe(idAssig, idGrup, dia, i, (i+duracioClasses), aula.getId());
                         String nom_aula = aula.getId();
                         //mirem si ja tenim la entrada de aquesta aula i sino la afegim
-                        totesClasses.putIfAbsent(nom_aula, new HashMap<>());
+                        totesClasses.putIfAbsent(nom_aula, new LinkedHashMap<>());
 
                         //mirem si ja tenim la entrada de aquest dia, i sinó l'afegim
-                        totesClasses.get(nom_aula).putIfAbsent(dia, new ArrayList<>());
+                        totesClasses.get(nom_aula).putIfAbsent(dia, new LinkedList<>());
 
                         //afegim la nova classe
                         totesClasses.get(nom_aula).get(dia).add(aux);
@@ -201,7 +192,7 @@ public class assignacio {
         String id_aula = c.getIdAula();
         DiaSetmana d = c.getDia();
         possibles_classes.putIfAbsent(id_aula, new HashMap<>());
-        possibles_classes.get(id_aula).putIfAbsent(d, new ArrayList<>());
+        possibles_classes.get(id_aula).putIfAbsent(d, new LinkedList<>());
         if (! possibles_classes.get(id_aula).get(d).contains(c))
              possibles_classes.get(id_aula).get(d).add(c);   //afegim la possibilitat
     }
@@ -212,8 +203,9 @@ public class assignacio {
      * @return Una arrayList amb les possibilitats que hem "podat" ja que ja no son possibles.
      */
 
+
     public ArrayList<Classe> forwardChecking (Classe c) {
-        ArrayList<Classe> result = new ArrayList<Classe>();
+        ArrayList<Classe> result = new ArrayList<>();
 
         result.addAll( ocupacio.deletePossibilities(possibles_classes, c));
 

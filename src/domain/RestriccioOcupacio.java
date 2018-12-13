@@ -2,6 +2,7 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.LinkedList;
 
 
 /**
@@ -23,12 +24,13 @@ public class RestriccioOcupacio extends Restriccio {
      * @param c Classe que el horari acaba de seleccionar.
      * @return Retorna una array list amb les classes que hem eliminat.
      */
-    public ArrayList<Classe> deletePossibilities (Map<String, Map<DiaSetmana, ArrayList<Classe>>> possibles_classes, Classe c) {
+    public ArrayList<Classe> deletePossibilities (Map<String, Map<DiaSetmana, LinkedList<Classe>>> possibles_classes, Classe c) {
         String id_aula = c.getIdAula();
         DiaSetmana dia = c.getDia();
         ArrayList<Classe> aux = new ArrayList<>();
+
         if (possibles_classes.containsKey(id_aula) && possibles_classes.get(id_aula).containsKey(dia))
-            aux = possibles_classes.get(id_aula).get(dia);
+            aux.addAll(possibles_classes.get(id_aula).get(dia));
 
         ArrayList<Classe> eliminades = new ArrayList<>();
 

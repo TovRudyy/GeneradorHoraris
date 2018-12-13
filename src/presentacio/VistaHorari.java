@@ -15,8 +15,7 @@ import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.util.ArrayList;
-import java.util.Queue;
+import java.util.*;
 
 public class VistaHorari {
     Stage escenari;
@@ -59,19 +58,24 @@ public class VistaHorari {
 
     private void afegeixHorariSencer(int x, int y) {
         int dia = x;
-        for (ArrayList<Queue<String>> dies : horari) {
-            for (Queue<String> sessions : dies) {
+
+        for (int j=0; j < 12; ++j) {
+            ArrayList<Queue<String>> dies = horari.get(j);
+            for (int i=0; i < 5; ++i) {
+                Queue<String> sessions = dies.get(i);
+
                 ListView<String> classes = new ListView();
                 String classe;
                 while ((classe = sessions.poll()) != null) {
                     classes.getItems().add(classe);
                 }
-                matriuLayout.add(classes, dia, y);
+                matriuLayout.add(classes, dia, y);  //hem canviat la y per dia
                 dia++;
             }
             y++;
             dia = x;
         }
+
     }
 
     private void afegeix_dades() {

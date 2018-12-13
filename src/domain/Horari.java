@@ -14,8 +14,8 @@ import java.util.*;
 
 public class Horari {
 
-    private LinkedHashMap<String, assignacio> conjuntAssignacions = new LinkedHashMap<>();   //fem servir linked per mantenir el ordre d'entrada
-    private ArrayList<assignacio> l;
+    private HashMap<String, assignacio> conjuntAssignacions = new HashMap<>();   //fem servir linked per mantenir el ordre d'entrada
+    private LinkedList<assignacio> l;
     private ArrayList<Classe> classesSeleccionades = new ArrayList<>();//ho guardem en forma de stack perque quan retrocedim sempre treurem la ultima afegida
     private Map<String, Aula> aules;
 
@@ -24,9 +24,9 @@ public class Horari {
      *
      * @param conjuntAssignacions ArrayList amb tot el conjunt d'assignacions que hem d'assignar al nostre horari.
      */
-    public Horari(ArrayList<assignacio> conjuntAssignacions, Map<String, Aula> aules) {
+    public Horari(LinkedList<assignacio> conjuntAssignacions, Map<String, Aula> aules) {
         afegeixAssignacions(conjuntAssignacions);
-        this.l = new ArrayList<>(this.conjuntAssignacions.values());
+        this.l = conjuntAssignacions;
         this.aules = aules;
     }
 
@@ -37,7 +37,7 @@ public class Horari {
      *
      * @param conjuntAssignacions ArrayList amb tot el conjunt d'assignacions que hem d'assignar al nostre horari.
      */
-    private void afegeixAssignacions(ArrayList<assignacio> conjuntAssignacions) {
+    private void afegeixAssignacions(LinkedList<assignacio> conjuntAssignacions) {
         for (assignacio a : conjuntAssignacions)    //primer afegim les de matins i despres les de tardes
             if (a.esMatins()) this.conjuntAssignacions.put((a.getIdAssig() + a.getIdGrup()), a);
 
@@ -45,6 +45,7 @@ public class Horari {
             if (!a.esMatins()) this.conjuntAssignacions.put((a.getIdAssig() + a.getIdGrup()), a);
 
     }
+
 
 
     /** METODES PEL CALCUL DE L'HORARI **/
@@ -70,45 +71,36 @@ public class Horari {
      * @param index Indica quina assignacio estem tractant en aquesta iteracio.
      * @return Un boolea que indica si el horari es possible o no.
      */
-    public boolean selectClasse(int index) {
-
+    private boolean selectClasse(int index) {
         if (index < l.size()) {
             assignacio a = l.get(index);
             ArrayList<Classe> possibleClasses = a.getAllPossibleClasses();
-
-            System.out.println("Les seves classes possibles son");
-            for (int i=0; i < possibleClasses.size(); ++i) {
-                Classe d = possibleClasses.get(i);
-                d.showClasse();
-            }
+            Collections.shuffle(possibleClasses);   //barrejem les possibilitats per tal de trobar un algorisme random
 
             for (int i=0; i < possibleClasses.size(); ++i) {
                 Classe c = possibleClasses.get(i);
-                System.out.println("Seleccionem: ");
-                c.showClasse();
                 a.afegirSeleccionada();    //aixo cal??
                 Stack<Classe> eliminades = new Stack();
 
-
-                boolean valid = forward_checking(c, eliminades); //forward checking
+                boolean valid = forward_checking (c, eliminades); //forward checking
                 classesSeleccionades.add(c);
-
 
                 if (valid)
                 {
-                    boolean r = false;
+                    boolean r;
                     if (a.getNumeroClassesRestants() == 0) {
                         r = selectClasse(index + 1);
                     }
+                    else
+                        r = selectClasse(index);
 
                     if (r) return r;
                 }
 
-                if (! (valid && a.getNumeroClassesRestants() != 0)) {
-                    classesSeleccionades.remove(classesSeleccionades.size() - 1);
-                    revertChanges(eliminades, c);
-                    a.eliminarSeleccionada();
-                }
+                classesSeleccionades.remove(classesSeleccionades.size() - 1);
+                revertChanges(eliminades, c);
+                a.eliminarSeleccionada();
+
             }
 
             return false;   //vol dir que hem mirat totes les opcions i no n'hi ha cap que funcioni
@@ -124,18 +116,17 @@ public class Horari {
      * @return Una pila amb totes les possibilitats que les assignacions han eliminat en aquesta "poda"
      */
     private boolean forward_checking(Classe c, Stack<Classe> totes_eliminades) {
-
         for (Map.Entry<String, assignacio> aux : conjuntAssignacions.entrySet()) {
             assignacio a = aux.getValue();
-           // if (! (a.getIdAssig().equals(c.getId_assig()) && (a.getIdGrup().equals(c.getId_grup()))) ) {    //no tractem la assignacio que acabem d'afegir
             ArrayList<Classe> eliminades = a.forwardChecking(c);
             totes_eliminades.addAll(eliminades);
             if (a.isEmpty()) return false;
-          //  }
+
         }
 
         return true;
     }
+
 
 
     /**
@@ -147,8 +138,8 @@ public class Horari {
         while (!eliminades.empty()) {
             Classe c = eliminades.pop();
             assignacio a = conjuntAssignacions.get(c.getId_assig() + c.getId_grup());
-           // if (c != actual)
-            a.afegeixPossibilitat(c);
+            if (c != actual)
+                a.afegeixPossibilitat(c);
         }
     }
 
@@ -161,6 +152,7 @@ public class Horari {
      * a la mateix hora i ho mostra en forma de taula.
      */
     public void printHorari() {
+
         String formatHeader = "|%-15s|%-20s|%-20s|%-20s|%-20s|%-20s|\n";
         System.out.format("+---------------+--------------------+--------------------+--------------------+--------------------+--------------------+\n");
         System.out.format(formatHeader, "   Hora/Dia", "      DILLUNS", "      DIMARTS", "     DIMECRES", "      DIJOUS", "     DIVENDRES");
@@ -495,6 +487,7 @@ public class Horari {
 
 
 
+
     /**
      * Operacio que ens permet modificar una de les assignacions que tenim dins de l'horari per una d'altre. Tot i aixi,
      * abans de fer el canvi, comprovarem que no hi ha cap restriccio que ens ho impedeixi.
@@ -507,7 +500,6 @@ public class Horari {
      * @param aulaNova
      * @return True si hem pogut fer el canvi, false altrament.
      */
-
     public boolean modificaClasse(String idAssig, String idGrup, DiaSetmana diaAntic, int horaAntiga, DiaSetmana diaNou, int horaNova, String aulaNova) {
         //la eliminem de les seleccionades fins al moment
         Classe borrada = null;
@@ -586,6 +578,8 @@ public class Horari {
         return false;
 
     }
+
+
 
     /**
      * @return Retorna una string amb el horari que hem generat

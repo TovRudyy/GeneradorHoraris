@@ -1,11 +1,8 @@
 package domain;
 
-import java.util.Map;
-import java.util.Stack;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.lang.Object;
-
+import java.util.LinkedList;
+import java.util.Map;
 /**
  * Abstreu els tipus de restriccions que existeixen.
  * @author David Pujol
@@ -33,7 +30,7 @@ public abstract class Restriccio {
      * @param c Classe que el horari acaba de seleccionar.
      * @return Retorna una array list amb les classes que hem eliminat.
      */
-    public abstract ArrayList<Classe> deletePossibilities (Map<String, Map<DiaSetmana, ArrayList<Classe>>> possibles_classes, Classe c);
+    public abstract ArrayList<Classe> deletePossibilities (Map<String, Map<DiaSetmana, LinkedList<Classe>>> possibles_classes, Classe c);
 
 
 

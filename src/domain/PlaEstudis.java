@@ -2,10 +2,7 @@ package domain;
 
 import java.time.Duration;
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * PlaEstudis permet agrupar les Assignatures en conjunts de dades independents d'altres
@@ -17,7 +14,7 @@ import java.util.Queue;
 public class PlaEstudis {
     /**Atributs **/
     private String id;  //Acrònim del Pla d'Estudis
-    private HashMap<String,assignatura> assignatures = new HashMap<>(); //Assignatures pertanyents al pla d'estudis
+    private TreeMap<String,assignatura> assignatures = new TreeMap<>(); //Assignatures pertanyents al pla d'estudis
     private Horari horari = null;
 
 
@@ -125,7 +122,7 @@ public class PlaEstudis {
         //Timer start
         Instant start = Instant.now();
 
-        ArrayList<assignacio> assignacions = new ArrayList<assignacio>();
+        LinkedList<assignacio> assignacions = new LinkedList<assignacio>();
         for (Map.Entry<String, assignatura> assig : assignatures.entrySet()) {
             assignatura a = assig.getValue();
             a.noSolapis_Teoria_i_Problemes();
@@ -297,7 +294,7 @@ public class PlaEstudis {
     public ArrayList<ArrayList<Queue<String>>> getHorariSencer() {
         if (horari == null) {
             System.err.println("ERROR: horari és null!");
-            return new ArrayList<ArrayList<Queue<String>>>();
+            return new ArrayList<>();
         }
         return horari.getHorariSencer();
     }
