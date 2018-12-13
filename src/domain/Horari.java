@@ -17,9 +17,8 @@ public class Horari implements Serializable {
 
     private HashMap<String, assignacio> conjuntAssignacions = new HashMap<>();   //fem servir linked per mantenir el ordre d'entrada
     private LinkedList<assignacio> l;
-    private ArrayList<Classe> classesSeleccionades = new ArrayList<>();//ho guardem en forma de stack perque quan retrocedim sempre treurem la ultima afegida
+    private LinkedList<Classe> classesSeleccionades = new LinkedList<>();//ho guardem en forma de stack perque quan retrocedim sempre treurem la ultima afegida
     private Map<String, Aula> aules;
-
 
     /**
      * Creadora de la classe Horari.
@@ -61,7 +60,6 @@ public class Horari implements Serializable {
         else System.err.println("NO HEM POGUT FORMAR UN HORARI");
 
         return r;
-
     }
 
 
@@ -79,32 +77,29 @@ public class Horari implements Serializable {
             ArrayList<Classe> possibleClasses = a.getAllPossibleClasses();
             Collections.shuffle(possibleClasses);   //barrejem les possibilitats per tal de trobar un algorisme random
 
-            for (int i=0; i < possibleClasses.size(); ++i) {
-                Classe c = possibleClasses.get(i);
+            for (Classe c: possibleClasses){    //ens interessa usar una copia ja que aixi no tenim problemes de on es coloquen un cop fet el revert
                 a.afegirSeleccionada();
                 Stack<Classe> eliminades = new Stack();
 
                 boolean valid = forward_checking (c, eliminades); //forward checking
                 classesSeleccionades.add(c);
-
                 if (valid)
                 {
                     boolean r;
-                    if (a.getNumeroClassesRestants() == 0) {
+                    if (a.getNumeroClassesRestants() == 0)
                         r = selectClasse(index + 1);
-                    }
+
                     else
                         r = selectClasse(index);
 
                     if (r) return r;
                 }
-
-                classesSeleccionades.remove(classesSeleccionades.size() - 1);
+                classesSeleccionades.remove(classesSeleccionades.size()-1); //fem servir una linked list aixi podem eliminar simplement el ultim element afegir en constant time
                 revertChanges(eliminades, c);
                 a.eliminarSeleccionada();
             }
-
             return false;   //vol dir que hem mirat totes les opcions i no n'hi ha cap que funcioni
+
         } else return true;
 
     }

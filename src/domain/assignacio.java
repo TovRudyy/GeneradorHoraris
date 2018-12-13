@@ -193,8 +193,7 @@ public class assignacio implements Serializable {
     public void afegeixPossibilitat (Classe c) {
         String id_aula = c.getIdAula();
         DiaSetmana d = c.getDia();
-        possibles_classes.putIfAbsent(id_aula, new HashMap<>());
-        possibles_classes.get(id_aula).putIfAbsent(d, new LinkedList<>());
+
         if (! possibles_classes.get(id_aula).get(d).contains(c))
              possibles_classes.get(id_aula).get(d).add(c);   //afegim la possibilitat
     }
