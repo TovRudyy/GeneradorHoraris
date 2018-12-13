@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Queue;
 
 public class CtrlPresentacio {
     static ControladorPlaEstudis CtrlPE;
@@ -165,5 +166,13 @@ public class CtrlPresentacio {
 
     public ArrayList<String> getHoresHorari() {
         return CtrlUtils.getHoresHorari();
+    }
+
+    public boolean generaHorari(String pe) {
+        return CtrlPE.generaHorari(pe);
+    }
+
+    public ArrayList<ArrayList<Queue<String>>> getHorariSencer(String pe) {
+        return CtrlPE.getHorariSencer(pe);
     }
 }

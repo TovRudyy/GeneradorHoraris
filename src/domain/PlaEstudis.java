@@ -6,6 +6,7 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Queue;
 
 /**
  * PlaEstudis permet agrupar les Assignatures en conjunts de dades independents d'altres
@@ -121,7 +122,7 @@ public class PlaEstudis implements Serializable {
      * Genera un horari per aquest pla d'estudis.
      * @param aules conjunt d'aules amb les que generar l'horari
      */
-    public void generaHorari (Map<String, Aula> aules) {
+    public boolean generaHorari (Map<String, Aula> aules) {
         //Timer start
         Instant start = Instant.now();
 
@@ -136,13 +137,16 @@ public class PlaEstudis implements Serializable {
 
         //aqui tenim totes les assignacions totals
         horari = new Horari (assignacions, aules);
+        boolean ret;
         boolean b = horari.findHorari();
+        ret = b;
         if (! b) horari = null; //vol dir que com que l'horari no es correcte simplement el borrem
 
         //Timer end
         Instant end = Instant.now();
         long ElapsedTime = Duration.between(start, end).toMillis();
         System.err.println("DEBUG: l'algorisme ha tardat (elapsed time) " + ElapsedTime + " ms");
+        return ret;
     }
 
 
@@ -291,4 +295,11 @@ public class PlaEstudis implements Serializable {
         return horari.modificaClasse(assig, grup, d, h, diaNou, horaNova, aulaNova);
     }
 
+    public ArrayList<ArrayList<Queue<String>>> getHorariSencer() {
+        if (horari == null) {
+            System.err.println("ERROR: horari és null!");
+            return new ArrayList<ArrayList<Queue<String>>>();
+        }
+        return horari.getHorariSencer();
+    }
 }
