@@ -1,11 +1,12 @@
 package domain;
 
 import java.io.PrintStream;
+import java.io.Serializable;
 
 /**
  * Enumeració del tipus d'Aula possibles
  */
-public enum Tipus_Aula{
+public enum Tipus_Aula implements Serializable {
     TEORIA, PROBLEMES, LAB_INFORMATICA, LAB_ELECTRONICA, LAB_FISICA;
 
     public static Tipus_Aula string_to_Tipus_Aula(String s) throws Aula_Exception {

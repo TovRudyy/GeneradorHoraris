@@ -3,8 +3,8 @@ package domain;
 
 import persistencia.ControladorPersistencia;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.*;
 
 /**
@@ -192,11 +192,22 @@ public class ControladorPlaEstudis {
         return null;
     }
 
+    private static class struct implements Serializable {
+        PlaEstudis pla;
+        Map<String, Aula> aules;
+
+        public struct(PlaEstudis pla, Map<String, Aula> aules) {
+            this.pla = pla;
+            this.aules = aules;
+        }
+    }
+
     /**
      * Guarda el horari del pla d'estudis amb el identificador donat.
      * @param id Identificador del pla d'estudis.
      */
     public void guardaHorari(String id) {
+        /*
         PlaEstudis pe = getPlaEstudi(id);
         String h = pe.getHorari();
 
@@ -218,6 +229,34 @@ public class ControladorPlaEstudis {
         String aux;
         if ( (aux = CtrlDades.guardaHorari(h, arg)) != null) {
             System.out.println("INFO: s'ha guardat l'horari en " + aux);
+        }*/
+
+        System.out.println("GH: introdueix el nom del fitxer en el que es guardarà l'horari");
+        Scanner reader = new Scanner(System.in);
+        String arg;
+        arg = reader.next();
+        guardaHorari(id, arg);
+    }
+
+    public void guardaHorari(String id, String path){
+        PlaEstudis plaEstudis = getPlaEstudi(id);
+        Map<String, Aula> aules = ControladorAules.getAules();
+        struct s = new struct(plaEstudis, aules);
+        try{
+            Serialitzador.guarda(s, path);
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void carregaHorari(String path){
+        try{
+            struct s = Serialitzador.carrega(path);
+            ControladorAules.Aulari = s.aules;
+            ControladorPlaEstudis.ConjuntPE.clear();
+            ControladorPlaEstudis.ConjuntPE.add(s.pla);
+        }catch(IOException | ClassNotFoundException e){
+            e.printStackTrace();
         }
     }
 

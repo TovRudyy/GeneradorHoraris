@@ -69,6 +69,9 @@ public class CtrlPlaEstudis {
                     master.CtrlPE.guardaHorari(id_plaEstudi);
                 else System.err.println("ERROR: " + id_plaEstudi + " does not have any Horari");
                 break;
+            case "carrega horari":
+                master.CtrlPE.carregaHorari("./data/Hey.ser");
+                break;
             case "modifica entrada":
                 master.CtrlPE.modificaEntrada(id_plaEstudi);
                 break;
