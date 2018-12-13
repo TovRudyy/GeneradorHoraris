@@ -291,10 +291,10 @@ public class PlaEstudis {
         return horari.modificaClasse(assig, grup, d, h, diaNou, horaNova, aulaNova);
     }
 
-    public ArrayList<ArrayList<Queue<String>>> getHorariSencer() {
+    public LinkedList<LinkedList<Queue<String>>> getHorariSencer() {
         if (horari == null) {
             System.err.println("ERROR: horari és null!");
-            return new ArrayList<>();
+            return new LinkedList<>();
         }
         return horari.getHorariSencer();
     }

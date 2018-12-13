@@ -379,7 +379,7 @@ public class ControladorPlaEstudis {
     }
 
 
-    public ArrayList<ArrayList<Queue<String>>> getHorariSencer(String id) {
+    public LinkedList<LinkedList<Queue<String>>> getHorariSencer(String id) {
         PlaEstudis pe = getPlaEstudi(id);
         return pe.getHorariSencer();
     }

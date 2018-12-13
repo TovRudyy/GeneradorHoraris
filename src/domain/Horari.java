@@ -18,6 +18,7 @@ public class Horari {
     private LinkedList<assignacio> l;
     private ArrayList<Classe> classesSeleccionades = new ArrayList<>();//ho guardem en forma de stack perque quan retrocedim sempre treurem la ultima afegida
     private Map<String, Aula> aules;
+   // private LinkedList
 
     /**
      * Creadora de la classe Horari.
@@ -62,6 +63,7 @@ public class Horari {
         return r;
 
     }
+
 
 
     /**
@@ -142,6 +144,11 @@ public class Horari {
                 a.afegeixPossibilitat(c);
         }
     }
+
+
+
+
+
 
 
 
@@ -358,11 +365,11 @@ public class Horari {
 
 
 
-    public ArrayList<ArrayList<Queue<String>>> getHorariSencer ()
+    public LinkedList<LinkedList<Queue<String>>> getHorariSencer ()
     {
-        ArrayList<ArrayList<Queue<String>>> horaris = new ArrayList<>();    //inicialitzacio de una matriu formada per 16files (hores) x 5 dies
+        LinkedList<LinkedList<Queue<String>>> horaris = new LinkedList<>();    //inicialitzacio de una matriu formada per 16files (hores) x 5 dies
         for (int i = 0; i < 12; ++i) {  //primerament ho organitzem per hores (de 8 a 8)
-            horaris.add(new ArrayList<>());
+            horaris.add(new LinkedList<>());
             for (int j = 0; j < 5; ++j) {   //ara per dies (de dilluns a divendres)
                 horaris.get(i).add(new PriorityQueue<>());  //creem 5 priority queues
             }
@@ -392,7 +399,7 @@ public class Horari {
     }
 
 
-    public Queue<ArrayList<ArrayList<Queue<String>>>> getHorariAssignatures ()
+    public Queue<LinkedList<LinkedList<Queue<String>>>> getHorariAssignatures ()
     {
         Set<String> assigs = new TreeSet<>();   //conjunt de assignatures
         ArrayList<Classe> classesSeleccionades = new ArrayList<>(this.classesSeleccionades);
@@ -400,12 +407,12 @@ public class Horari {
         for (Classe c : classesSeleccionades)
             assigs.add(c.getId_assig());
 
-        Queue<ArrayList<ArrayList<Queue<String>>>> horarisAssignatures = new PriorityQueue<>();
+        Queue<LinkedList<LinkedList<Queue<String>>>> horarisAssignatures = new PriorityQueue<>();
 
         for (String ass : assigs) {
-            ArrayList<ArrayList<Queue<String>>> horaris = new ArrayList<>();
+            LinkedList<LinkedList<Queue<String>>> horaris = new LinkedList<>();
             for (int i = 0; i < 12; ++i) {
-                horaris.add(new ArrayList<>());
+                horaris.add(new LinkedList<>());
                 for (int j = 0; j < 5; ++j) {
                     horaris.get(i).add(new PriorityQueue<>());
                 }
@@ -441,18 +448,18 @@ public class Horari {
     }
 
 
-    public Queue<ArrayList<ArrayList<Queue<String>>>> getHorariAules ()
+    public Queue<LinkedList<LinkedList<Queue<String>>>> getHorariAules ()
     {
         Set<String> aules = new TreeSet<>(this.aules.keySet());
 
         ArrayList<Classe> classesSeleccionades = new ArrayList<>(this.classesSeleccionades);
 
-        Queue<ArrayList<ArrayList<Queue<String>>>> horarisAules = new PriorityQueue<>();
+        Queue<LinkedList<LinkedList<Queue<String>>>> horarisAules = new PriorityQueue<>();
 
         for (String aula : aules) {
-            ArrayList<ArrayList<Queue<String>>> horaris = new ArrayList<>();
+            LinkedList<LinkedList<Queue<String>>> horaris = new LinkedList<>();
             for (int i = 0; i < 12; ++i) {
-                horaris.add(new ArrayList<>());
+                horaris.add(new LinkedList<>());
                 for (int j = 0; j < 5; ++j) {
                     horaris.get(i).add(new PriorityQueue<>());
                 }

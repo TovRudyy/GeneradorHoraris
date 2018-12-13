@@ -24,9 +24,9 @@ public class VistaHorari {
     VBox layout;
     GridPane matriuLayout;
     String plaEstudi;
-    ArrayList<ArrayList<Queue<String>>> horari;
+    LinkedList<LinkedList<Queue<String>>> horari;
 
-    public VistaHorari(String pla, ArrayList<ArrayList<Queue<String>>> horari) {
+    public VistaHorari(String pla, LinkedList<LinkedList<Queue<String>>> horari) {
         this.plaEstudi = pla;
         this.horari = horari;
         escenari = new Stage();
@@ -51,7 +51,7 @@ public class VistaHorari {
         return layout;
     }
 
-    private void dibuixaHorari(ArrayList<ArrayList<Queue<String>>> horari) {
+    private void dibuixaHorari(LinkedList<LinkedList<Queue<String>>> horari) {
         afegeixBotons(0,1);
         dibuixaDies(2,1);
         dibuixaHores(1,2);
@@ -77,11 +77,11 @@ public class VistaHorari {
 
     }
 
-    private void afegeixHorariSencer(int x, int y, ArrayList<ArrayList<Queue<String>>> horari) {
+    private void afegeixHorariSencer(int x, int y, LinkedList<LinkedList<Queue<String>>> horari) {
         int dia = x;
 
         for (int j=0; j < 12; ++j) {
-            ArrayList<Queue<String>> dies = horari.get(j);
+            LinkedList<Queue<String>> dies = horari.get(j);
             for (int i=0; i < 5; ++i) {
                 Queue<String> sessions = dies.get(i);
 
