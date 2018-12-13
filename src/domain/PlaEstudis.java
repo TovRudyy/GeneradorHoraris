@@ -303,4 +303,8 @@ public class PlaEstudis implements Serializable {
     public String toStringSencer() {
         return horari.toStringSencer();
     }
+
+    public boolean existsHorari() {
+        return (horari != null);
+    }
 }

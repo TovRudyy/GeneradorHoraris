@@ -3,6 +3,7 @@ package presentacio;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
@@ -42,11 +43,36 @@ public class SeccioPlans {
         arbre.setShowRoot(false);
         arbre.setMinSize(400,700);
         layout.getChildren().add(arbre);
+        //Botons
+        HBox buttonLayout = new HBox();
         //Boto generar Horari
         Button genHorari = new Button("Generar Horari");
         genHorari.setOnAction(e -> generarHorari());
-        layout.getChildren().add(genHorari);
+        buttonLayout.getChildren().add(genHorari);
+        //Boto mostrar Horari
+        Button showHorari = new Button("Mostrar Horari");
+        showHorari.setOnAction(e -> mostraHorari());
+        buttonLayout.getChildren().add(showHorari);
+
+        layout.getChildren().add(buttonLayout);
         layout.setPadding(new Insets(10));
+    }
+
+    private void mostraHorari() {
+        String pe = arbre.getSelectionModel().getSelectedItem().getValue();
+        System.err.println("DEBUG: es vol mostrar l'horari de "+ pe);
+        if (VistaPrincipal.ctrl.existsPlaEstudi(pe)) {
+            if (VistaPrincipal.ctrl.existsHorariPlaEstudi(pe)) {
+                LinkedList<LinkedList<Queue<String>>> horari = VistaPrincipal.ctrl.getHorariSencer(pe);
+
+                VistaHorari horari_dibuixat = new VistaHorari(pe, horari);
+            }
+            else
+                PopUpWindow.display("ERROR", "El pla d'estudis " + pe + " no té cap horari generat");
+        }
+        else {
+            PopUpWindow.display("ERROR", "No existeix el pla d'estudis " + pe);
+        }
     }
 
     private void generarHorari() {

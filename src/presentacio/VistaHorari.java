@@ -60,7 +60,6 @@ public class VistaHorari {
 
 
     private void dibuixaHorari(LinkedList<LinkedList<Queue<String>>> horari) {
-        afegeixBotons();
         dibuixaDies(2,1);
         dibuixaHores(1,2);
         afegeixHorariSencer(2,2, horari);
@@ -121,7 +120,19 @@ public class VistaHorari {
     }
 
     private void guardarHorariSencer() {
-
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Guardar Horari");
+        fileChooser.setInitialDirectory(new File("data/Horaris"));
+        Stage escenari = getFileChooserStage();
+        File fitxer = fileChooser.showSaveDialog(escenari);
+        if (fitxer != null) {
+            try {
+                VistaPrincipal.ctrl.guardarHorariSencer(plaEstudi, fitxer.getAbsolutePath());
+            } catch (Exception e) {
+                // TODO: handle exception here
+                PopUpWindow.display("Save Error", "Error al guardar l'horari");
+            }
+        }
     }
 
     private void afegeixHorariSencer(int x, int y, LinkedList<LinkedList<Queue<String>>> horari) {

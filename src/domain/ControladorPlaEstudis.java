@@ -5,6 +5,8 @@ import persistencia.ControladorPersistencia;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -190,6 +192,11 @@ public class ControladorPlaEstudis {
         }
         System.err.println("ERROR: no existeix l'assignatura " + idAssig);
         return null;
+    }
+
+    public boolean existsHorariPlaEstudi(String id) {
+        PlaEstudis pe = getPlaEstudi(id);
+        return pe.existsHorari();
     }
 
     private static class struct implements Serializable {

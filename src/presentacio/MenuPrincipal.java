@@ -35,6 +35,10 @@ public class MenuPrincipal {
         MenuItem loadScenario = new MenuItem("Carregar Escenari");
         loadScenario.setOnAction(e -> loadScenario());
         menuAPP.getItems().add(loadScenario);
+        //Submenu carregar Horari
+        MenuItem loadHorari = new MenuItem("Carregar Horari");
+        loadHorari.setOnAction(e -> loadHorari());
+        menuAPP.getItems().add(loadHorari);
         //Menu Sortir
         MenuItem exit = new MenuItem("Sortir");
         exit.setOnAction(e -> VistaDialeg.terminate());
@@ -65,6 +69,20 @@ public class MenuPrincipal {
         menuPE.getItems().add(loadPE);
         //Addicio elements a topLayout
         layout.getChildren().add(menu);
+    }
+
+    private void loadHorari() {
+        System.err.println("DEBUG: vols carregar un Horari");
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Obrira fitxer Horari");
+        fileChooser.setInitialDirectory(new File("data/Horaris"));
+        Stage escenari = getFileChooserStage();
+        File fitxer = fileChooser.showOpenDialog(escenari);
+        if (fitxer != null) {
+            VistaPrincipal.ctrl.carregaFitxerHorari(fitxer.getAbsolutePath());
+            VistaPrincipal.refrescaTaulaAulari();
+            VistaPrincipal.refrescaArbrePlaEstudis();
+        }
     }
 
     private void loadScenario() {
