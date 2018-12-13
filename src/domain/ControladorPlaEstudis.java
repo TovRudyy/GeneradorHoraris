@@ -2,7 +2,6 @@ package domain;
 
 
 import persistencia.ControladorPersistencia;
-import sun.awt.SunHints;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

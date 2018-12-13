@@ -58,8 +58,9 @@ public class assignacio {
         this.numeroClassesRestants = numeroClasses;
     }
 
-    /** Public **/
 
+
+    /** Public **/
     /**
      * Imprimeix per pantalla tota la informacio de la assignacio.
      */
@@ -132,7 +133,7 @@ public class assignacio {
      * @return Un map que conté tot el conjunt de possibilitats d'aquesta assignació.
      * @param aules conjunt d'aules amb les que fer les classes
      */
-    private Map<String, Map<DiaSetmana, LinkedList<Classe>>> generaPossiblesClasses(Map<String, Aula> aules) {
+    public Map<String, Map<DiaSetmana, LinkedList<Classe>>> generaPossiblesClasses(Map<String, Aula> aules) {
         Map<String, Map<DiaSetmana, LinkedList<Classe>>> totesClasses = new LinkedHashMap<>();
 
         for (Aula aula : aules.values()) {
@@ -253,6 +254,31 @@ public class assignacio {
     public boolean isEmpty () { //si no tenim suficients possibilitats per cobrir les necessitats de l'assignatura
         if (numeroClassesRestants > (getAllPossibleClasses().size())) return true;
         return false;
+    }
+
+
+    //considerarem els intervals, aquells que no volem que es puguin donar mai
+    protected void eliminarPossibilitatsIntervels (ArrayList<IntervalHorari> r)
+    {
+        for (IntervalHorari i : r)
+        {
+            DiaSetmana d = i.getDia();
+            int hi = i.getHoraIni();
+            int hf = i.getHoraFi();
+
+            for (Map.Entry<String, Map<DiaSetmana, LinkedList<Classe>>> aux : possibles_classes.entrySet()) {
+                //ara estem en una aula concreta
+                Map<DiaSetmana, LinkedList<Classe>> l = aux.getValue();
+                LinkedList<Classe> classes = l.get(d);
+
+                for (Classe c : classes)
+                {
+                    if (Restriccio.solapenHores(c.getHoraInici(), c.getHoraFi(), hi, hf))
+                        classes.remove(c);  //aixo tambe ho canviara al map??
+                }
+            }
+
+        }
     }
 
 

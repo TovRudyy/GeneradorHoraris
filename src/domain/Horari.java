@@ -18,7 +18,6 @@ public class Horari {
     private LinkedList<assignacio> l;
     private ArrayList<Classe> classesSeleccionades = new ArrayList<>();//ho guardem en forma de stack perque quan retrocedim sempre treurem la ultima afegida
     private Map<String, Aula> aules;
-   // private LinkedList
 
     /**
      * Creadora de la classe Horari.
@@ -147,7 +146,137 @@ public class Horari {
 
 
 
+    //GENERAR EL HORARI EN FUNCIO DE PREFERENCIES.
+    private boolean generaHorariAmbPreferencies (HashMap<String, ArrayList<IntervalHorari>> preferencies)
+    {
+        if (preferencies.isEmpty())//ja no queden preferencies
+            return selectClasse(0);
 
+        else {
+            if (generaHorariAmbPreassignacions(preferencies)) return true;
+            else {
+                preferencies.remove(0);
+                if (generaHorariAmbPreferencies(preferencies)) //retornara 1 si existeix un que compleix el maxim de restriccions
+                    return true;
+            }
+        }
+        return false;
+    }
+
+
+
+    /**
+     * @param preferencies Sera una relacio entre el id de la assignatura i grup i els horaris en el que no es poden donar.
+     */
+    private boolean generaHorariAmbPreassignacions (HashMap<String, ArrayList<IntervalHorari>> preferencies)
+    {
+        for (Map.Entry<String, ArrayList<IntervalHorari>> aux : preferencies.entrySet())
+        {
+            String nomAssignacion = aux.getKey();
+            assignacio a = conjuntAssignacions.get(nomAssignacion);
+
+            //tornem a generar les possibles classes perque pot ser que amb la anterior passada de preferencies les
+            //haguessim eliminat i ens cal tornar al principi.
+            a.generaPossiblesClasses(aules);
+            a.eliminarPossibilitatsIntervels(aux.getValue());
+        }
+
+        return (selectClasse(0));
+    }
+
+
+
+
+    /**
+     * Operacio que ens permet modificar una de les assignacions que tenim dins de l'horari per una d'altre. Tot i aixi,
+     * abans de fer el canvi, comprovarem que no hi ha cap restriccio que ens ho impedeixi.
+     * @param idAssig
+     * @param idGrup
+     * @param diaAntic
+     * @param horaAntiga
+     * @param diaNou
+     * @param horaNova
+     * @param aulaNova
+     * @return True si hem pogut fer el canvi, false altrament.
+     */
+    public boolean modificaClasse(String idAssig, String idGrup, DiaSetmana diaAntic, int horaAntiga, DiaSetmana diaNou, int horaNova, String aulaNova) {
+        //la eliminem de les seleccionades fins al moment
+        Classe borrada = null;
+        int i = 0;
+        boolean found = false;
+        while (!found && i < classesSeleccionades.size()) {
+            Classe c = classesSeleccionades.get(i); //seleccionem una de les classes seleccionades
+            if (c.getId_assig().equals(idAssig) && c.getId_grup().equals(idGrup) && c.getHoraInici() == horaAntiga && c.getDia().equals(diaAntic)) {
+                borrada = c;    //entrem aqui si hem trobat la classe
+                classesSeleccionades.remove(c);
+                conjuntAssignacions.get(c.getId_assig() + c.getId_grup()).eliminarSeleccionada();    //tambe la eliminem de les seleccionades de la assignacio
+                found = true;
+            }
+            ++i;
+        }
+
+
+        if (borrada != null) {  //ens assegurem que nomes ho fem si hem trobat la classe especificada
+            //Ara modifiquem la classe amb les noves dades i la provem d'afegir
+            Classe m = borrada;
+            assignacio a = conjuntAssignacions.get(m.getId_assig() + m.getId_grup());
+            int horaFi = m.getDurada() + horaNova;
+
+            //comprovem que les noves dades son correctes abans de recolocarla (el dia no cal comprovar-lo)
+            if (horaFi >= 20 || horaNova < 8) {
+                System.out.println("Hora incorrecte");
+                return false;
+            }
+
+            //comprovem que l'aula existeix i que compleix els requisits.
+            if (!(aules.containsKey(aulaNova) && aules.get(aulaNova).getCapacitat() <= a.getCapacitat() &&
+                    aules.get(aulaNova).getTipus() == a.getTipus())) {
+                System.out.println("La aula no es correcte");
+                return false;
+            }
+
+
+            m.setDia(diaNou);
+            m.setHora_inici(horaNova);
+            m.setHora_fi(horaFi);  //ara ja la tenim amb la informacio canviada
+            m.setAula(aulaNova);
+
+            //ara comprovem si la podem afegir
+
+            for (Classe c : classesSeleccionades) {
+                if (Restriccio.solapenHores(c.getHoraInici(), c.getHoraFi(), m.getHoraInici(), m.getHoraFi())
+                        && c.getDia().equals(m.getDia())) {
+                    if (c.getIdAula().equals(m.getIdAula())) {
+                        System.out.println("Tenim un conflicte amb " + c.getId_assig() + " "+ c.getId_grup() + " de ocupacio.");
+                        return false;  //restriccio ocupacio
+
+                    }
+                    int c1 = Integer.parseInt(c.getId_grup());
+                    int m1 = Integer.parseInt(m.getId_grup());
+
+                    //error amb un subgrup
+                    if ((c.getId_assig().equals(m.getId_assig())) && (c1 % 10 == 0) && (c1 / 10 == m1 / 10)) {
+                        System.out.println("Tenim un conflicte amb " + c.getId_assig() +" " + c.getId_grup() + " de subgrup");
+                        return false;
+                    }
+
+                    //les assignatures han de ser correquisit i els grups han de coincidir
+                    if (a.corequisit.esCorrequisit(c.getId_assig()) && c.getId_grup().equals(m.getId_grup())) {
+                        System.out.println("Tenim un conflicte amb " + c.getId_assig() + " " + c.getId_grup() + " de correquisit");
+                        return false;
+                    }
+                }
+
+            }
+            a.afegirSeleccionada();
+            classesSeleccionades.add(m);
+            return true;
+
+        }
+        System.out.println("No hem trobat la classe indicada");
+        return false;
+
+    }
 
 
 
@@ -494,100 +623,6 @@ public class Horari {
 
 
 
-
-    /**
-     * Operacio que ens permet modificar una de les assignacions que tenim dins de l'horari per una d'altre. Tot i aixi,
-     * abans de fer el canvi, comprovarem que no hi ha cap restriccio que ens ho impedeixi.
-     * @param idAssig
-     * @param idGrup
-     * @param diaAntic
-     * @param horaAntiga
-     * @param diaNou
-     * @param horaNova
-     * @param aulaNova
-     * @return True si hem pogut fer el canvi, false altrament.
-     */
-    public boolean modificaClasse(String idAssig, String idGrup, DiaSetmana diaAntic, int horaAntiga, DiaSetmana diaNou, int horaNova, String aulaNova) {
-        //la eliminem de les seleccionades fins al moment
-        Classe borrada = null;
-        int i = 0;
-        boolean found = false;
-        while (!found && i < classesSeleccionades.size()) {
-            Classe c = classesSeleccionades.get(i); //seleccionem una de les classes seleccionades
-            if (c.getId_assig().equals(idAssig) && c.getId_grup().equals(idGrup) && c.getHoraInici() == horaAntiga && c.getDia().equals(diaAntic)) {
-                borrada = c;    //entrem aqui si hem trobat la classe
-                classesSeleccionades.remove(c);
-                conjuntAssignacions.get(c.getId_assig() + c.getId_grup()).eliminarSeleccionada();    //tambe la eliminem de les seleccionades de la assignacio
-                found = true;
-            }
-            ++i;
-        }
-
-
-        if (borrada != null) {  //ens assegurem que nomes ho fem si hem trobat la classe especificada
-            //Ara modifiquem la classe amb les noves dades i la provem d'afegir
-            Classe m = borrada;
-            assignacio a = conjuntAssignacions.get(m.getId_assig() + m.getId_grup());
-            int horaFi = m.getDurada() + horaNova;
-
-            //comprovem que les noves dades son correctes abans de recolocarla (el dia no cal comprovar-lo)
-            if (horaFi >= 20 || horaNova < 8) {
-                System.out.println("Hora incorrecte");
-                return false;
-            }
-
-            //comprovem que l'aula existeix i que compleix els requisits.
-            if (!(aules.containsKey(aulaNova) && aules.get(aulaNova).getCapacitat() <= a.getCapacitat() &&
-               aules.get(aulaNova).getTipus() == a.getTipus())) {
-                System.out.println("La aula no es correcte");
-                return false;
-            }
-
-
-            m.setDia(diaNou);
-            m.setHora_inici(horaNova);
-            m.setHora_fi(horaFi);  //ara ja la tenim amb la informacio canviada
-            m.setAula(aulaNova);
-
-            //ara comprovem si la podem afegir
-
-            for (Classe c : classesSeleccionades) {
-                if (solapenHores(c.getHoraInici(), c.getHoraFi(), m.getHoraInici(), m.getHoraFi())
-                    && c.getDia().equals(m.getDia())) {
-                    if (c.getIdAula().equals(m.getIdAula())) {
-                        System.out.println("Tenim un conflicte amb " + c.getId_assig() + " "+ c.getId_grup() + " de ocupacio.");
-                        return false;  //restriccio ocupacio
-
-                    }
-                    int c1 = Integer.parseInt(c.getId_grup());
-                    int m1 = Integer.parseInt(m.getId_grup());
-
-                    //error amb un subgrup
-                    if ((c.getId_assig().equals(m.getId_assig())) && (c1 % 10 == 0) && (c1 / 10 == m1 / 10)) {
-                        System.out.println("Tenim un conflicte amb " + c.getId_assig() +" " + c.getId_grup() + " de subgrup");
-                        return false;
-                    }
-
-                    //les assignatures han de ser correquisit i els grups han de coincidir
-                    if (a.corequisit.esCorrequisit(c.getId_assig()) && c.getId_grup().equals(m.getId_grup())) {
-                        System.out.println("Tenim un conflicte amb " + c.getId_assig() + " " + c.getId_grup() + " de correquisit");
-                        return false;
-                    }
-                }
-
-            }
-            a.afegirSeleccionada();
-            classesSeleccionades.add(m);
-            return true;
-
-        }
-        System.out.println("No hem trobat la classe indicada");
-        return false;
-
-    }
-
-
-
     /**
      * @return Retorna una string amb el horari que hem generat
      */
@@ -628,12 +663,6 @@ public class Horari {
         return "ERROR";
     }
 
-    //aquesta funcio cal modificarli el scope perque tant les restriccions com el horari hi puguin accedir
-    public boolean solapenHores(int ai, int af, int bi, int bf) {
-        if ((bi >= ai && bi < af) || (bf > ai && bf < af) ||
-                (ai >= bi && ai < bf) || (af > bi && af < bf)) return true;
 
-        return false;
-    }
 
 }

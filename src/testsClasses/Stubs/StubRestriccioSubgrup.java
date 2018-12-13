@@ -43,11 +43,11 @@ public class StubRestriccioSubgrup extends domain.RestriccioSubgrup {
      * @param bf Hora final de la segona classe.
      * @return Retorna true si les dues classes formades pels dos parells de hores, es solapen o no.
      */
-    @Override
-    public boolean solapenHores(int ai, int af, int bi, int bf) {
-        System.out.println("solapenHores invocat");
-        return false;
-    }
+   // @Override
+   // public boolean solapenHores(int ai, int af, int bi, int bf) {
+   //     System.out.println("solapenHores invocat");
+    //     return false;
+   // }
 
     /**
      * Podem les nostres possibilitats amb la classe que acabem de triar a l'horari.
