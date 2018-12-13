@@ -1,5 +1,6 @@
 package domain;
 
+import java.io.Serializable;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.*;
@@ -11,7 +12,7 @@ import java.util.*;
  * Date: 06/10/2018
  */
 
-public class PlaEstudis {
+public class PlaEstudis implements Serializable {
     /**Atributs **/
     private String id;  //Acrònim del Pla d'Estudis
     private TreeMap<String,assignatura> assignatures = new TreeMap<>(); //Assignatures pertanyents al pla d'estudis

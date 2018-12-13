@@ -2,6 +2,7 @@ package domain;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
@@ -12,7 +13,7 @@ import java.util.*;
  * @author David Pujol
  */
 
-public class Horari {
+public class Horari implements Serializable {
 
     private HashMap<String, assignacio> conjuntAssignacions = new HashMap<>();   //fem servir linked per mantenir el ordre d'entrada
     private LinkedList<assignacio> l;
