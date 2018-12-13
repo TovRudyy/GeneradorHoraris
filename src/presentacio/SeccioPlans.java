@@ -57,6 +57,11 @@ public class SeccioPlans {
 
                 VistaHorari horari_dibuixat = new VistaHorari(pe, horari);
             }
+            else
+                PopUpWindow.display("ERROR", "No s'ha trobat un horari vàlid per " + pe);
+        }
+        else {
+            PopUpWindow.display("ERROR", "No existeix el pla d'estudis " + pe);
         }
     }
 

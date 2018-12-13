@@ -6,6 +6,7 @@ import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
@@ -45,18 +46,38 @@ public class VistaHorari {
         plaHorari.setAlignment(Pos.CENTER);
         layout.getChildren().add(plaHorari);
         //Dibuixo l'horari en sí
-        dibuixaHorari();
+        dibuixaHorari(horari);
         layout.getChildren().add(matriuLayout);
         return layout;
     }
 
-    private void dibuixaHorari() {
-        dibuixaDies(1,1);
-        dibuixaHores(0,2);
-        afegeixHorariSencer(1,2);
+    private void dibuixaHorari(ArrayList<ArrayList<Queue<String>>> horari) {
+        afegeixBotons(0,1);
+        dibuixaDies(2,1);
+        dibuixaHores(1,2);
+        afegeixHorariSencer(2,2, horari);
     }
 
-    private void afegeixHorariSencer(int x, int y) {
+    private void afegeixBotons(int x, int y) {
+        VBox buttonLayout = new VBox();
+        Button saveHorari = new Button("Guardar");
+        saveHorari.setOnAction(e -> guardarHorariSencer());
+        Button exportarHorari = new Button("Exportar");
+        exportarHorari.setOnAction(e -> exportarHorariSencer());
+        Button exit = new Button("Sortir");
+        exit.setOnAction(e -> escenari.close());
+        buttonLayout.getChildren().addAll(saveHorari, exportarHorari,exit);
+        matriuLayout.add(buttonLayout,x,y);
+    }
+
+    private void exportarHorariSencer() {
+    }
+
+    private void guardarHorariSencer() {
+
+    }
+
+    private void afegeixHorariSencer(int x, int y, ArrayList<ArrayList<Queue<String>>> horari) {
         int dia = x;
 
         for (int j=0; j < 12; ++j) {
@@ -110,7 +131,7 @@ public class VistaHorari {
     private void configureGridPane() {
         matriuLayout = new GridPane();
         matriuLayout.setMinSize(400, 200);
-        matriuLayout.setPadding(new Insets(10, 10, 10, 10));
+        matriuLayout.setPadding(new Insets(5, 5, 5, 5));
         matriuLayout.setVgap(5);
         matriuLayout.setHgap(5);
         matriuLayout.setAlignment(Pos.CENTER);
