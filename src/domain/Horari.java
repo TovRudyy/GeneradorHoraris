@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Array;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
@@ -15,19 +16,21 @@ import java.util.*;
 
 public class Horari implements Serializable {
 
-    private HashMap<String, assignacio> conjuntAssignacions = new HashMap<>();   //fem servir linked per mantenir el ordre d'entrada
+    private HashMap<String, assignacio> conjuntAssignacions = new HashMap<>();
     private LinkedList<assignacio> l;
     private LinkedList<Classe> classesSeleccionades = new LinkedList<>();//ho guardem en forma de stack perque quan retrocedim sempre treurem la ultima afegida
     private Map<String, Aula> aules;
+    private HashMap<String, ArrayList<RestriccioFlexible>> restriccionsModificables;    //aqui mantenim un map amb totes les restriccions modifciables. Indexades pel nom de assig+grup (identificador de una assignacio)
 
     /**
      * Creadora de la classe Horari.
      * @param conjuntAssignacions ArrayList amb tot el conjunt d'assignacions que hem d'assignar al nostre horari.
      */
-    public Horari(LinkedList<assignacio> conjuntAssignacions, Map<String, Aula> aules) {
+    public Horari(LinkedList<assignacio> conjuntAssignacions, Map<String, Aula> aules, HashMap<String, ArrayList<RestriccioFlexible>> r) {
         afegeixAssignacions(conjuntAssignacions);
         this.l = conjuntAssignacions;
         this.aules = aules;
+        this.restriccionsModificables = r;
     }
 
 
@@ -54,14 +57,38 @@ public class Horari implements Serializable {
      * Genera el horari i imprimeix per pantalla si ha trobat un horari possible o no.
      */
     public boolean findHorari() {
-        boolean r = selectClasse(0);
-        if (r) System.err.println("HEM TROBAT UN HORARI: ");
+        boolean a = preprocessaRestriccions ();
+        if (a) {
+            boolean r = selectClasse(0);
+            if (r) System.err.println("HEM TROBAT UN HORARI: ");
 
-        else System.err.println("NO HEM POGUT FORMAR UN HORARI");
+            else System.err.println("NO HEM POGUT FORMAR UN HORARI");
 
-        return r;
+            return r;
+        }
+       else {
+            System.err.println("NO HEM POGUT FORMAR UN HORARI");
+            return false;
+        }
     }
 
+
+    /**
+     * Poda aquelles assignacions que tinguin restriccions modificables.
+     * @return False si alguna de les assignacions s'ha quedat sense valors i per tant ja no es valid el horari.
+     */
+    public boolean preprocessaRestriccions ()
+    {
+        //iterem sobre totes les assignacions que tenen restriccions no modificables
+        for (Map.Entry<String, ArrayList<RestriccioFlexible>> a: restriccionsModificables.entrySet())
+        {
+            String nom = a.getKey();
+            ArrayList<RestriccioFlexible> b = a.getValue();
+            boolean r = conjuntAssignacions.get(nom).podaRestriccionsFlexibles (b);
+            if (! r) return false;
+        }
+        return true;
+    }
 
 
     /**
@@ -133,51 +160,10 @@ public class Horari implements Serializable {
         while (!eliminades.empty()) {
             Classe c = eliminades.pop();
             assignacio a = conjuntAssignacions.get(c.getId_assig() + c.getId_grup());
-            if (c != actual)
+            if (c != actual) //aixo potser cal canviaro
                 a.afegeixPossibilitat(c);
         }
     }
-
-
-
-    //GENERAR EL HORARI EN FUNCIO DE PREFERENCIES.
-    private boolean generaHorariAmbPreferencies (HashMap<String, ArrayList<IntervalHorari>> preferencies)
-    {
-        if (preferencies.isEmpty())//ja no queden preferencies
-            return selectClasse(0);
-
-        else {
-            if (generaHorariAmbPreassignacions(preferencies)) return true;
-            else {
-                preferencies.remove(0);
-                if (generaHorariAmbPreferencies(preferencies)) //retornara 1 si existeix un que compleix el maxim de restriccions
-                    return true;
-            }
-        }
-        return false;
-    }
-
-
-    /**
-     * @param preferencies Sera una relacio entre el id de la assignatura i grup i els horaris en el que no es poden donar.
-     */
-    private boolean generaHorariAmbPreassignacions (HashMap<String, ArrayList<IntervalHorari>> preferencies)
-    {
-        for (Map.Entry<String, ArrayList<IntervalHorari>> aux : preferencies.entrySet())
-        {
-            String nomAssignacion = aux.getKey();
-            assignacio a = conjuntAssignacions.get(nomAssignacion);
-
-            //tornem a generar les possibles classes perque pot ser que amb la anterior passada de preferencies les
-            //haguessim eliminat i ens cal tornar al principi.
-            a.generaPossiblesClasses(aules);
-            a.eliminarPossibilitatsIntervels(aux.getValue());
-        }
-
-        return (selectClasse(0));
-    }
-
-    /////////////////////////////
 
 
     /**

@@ -17,7 +17,7 @@ public class PlaEstudis implements Serializable {
     private String id;  //Acrònim del Pla d'Estudis
     private TreeMap<String,assignatura> assignatures = new TreeMap<>(); //Assignatures pertanyents al pla d'estudis
     private Horari horari = null;
-
+    private HashMap<String, ArrayList<RestriccioFlexible>> restriccionsModificables = new HashMap<>();
 
     /** Constructores **/
 
@@ -133,7 +133,7 @@ public class PlaEstudis implements Serializable {
         afegirRestriccionsNivell(); //afeim a les assignatures les seves restriccions de nivell
 
         //aqui tenim totes les assignacions totals
-        horari = new Horari (assignacions, aules);
+        horari = new Horari (assignacions, aules, restriccionsModificables);
         boolean ret;
         boolean b = horari.findHorari();
         ret = b;
@@ -218,6 +218,31 @@ public class PlaEstudis implements Serializable {
         return true;
     }
 
+    //CREACIO I TRACTAMENT DE RESTRICCIONS FLEXIBLES
+
+    /**
+     * Ens permetra anar afegint restriccions modificables en el map amb totes les restriccions i que després
+     * passarem al horari a la hora de generar les seves opcions.
+     * @param r
+     * @param idAssigIGrup
+     */
+    public void afegirRestriccioFlexible (RestriccioFlexible r, String idAssigIGrup) {
+        restriccionsModificables.putIfAbsent(idAssigIGrup, new ArrayList<>());
+        restriccionsModificables.get(idAssigIGrup).add(r);
+    }
+
+    /**
+     * @return El conjunt total de restriccions associades al pla d'estudis.
+     */
+    public HashMap<String, ArrayList<RestriccioFlexible>> getRestriccionsFlexibles ()
+    {
+        return restriccionsModificables;
+    }
+
+
+
+    //FUNCIONS UTILS PER A INTERACTUAR AMB EL CONTROLADOR QUAN REP REQUESTS DE LA INTERFICIE
+
     /**
      *
      * @param assig identificador de l'assignatura
@@ -227,6 +252,7 @@ public class PlaEstudis implements Serializable {
        return assignatures.get(assig).getNom();
     }
 
+
     public int getNivellAssignatura(String assig) {
         return assignatures.get(assig).getNivell();
 
@@ -235,6 +261,7 @@ public class PlaEstudis implements Serializable {
     public int getQtClassesTeoriaAssignatura(String assig) {
         return assignatures.get(assig).getQtClassesTeoria();
     }
+
 
     public int getDuradaClassesTeoriaAssignatura(String assig) {
         return assignatures.get(assig).getDuradaClassesTeoria();

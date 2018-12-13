@@ -248,6 +248,17 @@ public class assignacio implements Serializable {
 
 
 
+    public boolean podaRestriccionsFlexibles (ArrayList<RestriccioFlexible> restriccions)
+    {
+        for (RestriccioFlexible r: restriccions)
+        {
+            r.podaPossibilitats(possibles_classes);
+        }
+        return (! isEmpty());
+    }
+
+
+
     /**
      * @return Un boolea que ens diu si encara tenim suficients possibilitats per assignar tot el numero de classes restants.
      */
@@ -255,33 +266,6 @@ public class assignacio implements Serializable {
         if (numeroClassesRestants > (getAllPossibleClasses().size())) return true;
         return false;
     }
-
-
-    //considerarem els intervals, aquells que no volem que es puguin donar mai
-    protected void eliminarPossibilitatsIntervels (ArrayList<IntervalHorari> r)
-    {
-        for (IntervalHorari i : r)
-        {
-            DiaSetmana d = i.getDia();
-            int hi = i.getHoraIni();
-            int hf = i.getHoraFi();
-
-            for (Map.Entry<String, Map<DiaSetmana, LinkedList<Classe>>> aux : possibles_classes.entrySet()) {
-                //ara estem en una aula concreta
-                Map<DiaSetmana, LinkedList<Classe>> l = aux.getValue();
-                LinkedList<Classe> classes = l.get(d);
-
-                for (Classe c : classes)
-                {
-                    if (Restriccio.solapenHores(c.getHoraInici(), c.getHoraFi(), hi, hf))
-                        classes.remove(c);  //aixo tambe ho canviara al map??
-                }
-            }
-
-        }
-    }
-
-
 
 
     @Override
