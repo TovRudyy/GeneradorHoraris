@@ -2,7 +2,6 @@ package domain;
 
 
 import persistencia.ControladorPersistencia;
-import persistencia.Serializer;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -246,18 +245,16 @@ public class ControladorPlaEstudis {
         PlaEstudis plaEstudis = getPlaEstudi(id);
         Map<String, Aula> aules = ControladorAules.getAules();
         struct s = new struct(plaEstudis, aules);
-        Serializer<struct> structSerializer = new Serializer<>();
         try{
-            structSerializer.serialize(s, path);
+            Serialitzador.guarda(s, path);
         }catch(IOException e){
             e.printStackTrace();
         }
     }
 
     public void carregaHorari(String path){
-        Serializer<struct> structSerializer = new Serializer<>();
         try{
-            struct s = structSerializer.deserialize(path);
+            struct s = Serialitzador.carrega(path);
             ControladorAules.Aulari = s.aules;
             ControladorPlaEstudis.ConjuntPE.clear();
             ControladorPlaEstudis.ConjuntPE.add(s.pla);
