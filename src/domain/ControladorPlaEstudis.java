@@ -2,11 +2,14 @@ package domain;
 
 
 import persistencia.ControladorPersistencia;
-import sun.awt.SunHints;
+import persistencia.Serializer;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.Queue;
+import java.util.Scanner;
 
 /**
  * Controlador del pla d'estudis que permet tant llegir-lo com modificar-lo.
@@ -193,11 +196,22 @@ public class ControladorPlaEstudis {
         return null;
     }
 
+    private static class struct implements Serializable {
+        PlaEstudis pla;
+        Map<String, Aula> aules;
+
+        public struct(PlaEstudis pla, Map<String, Aula> aules) {
+            this.pla = pla;
+            this.aules = aules;
+        }
+    }
+
     /**
      * Guarda el horari del pla d'estudis amb el identificador donat.
      * @param id Identificador del pla d'estudis.
      */
     public void guardaHorari(String id) {
+        /*
         PlaEstudis pe = getPlaEstudi(id);
         String h = pe.getHorari();
 
@@ -219,6 +233,36 @@ public class ControladorPlaEstudis {
         String aux;
         if ( (aux = CtrlDades.guardaHorari(h, arg)) != null) {
             System.out.println("INFO: s'ha guardat l'horari en " + aux);
+        }*/
+
+        System.out.println("GH: introdueix el nom del fitxer en el que es guardarà l'horari");
+        Scanner reader = new Scanner(System.in);
+        String arg;
+        arg = reader.next();
+        guardaHorari(id, arg);
+    }
+
+    public void guardaHorari(String id, String path){
+        PlaEstudis plaEstudis = getPlaEstudi(id);
+        Map<String, Aula> aules = ControladorAules.getAules();
+        struct s = new struct(plaEstudis, aules);
+        Serializer<struct> structSerializer = new Serializer<>();
+        try{
+            structSerializer.serialize(s, path);
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void carregaHorari(String path){
+        Serializer<struct> structSerializer = new Serializer<>();
+        try{
+            struct s = structSerializer.deserialize(path);
+            ControladorAules.Aulari = s.aules;
+            ControladorPlaEstudis.ConjuntPE.clear();
+            ControladorPlaEstudis.ConjuntPE.add(s.pla);
+        }catch(IOException | ClassNotFoundException e){
+            e.printStackTrace();
         }
     }
 
