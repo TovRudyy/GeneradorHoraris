@@ -16,11 +16,13 @@ import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+
 import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Queue;
+import java.util.*;
 
 public class VistaHorari {
     Stage escenari;
@@ -28,9 +30,9 @@ public class VistaHorari {
     VBox layout;
     GridPane matriuLayout;
     String plaEstudi;
-    ArrayList<ArrayList<Queue<String>>> horari;
+    LinkedList<LinkedList<Queue<String>>> horari;
 
-    public VistaHorari(String pla, ArrayList<ArrayList<Queue<String>>> horari) {
+    public VistaHorari(String pla, LinkedList<LinkedList<Queue<String>>> horari) {
         this.plaEstudi = pla;
         this.horari = horari;
         escenari = new Stage();
@@ -56,7 +58,9 @@ public class VistaHorari {
         return layout;
     }
 
-    private void dibuixaHorari(ArrayList<ArrayList<Queue<String>>> horari) {
+
+    private void dibuixaHorari(LinkedList<LinkedList<Queue<String>>> horari) {
+        afegeixBotons();
         dibuixaDies(2,1);
         dibuixaHores(1,2);
         afegeixHorariSencer(2,2, horari);
@@ -120,21 +124,26 @@ public class VistaHorari {
 
     }
 
-    private void afegeixHorariSencer(int x, int y, ArrayList<ArrayList<Queue<String>>> horari) {
+    private void afegeixHorariSencer(int x, int y, LinkedList<LinkedList<Queue<String>>> horari) {
         int dia = x;
-        for (ArrayList<Queue<String>> dies : horari) {
-            for (Queue<String> sessions : dies) {
+
+        for (int j=0; j < 12; ++j) {
+            LinkedList<Queue<String>> dies = horari.get(j);
+            for (int i=0; i < 5; ++i) {
+                Queue<String> sessions = dies.get(i);
+
                 ListView<String> classes = new ListView();
                 String classe;
                 while ((classe = sessions.poll()) != null) {
                     classes.getItems().add(classe);
                 }
-                matriuLayout.add(classes, dia, y);
+                matriuLayout.add(classes, dia, y);  //hem canviat la y per dia
                 dia++;
             }
             y++;
             dia = x;
         }
+
     }
 
     private void dibuixaHores(int x, int y) {

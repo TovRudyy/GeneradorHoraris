@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Map;
 
 /**
@@ -52,7 +53,7 @@ public class RestriccioCorequisit extends Restriccio {
      * @param c Classe que el horari acaba de seleccionar.
      * @return Retorna una array list amb les classes que hem eliminat.
      */
-    public ArrayList<Classe> deletePossibilities (Map<String, Map<DiaSetmana, ArrayList<Classe>>> possibles_classes, Classe c) {
+    public ArrayList<Classe> deletePossibilities (Map<String, Map<DiaSetmana, LinkedList<Classe>>> possibles_classes, Classe c) {
         //primerament comprovem si aquesta assignacio es un correquisit de la nova classe que hem agafat
         //si es cert haurem de podar, altrament ja hem acabat
         ArrayList<Classe> eliminades = new ArrayList<>();
@@ -61,12 +62,12 @@ public class RestriccioCorequisit extends Restriccio {
         if (esCorrequisit(c.getId_assig())) {
             //comprovem si estem un dels seus correquisits
 
-            for (Map.Entry<String, Map<DiaSetmana, ArrayList<Classe>>> aula : possibles_classes.entrySet()) {
+            for (Map.Entry<String, Map<DiaSetmana, LinkedList<Classe>>> aula : possibles_classes.entrySet()) {
                 String id_aula = aula.getKey();
 
                 ArrayList<Classe> classes = new ArrayList<>();
                 if (possibles_classes.get(id_aula).containsKey(dia))
-                    classes = possibles_classes.get(id_aula).get(dia);
+                    classes.addAll(possibles_classes.get(id_aula).get(dia));
 
                 for (Classe classe_aux : classes) {
                     if (solapenHores(classe_aux.getHoraInici(), classe_aux.getHoraFi(), c.getHoraInici(), c.getHoraFi()))

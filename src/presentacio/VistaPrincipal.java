@@ -6,8 +6,8 @@ import javafx.stage.Stage;
 
 public class VistaPrincipal extends Application {
     //Constants
-    private static final int width = 500;
-    private static final int height = 500;
+    private static final int width = 300;
+    private static final int height = 300;
     //Variables dels controladors
     public static CtrlPresentacio ctrl;
 
@@ -28,8 +28,8 @@ public class VistaPrincipal extends Application {
         escenari = primaryStage;
         escenari.setTitle("Generador d'Horaris");
         escenari.setScene(escena);
-//        escenari.setHeight(height);
-//        escenari.setWidth(width);
+       // escenari.setHeight(height);
+       // escenari.setWidth(width);
         //Visualitzar finestra grafica
         escenari.show();
     }

@@ -7,6 +7,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Map;
 import java.util.Queue;
 
 public class SeccioPlans {
@@ -52,7 +54,8 @@ public class SeccioPlans {
         System.err.println("DEBUG: es vol generar l'horari de "+ pe);
         if (VistaPrincipal.ctrl.existsPlaEstudi(pe)) {
             if (VistaPrincipal.ctrl.generaHorari(pe)) {
-                ArrayList<ArrayList<Queue<String>>> horari = VistaPrincipal.ctrl.getHorariSencer(pe);
+                LinkedList<LinkedList<Queue<String>>> horari = VistaPrincipal.ctrl.getHorariSencer(pe);
+
                 VistaHorari horari_dibuixat = new VistaHorari(pe, horari);
             }
             else

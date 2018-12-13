@@ -1,10 +1,12 @@
 package domain;
 
+import java.io.Serializable;
+
 /**
  * Implementa l'abstracció d'una Aula.
  * @author Victor
  */
-public class Aula {
+public class Aula implements Serializable {
 
     private String id;              //Identificador de l'Aula
     private int capacitat;          //Capacitat de l'Aula

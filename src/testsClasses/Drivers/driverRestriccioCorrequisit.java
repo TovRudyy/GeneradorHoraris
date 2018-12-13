@@ -83,7 +83,7 @@ class driverRestriccioCorrequisit {
                         es_Corequisit_Test();
                         break;
                     case 6:
-                        delete_Possibilities_Test();
+                        //delete_Possibilities_Test();
                         break;
                     case 7:
                         to_String_Test();
@@ -130,7 +130,7 @@ class driverRestriccioCorrequisit {
     /**
      * Poda les possibilitats que ja no puguin tenir lloc si hem elegit una Classe donada.
      */
-    private static void delete_Possibilities_Test() {
+   /* private static void delete_Possibilities_Test() {
         out.println("Aquesta funcio rep com a parametres una Classe, i un conjunt de Classes classificades segons la seva aula i el Dia de la setmana.");
         out.println("El resultat d'aquesta funcio es la llista de Classes que s'han eliminat del conjunt degut a que son incompatibles amb la Classe passada.");
         out.println("Dues classes son incompatibles si violen la restriccio de corequisit.");
@@ -174,7 +174,7 @@ class driverRestriccioCorrequisit {
         for(Classe c: corequisit.deletePossibilities(classes, cl)){
             output.println("\t" + c.toString());
         }
-    }
+    }*/
 
     /**
      * Donat el identificador de una assignatura, comprova si es un correquisit.

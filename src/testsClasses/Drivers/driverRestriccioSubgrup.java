@@ -63,7 +63,7 @@ class driverRestriccioSubgrup  {
                         constructor_Test();
                         break;
                     case 2:
-                        delete_Possibilities_Test();
+                        //delete_Possibilities_Test();
                         break;
                     case 3:
                         executar_Joc_de_Proves();
@@ -99,7 +99,7 @@ class driverRestriccioSubgrup  {
     /**
      * Poda les possibilitats que ja no puguin tenir lloc si hem elegit una Classe donada.
      */
-    private static void delete_Possibilities_Test() {
+ /*   private static void delete_Possibilities_Test() {
         out.println("Aquesta funcio rep com a parametres una Classe, i un conjunt de Classes classificades segons la seva aula i el Dia de la setmana.");
         out.println("El resultat d'aquesta funcio es la llista de Classes que s'han eliminat del conjunt degut a que son incompatibles amb la Classe passada.");
         out.println("Dues classes son incompatibles si violen la restriccio de subgrup.");
@@ -144,7 +144,7 @@ class driverRestriccioSubgrup  {
         for(Classe c: rest.deletePossibilities(classes, cl)){
             output.println("\t" + c.toString());
         }
-    }
+    }*/
 
     /**
      * Construeix dinamicament un test per al driver.

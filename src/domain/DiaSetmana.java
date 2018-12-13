@@ -1,9 +1,11 @@
 package domain;
 
+import java.io.Serializable;
+
 /**
  * @author Olek
  */
-public enum DiaSetmana {
+public enum DiaSetmana implements Serializable {
     DILLUNS, DIMARTS, DIMECRES, DIJOUS, DIVENDRES;
 
     /**

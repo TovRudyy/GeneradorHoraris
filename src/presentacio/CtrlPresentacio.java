@@ -8,6 +8,8 @@ import javafx.collections.ObservableList;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Map;
 import java.util.Queue;
 
 public class CtrlPresentacio {
@@ -172,7 +174,8 @@ public class CtrlPresentacio {
         return CtrlPE.generaHorari(pe);
     }
 
-    public ArrayList<ArrayList<Queue<String>>> getHorariSencer(String pe) {
+
+    public LinkedList<LinkedList<Queue<String>>> getHorariSencer(String pe) {
         return CtrlPE.getHorariSencer(pe);
     }
 

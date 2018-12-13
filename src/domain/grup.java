@@ -1,12 +1,14 @@
 package domain;
 
 
+import java.io.Serializable;
+
 /**
  * Implementa l'abstraccio de "grup d'una assignatura".
  * @author David Pujol
  */
 
-public class grup {
+public class grup implements Serializable {
     /** Atributs **/
     private String idGrup; //identificador del grup
     private int capacitat;  //capacitat de l'aula
