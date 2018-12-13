@@ -19,9 +19,9 @@ public class Horari {
     private ArrayList<Classe> classesSeleccionades = new ArrayList<>();//ho guardem en forma de stack perque quan retrocedim sempre treurem la ultima afegida
     private Map<String, Aula> aules;
 
+
     /**
      * Creadora de la classe Horari.
-     *
      * @param conjuntAssignacions ArrayList amb tot el conjunt d'assignacions que hem d'assignar al nostre horari.
      */
     public Horari(LinkedList<assignacio> conjuntAssignacions, Map<String, Aula> aules) {
@@ -80,7 +80,7 @@ public class Horari {
 
             for (int i=0; i < possibleClasses.size(); ++i) {
                 Classe c = possibleClasses.get(i);
-                a.afegirSeleccionada();    //aixo cal??
+                a.afegirSeleccionada();
                 Stack<Classe> eliminades = new Stack();
 
                 boolean valid = forward_checking (c, eliminades); //forward checking
@@ -101,7 +101,6 @@ public class Horari {
                 classesSeleccionades.remove(classesSeleccionades.size() - 1);
                 revertChanges(eliminades, c);
                 a.eliminarSeleccionada();
-
             }
 
             return false;   //vol dir que hem mirat totes les opcions i no n'hi ha cap que funcioni
@@ -122,7 +121,6 @@ public class Horari {
             ArrayList<Classe> eliminades = a.forwardChecking(c);
             totes_eliminades.addAll(eliminades);
             if (a.isEmpty()) return false;
-
         }
 
         return true;
@@ -164,7 +162,6 @@ public class Horari {
     }
 
 
-
     /**
      * @param preferencies Sera una relacio entre el id de la assignatura i grup i els horaris en el que no es poden donar.
      */
@@ -184,7 +181,7 @@ public class Horari {
         return (selectClasse(0));
     }
 
-
+    /////////////////////////////
 
 
     /**
