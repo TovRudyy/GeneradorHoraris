@@ -169,4 +169,31 @@ public class ControladorPersistencia {
         System.out.println();
     }
 
+    public String guardaHorariGUI(String horari, String path) {
+        BufferedWriter bw = null;
+        FileWriter fw = null;
+        String ret  = path;
+        try {
+            fw = new FileWriter(ret);
+            bw = new BufferedWriter(fw);
+            bw.write(horari);
+        } catch (IOException e) {
+            System.err.println("ERROR: we could not save Horari");
+            e.printStackTrace();
+            ret = null;
+        } finally {
+            try {
+                if (bw != null)
+                    bw.close();
+
+                if (fw != null)
+                    fw.close();
+
+            } catch (IOException ex) {
+                ret = null;
+                ex.printStackTrace();
+            }
+        }
+        return ret;
+    }
 }

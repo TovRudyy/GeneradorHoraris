@@ -5,6 +5,8 @@ import persistencia.ControladorPersistencia;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -190,6 +192,11 @@ public class ControladorPlaEstudis {
         }
         System.err.println("ERROR: no existeix l'assignatura " + idAssig);
         return null;
+    }
+
+    public boolean existsHorariPlaEstudi(String id) {
+        PlaEstudis pe = getPlaEstudi(id);
+        return pe.existsHorari();
     }
 
     private static class struct implements Serializable {
@@ -420,5 +427,25 @@ public class ControladorPlaEstudis {
     public LinkedList<LinkedList<Queue<String>>> getHorariSencer(String id) {
         PlaEstudis pe = getPlaEstudi(id);
         return pe.getHorariSencer();
+    }
+
+    public void exportarHorariTXT(String path, String id) {
+        PlaEstudis pe = getPlaEstudi(id);
+        String h = pe.toStringSencer();
+
+        Date date = Calendar.getInstance().getTime();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+        String strDate = dateFormat.format(date);
+        if (path.equals(""))
+            h =  pe.getID() + "\n" + "Data creació: " + strDate + "\n" +
+                    "L'identificador del pla d'estudis es : " + id + "\n\n" + h;
+        else
+            h =  pe.getID() + "\n" + "Data creació: " + strDate + "\n" +
+                    "El path de l'escenari corresponent es : " + path + "\n\n" + h;
+
+        String aux;
+        if ( (aux = CtrlDades.guardaHorariGUI(h, path)) != null) {
+            System.out.println("INFO: s'ha guardat l'horari en " + aux);
+        }
     }
 }

@@ -178,4 +178,20 @@ public class CtrlPresentacio {
     public LinkedList<LinkedList<Queue<String>>> getHorariSencer(String pe) {
         return CtrlPE.getHorariSencer(pe);
     }
+
+    public void exportarHorariTXT(String absolutePath, String pe) {
+        CtrlPE.exportarHorariTXT(absolutePath, pe);
+    }
+
+    public void guardarHorariSencer(String plaEstudi, String absolutePath) {
+        CtrlPE.guardaHorari(plaEstudi, absolutePath);
+    }
+
+    public boolean existsHorariPlaEstudi(String pe) {
+        return CtrlPE.existsHorariPlaEstudi(pe);
+    }
+
+    public void carregaFitxerHorari(String absolutePath) {
+        CtrlPE.carregaHorari(absolutePath);
+    }
 }

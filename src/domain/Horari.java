@@ -644,4 +644,24 @@ public class Horari implements Serializable {
 
 
 
+    public String toStringSencer() {
+        // Es crea un nou stream
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        PrintStream ps = new PrintStream(baos);
+        // Es salva el stream vell
+        PrintStream old = System.out;
+        // S'indica a java que passi a utilitzar el nou stream
+        System.setOut(ps);
+        printHorari();
+        // Es restaura el stream original:
+        System.out.flush();
+        System.setOut(old);
+        //Es transforma baos en un String
+        try {
+            return baos.toString(StandardCharsets.UTF_8.name());
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return "ERROR";
+    }
 }
