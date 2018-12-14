@@ -7,14 +7,14 @@ public class Main {
 
     public static void main(String[] args) {
         //Per utilitzar la GUI:
-        //Application.launch(VistaPrincipal.class, args);
+        Application.launch(VistaPrincipal.class, args);
 
         //Per utilitzar la CLI:
-        CtrlMnPrincipal GH = new CtrlMnPrincipal();
+       /* CtrlMnPrincipal GH = new CtrlMnPrincipal();
         try {
             GH.runGeneradorHoraris();
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
     }
 }
