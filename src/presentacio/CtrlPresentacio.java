@@ -194,4 +194,16 @@ public class CtrlPresentacio {
     public void carregaFitxerHorari(String absolutePath) {
         CtrlPE.carregaHorari(absolutePath);
     }
+
+    public boolean existsAssignaturaPE(String pe, String assig) {
+        return CtrlPE.existsAssignaturaPE(pe, assig);
+    }
+
+    public void esborrarAssignaturaPE(String pe, String assig) {
+        CtrlPE.esborrarAssignaturaPE(pe, assig);
+    }
+
+    public boolean existsGrupAssignatura(String pe, String assig, String grup) {
+        return CtrlPE.existsGrupAssignatura(pe, assig, grup);
+    }
 }

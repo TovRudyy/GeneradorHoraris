@@ -227,4 +227,7 @@ public class SeccioPlans {
         return this.layout;
     }
 
+    public Object getArbrePE() {
+        return arbre;
+    }
 }

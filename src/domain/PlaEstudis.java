@@ -334,4 +334,16 @@ public class PlaEstudis implements Serializable {
     public boolean existsHorari() {
         return (horari != null);
     }
+
+    public boolean hasAssignatura(String assig) {
+        return assignatures.containsKey(assig);
+    }
+
+    public void removeAssig(String assig) {
+        assignatures.remove(assig);
+    }
+
+    public boolean existsGrupAssignatura(String assig, String grup) {
+        return assignatures.get(assig).hasGrup(grup);
+    }
 }

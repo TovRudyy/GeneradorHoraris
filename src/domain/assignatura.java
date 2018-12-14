@@ -302,4 +302,8 @@ public class assignatura implements Serializable {
         corr.remove(this.id);
         return corr;
     }
+
+    public boolean hasGrup(String grup) {
+        return grups.containsKey(grup);
+    }
 }

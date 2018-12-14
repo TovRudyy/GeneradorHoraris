@@ -199,6 +199,21 @@ public class ControladorPlaEstudis {
         return pe.existsHorari();
     }
 
+    public boolean existsAssignaturaPE(String id, String assig) {
+        PlaEstudis pe = getPlaEstudi(id);
+        return pe.hasAssignatura(assig);
+    }
+
+    public void esborrarAssignaturaPE(String id, String assig) {
+        PlaEstudis pe = getPlaEstudi(id);
+        pe.removeAssig(assig);
+    }
+
+    public boolean existsGrupAssignatura(String id, String assig, String grup) {
+        PlaEstudis pe = getPlaEstudi(id);
+        return  pe.existsGrupAssignatura(assig, grup);
+    }
+
     private static class struct implements Serializable {
         PlaEstudis pla;
         Map<String, Aula> aules;
