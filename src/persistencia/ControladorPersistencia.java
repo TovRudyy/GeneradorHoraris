@@ -9,6 +9,7 @@ import org.json.simple.parser.ParseException;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Objects;
 import java.util.TreeMap;
 
 /**
@@ -23,7 +24,7 @@ public class ControladorPersistencia {
      * @return Retorna una array amb tots els plans d'estudis llegits.
      */
     public ArrayList<PlaEstudis> llegeixDadesPE() {
-        ArrayList<PlaEstudis> ret = new ArrayList<PlaEstudis>();
+        ArrayList<PlaEstudis> ret = new ArrayList<>();
         try {
             ret = Lector_Pla_JSON.llegirCarpetaPlans();
         } catch (Exception e) {
@@ -83,7 +84,7 @@ public class ControladorPersistencia {
      * @return Les instancies d'assignatura creades.
      */
     public ArrayList<assignatura> llegeixAssignatura(String path) {
-        ArrayList<assignatura> noves = new ArrayList<assignatura>();
+        ArrayList<assignatura> noves = new ArrayList<>();
         try {
             noves = Lector_Pla_JSON.llegeixAssignatura(path);
             return noves;
@@ -91,40 +92,6 @@ public class ControladorPersistencia {
             e.printStackTrace();
             return noves;
         }
-    }
-
-    /**
-     * Guarda a una ruta donada un horari en format txt.
-     * @param horari El horari en format String
-     * @param file La ruta on voleu guardar-ho
-     * @return Una string amb el horari
-     */
-    public String guardaHorari(String horari, String file) {
-        BufferedWriter bw = null;
-        FileWriter fw = null;
-        String ret  = "data/Horaris/" + file;
-        try {
-            fw = new FileWriter(ret);
-            bw = new BufferedWriter(fw);
-            bw.write(horari);
-        } catch (IOException e) {
-            System.err.println("ERROR: we could not save Horari");
-            e.printStackTrace();
-            ret = null;
-        } finally {
-            try {
-                if (bw != null)
-                    bw.close();
-
-                if (fw != null)
-                    fw.close();
-
-            } catch (IOException ex) {
-                ret = null;
-                ex.printStackTrace();
-            }
-        }
-        return ret;
     }
 
     /**
@@ -137,7 +104,7 @@ public class ControladorPersistencia {
 
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             System.out.println("\n\n");
-            String line = null;
+            String line;
             String missatge1 = "El path de l'escenari corresponent es : ";  //missatge si sí que te un path
             String missatge2 = "L'identificador del pla d'estudis es : ";   //missatge en el cas que no tingui un path
             while ((line = br.readLine()) != null) {
@@ -164,7 +131,7 @@ public class ControladorPersistencia {
     public void mostraFitxersHoraris() {
         File dir = new File("data/Horaris");
         File[] horaris = dir.listFiles();
-        for (File f : horaris)
+        for (File f : Objects.requireNonNull(horaris))
             System.out.print(f.getName() + " ");
         System.out.println();
     }

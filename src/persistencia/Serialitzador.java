@@ -1,4 +1,4 @@
-package domain;
+package persistencia;
 
 import java.io.*;
 
@@ -7,7 +7,7 @@ public final class Serialitzador {
     private Serialitzador() {
     }
 
-    public static <T> void guarda(T objecte, String path) throws IOException {
+    public static void guarda(Object objecte, String path) throws IOException {
         serialize(objecte, path);
     }
 
@@ -15,7 +15,7 @@ public final class Serialitzador {
         serialize(objectes, path);
     }
 
-    private static <T> void serialize(T object, String path) throws IOException{
+    private static void serialize(Object object, String path) throws IOException{
         FileOutputStream fileOut = new FileOutputStream(path);
         ObjectOutputStream out = new ObjectOutputStream(fileOut);
         out.writeObject(object);
@@ -23,11 +23,10 @@ public final class Serialitzador {
         fileOut.close();
     }
 
-    @SuppressWarnings("unchecked")
-    public static <T> T carrega(String path) throws IOException, ClassNotFoundException{
+    public static Object carrega(String path) throws IOException, ClassNotFoundException{
         FileInputStream fileIn = new FileInputStream(path);
         ObjectInputStream in = new ObjectInputStream(fileIn);
-        T object = (T) in.readObject();
+        Object object = in.readObject();
         in.close();
         fileIn.close();
         return object;

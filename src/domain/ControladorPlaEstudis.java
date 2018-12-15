@@ -2,6 +2,7 @@ package domain;
 
 
 import persistencia.ControladorPersistencia;
+import persistencia.Serialitzador;
 
 import java.io.IOException;
 import java.io.Serializable;

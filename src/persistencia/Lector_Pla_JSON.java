@@ -110,7 +110,7 @@ public final class Lector_Pla_JSON {
         }
     }
 
-    public static PlaEstudis llegirPlaEstudis(String fitxer) throws ParseException, IOException, Aula_Exception {
+    static PlaEstudis llegirPlaEstudis(String fitxer) throws ParseException, IOException, Aula_Exception {
         JSONParser parser = new JSONParser();
         JSONObject obj = (JSONObject) parser.parse(new FileReader(fitxer));
         PlaEstudis plaEstudis = new PlaEstudis((String) obj.get("nom"));
@@ -122,15 +122,15 @@ public final class Lector_Pla_JSON {
         return plaEstudis;
     }
 
-    public static ArrayList<PlaEstudis> llegirCarpetaPlans() throws Exception{
+    static ArrayList<PlaEstudis> llegirCarpetaPlans() throws Exception{
         File PEfolder = new File("data/PlaEstudis");
         if (!PEfolder.isDirectory()) {
             throw new Exception("Error with data/PlaEstudis folder!");
         }
 
-        ArrayList<PlaEstudis> plansEstudis = new ArrayList<PlaEstudis>();
+        ArrayList<PlaEstudis> plansEstudis = new ArrayList<>();
         for (File pe_file : Objects.requireNonNull(PEfolder.listFiles())) {
-            System.err.println("DEGUB: The following PlaEstudis file is being readed: " + "'" + pe_file.getAbsolutePath());
+            System.err.println("DEGUB: The following PlaEstudis file is being read: " + "'" + pe_file.getAbsolutePath());
             try{
                 plansEstudis.add(llegirPlaEstudis(pe_file.getAbsolutePath()));
             }catch(Exception e){
@@ -141,10 +141,10 @@ public final class Lector_Pla_JSON {
         return plansEstudis;
     }
 
-    public static ArrayList<assignatura> llegeixAssignatura(String path) throws Aula_Exception, IOException, ParseException{
+    static ArrayList<assignatura> llegeixAssignatura(String path) throws Aula_Exception, IOException, ParseException{
         JSONParser parser = new JSONParser();
         JSONArray assigs = (JSONArray) parser.parse(new FileReader(path));
-        ArrayList<assignatura> assignatures = new ArrayList<assignatura>();
+        ArrayList<assignatura> assignatures = new ArrayList<>();
         for(Object a : assigs) assignatures.add(creaAssignatura((JSONObject) a));
         return  assignatures;
 
