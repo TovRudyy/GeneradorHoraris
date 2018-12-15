@@ -50,8 +50,9 @@ public class SeccioBotonsPE {
         String camp = arbre.getSelectionModel().getSelectedItem().getValue();
         camp = camp.split(":")[0];
         System.err.println("DEBUG: es vol modificar el camp " + camp);
-        String pe;
-        String assig;
+        String pe = null;
+        String assig = null;
+        String grup = null;
         ModifyWindow mw;
         switch (camp) {
             case "Nom" :
@@ -94,13 +95,60 @@ public class SeccioBotonsPE {
                 assig = arbre.getSelectionModel().getSelectedItem().getParent().getValue();
                 mw = new ModifyWindow("Durada classes laboratori", 7, pe, assig);
                 break;
+            case "Capacitat" :
+                grup = arbre.getSelectionModel().getSelectedItem().getParent().getValue();
+                //Comprovacio de si es tracta d'un grup o subgrup
+                if (Integer.parseInt(grup)%10 == 0) {
+                    pe = arbre.getSelectionModel().getSelectedItem().getParent().getParent().getParent().getParent().getValue();
+                    assig = arbre.getSelectionModel().getSelectedItem().getParent().getParent().getParent().getValue();
+                }
+                else {
+                    pe = arbre.getSelectionModel().getSelectedItem().getParent().getParent().getParent().getParent().getParent().getValue();
+                    assig = arbre.getSelectionModel().getSelectedItem().getParent().getParent().getParent().getParent().getValue();
+                }
+                mw = new ModifyWindow("Capacitat del grup", 8, pe, assig, grup);
+                break;
+            case "Horari" :
+                grup = arbre.getSelectionModel().getSelectedItem().getParent().getValue();
+                //Comprovacio de si es tracta d'un grup o subgrup
+                if (Integer.parseInt(grup)%10 == 0) {
+                    pe = arbre.getSelectionModel().getSelectedItem().getParent().getParent().getParent().getParent().getValue();
+                    assig = arbre.getSelectionModel().getSelectedItem().getParent().getParent().getParent().getValue();
+                }
+                else {
+                    pe = arbre.getSelectionModel().getSelectedItem().getParent().getParent().getParent().getParent().getParent().getValue();
+                    assig = arbre.getSelectionModel().getSelectedItem().getParent().getParent().getParent().getParent().getValue();
+                }
+                mw = new ModifyWindow("Horari del grup", 9, pe, assig, grup);
+                break;
+            case "Tipus aula" :
+                grup = arbre.getSelectionModel().getSelectedItem().getParent().getValue();
+                //Comprovacio de si es tracta d'un grup o subgrup
+                if (Integer.parseInt(grup)%10 == 0) {
+                    pe = arbre.getSelectionModel().getSelectedItem().getParent().getParent().getParent().getParent().getValue();
+                    assig = arbre.getSelectionModel().getSelectedItem().getParent().getParent().getParent().getValue();
+                }
+                else {
+                    pe = arbre.getSelectionModel().getSelectedItem().getParent().getParent().getParent().getParent().getParent().getValue();
+                    assig = arbre.getSelectionModel().getSelectedItem().getParent().getParent().getParent().getParent().getValue();
+                }
+                mw = new ModifyWindow("Tipus del grup", 10, pe, assig, grup);
+                break;
         }
     }
 
     private void esborrarGrup() {
-        String pe = arbre.getSelectionModel().getSelectedItem().getParent().getParent().getParent().getValue();
-        String assig = arbre.getSelectionModel().getSelectedItem().getParent().getParent().getValue();
         String grup = arbre.getSelectionModel().getSelectedItem().getValue();
+        String pe;
+        String assig;
+        if (Integer.parseInt(grup)%10 == 0) {
+            pe = arbre.getSelectionModel().getSelectedItem().getParent().getParent().getParent().getValue();
+            assig = arbre.getSelectionModel().getSelectedItem().getParent().getParent().getValue();
+        }
+        else {
+            pe = arbre.getSelectionModel().getSelectedItem().getParent().getParent().getParent().getParent().getValue();
+            assig = arbre.getSelectionModel().getSelectedItem().getParent().getParent().getParent().getValue();
+        }
         if (VistaPrincipal.ctrl.existsPlaEstudi(pe)) {
             if (VistaPrincipal.ctrl.existsAssignaturaPE(pe, assig)) {
                 if (VistaPrincipal.ctrl.existsGrupAssignatura(pe, assig, grup)) {

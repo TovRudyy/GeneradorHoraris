@@ -382,4 +382,18 @@ public class PlaEstudis implements Serializable {
     public void setDuradaClassesLaboratoriAssigantura(String assig, int qt) {
         assignatures.get(assig).setDuradaClassesLaboratori(qt);
     }
+
+    public void setCapacitatGrupAssignatura(String assig, String grup, int qt) {
+        System.err.println("DEBUG: estas apuntant a l'assignatura " + assig);
+        assignatures.get(assig).setCapacitatGrup(grup, qt);
+    }
+
+    public void setHorariGrupAssignatura(String assig, String grup, String valor) {
+        assignatures.get(assig).setHorariGrup(grup, valor);
+    }
+
+    public void setTipusGrupAssignatura(String assig, String grup, Tipus_Aula tipusAula) {
+        assignatures.get(assig).setTipusGrup(grup, tipusAula);
+
+    }
 }

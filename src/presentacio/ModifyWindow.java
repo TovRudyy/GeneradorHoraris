@@ -7,6 +7,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
@@ -19,9 +20,11 @@ public class ModifyWindow {
 
     private static int opcio;
     private  static TextField input;
+    private  static ComboBox<String> input_horari;
     private  static Stage window;
     private  static String pe;
     private  static String assig;
+    private  static String grup;
 
     public ModifyWindow(String titol, int opcio, String pe, String assig) {
         this.opcio = opcio;
@@ -36,6 +39,22 @@ public class ModifyWindow {
         window.setScene(escena);
         window.showAndWait();
     }
+
+    public ModifyWindow(String titol, int opcio, String pe, String assig, String grup) {
+        this.opcio = opcio;
+        this.pe = pe;
+        this.assig = assig;
+        this.grup = grup;
+        window = new Stage();
+        window.initModality(Modality.APPLICATION_MODAL);
+        window.setTitle(titol);
+        window.setMinWidth(500);
+
+        Scene escena = new Scene(dibuixaFinestra());
+        window.setScene(escena);
+        window.showAndWait();
+    }
+
 
     private Parent dibuixaFinestra() {
         GridPane layout = new GridPane();
@@ -98,6 +117,28 @@ public class ModifyWindow {
                 input.textProperty().addListener((observable, oldValue, newValue) -> mustBeUnsignedInt(observable, oldValue, newValue));
                 layout.add(nom, 0, 0);
                 layout.add(input, 1, 0);
+                break;
+            case 8:
+                nom = new Label("Introdueix capacitat del grup: ");
+                input = new TextField();
+                input.textProperty().addListener((observable, oldValue, newValue) -> mustBeUnsignedInt(observable, oldValue, newValue));
+                layout.add(nom, 0, 0);
+                layout.add(input, 1, 0);
+                break;
+            case 9:
+                nom = new Label("Introdueix horari del grup: ");
+                input_horari = new ComboBox<String>();
+                input_horari.getItems().addAll("Matins", "Tardes");
+                input_horari.setPromptText("Matins/Tardes");
+                layout.add(nom, 0, 0);
+                layout.add(input_horari, 1, 0);
+                break;
+            case 10:
+                nom = new Label("Introdueix tipus del grup: ");
+                input_horari = new ComboBox<String>(SeccioAules.getTipusAulesFX());
+                input_horari.setPromptText("Tipus de grup");
+                layout.add(nom, 0, 0);
+                layout.add(input_horari, 1, 0);
                 break;
         }
         //Boto aplicar
@@ -179,6 +220,32 @@ public class ModifyWindow {
                     window.close();
                 }
                 break;
+            case 8:
+                if (!input.getText().equals("")) {
+                    String newValue = input.getText();
+                    VistaPrincipal.ctrl.setCapacitatGrupAssignatura(pe, assig, grup, Integer.parseUnsignedInt(newValue));
+                    SeccioPlans.refrescaArbrePlansEstudis();
+                    window.close();
+                }
+                break;
+            case 9:
+                if (!input_horari.getValue().isEmpty()) {
+                    String newValue =  input_horari.getValue().substring(0,1);
+                    System.err.println("DEBUG: el nou horari es: " + newValue);
+                    VistaPrincipal.ctrl.setHorariGrupAssignatura(pe, assig, grup, newValue);
+                    SeccioPlans.refrescaArbrePlansEstudis();
+                    window.close();
+                }
+                break;
+            case 10:
+                if (!input_horari.getValue().isEmpty()) {
+                    String newValue =  input_horari.getValue();
+                    VistaPrincipal.ctrl.setTipusGrupAssignatura(pe, assig, grup, newValue);
+                    SeccioPlans.refrescaArbrePlansEstudis();
+                    window.close();
+                }
+                break;
+
         }
     }
 

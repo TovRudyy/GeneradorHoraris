@@ -246,7 +246,7 @@ public class SeccioPlans {
         root.getChildren().add(item);
         //Tipus aula
         aux = VistaPrincipal.ctrl.getTipusAulaGrup(sg,assig,pla);
-        item = new TreeItem<String>("Horari: " + aux);
+        item = new TreeItem<String>("Tipus aula: " + aux);
         root.getChildren().add(item);
     }
 

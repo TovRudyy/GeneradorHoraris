@@ -243,4 +243,16 @@ public class CtrlPresentacio {
     public void setDuradaClassesLaboratoriAssignatura(String pe, String assig, int qt) {
         CtrlPE.setDuradaClassesLaboratoriAssigantura(pe, assig, qt);
     }
+
+    public void setCapacitatGrupAssignatura(String pe, String assig, String grup, int qt) {
+        CtrlPE.setCapacitatGrupAssignatura(pe, assig, grup, qt);
+    }
+
+    public void setHorariGrupAssignatura(String pe, String assig, String grup, String valor) {
+        CtrlPE.setHorariGrupAssignatura(pe, assig, grup, valor);
+    }
+
+    public void setTipusGrupAssignatura(String pe, String assig, String grup, String newValue) {
+        CtrlPE.setTipusGrupAssignatura(pe, assig, grup, newValue);
+    }
 }

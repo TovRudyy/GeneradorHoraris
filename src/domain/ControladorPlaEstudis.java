@@ -504,4 +504,23 @@ public class ControladorPlaEstudis {
             System.out.println("INFO: s'ha guardat l'horari en " + aux);
         }
     }
+
+    public void setCapacitatGrupAssignatura(String id, String assig, String grup, int qt) {
+        PlaEstudis pe = getPlaEstudi(id);
+        pe.setCapacitatGrupAssignatura(assig, grup, qt);
+    }
+
+    public void setHorariGrupAssignatura(String id, String assig, String grup, String valor) {
+        PlaEstudis pe = getPlaEstudi(id);
+        pe.setHorariGrupAssignatura(assig, grup, valor);
+    }
+
+    public void setTipusGrupAssignatura(String id, String assig, String grup, String newValue) {
+        PlaEstudis pe = getPlaEstudi(id);
+        try {
+            pe.setTipusGrupAssignatura(assig, grup, Tipus_Aula.string_to_Tipus_Aula(newValue));
+        } catch (Aula_Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

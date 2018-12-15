@@ -342,4 +342,16 @@ public class assignatura implements Serializable {
     public void setDuradaClassesLaboratori(int qt) {
         this.duracio_laboratori = qt;
     }
+
+    public void setCapacitatGrup(String grup, int qt) {
+        grups.get(grup).setCapacitat(qt);
+    }
+
+    public void setHorariGrup(String grup, String valor) {
+        grups.get(grup).setHorari(valor);
+    }
+
+    public void setTipusGrup(String grup, Tipus_Aula tipusAula) {
+        grups.get(grup).setTipus(tipusAula);
+    }
 }
