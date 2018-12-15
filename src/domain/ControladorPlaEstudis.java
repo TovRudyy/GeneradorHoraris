@@ -1,10 +1,9 @@
 package domain;
 
 
-import persistencia.ControladorPersistencia;
+import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -16,7 +15,6 @@ import java.util.*;
 
 public class ControladorPlaEstudis {
 
-    static ControladorPersistencia CtrlDades = new ControladorPersistencia();
     static ArrayList<PlaEstudis> ConjuntPE;
     static final String EscenaPE = "/PlaEstudi.json";
     static String path = "";    //aquest path ens indica el ultim path guardat fins al moment
@@ -25,7 +23,7 @@ public class ControladorPlaEstudis {
      * Crea un nou ControladorPlaEstudis amb les dades que llegeix.
      */
     public ControladorPlaEstudis() {
-        ConjuntPE = CtrlDades.llegeixDadesPE();
+        ConjuntPE = ControladorDades.llegeixDadesPE();
     }
 
 
@@ -126,7 +124,7 @@ public class ControladorPlaEstudis {
         PlaEstudis pe = getPlaEstudi(id);
         System.out.print("GH: Introdueix el path al fitxer de l'assignatura: ");
         arg = reader.next();
-        ArrayList<assignatura> noves = CtrlDades.llegeixAssignatura(arg);
+        ArrayList<assignatura> noves = new ArrayList<>();//ControladorDades.llegeixAssignatura(arg);
         if (noves.isEmpty()) {
             System.err.println("DEBUG: no s'han pogut afegir assignatures");
             return;
@@ -161,7 +159,7 @@ public class ControladorPlaEstudis {
      */
     public void resetData() {
         ConjuntPE.clear();
-        ConjuntPE = CtrlDades.llegeixDadesPE();
+        ConjuntPE = ControladorDades.llegeixDadesPE();
         System.err.println("DEBUG: s'han restaurat les dades dels Plans d'Estudis");
     }
 
@@ -259,16 +257,6 @@ public class ControladorPlaEstudis {
         pe.setDuradaClassesLaboratoriAssigantura(assig, qt);
     }
 
-    private static class struct implements Serializable {
-        PlaEstudis pla;
-        Map<String, Aula> aules;
-
-        public struct(PlaEstudis pla, Map<String, Aula> aules) {
-            this.pla = pla;
-            this.aules = aules;
-        }
-    }
-
     /**
      * Guarda el horari del pla d'estudis amb el identificador donat.
      * @param id Identificador del pla d'estudis.
@@ -308,9 +296,8 @@ public class ControladorPlaEstudis {
     public void guardaHorari(String id, String path){
         PlaEstudis plaEstudis = getPlaEstudi(id);
         Map<String, Aula> aules = ControladorAules.getAules();
-        struct s = new struct(plaEstudis, aules);
         try{
-            Serialitzador.guarda(s, path);
+            ControladorDades.guarda(path, plaEstudis, aules);
         }catch(IOException e){
             e.printStackTrace();
         }
@@ -318,11 +305,11 @@ public class ControladorPlaEstudis {
 
     public void carregaHorari(String path){
         try{
-            struct s = Serialitzador.carrega(path);
-            ControladorAules.Aulari = s.aules;
+            Object obj[] = (Object[])  ControladorDades.carrega(path);
+            ControladorAules.Aulari = (Map<String, Aula>) obj[0];
             ControladorPlaEstudis.ConjuntPE.clear();
-            ControladorPlaEstudis.ConjuntPE.add(s.pla);
-        }catch(IOException | ClassNotFoundException e){
+            ControladorPlaEstudis.ConjuntPE.add((PlaEstudis) obj[1]);
+        }catch(IOException | ClassNotFoundException | ClassCastException e){
             e.printStackTrace();
         }
     }
@@ -333,12 +320,12 @@ public class ControladorPlaEstudis {
      */
     public String visualitzaHorari() {
         System.out.print("INFO: tens guardats els següents horaris:\n");
-        CtrlDades.mostraFitxersHoraris();
+        //ControladorDades.mostraFitxersHoraris();
         System.out.print("INFO: indica l'horari que vols visualitzar:");
         Scanner reader = new Scanner(System.in);
         String arg;
         arg = reader.next();
-        return CtrlDades.visualitzaHorari(arg);
+        return "Hey";  //ControladorDades.visualitzaHorari(arg);
         //pot ser que retornem una path per a carregar una escena, o el nom de un pe, que estara a la carpeta per defecte
     }
 
@@ -350,9 +337,13 @@ public class ControladorPlaEstudis {
         System.out.println(dir);
         ConjuntPE.clear();
         String file = dir + EscenaPE;
-        PlaEstudis pe = CtrlDades.llegeixPE(file);
-        if (pe != null)
+        try {
+            PlaEstudis pe = ControladorDades.llegeixPE(file);
             ConjuntPE.add(pe);
+        }catch (IOException | ClassNotFoundException | Aula_Exception | ParseException e) {
+            System.err.println(e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     public String getNomAssignatura(String assig, String id) {
@@ -430,9 +421,14 @@ public class ControladorPlaEstudis {
     }
 
     public void carregarFitxerPlaEstudis(String absolutePath) {
-        PlaEstudis pe = CtrlDades.llegeixPE(absolutePath);
-        if (pe != null)
+        try {
+            PlaEstudis pe = ControladorDades.llegeixPE(absolutePath);
             ConjuntPE.add(pe);
+        }catch (IOException | ClassNotFoundException | Aula_Exception | ParseException e) {
+            System.err.println(e.getMessage());
+            e.printStackTrace();
+        }
+
     }
 
     public boolean existsPlaEstudi(String pe) {
@@ -504,7 +500,7 @@ public class ControladorPlaEstudis {
                     "El path de l'escenari corresponent es : " + path + "\n\n" + h;
 
         String aux;
-        if ( (aux = CtrlDades.guardaHorariGUI(h, path)) != null) {
+        if ( (aux = ControladorDades.guardaHorariGUI(h, path)) != null) {
             System.out.println("INFO: s'ha guardat l'horari en " + aux);
         }
     }

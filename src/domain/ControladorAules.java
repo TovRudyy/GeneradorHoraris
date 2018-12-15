@@ -1,7 +1,8 @@
 package domain;
 
-import persistencia.ControladorPersistencia;
+import org.json.simple.parser.ParseException;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Scanner;
@@ -15,7 +16,6 @@ import java.util.TreeMap;
 
 public class ControladorAules {
 
-    static ControladorPersistencia CtrlDades = new ControladorPersistencia();
     static Map<String, Aula> Aulari = new TreeMap<>();
     static final String EscenaAules="/Aulari.json";
 
@@ -23,7 +23,7 @@ public class ControladorAules {
      * Crea un nou ControladorAules amb les dades que llegeix.
      */
     public ControladorAules(){
-            Map<String, Aula> noves = CtrlDades.llegeixDadesAules();
+            Map<String, Aula> noves = ControladorDades.llegeixDadesAules();
             for (String key : noves.keySet())
                 afegirAulaSiNoExisteix(key, noves.get(key));
     }
@@ -97,7 +97,14 @@ public class ControladorAules {
      * @return Un map amb la informacio del fitxer que ha llegit
      */
     private Map<String, Aula> llegeixFitxer(String file) {
-        return CtrlDades.llegeixFitxerAula(file);
+        Map<String, Aula> aules = new TreeMap<>();
+        try {
+            aules =  ControladorDades.llegeixAules(file);
+        }catch (IOException | ClassNotFoundException | ParseException | Aula_Exception e) {
+            System.err.println(e.getMessage());
+            e.printStackTrace();
+        }
+        return aules;
     }
 
 
@@ -140,7 +147,7 @@ public class ControladorAules {
      */
     public void resetData() {
         Aulari.clear();
-        Map<String, Aula> noves = CtrlDades.llegeixDadesAules();
+        Map<String, Aula> noves = ControladorDades.llegeixDadesAules();
         for (String key : noves.keySet())
             afegirAulaSiNoExisteix(key, noves.get(key));
         System.err.println("DEBUG: s'han restaurat les dades de les Aules");
