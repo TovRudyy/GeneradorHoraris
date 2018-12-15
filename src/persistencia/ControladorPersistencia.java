@@ -1,16 +1,10 @@
 package persistencia;
 
-import domain.Aula;
-import domain.Aula_Exception;
-import domain.PlaEstudis;
-import domain.assignatura;
 import org.json.simple.parser.ParseException;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.Objects;
-import java.util.TreeMap;
 
 /**
  * Controlador de el lector de Aules i de pla d'estudis.
@@ -19,80 +13,37 @@ import java.util.TreeMap;
 
 public class ControladorPersistencia {
 
-    /**
-     * Llegeix de un fitxer diversos plans d'estudis.
-     * @return Retorna una array amb tots els plans d'estudis llegits.
-     */
-    public ArrayList<PlaEstudis> llegeixDadesPE() {
-        ArrayList<PlaEstudis> ret = new ArrayList<>();
-        try {
-            ret = Lector_Pla_JSON.llegirCarpetaPlans();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return ret;
+    public static ArrayList<Object> llegirCarpetaPlansJSON() {
+        return Lector_Fitxers.llegirCarpetaPlansJSON();
     }
 
-    /**
-     * Llegeix de un fitxer un pla d'estudis concret.
-     * @param file Ruta del fitxer.
-     * @return La instancia del pla d'estudis creat.
-     */
-    public PlaEstudis llegeixPE(String file) {
-        PlaEstudis ret = null;
-        try {
-            ret = Lector_Pla_JSON.llegirPlaEstudis(file);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return ret;
+    public static ArrayList<Object> llegirCarpetaPlansSerialized() {
+        return Lector_Fitxers.llegirCarpetaPlansSerialized();
     }
 
-    /**
-     * Llegeix de un fitxer un conjunt d'aules.
-     * @return Un map amb la informacio de les diferents aules.
-     */
-    public Map<String, Aula> llegeixDadesAules() {
-        System.out.println("Llegim la carpeta per defecte");
-        Map<String, Aula> ret = new TreeMap<>();
-        try {
-            ret = Lector_Aules_JSON.llegirCarpetaAules();
-        } catch (Aula_Exception e) {
-            e.printStackTrace();
-        }
-        return ret;
+    public static Object llegirJSON(String path) throws IOException, ParseException {
+        return Lector_Fitxers.llegirJSON(path);
     }
 
-    /**
-     * Llegeix de un fitxer un conjunt d'aules.
-     * @param path Ruta al fitxer.
-     * @return Les instancies de aules creades.
-     */
-    public Map<String, Aula> llegeixFitxerAula(String path) {
-        Map<String, Aula> noves = new TreeMap<>();
-        try {
-            noves = Lector_Aules_JSON.llegirAules(path);
-        } catch (ParseException | IOException | Aula_Exception e) {
-            e.printStackTrace();
-        }
-        return noves;
+    public static ArrayList<Object> llegirCarpetaAulesJSON() {
+        return Lector_Fitxers.llegirCarpetaAulesJSON();
     }
 
-    /**
-     * Llegeix de un fitxer un conjunt d'assignatures.
-     * @param path Ruta al fitxer.
-     * @return Les instancies d'assignatura creades.
-     */
-    public ArrayList<assignatura> llegeixAssignatura(String path) {
-        ArrayList<assignatura> noves = new ArrayList<>();
-        try {
-            noves = Lector_Pla_JSON.llegeixAssignatura(path);
-            return noves;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return noves;
-        }
+    public static ArrayList<Object> llegirCarpetaAulesSerialized() {
+        return Lector_Fitxers.llegirCarpetaAulesSerialized();
     }
+
+
+    public static Object carrega(String path) throws IOException, ClassNotFoundException {
+        return Serialitzador.deserialize(path);
+    }
+
+    public static void guarda(Object object, String path) throws IOException {
+        Serialitzador.serialize(object, path);
+    }
+
+
+
 
     /**
      * Mostra per pantalla un horari donat a partir del seu fitxer.
@@ -136,7 +87,7 @@ public class ControladorPersistencia {
         System.out.println();
     }
 
-    public String guardaHorariGUI(String horari, String path) {
+    public static String guardaHorariGUI(String horari, String path) {
         BufferedWriter bw = null;
         FileWriter fw = null;
         String ret  = path;
@@ -163,4 +114,5 @@ public class ControladorPersistencia {
         }
         return ret;
     }
+
 }
