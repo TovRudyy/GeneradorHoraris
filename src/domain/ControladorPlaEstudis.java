@@ -306,9 +306,9 @@ public class ControladorPlaEstudis {
     public void carregaHorari(String path){
         try{
             Object obj[] = (Object[])  ControladorDades.carrega(path);
-            ControladorAules.Aulari = (Map<String, Aula>) obj[0];
+            ControladorAules.Aulari = (Map<String, Aula>) obj[1];
             ControladorPlaEstudis.ConjuntPE.clear();
-            ControladorPlaEstudis.ConjuntPE.add((PlaEstudis) obj[1]);
+            ControladorPlaEstudis.ConjuntPE.add((PlaEstudis) obj[0]);
         }catch(IOException | ClassNotFoundException | ClassCastException e){
             e.printStackTrace();
         }
