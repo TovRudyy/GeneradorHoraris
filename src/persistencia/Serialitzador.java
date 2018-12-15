@@ -8,6 +8,7 @@ final class Serialitzador {
     }
 
     static void serialize(Object object, String path) throws IOException{
+        if(!path.substring(path.lastIndexOf('.')+1).equals("ser")) path += ".ser";
         FileOutputStream fileOut = new FileOutputStream(path);
         ObjectOutputStream out = new ObjectOutputStream(fileOut);
         out.writeObject(object);
