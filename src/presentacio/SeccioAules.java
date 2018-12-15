@@ -194,4 +194,8 @@ public class SeccioAules {
         return this.layout;
     }
 
+    public  static ObservableList<String> getTipusAulesFX() {
+        return tipusAulesFX;
+    }
+
 }

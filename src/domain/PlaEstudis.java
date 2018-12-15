@@ -346,4 +346,40 @@ public class PlaEstudis implements Serializable {
     public boolean existsGrupAssignatura(String assig, String grup) {
         return assignatures.get(assig).hasGrup(grup);
     }
+
+    public void esborrarGrupAssignatura(String assig, String grup) {
+        assignatures.get(assig).esborraGrup(grup);
+    }
+
+    public void setNomAssigantura(String assig, String newValue) {
+        assignatures.get(assig).setNom(newValue);
+    }
+
+    public void setNivellAssigantura(String assig, int nivell) {
+        assignatures.get(assig).setNivell(nivell);
+    }
+
+    public void setQtClassesTeoriaAssigantura(String assig, int qt) {
+        assignatures.get(assig).setQtClassesTeoria(qt);
+    }
+
+    public void setDuradaClassesTeoriaAssigantura(String assig, int qt) {
+        assignatures.get(assig).setDuradaClassesTeoria(qt);
+    }
+
+    public void setQtClassesProblemesAssigantura(String assig, int qt) {
+        assignatures.get(assig).setQtClassesProblemes(qt);
+    }
+
+    public void setDuradaClassesProblemesAssigantura(String assig, int qt) {
+        assignatures.get(assig).setDuradaClassesProblemes(qt);
+    }
+
+    public void setQtClassesLaboratoriAssigantura(String assig, int qt) {
+        assignatures.get(assig).setQtClassesLaboratori(qt);
+    }
+
+    public void setDuradaClassesLaboratoriAssigantura(String assig, int qt) {
+        assignatures.get(assig).setDuradaClassesLaboratori(qt);
+    }
 }

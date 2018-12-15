@@ -2,10 +2,12 @@ package presentacio;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -16,6 +18,7 @@ public class SeccioPlans {
     VBox layout;
     static TreeItem<String> root;
     static TreeView<String> arbre;
+    Label seleccioActual;
 
 
     public SeccioPlans() {
@@ -43,6 +46,8 @@ public class SeccioPlans {
         arbre.setShowRoot(false);
         arbre.setMinSize(400,700);
         layout.getChildren().add(arbre);
+        //Selecció actual
+        layout.getChildren().add(seleccioActual());
         //Botons
         HBox buttonLayout = new HBox();
         //Boto generar Horari
@@ -57,6 +62,28 @@ public class SeccioPlans {
         layout.getChildren().add(buttonLayout);
         layout.setPadding(new Insets(10));
     }
+
+    private Node seleccioActual() {
+        HBox box = new HBox();
+        box.setSpacing(5);
+        Label actual = new Label("Objecte sel·leccionat:");
+        box.getChildren().add(actual);
+        seleccioActual = new Label();
+        seleccioActual.setText("Res sel·leccionat");
+        seleccioActual.setTextFill(Color.RED);
+        box.getChildren().add(seleccioActual);
+        arbre.setOnMouseClicked(e -> {
+            try {
+                seleccioActual.setText(arbre.getSelectionModel().getSelectedItem().getValue());
+            }
+            catch (NullPointerException exc) {
+                seleccioActual.setText("Res sel·leccionat");
+            }
+        });
+        return box;
+    }
+
+
 
     private void mostraHorari() {
         String pe = arbre.getSelectionModel().getSelectedItem().getValue();

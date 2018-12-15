@@ -211,7 +211,52 @@ public class ControladorPlaEstudis {
 
     public boolean existsGrupAssignatura(String id, String assig, String grup) {
         PlaEstudis pe = getPlaEstudi(id);
-        return  pe.existsGrupAssignatura(assig, grup);
+        return pe.existsGrupAssignatura(assig, grup);
+    }
+
+    public void esborrarGrupAssignatura(String id, String assig, String grup) {
+        PlaEstudis pe = getPlaEstudi(id);
+        pe.esborrarGrupAssignatura(assig, grup);
+    }
+
+    public void setNomAssignatrua(String id, String assig, String newValue) {
+        PlaEstudis pe = getPlaEstudi(id);
+        pe.setNomAssigantura(assig, newValue);
+    }
+
+    public void setNivellAssignatura(String id, String assig, int nivell) {
+        PlaEstudis pe = getPlaEstudi(id);
+        pe.setNivellAssigantura(assig, nivell);
+    }
+
+    public void setQtClassesTeoriaAssignatura(String id, String assig, int qt) {
+        PlaEstudis pe = getPlaEstudi(id);
+        pe.setQtClassesTeoriaAssigantura(assig, qt);
+    }
+
+    public void setDuradaClassesTeoriaAssignatura(String id, String assig, int qt) {
+        PlaEstudis pe = getPlaEstudi(id);
+        pe.setDuradaClassesTeoriaAssigantura(assig, qt);
+    }
+
+    public void setQtClassesProblemesAssignatura(String id, String assig, int qt) {
+        PlaEstudis pe = getPlaEstudi(id);
+        pe.setQtClassesProblemesAssigantura(assig, qt);
+    }
+
+    public void setDuradaClassesProblemesAssigantura(String id, String assig, int qt) {
+        PlaEstudis pe = getPlaEstudi(id);
+        pe.setDuradaClassesProblemesAssigantura(assig, qt);
+    }
+
+    public void setQtClassesLaboratoriAssigantura(String id, String assig, int qt) {
+        PlaEstudis pe = getPlaEstudi(id);
+        pe.setQtClassesLaboratoriAssigantura(assig, qt);
+    }
+
+    public void setDuradaClassesLaboratoriAssigantura(String id, String assig, int qt) {
+        PlaEstudis pe = getPlaEstudi(id);
+        pe.setDuradaClassesLaboratoriAssigantura(assig, qt);
     }
 
     private static class struct implements Serializable {

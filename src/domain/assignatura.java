@@ -306,4 +306,40 @@ public class assignatura implements Serializable {
     public boolean hasGrup(String grup) {
         return grups.containsKey(grup);
     }
+
+    public void esborraGrup(String grup) {
+        grups.remove(grup);
+    }
+
+    public void setNom(String newValue) {
+        this.nom = newValue;
+    }
+
+    public void setNivell(int nivell) {
+        this.nivell = nivell;
+    }
+
+    public void setQtClassesTeoria(int qt) {
+        this.classes_teoria = qt;
+    }
+
+    public void setDuradaClassesTeoria(int qt) {
+        this.duracio_teoria = qt;
+    }
+
+    public void setQtClassesProblemes(int qt) {
+        this.classes_problemes = qt;
+    }
+
+    public void setDuradaClassesProblemes(int qt) {
+        this.duracio_problemes = qt;
+    }
+
+    public void setQtClassesLaboratori(int qt) {
+        this.classes_laboratori = qt;
+    }
+
+    public void setDuradaClassesLaboratori(int qt) {
+        this.duracio_laboratori = qt;
+    }
 }

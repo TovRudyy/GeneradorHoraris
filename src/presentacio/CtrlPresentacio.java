@@ -206,4 +206,41 @@ public class CtrlPresentacio {
     public boolean existsGrupAssignatura(String pe, String assig, String grup) {
         return CtrlPE.existsGrupAssignatura(pe, assig, grup);
     }
+
+    public void esborrarGrupAssignatura(String pe, String assig, String grup) {
+        CtrlPE.esborrarGrupAssignatura(pe, assig, grup);
+    }
+
+    public void setNomAssignatura(String pe, String assig, String newValue) {
+        CtrlPE.setNomAssignatrua(pe, assig, newValue);
+    }
+
+    public void setNivellAssignatura(String pe, String assig, int nivell) {
+        CtrlPE.setNivellAssignatura(pe, assig, nivell);
+    }
+
+    public void setQtClassesTeoriaAssignatura(String pe, String assig, int qt) {
+        CtrlPE.setQtClassesTeoriaAssignatura(pe, assig, qt);
+    }
+
+    public void setDuradaClassesTeoriaAssignatura(String pe, String assig, int qt) {
+        CtrlPE.setDuradaClassesTeoriaAssignatura(pe, assig, qt);
+
+    }
+
+    public void setQtClassesProblemesAssignatura(String pe, String assig, int qt) {
+        CtrlPE.setQtClassesProblemesAssignatura(pe, assig, qt);
+    }
+
+    public void setDuradaClassesProblemesAssignatura(String pe, String assig, int qt) {
+        CtrlPE.setDuradaClassesProblemesAssigantura(pe, assig, qt);
+    }
+
+    public void setQtClassesLaboratoriAssignatura(String pe, String assig, int qt) {
+        CtrlPE.setQtClassesLaboratoriAssigantura(pe, assig, qt);
+    }
+
+    public void setDuradaClassesLaboratoriAssignatura(String pe, String assig, int qt) {
+        CtrlPE.setDuradaClassesLaboratoriAssigantura(pe, assig, qt);
+    }
 }
