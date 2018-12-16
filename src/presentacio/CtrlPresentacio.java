@@ -255,4 +255,8 @@ public class CtrlPresentacio {
     public void setTipusGrupAssignatura(String pe, String assig, String grup, String newValue) {
         CtrlPE.setTipusGrupAssignatura(pe, assig, grup, newValue);
     }
+
+    public boolean modificarHorari(String plaEstudi, String assig, String grup, String oldDia, int oldHora, String newDia, int newHora, String aula) {
+        return CtrlPE.modificaHorari(plaEstudi,assig,grup,oldDia,oldHora,newDia,newHora,aula);
+    }
 }

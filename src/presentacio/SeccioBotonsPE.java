@@ -141,6 +141,7 @@ public class SeccioBotonsPE {
         String grup = arbre.getSelectionModel().getSelectedItem().getValue();
         String pe;
         String assig;
+        //Comprovacio de si es tracta d'un grup o subgrup
         if (Integer.parseInt(grup)%10 == 0) {
             pe = arbre.getSelectionModel().getSelectedItem().getParent().getParent().getParent().getValue();
             assig = arbre.getSelectionModel().getSelectedItem().getParent().getParent().getValue();

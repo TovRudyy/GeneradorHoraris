@@ -500,7 +500,7 @@ public class Horari implements Serializable {
                     case DIVENDRES:
                         dia = 4;
                 }
-                horaris.get(i - 8).get(dia).add("  " + c.getId_assig() + "  " + c.getId_grup() + "  " + c.getIdAula());
+                horaris.get(i - 8).get(dia).add(c.getId_assig() + "  " + c.getId_grup() + "  " + c.getIdAula());
             }
         }
         return horaris;

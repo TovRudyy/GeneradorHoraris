@@ -465,7 +465,32 @@ public class ControladorPlaEstudis {
             System.out.println("Aquest pla d'estudis encara no conte cap horari");
     }
 
-    /**
+    public boolean modificaHorari (String plaEstudi, String assig, String grup, String dia, int hora, String newDia, int newHora, String aula) {
+        PlaEstudis pe = getPlaEstudi(plaEstudi);
+        if (pe.hasHorari()) {
+
+            DiaSetmana diaSetmana = DiaSetmana.string_To_DiaSetmana(dia);
+
+            DiaSetmana diaNou = DiaSetmana.string_To_DiaSetmana(newDia);
+
+            System.err.println("DEBUG:"+plaEstudi+" "+assig+" "+grup+" "+aula+" "+diaSetmana+" "+hora+" "+diaNou+" "+newHora);
+            boolean result = pe.modificaEntrada(assig, grup, diaSetmana, hora, diaNou, newHora, aula);
+            if (result) {
+                System.err.println("DEBUG: S'ha modificat la entrada del horari indicada");
+                return true;
+            }
+            else {
+                System.err.println("DEBUG: No hem pogut modifica la entrada a causa que incompleix alguna restriccio");
+                return false;
+            }
+        }
+        else {
+            System.out.println("Aquest pla d'estudis encara no conte cap horari");
+            return false;
+        }
+    }
+
+     /**
      * Afegeix aquest path al controlador de pla d'estudi.
      * @param path Path per a trobar una escena donada.
      */
