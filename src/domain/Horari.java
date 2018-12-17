@@ -179,20 +179,15 @@ public class Horari implements Serializable {
      * @return True si hem pogut fer el canvi, false altrament.
      */
     public boolean modificaClasse(String idAssig, String idGrup, DiaSetmana diaAntic, int horaAntiga, DiaSetmana diaNou, int horaNova, String aulaNova) {
-        System.out.println("UNA NOVA MODIFICACIO");
-        System.err.println(idAssig + " " + idGrup + " " + diaAntic + " " + horaAntiga);
-        System.err.println(diaNou + " " + horaNova + " " + aulaNova);
-
 
         //la eliminem de les seleccionades fins al moment
         Classe m = null;
         Classe d = null;
         int i = 0;
         boolean found = false;
-        System.out.println("Mostrem les assignacions: ");
+
         while (!found && i < classesSeleccionades.size()) {
             Classe c = classesSeleccionades.get(i); //seleccionem una de les classes seleccionades
-            c.showClasse();
             if (c.getId_assig().equals(idAssig) && c.getId_grup().equals(idGrup) && (c.getHoraInici() == horaAntiga) && c.getDia().equals(diaAntic)) {
                 d = c;
                 m = new Classe(c.getId_assig(), c.getId_grup(), c.getDia(), c.getHoraInici(), c.getHoraFi(), c.getIdAula());
@@ -266,7 +261,7 @@ public class Horari implements Serializable {
 
                     //les assignatures han de ser correquisit i els grups han de coincidir
                     if (a.corequisit.esCorrequisit(c.getId_assig()) && c.getId_grup().equals(m.getId_grup())) {
-                        System.out.println("Tenim un conflicte amb " + c.getId_assig() + " " + c.getId_grup() + " de correquisit");
+                        System.out.println("Tenim un conflicte amb " + c.getId_assig() + " " + c.getId_grup() + " de correquisit o de nivell");
                         return false;
                     }
                 }

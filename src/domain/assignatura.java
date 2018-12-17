@@ -187,6 +187,7 @@ public class assignatura implements Serializable {
             result.add(a);
         }
 
+
         return result;
     }
 

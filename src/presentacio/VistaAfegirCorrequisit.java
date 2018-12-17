@@ -61,7 +61,7 @@ public class VistaAfegirCorrequisit {
             if (!assig.equals(this.assig)) {
                 ArrayList<String> c = new ArrayList<String>();
                 c.add(assig);
-                VistaPrincipal.ctrl.afegirCorrequisit(plaEstudi, assig, c);
+                VistaPrincipal.ctrl.afegirCorrequisit(plaEstudi, this.assig, c);
                 SeccioPlans.refrescaArbrePlansEstudis();
                 escenari.close();
             }
