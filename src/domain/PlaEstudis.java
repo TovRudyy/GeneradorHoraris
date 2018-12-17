@@ -11,8 +11,8 @@ import java.util.*;
  * @author Olek
  * Date: 06/10/2018
  */
-
 public class PlaEstudis implements Serializable {
+
     /**Atributs **/
     private String id;  //Acrònim del Pla d'Estudis
     private TreeMap<String,assignatura> assignatures = new TreeMap<>(); //Assignatures pertanyents al pla d'estudis
@@ -28,7 +28,6 @@ public class PlaEstudis implements Serializable {
     public PlaEstudis(String id) {
         this.id = id;
     }
-
 
 
     /** Metodes **/
@@ -226,19 +225,6 @@ public class PlaEstudis implements Serializable {
     }
 
 
-    /**
-     *  Elimina la assignatura amb aquest identificador del conjunt total d'assignatures del pla d'estudis.
-     * @param id Identificador d'una assignatura.
-     */
-    public boolean eliminarAssignatura(String id) {
-        if (assignatures.remove(id) == null) {
-            System.err.println("ERROR: no existeix l'assignatura " + id);
-            return false;
-        }
-        System.err.println("DEBUG: s'ha eliminat l'assignatura " + id);
-        return true;
-    }
-
     //CREACIO I TRACTAMENT DE RESTRICCIONS FLEXIBLES
 
     /**
@@ -333,6 +319,7 @@ public class PlaEstudis implements Serializable {
     public ArrayList<String> getSubgrupsGrup(String grup, String assig) {
         return assignatures.get(assig).getSubgrupsGrup(grup);
     }
+
 
     public ArrayList<String> getCorrequisitsAssignatura(String assig) {
         return assignatures.get(assig).getCorrequisits();

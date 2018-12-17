@@ -16,6 +16,21 @@ public class RestriccioInterval extends RestriccioFlexible {
         this.horaFi = horaFi;
     }
 
+    public DiaSetmana getDia ()
+    {
+        return d;
+    }
+
+    public int getHoraIni ()
+    {
+        return horaIni;
+    }
+
+    public int getHoraFi ()
+    {
+        return horaFi;
+    }
+
     public void showInfo ()
     {
         System.out.println("El dia " + d + " a l'interval " + horaIni + " fins " + horaFi);
