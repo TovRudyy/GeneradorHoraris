@@ -3,6 +3,7 @@ package presentacio;
 import domain.ControladorAules;
 import domain.ControladorPlaEstudis;
 import domain.ControladorUtils;
+import domain.Tipus_Aula;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -142,33 +143,41 @@ public class CtrlPresentacio {
         CtrlAUS.removeAula(id);
     }
 
+
     public void borrarAulari() {
         CtrlAUS.borrarAulari();
     }
+
 
     public void CarregarFitxerAules(String fitxer) {
         CtrlAUS.carregarFitxerAules(fitxer);
     }
 
+
     public void borrarPlansEstudis() {
         CtrlPE.borrarPlansEstudis();
     }
+
 
     public void CarregarFitxerPlaEstudis(String fitxer) {
         CtrlPE.carregarFitxerPlaEstudis(fitxer);
     }
 
+
     public boolean existsPlaEstudi(String pe) {
         return CtrlPE.existsPlaEstudi(pe);
     }
+
 
     public ArrayList<String> getDiesSetmana() {
         return CtrlUtils.getDiesSetmana();
     }
 
+
     public ArrayList<String> getHoresHorari() {
         return CtrlUtils.getHoresHorari();
     }
+
 
     public boolean generaHorari(String pe) {
         return CtrlPE.generaHorari(pe);
@@ -179,9 +188,11 @@ public class CtrlPresentacio {
         return CtrlPE.getHorariSencer(pe);
     }
 
+
     public void exportarHorariTXT(String absolutePath, String pe) {
         CtrlPE.exportarHorariTXT(absolutePath, pe);
     }
+
 
     public void guardarHorariSencer(String plaEstudi, String absolutePath) {
         CtrlPE.guardaHorari(plaEstudi, absolutePath);
@@ -259,4 +270,28 @@ public class CtrlPresentacio {
     public boolean modificarHorari(String plaEstudi, String assig, String grup, String oldDia, int oldHora, String newDia, int newHora, String aula) {
         return CtrlPE.modificaHorari(plaEstudi,assig,grup,oldDia,oldHora,newDia,newHora,aula);
     }
+
+
+    //NO FUNCIONA PERQUE CAL RECARREGAR LES ASSIGNATURES
+    public void afegirAssignatura (String plaEstudi, String id_assig, String nom, int nivell, int n_classes_T, int dur_T, int n_classes_P, int dur_P, int n_classesL, int dur_L)
+    {
+        CtrlPE.addAssignatura(plaEstudi, id_assig, nom, nivell, n_classes_T, dur_T, n_classes_P, dur_P, n_classesL, dur_L);
+    }
+
+    public void afegirCorrequisit (String plaEstudi, String assig, ArrayList<String> nous_correquisits)
+    {
+        CtrlPE.afegirCorrequisit(plaEstudi, assig, nous_correquisits);
+    }
+
+    public void afegirGrup (String plaEstudi, String assignatura, String id, int capacitat, String horariGrup, Tipus_Aula t)
+    {
+        CtrlPE.afegirGrup(plaEstudi, assignatura, id, capacitat, horariGrup, t);
+    }
+
+
+    public void eliminarCorrequisit (String plaEstudi, String assignatura, ArrayList<String> aEliminar) {
+        CtrlPE.eliminarCorrequisit(plaEstudi, assignatura, aEliminar);
+    }
+
+
 }

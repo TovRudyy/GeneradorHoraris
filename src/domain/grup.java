@@ -81,6 +81,7 @@ public class grup implements Serializable {
         this.subgrup = r;
     }
 
+
     @Override
     /**
      * @return Retorna una string amb la informacio del id del grup, la seva capacitat, si es de mati o tarde i
@@ -90,21 +91,26 @@ public class grup implements Serializable {
         return idGrup + ":" + capacitat + ":" + horariGrup + ":" + tipus;
     }
 
+
     public boolean esSubgrup() {
         return !this.tipus.equals(Tipus_Aula.TEORIA);
     }
+
 
     public String getTipusAula() {
         return this.tipus.toString();
     }
 
+
     public void setCapacitat(int qt) {
         this.capacitat = qt;
     }
 
+
     public void setHorari(String valor) {
         this.horariGrup = valor;
     }
+
 
     public void setTipus(Tipus_Aula tipusAula) {
         System.err.println("DEBUG: vols canviar el tipus a " + tipusAula);

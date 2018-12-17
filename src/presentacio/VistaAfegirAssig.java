@@ -27,6 +27,7 @@ public class VistaAfegirAssig {
     TextField inputNclassL;
     TextField inputDurL;
 
+
     public VistaAfegirAssig(String pe) {
         this.plaEstudi = pe;
         escenari = new Stage();
@@ -49,12 +50,14 @@ public class VistaAfegirAssig {
         layout.add(id_assig, 0,row);
         layout.add(inputID, 1,row);
         row++;
+
         //Nom assignatura
         Label nom = new Label("Nom assignatura:");
         inputNom = new TextField();
         layout.add(nom, 0,row);
         layout.add(inputNom, 1,row);
         row++;
+
         //Nivell
         Label nivell = new Label("Nivell assignatura:");
         inputNivell = new TextField();
@@ -62,6 +65,7 @@ public class VistaAfegirAssig {
         layout.add(nivell, 0,row);
         layout.add(inputNivell, 1,row);
         row++;
+
         //Nombre classes teoria
         Label numClassesT = new Label("Nombre classes teoría:");
         inputNclassT = new TextField();
@@ -69,6 +73,7 @@ public class VistaAfegirAssig {
         layout.add(numClassesT, 0, row);
         layout.add(inputNclassT, 1, row);
         row++;
+
         //Duracio classes teoria
         Label durClassesT = new Label("Duració classes teoría:");
         inputDurT = new TextField();
@@ -76,6 +81,7 @@ public class VistaAfegirAssig {
         layout.add(durClassesT, 0, row);
         layout.add(inputDurT,1, row);
         row++;
+
         //Nombre classes problemes
         Label numClassesP = new Label("Nombre classes problemes:");
         inputNclassP = new TextField();
@@ -83,6 +89,7 @@ public class VistaAfegirAssig {
         layout.add(numClassesP, 0, row);
         layout.add(inputNclassP, 1, row);
         row++;
+
         //Duració classes problemes
         Label durClassesP = new Label("Duració classes problemes:");
         inputDurP = new TextField();
@@ -90,6 +97,7 @@ public class VistaAfegirAssig {
         layout.add(durClassesP, 0 , row);
         layout.add(inputDurP, 1, row);
         row++;
+
         //Nombre classes laboratori
         Label numClassesL = new Label("Nombre classes laboratori:");
         inputNclassL = new TextField();
@@ -97,6 +105,7 @@ public class VistaAfegirAssig {
         layout.add(numClassesL, 0, row);
         layout.add(inputNclassL, 1 , row);
         row++;
+
         //Duració classes laboratori
         Label durClassesL = new Label("Duració classes laboratori:");
         inputDurL = new TextField();
@@ -104,10 +113,13 @@ public class VistaAfegirAssig {
         layout.add(durClassesL, 0 , row);
         layout.add(inputDurL, 1, row);
         row++;
+
         //Boto crear
         Button create = new Button("Crear");
         create.setOnAction(e -> crearAssignatura());
         layout.add(create, 0, row);
+
+
         //Boto cancelar
         Button cancel = new Button("Cancelar");
         cancel.setOnAction(e -> exitVista());
@@ -121,6 +133,22 @@ public class VistaAfegirAssig {
     }
 
     private void crearAssignatura() {
+
+        //Agafem tots els atributs
+        String id = inputID.getText();
+        String nom = inputNom.getText();
+        int nivell = Integer.parseInt(inputNivell.getText());
+        int n_T = Integer.parseInt(inputNclassL.getText());
+        int dur_T = Integer.parseInt(inputDurT.getText());
+        int n_P = Integer.parseInt(inputNclassP.getText());
+        int dur_P = Integer.parseInt(inputDurP.getText());
+        int n_L = Integer.parseInt(inputNclassL.getText());
+        int dur_L = Integer.parseInt(inputDurL.getText());
+
+        VistaPrincipal.ctrl.afegirAssignatura(plaEstudi, id, nom, nivell, n_T, dur_T, n_P, dur_P, n_L, dur_L);
+
+        VistaPrincipal.refrescaArbrePlaEstudis(); //aqui hauriem de recarregar les assignatures
+
     }
 
     private void mustBeUnsignedInt(ObservableValue<? extends String> observable, String oldValue, String newValue) {

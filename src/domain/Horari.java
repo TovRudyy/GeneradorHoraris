@@ -503,6 +503,9 @@ public class Horari implements Serializable {
                 horaris.get(i - 8).get(dia).add(c.getId_assig() + "  " + c.getId_grup() + "  " + c.getIdAula());
             }
         }
+
+        printHorari();
+
         return horaris;
     }
 

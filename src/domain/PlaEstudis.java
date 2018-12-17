@@ -130,6 +130,12 @@ public class PlaEstudis implements Serializable {
             assignacions.addAll(a.getAssignacions(aules));
         }
 
+        ////
+        for (assignacio a : assignacions)
+            System.out.println(a.getIdAssig() + " " + a.getIdGrup());
+        /////
+
+
         afegirRestriccionsNivell(); //afeim a les assignatures les seves restriccions de nivell
 
         //aqui tenim totes les assignacions totals
@@ -423,6 +429,7 @@ public class PlaEstudis implements Serializable {
 
     }
 
+//DE MOMENT S'AFEGEIXEN PERO NO ES MOSTREN AL HORARI
 
     /**
      * @param a La assignatura a afegir
@@ -435,7 +442,6 @@ public class PlaEstudis implements Serializable {
         else {
             assignatures.put(id, a);
         }
-        //no cal tornar a generar les nostres assignacions perquè ho farem directament cada cop que generem el horari
         return true;
     }
 

@@ -1,5 +1,7 @@
 package presentacio;
 
+import com.sun.xml.internal.ws.api.message.ExceptionHasMessage;
+import domain.Aula_Exception;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
@@ -14,6 +16,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import domain.Tipus_Aula;
 
 public class VistaAfegirGrup {
     String plaEstudi;
@@ -74,7 +77,14 @@ public class VistaAfegirGrup {
         row++;
         //Boto crear
         Button create = new Button("Crear");
-        create.setOnAction(e -> afegirGrup());
+        create.setOnAction(e -> {
+            try {
+                afegirGrup();
+            } catch (Aula_Exception e1) {
+                e1.printStackTrace();
+            }
+        });
+
         layout.add(create, 0, row);
         //Boto cancelar
         Button cancel = new Button("Cancelar");
@@ -88,8 +98,40 @@ public class VistaAfegirGrup {
         escenari.close();
     }
 
-    private void afegirGrup() {
+
+    private void afegirGrup() throws Aula_Exception {
+        String id = inputID.getText();
+        int capacitat;
+        try {
+            capacitat = Integer.parseInt(inputCap.getText());
+        }
+        catch (Exception e) {
+            System.err.println("DEBUG: Error, s'ha volgut afegir una aula amb una capacitat inacceptable");
+            return;
+        };
+        if (capacitat < 0 || capacitat > 999) {
+            System.err.println("DEBUG: Error, s'ha volgut afegir una aula amb una capacitat inacceptable");
+            return;
+        }
+
+        if (horari.getSelectionModel().isEmpty()) {
+            System.err.println("DEBUG: Error, no es pot afegir una aula sense escollir-ne el horari!");
+            return;
+        }
+        String horariGrup = horari.getValue();
+
+        //agafem el tipus
+        if (tipus.getSelectionModel().isEmpty()) {
+            System.err.println("DEBUG: Error, no es pot afegir una aula sense escollir-ne el tipus!");
+            return;
+        }
+        Tipus_Aula t = Tipus_Aula.string_to_Tipus_Aula(tipus.getValue());
+
+        System.out.println(horariGrup);
+        VistaPrincipal.ctrl.afegirGrup(plaEstudi, assignatura, id, capacitat, horariGrup, t);
+        VistaPrincipal.refrescaArbrePlaEstudis();
     }
+
 
     private void mustBeUnsignedInt(ObservableValue<? extends String> observable, String oldValue, String newValue) {
         if (!newValue.equals("")) {

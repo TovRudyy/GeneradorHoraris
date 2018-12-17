@@ -169,6 +169,13 @@ public class assignatura implements Serializable {
     public ArrayList<assignacio> getAssignacions (Map<String, Aula> aules) {
         ArrayList <assignacio> result = new ArrayList<assignacio>();
 
+        System.out.println("La asssignatura" + id + "te els seguents grups");
+        for (Map.Entry<String, grup> g : grups.entrySet())
+        {
+            System.out.println(g.getKey());
+        }
+
+
         for (Map.Entry<String, grup> g_aux : grups.entrySet()) {
             grup g = g_aux.getValue();
             assignacio a;
@@ -222,6 +229,7 @@ public class assignatura implements Serializable {
         return id + ":" + nom + ":" + nivell;
     }
 
+
     public String toStringComplet() {
         String ret = "Id: " + id + ", nom: " + nom + "\nnivell:" + nivell + "\nclasses_teoria:" +
                 classes_teoria + "\nclasses_problemes:" + classes_problemes +
@@ -236,6 +244,7 @@ public class assignatura implements Serializable {
         }
         return ret;
     }
+
 
     public int getQtClassesTeoria() {
         return this.classes_teoria;
@@ -317,7 +326,21 @@ public class assignatura implements Serializable {
 
 
     public void esborraGrup(String grup) {
-        grups.remove(grup);
+        ArrayList<String> borrar = new ArrayList<>();
+        borrar.add(grup);
+        int a = Integer.parseInt(grup);
+        if (a % 10 == 0)   //si es de teoria cal esborrar tambe els seus subgrups
+        {
+            for (Map.Entry<String, grup> g : grups.entrySet())
+            {
+                if ((Integer.parseInt(g.getKey())) / 10 == (a/ 10)) borrar.add (g.getKey());
+            }
+        }
+
+
+        for (String aux : borrar)
+            grups.remove(aux);
+
     }
 
     public void setNom(String newValue) {
