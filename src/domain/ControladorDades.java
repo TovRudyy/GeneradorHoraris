@@ -207,6 +207,7 @@ public final class ControladorDades {
         }
     }
 
+
     private static void afegeixRestriccionsIntervals(PlaEstudis plaEstudis, JSONArray flexibles){
         for(Object c: flexibles){
             JSONObject cc = (JSONObject) c;

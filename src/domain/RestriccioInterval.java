@@ -16,6 +16,11 @@ public class RestriccioInterval extends RestriccioFlexible {
         this.horaFi = horaFi;
     }
 
+    public void showInfo ()
+    {
+        System.out.println("El dia " + d + " a l'interval " + horaIni + " fins " + horaFi);
+    }
+
     //Elimina les opcions de un map que no poden passar en el interval que te definit
     public void podaPossibilitats (Map<String, Map<DiaSetmana, LinkedList<Classe>>> possibles_classes)
     {

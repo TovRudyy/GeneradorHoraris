@@ -280,12 +280,22 @@
         {
           "dia": "Dilluns",
           "horaInici": 7,
-          "horaFinal": 10
+          "horaFinal": 14
         },
         {
           "dia": "Dimarts",
           "horaInici": 7,
-          "horaFinal": 10
+          "horaFinal": 14
+        },
+        {
+          "dia": "Dimecres",
+          "horaInici": 7,
+          "horaFinal": 14
+        },
+        {
+          "dia": "Dijous",
+          "horaInici": 7,
+          "horaFinal": 14
         }
       ]
     },
