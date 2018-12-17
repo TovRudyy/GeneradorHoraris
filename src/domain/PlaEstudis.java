@@ -238,12 +238,26 @@ public class PlaEstudis implements Serializable {
         restriccionsModificables.get(idAssigIGrup).add(r);
     }
 
+
+    public void eliminarRestriccioFlexible (String idAssigGrup)
+    {
+        restriccionsModificables.remove(idAssigGrup);
+    }
+
+
+
     /**
      * @return El conjunt total de restriccions associades al pla d'estudis.
      */
-    public HashMap<String, ArrayList<RestriccioFlexible>> getRestriccionsFlexibles ()
+    public ArrayList<String> getRestriccionsFlexibles ()
     {
-        return restriccionsModificables;
+        ArrayList<String> result = new ArrayList<>();
+        for (Map.Entry<String, ArrayList<RestriccioFlexible>> r : restriccionsModificables.entrySet())
+        {
+            String a = "El grup " + r.getKey();
+            result.add(a);
+        }
+        return result;
     }
 
 

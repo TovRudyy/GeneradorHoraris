@@ -16,19 +16,9 @@ public class RestriccioInterval extends RestriccioFlexible {
         this.horaFi = horaFi;
     }
 
-    public DiaSetmana getDia ()
+    public String getInfo ()
     {
-        return d;
-    }
-
-    public int getHoraIni ()
-    {
-        return horaIni;
-    }
-
-    public int getHoraFi ()
-    {
-        return horaFi;
+        return (" no es pot donar el " + d + " de " + horaIni + " a " + horaFi);
     }
 
     public void showInfo ()

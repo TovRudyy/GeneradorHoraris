@@ -11,4 +11,7 @@ public abstract class RestriccioFlexible extends Restriccio {
     public abstract void showInfo ();
 
     public abstract void podaPossibilitats (Map<String, Map<DiaSetmana, LinkedList<Classe>>> possibles_classes);
+
+    public abstract String getInfo();
+
 }
