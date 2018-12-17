@@ -160,8 +160,14 @@ public class PlaEstudis implements Serializable {
     public void afegirCorrequisits (String[] c) {
         String primera = c[0];
         String segona  = c[1];
-        assignatures.get(primera).addCorrequisit(segona);
-        assignatures.get(segona).addCorrequisit(primera);
+        if (! (assignatures.containsKey(primera)) | !(assignatures.containsKey(segona))) {
+            System.err.println("No es pot afegir perque una de les assignatures no existeix");
+            return;
+        }
+        else {
+            assignatures.get(primera).addCorrequisit(segona);
+            assignatures.get(segona).addCorrequisit(primera);
+        }
     }
 
 
@@ -169,8 +175,14 @@ public class PlaEstudis implements Serializable {
     {
         String primera = c[0];
         String segona  = c[1];
-        assignatures.get(primera).eliminarCorrequisit(segona);
-        assignatures.get(segona).eliminarCorrequisit(primera);
+        if (! (assignatures.containsKey(primera)) | !(assignatures.containsKey(segona))) {
+            System.err.println("No es pot afegir perque una de les assignatures no existeix");
+            return;
+        }
+        else {
+            assignatures.get(primera).eliminarCorrequisit(segona);
+            assignatures.get(segona).eliminarCorrequisit(primera);
+        }
     }
 
 

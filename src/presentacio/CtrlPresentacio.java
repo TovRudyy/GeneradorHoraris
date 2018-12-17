@@ -285,14 +285,6 @@ public class CtrlPresentacio {
     {
         CtrlPE.afegirGrup(plaEstudi, assignatura, id, capacitat, horariGrup, t);
 
-        ArrayList<String> a = new ArrayList<>();
-        a.add("FM");
-       // a.add("AC");
-        //eliminem el correquisit de fm
-        CtrlPE.eliminarCorrequisit(plaEstudi, assignatura, a);
-
-        //afegim el correquisit de fm
-        CtrlPE.afegirCorrequisit(plaEstudi, assignatura , a);
     }
 
 
