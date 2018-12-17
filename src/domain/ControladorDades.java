@@ -98,7 +98,11 @@ public final class ControladorDades {
     private static ArrayList<PlaEstudis> llegirCarpetaPESerialized() {
         ArrayList<PlaEstudis> plans = new ArrayList<>();
         for(Object o: ControladorPersistencia.llegirCarpetaPlansSerialized()) {
-            plans.add((PlaEstudis) o);
+            try{
+                plans.add((PlaEstudis) o);
+            } catch(ClassCastException e){
+                plans.addAll((ArrayList<PlaEstudis>) o);
+            }
         }
         return plans;
     }
@@ -109,6 +113,8 @@ public final class ControladorDades {
         if(assignatures != null) afegeixAssignatures(plaEstudis, assignatures);
         JSONArray corequisits = (JSONArray) jsonObject.get("corequisits");
         if(corequisits != null) afegeixCorrequisits(plaEstudis, corequisits);
+        JSONArray flexibles = (JSONArray) jsonObject.get("restriccions_intervals");
+        if(flexibles != null)afegeixRestriccionsIntervals(plaEstudis, flexibles);
         return plaEstudis;
     }
 
@@ -201,6 +207,21 @@ public final class ControladorDades {
         }
     }
 
+    private static void afegeixRestriccionsIntervals(PlaEstudis plaEstudis, JSONArray flexibles){
+        for(Object c: flexibles){
+            JSONObject cc = (JSONObject) c;
+            String id = (String) cc.get("key");
+            JSONArray rests = (JSONArray) cc.get("value");
+            for(Object r: rests){
+                JSONObject rest = (JSONObject) r;
+                DiaSetmana dia = DiaSetmana.string_To_DiaSetmana((String) rest.get("dia"));
+                int hI = ((Long) rest.get("horaInici")).intValue();
+                int hF = ((Long) rest.get("horaFinal")).intValue();
+                RestriccioInterval interval = new RestriccioInterval(dia, hI, hF);
+                plaEstudis.afegirRestriccioFlexible(interval, id);
+            }
+        }
+    }
 
     private static Map<String, Aula> JSONToAules(JSONArray obj) throws Aula_Exception{
         Map<String, Aula> aules = new TreeMap<>();

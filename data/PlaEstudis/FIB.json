@@ -272,5 +272,32 @@
       "a1":"IC",
       "a2":"FM"
     }
+  ],
+  "restriccions_intervals": [
+    {
+      "key": "F10",
+      "value": [
+        {
+          "dia": "Dilluns",
+          "horaInici": 7,
+          "horaFinal": 10
+        },
+        {
+          "dia": "Dimarts",
+          "horaInici": 7,
+          "horaFinal": 10
+        }
+      ]
+    },
+    {
+      "key": "IC20",
+      "value": [
+        {
+          "dia": "Dimecres",
+          "horaInici": 13,
+          "horaFinal": 16
+        }
+      ]
+    }
   ]
 }
