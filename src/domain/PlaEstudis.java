@@ -126,14 +126,9 @@ public class PlaEstudis implements Serializable {
         LinkedList<assignacio> assignacions = new LinkedList<assignacio>();
         for (Map.Entry<String, assignatura> assig : assignatures.entrySet()) {
             assignatura a = assig.getValue();
-            a.showClasses();
             a.noSolapis_Teoria_i_Problemes();
             assignacions.addAll(a.getAssignacions(aules));
         }
-
-        System.out.println("LES NOSTRES ASSIGNACIONS SON");
-        for (assignacio a : assignacions)
-            a.showAll();
 
         afegirRestriccionsNivell(); //afeim a les assignatures les seves restriccions de nivell
 

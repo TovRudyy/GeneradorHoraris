@@ -133,11 +133,16 @@ public class VistaAfegirAssig {
     }
 
     private void crearAssignatura() {
+
         //Agafem tots els atributs
         String id = inputID.getText();
+        if (VistaPrincipal.ctrl.existsAssignaturaPE(plaEstudi, id)) {
+            PopUpWindow.display("ERROR", "L'assignatura " + id +" ja existeix!");
+            return;
+        }
         String nom = inputNom.getText();
         int nivell = Integer.parseInt(inputNivell.getText());
-        int n_T = Integer.parseInt(inputNclassT.getText());
+        int n_T = Integer.parseInt(inputNclassL.getText());
         int dur_T = Integer.parseInt(inputDurT.getText());
         int n_P = Integer.parseInt(inputNclassP.getText());
         int dur_P = Integer.parseInt(inputDurP.getText());
@@ -147,6 +152,7 @@ public class VistaAfegirAssig {
         VistaPrincipal.ctrl.afegirAssignatura(plaEstudi, id, nom, nivell, n_T, dur_T, n_P, dur_P, n_L, dur_L);
 
         VistaPrincipal.refrescaArbrePlaEstudis(); //aqui hauriem de recarregar les assignatures
+        escenari.close();
 
     }
 

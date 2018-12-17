@@ -56,6 +56,10 @@ public class MenuPrincipal {
         MenuItem loadAules = new MenuItem("Carregar fitxer d'aules");
         loadAules.setOnAction(e -> loadAules());
         menuAulari.getItems().add(loadAules);
+        //Submenu guardar horari
+        MenuItem saveAules = new MenuItem("Guardar Aules");
+        saveAules.setOnAction(e -> guardarAules());
+        menuAulari.getItems().add(saveAules);
         //Menu PlaEstudis
         Menu menuPE = new Menu("Plans Estudis");
         menu.getMenus().add(menuPE);
@@ -67,8 +71,44 @@ public class MenuPrincipal {
         MenuItem loadPE = new MenuItem("Carregar fitxer pla estudis");
         loadPE.setOnAction(e -> loadPlaEstudis());
         menuPE.getItems().add(loadPE);
+        //Submenu guardar fiter Pla estudis
+        MenuItem savePE = new MenuItem("Guardar Pla Estudis");
+        savePE.setOnAction(e -> guardarPE());
+        menuPE.getItems().add(savePE);
         //Addicio elements a topLayout
         layout.getChildren().add(menu);
+    }
+
+    private void guardarPE() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Guardar Aulari");
+        fileChooser.setInitialDirectory(new File("data/PlaEstudis"));
+        Stage escenari = getFileChooserStage();
+        File fitxer = fileChooser.showSaveDialog(escenari);
+        if (fitxer != null) {
+            try {
+                VistaPrincipal.ctrl.guardarPlaEstudis(fitxer.getAbsolutePath());
+            } catch (Exception e) {
+                // TODO: handle exception here
+                PopUpWindow.display("Save Error", "Error al guardar l'aulari");
+            }
+        }
+    }
+
+    private void guardarAules() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Guardar Aulari");
+        fileChooser.setInitialDirectory(new File("data/Aules"));
+        Stage escenari = getFileChooserStage();
+        File fitxer = fileChooser.showSaveDialog(escenari);
+        if (fitxer != null) {
+            try {
+                VistaPrincipal.ctrl.guardarAulari(fitxer.getAbsolutePath());
+            } catch (Exception e) {
+                // TODO: handle exception here
+                PopUpWindow.display("Save Error", "Error al guardar l'aulari");
+            }
+        }
     }
 
     private void loadHorari() {

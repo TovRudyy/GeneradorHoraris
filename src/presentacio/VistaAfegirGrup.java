@@ -118,10 +118,7 @@ public class VistaAfegirGrup {
             System.err.println("DEBUG: Error, no es pot afegir una aula sense escollir-ne el horari!");
             return;
         }
-
         String horariGrup = horari.getValue();
-        if (horariGrup.equals("Matins")) horariGrup = "M";
-        else horariGrup = "T";
 
         //agafem el tipus
         if (tipus.getSelectionModel().isEmpty()) {
@@ -130,9 +127,10 @@ public class VistaAfegirGrup {
         }
         Tipus_Aula t = Tipus_Aula.string_to_Tipus_Aula(tipus.getValue());
 
-
+        System.out.println(horariGrup);
         VistaPrincipal.ctrl.afegirGrup(plaEstudi, assignatura, id, capacitat, horariGrup, t);
         VistaPrincipal.refrescaArbrePlaEstudis();
+        escenari.close();
     }
 
 

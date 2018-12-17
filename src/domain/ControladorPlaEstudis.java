@@ -567,7 +567,7 @@ public class ControladorPlaEstudis {
     public void addAssignatura (String plaEstudi, String id_assig, String nom, int nivell, int n_classes_T, int dur_T, int n_classes_P, int dur_P, int n_classesL, int dur_L)
     {
         assignatura a = new assignatura (id_assig, nom, nivell);
-        a.setClasses(n_classes_T, dur_T, n_classesL, dur_L, n_classes_P, dur_P);
+        a.setClasses(n_classes_T, dur_T, n_classes_P, dur_P, n_classesL, dur_L);
 
         PlaEstudis pe = getPlaEstudi(plaEstudi);
         pe.afegirAssignatura (a);
@@ -610,5 +610,12 @@ public class ControladorPlaEstudis {
     }
 
 
-
+    public void guardarPlaEstudis(String path) {
+        try {
+            ControladorDades.guarda(this.ConjuntPE, path);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.err.println("ERROR: error al guardar pla estudis!");
+        }
+    }
 }
