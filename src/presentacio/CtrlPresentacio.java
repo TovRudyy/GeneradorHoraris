@@ -292,5 +292,4 @@ public class CtrlPresentacio {
         CtrlPE.eliminarCorrequisit(plaEstudi, assignatura, aEliminar);
     }
 
-
 }
