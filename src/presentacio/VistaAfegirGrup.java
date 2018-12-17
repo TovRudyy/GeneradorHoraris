@@ -130,7 +130,6 @@ public class VistaAfegirGrup {
         System.out.println(horariGrup);
         VistaPrincipal.ctrl.afegirGrup(plaEstudi, assignatura, id, capacitat, horariGrup, t);
         VistaPrincipal.refrescaArbrePlaEstudis();
-        escenari.close();
     }
 
 

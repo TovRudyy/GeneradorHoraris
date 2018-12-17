@@ -217,13 +217,4 @@ public class ControladorAules {
             afegirAulaSiNoExisteix(key, noves.get(key));
         }
     }
-
-    public void guardaAulari(String path) {
-        try {
-            ControladorDades.guarda(this.Aulari, path);
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.err.println("ERROR: error al guardar aulari!");
-        }
-    }
 }

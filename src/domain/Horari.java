@@ -193,7 +193,7 @@ public class Horari implements Serializable {
         while (!found && i < classesSeleccionades.size()) {
             Classe c = classesSeleccionades.get(i); //seleccionem una de les classes seleccionades
             c.showClasse();
-            if (c.getId_assig().equals(idAssig) && c.getId_grup().equals(idGrup) && (c.getHoraInici() == horaAntiga) && c.getDia().equals(diaAntic)) {
+            if (c.getId_assig().equals(idAssig) && c.getId_grup().equals(idGrup) && (c.getHoraInici() <= horaAntiga) && c.getDia().equals(diaAntic)) {
                 d = c;
                 m = new Classe(c.getId_assig(), c.getId_grup(), c.getDia(), c.getHoraInici(), c.getHoraFi(), c.getIdAula());
                 found = true;

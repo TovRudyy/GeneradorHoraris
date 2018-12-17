@@ -10,8 +10,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.VBox;
 
-import java.util.ArrayList;
-
 public class SeccioBotonsPE {
     TreeView<String> arbre;
     VBox layout;
@@ -42,47 +40,10 @@ public class SeccioBotonsPE {
         Button rmGroup = new Button("Eliminar grup");
         rmGroup.setOnAction(e -> esborrarGrup());
         layout.getChildren().add(rmGroup);
-        //Boto afegir correquisit
-        Button addCorr = new Button("Afegir correquisit");
-        addCorr.setOnAction(e -> afegirCorrequisit());
-        layout.getChildren().add(addCorr);
-        //Boto eliminar correquisit
-        Button rmCorr = new Button("Eliminar correquisit");
-        rmCorr.setOnAction(e -> eliminarCorrequisit());
-        layout.getChildren().add(rmCorr);
         //Boto modificar atribut
         Button modify = new Button("Modificar atribut");
         modify.setOnAction(e -> modificarAtribut());
         layout.getChildren().add(modify);
-    }
-
-    private void afegirCorrequisit() {
-        String pe = arbre.getSelectionModel().getSelectedItem().getParent().getValue();
-        String assig = arbre.getSelectionModel().getSelectedItem().getValue();
-        if (VistaPrincipal.ctrl.existsPlaEstudi(pe)) {
-            if (VistaPrincipal.ctrl.existsAssignaturaPE(pe, assig)) {
-                VistaAfegirCorrequisit vcor = new VistaAfegirCorrequisit(pe, assig);
-                SeccioPlans.refrescaArbrePlansEstudis();
-            }
-        }
-    }
-
-    private void eliminarCorrequisit() {
-        String corr = arbre.getSelectionModel().getSelectedItem().getValue();
-        String pe;
-        String assig;
-        if(arbre.getSelectionModel().getSelectedItem().getParent().getValue().equals("Correquisits")) {
-            pe = arbre.getSelectionModel().getSelectedItem().getParent().getParent().getParent().getValue();
-            assig = arbre.getSelectionModel().getSelectedItem().getParent().getParent().getValue();
-            if (VistaPrincipal.ctrl.existsPlaEstudi(pe)) {
-                if (VistaPrincipal.ctrl.existsAssignaturaPE(pe, assig)) {
-                    ArrayList<String> c = new ArrayList<String>();
-                    c.add(corr);
-                    VistaPrincipal.ctrl.eliminarCorrequisit(pe, assig, c);
-                    SeccioPlans.refrescaArbrePlansEstudis();
-                }
-            }
-        }
     }
 
     private void modificarAtribut() {

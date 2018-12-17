@@ -292,11 +292,5 @@ public class CtrlPresentacio {
         CtrlPE.eliminarCorrequisit(plaEstudi, assignatura, aEliminar);
     }
 
-    public void guardarAulari(String path) {
-        CtrlAUS.guardaAulari(path);
-    }
 
-    public void guardarPlaEstudis(String path) {
-        CtrlPE.guardarPlaEstudis(path);
-    }
 }
