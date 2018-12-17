@@ -78,6 +78,15 @@ public class assignacio implements Serializable {
         return idAssig;
     }
 
+
+    /**
+     * @return La duracio de les seves classes.
+     */
+    public int getDuracioClasses ()
+    {
+        return duracioClasses;
+    }
+
     /**
      * @return El id del grup de la assignacio.
      */

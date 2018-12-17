@@ -169,13 +169,6 @@ public class assignatura implements Serializable {
     public ArrayList<assignacio> getAssignacions (Map<String, Aula> aules) {
         ArrayList <assignacio> result = new ArrayList<assignacio>();
 
-        System.out.println("La asssignatura" + id + "te els seguents grups");
-        for (Map.Entry<String, grup> g : grups.entrySet())
-        {
-            System.out.println(g.getKey());
-        }
-
-
         for (Map.Entry<String, grup> g_aux : grups.entrySet()) {
             grup g = g_aux.getValue();
             assignacio a;

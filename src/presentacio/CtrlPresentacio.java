@@ -280,7 +280,7 @@ public class CtrlPresentacio {
         CtrlPE.afegirCorrequisit(plaEstudi, assig, nous_correquisits);
     }
 
-//public void eliminarCorrequisit (String plaEstudi, String assignatura, ArrayList<String> aEliminar)
+
     public void afegirGrup (String plaEstudi, String assignatura, String id, int capacitat, String horariGrup, Tipus_Aula t)
     {
         CtrlPE.afegirGrup(plaEstudi, assignatura, id, capacitat, horariGrup, t);

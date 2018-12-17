@@ -179,25 +179,30 @@ public class Horari implements Serializable {
      * @return True si hem pogut fer el canvi, false altrament.
      */
     public boolean modificaClasse(String idAssig, String idGrup, DiaSetmana diaAntic, int horaAntiga, DiaSetmana diaNou, int horaNova, String aulaNova) {
+        System.out.println("UNA NOVA MODIFICACIO");
+        System.err.println(idAssig + " " + idGrup + " " + diaAntic + " " + horaAntiga);
+        System.err.println(diaNou + " " + horaNova + " " + aulaNova);
+
+
         //la eliminem de les seleccionades fins al moment
-        Classe borrada = null;
+        Classe m = null;
+        Classe d = null;
         int i = 0;
         boolean found = false;
+        System.out.println("Mostrem les assignacions: ");
         while (!found && i < classesSeleccionades.size()) {
             Classe c = classesSeleccionades.get(i); //seleccionem una de les classes seleccionades
-            if (c.getId_assig().equals(idAssig) && c.getId_grup().equals(idGrup) && c.getHoraInici() == horaAntiga && c.getDia().equals(diaAntic)) {
-                borrada = c;    //entrem aqui si hem trobat la classe
-                classesSeleccionades.remove(c);
-                conjuntAssignacions.get(c.getId_assig() + c.getId_grup()).eliminarSeleccionada();    //tambe la eliminem de les seleccionades de la assignacio
+            c.showClasse();
+            if (c.getId_assig().equals(idAssig) && c.getId_grup().equals(idGrup) && (c.getHoraInici() == horaAntiga) && c.getDia().equals(diaAntic)) {
+                d = c;
+                m = new Classe(c.getId_assig(), c.getId_grup(), c.getDia(), c.getHoraInici(), c.getHoraFi(), c.getIdAula());
                 found = true;
             }
             ++i;
         }
 
-
-        if (borrada != null) {  //ens assegurem que nomes ho fem si hem trobat la classe especificada
-            //Ara modifiquem la classe amb les noves dades i la provem d'afegir
-            Classe m = borrada;
+        //aqui nomes entrem si la hem trobat abans
+        if (m != null) {
             assignacio a = conjuntAssignacions.get(m.getId_assig() + m.getId_grup());
             int horaFi = m.getDurada() + horaNova;
 
@@ -207,10 +212,30 @@ public class Horari implements Serializable {
                 return false;
             }
 
-            //comprovem que l'aula existeix i que compleix els requisits.
-            if (!(aules.containsKey(aulaNova) && aules.get(aulaNova).getCapacitat() <= a.getCapacitat() &&
-                    aules.get(aulaNova).getTipus() == a.getTipus())) {
-                System.out.println("La aula no es correcte");
+            if (! aules.containsKey(aulaNova)) {
+                System.err.println("DEBUG: L'aula no existeix");
+                return false;
+            }
+
+            if (aules.get(aulaNova).getCapacitat() < a.getCapacitat()){
+                System.err.println("DEBUG: L'aula no té prou capacitat");
+                return false;
+            }
+
+            if (! aules.get(aulaNova).getTipus().equals(a.getTipus())) {
+                System.err.println("DEBUG: L'aula no es del tipus requerit");
+                return false;
+            }
+
+            if (a.esMatins() && ((horaFi) > 14 ))
+            {
+                System.out.println("La hora fi son " + horaFi);
+                System.err.println("DEBUG: No podem assignar una classe de matins a una hora de tarda");
+                return false;
+            }
+
+            if (!a.esMatins() && (horaNova < 14)){
+                System.err.println("DEBUG: No podem assignar una classe de tardes a una hora de matins");
                 return false;
             }
 
@@ -223,18 +248,19 @@ public class Horari implements Serializable {
             //ara comprovem si la podem afegir
 
             for (Classe c : classesSeleccionades) {
-                if (Restriccio.solapenHores(c.getHoraInici(), c.getHoraFi(), m.getHoraInici(), m.getHoraFi())
+                if (c != d && Restriccio.solapenHores(c.getHoraInici(), c.getHoraFi(), m.getHoraInici(), m.getHoraFi())
                         && c.getDia().equals(m.getDia())) {
                     if (c.getIdAula().equals(m.getIdAula())) {
                         System.out.println("Tenim un conflicte amb " + c.getId_assig() + " "+ c.getId_grup() + " de ocupacio.");
                         return false;  //restriccio ocupacio
-
                     }
+
                     int c1 = Integer.parseInt(c.getId_grup());
                     int m1 = Integer.parseInt(m.getId_grup());
 
                     //error amb un subgrup
-                    if ((c.getId_assig().equals(m.getId_assig())) && (c1 % 10 == 0) && (c1 / 10 == m1 / 10)) {
+                    if ((c.getId_assig().equals(m.getId_assig())) && ((c1 % 10 == 0) && (c1 / 10 == m1 / 10) ||
+                            (m1 % 10 == 0) && (m1 / 10 == c1 / 10))) {
                         System.out.println("Tenim un conflicte amb " + c.getId_assig() +" " + c.getId_grup() + " de subgrup");
                         return false;
                     }
@@ -247,6 +273,12 @@ public class Horari implements Serializable {
                 }
 
             }
+
+            //borrem la vella
+            classesSeleccionades.remove(d);
+            conjuntAssignacions.get(d.getId_assig() + d.getId_grup()).eliminarSeleccionada();    //tambe la eliminem de les seleccionades de la assignacio
+
+            //afegim la nova
             a.afegirSeleccionada();
             classesSeleccionades.add(m);
             return true;

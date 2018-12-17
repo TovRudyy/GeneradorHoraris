@@ -130,12 +130,6 @@ public class PlaEstudis implements Serializable {
             assignacions.addAll(a.getAssignacions(aules));
         }
 
-        ////
-        for (assignacio a : assignacions)
-            System.out.println(a.getIdAssig() + " " + a.getIdGrup());
-        /////
-
-
         afegirRestriccionsNivell(); //afeim a les assignatures les seves restriccions de nivell
 
         //aqui tenim totes les assignacions totals
