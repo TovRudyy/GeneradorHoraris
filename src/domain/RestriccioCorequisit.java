@@ -46,6 +46,10 @@ public class RestriccioCorequisit extends Restriccio {
     }
 
 
+    public boolean eliminarAssignatura (String id_assignatura)
+    {
+        return assignatures.remove(id_assignatura);
+    }
 
 
     /**

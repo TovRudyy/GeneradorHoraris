@@ -74,6 +74,7 @@ public class assignatura implements Serializable {
         return nivell;
     }
 
+
     public RestriccioCorequisit getCorequisits() {
         return corequisits;
     }
@@ -168,8 +169,6 @@ public class assignatura implements Serializable {
     public ArrayList<assignacio> getAssignacions (Map<String, Aula> aules) {
         ArrayList <assignacio> result = new ArrayList<assignacio>();
 
-        RestriccioOcupacio r = new RestriccioOcupacio();
-
         for (Map.Entry<String, grup> g_aux : grups.entrySet()) {
             grup g = g_aux.getValue();
             assignacio a;
@@ -242,25 +241,31 @@ public class assignatura implements Serializable {
         return this.classes_teoria;
     }
 
+
     public int getDuradaClassesTeoria() {
         return this.duracio_teoria;
     }
+
 
     public int getQtClassesProblemes() {
         return this.classes_problemes;
     }
 
+
     public int getDuradaClassesProblemes() {
         return this.duracio_problemes;
     }
+
 
     public int getQtClassesLaboratori() {
         return this.classes_laboratori;
     }
 
+
     public int getDuradaClassesLaboratori() {
         return this.duracio_laboratori;
     }
+
 
     public ArrayList<String> getGrupsTeoria() {
         ArrayList<String> ret = new ArrayList<String>();
@@ -276,13 +281,16 @@ public class assignatura implements Serializable {
         return grups.get(grup).getCapacitat();
     }
 
+
     public String getHorariGrup(String grup) {
         return grups.get(grup).getHorariAssig();
     }
 
+
     public String getTipusAulaGrup(String grup) {
         return grups.get(grup).getTipusAula();
     }
+
 
     public ArrayList<String> getSubgrupsGrup(String grup) {
         ArrayList<String> ret = new ArrayList<String>();
@@ -307,6 +315,7 @@ public class assignatura implements Serializable {
         return grups.containsKey(grup);
     }
 
+
     public void esborraGrup(String grup) {
         grups.remove(grup);
     }
@@ -315,43 +324,70 @@ public class assignatura implements Serializable {
         this.nom = newValue;
     }
 
+
     public void setNivell(int nivell) {
         this.nivell = nivell;
     }
+
 
     public void setQtClassesTeoria(int qt) {
         this.classes_teoria = qt;
     }
 
+
     public void setDuradaClassesTeoria(int qt) {
         this.duracio_teoria = qt;
     }
+
 
     public void setQtClassesProblemes(int qt) {
         this.classes_problemes = qt;
     }
 
+
     public void setDuradaClassesProblemes(int qt) {
         this.duracio_problemes = qt;
     }
+
 
     public void setQtClassesLaboratori(int qt) {
         this.classes_laboratori = qt;
     }
 
+
     public void setDuradaClassesLaboratori(int qt) {
         this.duracio_laboratori = qt;
     }
+
 
     public void setCapacitatGrup(String grup, int qt) {
         grups.get(grup).setCapacitat(qt);
     }
 
+
     public void setHorariGrup(String grup, String valor) {
         grups.get(grup).setHorari(valor);
     }
 
+
     public void setTipusGrup(String grup, Tipus_Aula tipusAula) {
         grups.get(grup).setTipus(tipusAula);
     }
+
+
+    public boolean afegirGrup (grup g)
+    {
+        String id = g.getId();
+        if (hasGrup(id)) return false;
+        else {
+            grups.put(id, g);
+            return true;
+        }
+    }
+
+    public boolean eliminarCorrequisit (String id_altre)
+    {
+        return corequisits.eliminarAssignatura (id_altre);
+    }
+
 }

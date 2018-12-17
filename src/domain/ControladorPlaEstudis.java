@@ -535,10 +535,12 @@ public class ControladorPlaEstudis {
         pe.setCapacitatGrupAssignatura(assig, grup, qt);
     }
 
+
     public void setHorariGrupAssignatura(String id, String assig, String grup, String valor) {
         PlaEstudis pe = getPlaEstudi(id);
         pe.setHorariGrupAssignatura(assig, grup, valor);
     }
+
 
     public void setTipusGrupAssignatura(String id, String assig, String grup, String newValue) {
         PlaEstudis pe = getPlaEstudi(id);
@@ -548,4 +550,64 @@ public class ControladorPlaEstudis {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Afegeix una assignatura al pla d'estudi, sempre que el identificador no estigui repetit.
+     * @param plaEstudi
+     * @param id_assig
+     * @param nom
+     * @param nivell
+     * @param n_classes_T
+     * @param dur_T
+     * @param n_classes_P
+     * @param dur_P
+     * @param n_classesL
+     * @param dur_L
+     */
+    public void afegirAssignatura (String plaEstudi, String id_assig, String nom, int nivell, int n_classes_T, int dur_T, int n_classes_P, int dur_P, int n_classesL, int dur_L)
+    {
+        assignatura a = new assignatura (id_assig, nom, nivell);
+        a.setClasses(n_classes_T, dur_T, n_classes_P, dur_P, n_classesL, dur_L);
+
+        PlaEstudis pe = getPlaEstudi(plaEstudi);
+        pe.afegirAssignatura (a);
+    }
+
+
+
+    /**
+     * @param plaEstudi
+     * @param assig
+     * @param nous_correquisits
+     */
+    public void afegirCorrequisit (String plaEstudi, String assig, ArrayList<String> nous_correquisits)
+    {
+        PlaEstudis pe = getPlaEstudi(plaEstudi);
+        for (String n : nous_correquisits)
+        {
+            String[] a = {assig, n};
+            pe.afegirCorrequisits(a);
+        }
+    }
+
+    public void afegirGrup (String plaEstudi, String assignatura, String id, int capacitat, String horariGrup, Tipus_Aula t)
+    {
+        PlaEstudis pe = getPlaEstudi(plaEstudi);
+        grup g = new grup (id, capacitat, horariGrup, t);
+        pe.afegirGrupAssignatura (assignatura, g);
+    }
+
+
+    public void eliminarCorrequisit (String plaEstudi, String assignatura, ArrayList<String> aEliminar)
+    {
+        PlaEstudis pe = getPlaEstudi(plaEstudi);
+        for (String n : aEliminar)
+        {
+            String[] a = {assignatura, n};
+            pe.eliminarCorrequisit(a);
+        }
+    }
+
+
+
 }

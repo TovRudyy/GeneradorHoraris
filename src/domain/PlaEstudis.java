@@ -149,13 +149,22 @@ public class PlaEstudis implements Serializable {
 
     /**
      * Afegeix a cadascuna de les assignatures, els seus nous correquisits.
-     * @param c Una array de strings que indiquen els diferents identificadors dels correquisits.
+     * @param c Una array de strings que indiquen els diferents identificadors dels correquisits. (el primer sera el identificador de la primer assignatura i la segona el de la segona)
      */
     public void afegirCorrequisits (String[] c) {
         String primera = c[0];
         String segona  = c[1];
         assignatures.get(primera).addCorrequisit(segona);
         assignatures.get(segona).addCorrequisit(primera);
+    }
+
+
+    public void eliminarCorrequisit (String[] c)
+    {
+        String primera = c[0];
+        String segona  = c[1];
+        assignatures.get(primera).eliminarCorrequisit(segona);
+        assignatures.get(segona).eliminarCorrequisit(primera);
     }
 
 
@@ -291,9 +300,13 @@ public class PlaEstudis implements Serializable {
         return assignatures.get(assig).getGrupsTeoria();
     }
 
+
+
     public int getCapacitatGrup(String grup, String assig) {
         return assignatures.get(assig).getCapacitatGrup(grup);
     }
+
+
 
     public String getHorariGrup(String grup, String assig) {
         return assignatures.get(assig).getHorariGrup(grup);
@@ -319,6 +332,7 @@ public class PlaEstudis implements Serializable {
         return horari.modificaClasse(assig, grup, d, h, diaNou, horaNova, aulaNova);
     }
 
+
     public LinkedList<LinkedList<Queue<String>>> getHorariSencer() {
         if (horari == null) {
             System.err.println("ERROR: horari és null!");
@@ -331,37 +345,46 @@ public class PlaEstudis implements Serializable {
         return horari.toStringSencer();
     }
 
+
     public boolean existsHorari() {
         return (horari != null);
     }
+
 
     public boolean hasAssignatura(String assig) {
         return assignatures.containsKey(assig);
     }
 
+
     public void removeAssig(String assig) {
         assignatures.remove(assig);
     }
+
 
     public boolean existsGrupAssignatura(String assig, String grup) {
         return assignatures.get(assig).hasGrup(grup);
     }
 
+
     public void esborrarGrupAssignatura(String assig, String grup) {
         assignatures.get(assig).esborraGrup(grup);
     }
+
 
     public void setNomAssigantura(String assig, String newValue) {
         assignatures.get(assig).setNom(newValue);
     }
 
+
     public void setNivellAssigantura(String assig, int nivell) {
         assignatures.get(assig).setNivell(nivell);
     }
 
+
     public void setQtClassesTeoriaAssigantura(String assig, int qt) {
         assignatures.get(assig).setQtClassesTeoria(qt);
     }
+
 
     public void setDuradaClassesTeoriaAssigantura(String assig, int qt) {
         assignatures.get(assig).setDuradaClassesTeoria(qt);
@@ -371,13 +394,16 @@ public class PlaEstudis implements Serializable {
         assignatures.get(assig).setQtClassesProblemes(qt);
     }
 
+
     public void setDuradaClassesProblemesAssigantura(String assig, int qt) {
         assignatures.get(assig).setDuradaClassesProblemes(qt);
     }
 
+
     public void setQtClassesLaboratoriAssigantura(String assig, int qt) {
         assignatures.get(assig).setQtClassesLaboratori(qt);
     }
+
 
     public void setDuradaClassesLaboratoriAssigantura(String assig, int qt) {
         assignatures.get(assig).setDuradaClassesLaboratori(qt);
@@ -396,4 +422,28 @@ public class PlaEstudis implements Serializable {
         assignatures.get(assig).setTipusGrup(grup, tipusAula);
 
     }
+
+
+    /**
+     * @param a La assignatura a afegir
+     * @return Retorna true si l'hem pogut afegir, i false altrament
+     */
+    public boolean afegirAssignatura (assignatura a)
+    {
+        String id = a.getId();
+        if (assignatures.containsKey(id)) return false;
+        else {
+            assignatures.put(id, a);
+        }
+        //no cal tornar a generar les nostres assignacions perquè ho farem directament cada cop que generem el horari
+        return true;
+    }
+
+    public boolean afegirGrupAssignatura (String assignatura, grup g)
+    {
+        assignatura a = assignatures.get(assignatura);
+        return a.afegirGrup(g);
+    }
+
+
 }
