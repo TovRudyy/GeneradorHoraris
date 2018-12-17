@@ -610,5 +610,12 @@ public class ControladorPlaEstudis {
     }
 
 
-
+    public void guardarPlaEstudis(String path) {
+        try {
+            ControladorDades.guarda(this.ConjuntPE, path);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.err.println("ERROR: error al guardar pla estudis!");
+        }
+    }
 }
