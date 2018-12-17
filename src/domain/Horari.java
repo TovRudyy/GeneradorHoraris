@@ -207,7 +207,7 @@ public class Horari implements Serializable {
             int horaFi = m.getDurada() + horaNova;
 
             //comprovem que les noves dades son correctes abans de recolocarla (el dia no cal comprovar-lo)
-            if (horaFi >= 20 || horaNova < 8) {
+            if (horaFi > 20 || horaNova < 8) {
                 System.out.println("Hora incorrecte");
                 return false;
             }
@@ -229,7 +229,6 @@ public class Horari implements Serializable {
 
             if (a.esMatins() && ((horaFi) > 14 ))
             {
-                System.out.println("La hora fi son " + horaFi);
                 System.err.println("DEBUG: No podem assignar una classe de matins a una hora de tarda");
                 return false;
             }
