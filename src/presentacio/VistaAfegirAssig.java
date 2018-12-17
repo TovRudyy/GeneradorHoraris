@@ -133,12 +133,11 @@ public class VistaAfegirAssig {
     }
 
     private void crearAssignatura() {
-
         //Agafem tots els atributs
         String id = inputID.getText();
         String nom = inputNom.getText();
         int nivell = Integer.parseInt(inputNivell.getText());
-        int n_T = Integer.parseInt(inputNclassL.getText());
+        int n_T = Integer.parseInt(inputNclassT.getText());
         int dur_T = Integer.parseInt(inputDurT.getText());
         int n_P = Integer.parseInt(inputNclassP.getText());
         int dur_P = Integer.parseInt(inputDurP.getText());

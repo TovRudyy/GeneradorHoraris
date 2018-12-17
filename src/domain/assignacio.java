@@ -67,6 +67,7 @@ public class assignacio implements Serializable {
      */
     public void showAll () {
         System.out.println (idGrup + ":" + capacitat + ":"+ tAula + ":" + idAssig +":"+ nivellAssig + ""+ horariGrup + " " + inici_possible + " " + final_possible + " " + duracioClasses);
+        System.out.println (numeroClassesRestants + " " + nivellAssig + " " + nivellAssig);
 
     }
 
@@ -148,7 +149,6 @@ public class assignacio implements Serializable {
 
         for (Aula aula : aules.values()) {
             if (aula.getTipus() == tAula && aula.getCapacitat() >= this.capacitat) {   //mirem que l'aula i el grup sigui compatible
-                ArrayList<Classe> t = new ArrayList<Classe>();
 
                 for (DiaSetmana dia : DiaSetmana.values()) {
 
