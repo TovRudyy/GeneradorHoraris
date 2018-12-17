@@ -1,9 +1,6 @@
 package presentacio;
 
-import domain.ControladorAules;
-import domain.ControladorPlaEstudis;
-import domain.ControladorUtils;
-import domain.Tipus_Aula;
+import domain.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -283,9 +280,19 @@ public class CtrlPresentacio {
         CtrlPE.afegirCorrequisit(plaEstudi, assig, nous_correquisits);
     }
 
+//public void eliminarCorrequisit (String plaEstudi, String assignatura, ArrayList<String> aEliminar)
     public void afegirGrup (String plaEstudi, String assignatura, String id, int capacitat, String horariGrup, Tipus_Aula t)
     {
         CtrlPE.afegirGrup(plaEstudi, assignatura, id, capacitat, horariGrup, t);
+
+        ArrayList<String> a = new ArrayList<>();
+        a.add("FM");
+       // a.add("AC");
+        //eliminem el correquisit de fm
+        CtrlPE.eliminarCorrequisit(plaEstudi, assignatura, a);
+
+        //afegim el correquisit de fm
+        CtrlPE.afegirCorrequisit(plaEstudi, assignatura , a);
     }
 
 
