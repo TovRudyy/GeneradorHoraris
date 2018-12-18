@@ -7,13 +7,14 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * @author Olek
+ * Controlador de la capa de presentacio. Nomes util quan el programa s'executa
+ * en mode CLI.
+ * @author Oleksandr Rudyy
  */
 
 public class CtrlMnPrincipal {
     static ControladorPlaEstudis CtrlPE;
     static ControladorAules CtrlAUS;
-    static VistaPrincipal vPrincipal;
 
     CtrlPlaEstudis PresentacioPE;
 

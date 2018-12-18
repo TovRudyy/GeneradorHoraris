@@ -3,6 +3,10 @@ package presentacio;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.*;
 
+/**
+ * Aquesta classe engloba totes les classes que formen el Layout principal de l'aplicacio
+ * @autor Oleksandr Rudyy
+ */
 public class LayoutPrincipal {
     private GridPane mainLayout;
 
@@ -10,6 +14,10 @@ public class LayoutPrincipal {
         mainLayout = new GridPane();
     }
 
+    /**
+     *
+     * @return l'objecte layout princinap
+     */
     public Pane getLayout() {
         MenuPrincipal mp = new MenuPrincipal();
         mainLayout.add(mp.getLayout(),0,0,3,1);

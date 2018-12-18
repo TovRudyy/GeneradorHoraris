@@ -17,12 +17,16 @@ import javafx.scene.layout.VBox;
 import javafx.util.converter.DefaultStringConverter;
 import javafx.util.converter.IntegerStringConverter;
 
+/**
+ * Aquesta classe implementa la vista de l'aulari de la GUI
+ */
 public class SeccioAules {
     VBox layout;
     static TableView<AulaFX> taula;
     private static ObservableList<String> tipusAulesFX = FXCollections.observableArrayList();
     TextField idInput, capInput;
     ComboBox<String> tipusInput = new ComboBox<>(tipusAulesFX);
+
 
     public SeccioAules() {
         layout = new VBox();
@@ -33,11 +37,17 @@ public class SeccioAules {
         buildLayout();
     }
 
+    /**
+     * Actualitza les dades a mostrar en la taula de l'aulari
+     */
     public static void refrescaTaula() {
         taula.getItems().clear();
         taula.setItems(VistaPrincipal.ctrl.getDataAula());
     }
 
+    /**
+     * Construeix el layout
+     */
     private void buildLayout() {
         //Titol
         Label titol = new Label("Aules Carregades");
@@ -53,6 +63,10 @@ public class SeccioAules {
         layout.setPadding(new Insets(10));
     }
 
+    /**
+     * Afegeix botons al layout
+     * @return un layout amb els botons incorporats
+     */
     private HBox addBotons() {
         idInput = new TextField();
         idInput.setPromptText("Identificador");
@@ -68,6 +82,9 @@ public class SeccioAules {
         return layout;
     }
 
+    /**
+     * Implementa la funció d'eliminar una fila de la taula d'aules
+     */
     private void eliminarFila() {
         ObservableList<AulaFX> totesAules, aulaSeleccionada;
         totesAules = taula.getItems();
@@ -78,6 +95,9 @@ public class SeccioAules {
         });
     }
 
+    /**
+     * Implementa la funcio d'afegir una aula a la taula d'aules
+     */
     private void afegirFila() {
         String id = idInput.getText();
         if (id.isEmpty()) {
@@ -114,6 +134,10 @@ public class SeccioAules {
 
     }
 
+    /**
+     *
+     * @return retorna una taula amb totes les classes que estan carregades en memoria
+     */
     private TableView<AulaFX> buildTaula() {
         //Columna Identificador
         TableColumn id = new TableColumn("ID");
@@ -190,10 +214,18 @@ public class SeccioAules {
     }
 
 
+    /**
+     *
+     * @return retorna el layout de la SeccioAules
+     */
     public Pane getLayout() {
         return this.layout;
     }
 
+    /**
+     *
+     * @return retorna els tipus d'aules que existeixen en una llista
+     */
     public  static ObservableList<String> getTipusAulesFX() {
         return tipusAulesFX;
     }

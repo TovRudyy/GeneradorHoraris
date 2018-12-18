@@ -12,6 +12,9 @@ import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
 
+/**
+ * Aquesta classe implementa els botons per modificar els plans d'estudis
+ */
 public class SeccioBotonsPE {
     TreeView<String> arbre;
     VBox layout;
@@ -25,6 +28,9 @@ public class SeccioBotonsPE {
         buildLayout();
     }
 
+    /**
+     * Construeix el layout principal dels botons
+     */
     private void buildLayout() {
         //Boto afegir assignatura
         Button addAssig = new Button("Afegir assig.");
@@ -56,6 +62,9 @@ public class SeccioBotonsPE {
         layout.getChildren().add(modify);
     }
 
+    /**
+     * Implementa l'accio a dur a terme quan es pitja el boto d'afegir correquisit
+     */
     private void afegirCorrequisit() {
         String pe = arbre.getSelectionModel().getSelectedItem().getParent().getValue();
         String assig = arbre.getSelectionModel().getSelectedItem().getValue();
@@ -67,6 +76,9 @@ public class SeccioBotonsPE {
         }
     }
 
+    /**
+     * Implementa l'accio a dur a terme quan es pitja el boto d'eliminar correquisit
+     */
     private void eliminarCorrequisit() {
         String corr = arbre.getSelectionModel().getSelectedItem().getValue();
         String pe;
@@ -85,6 +97,9 @@ public class SeccioBotonsPE {
         }
     }
 
+    /**
+     * Implementa l'accio a dur a terme quan es pitja el boto de modificar atribut
+     */
     private void modificarAtribut() {
         String camp = arbre.getSelectionModel().getSelectedItem().getValue();
         camp = camp.split(":")[0];
@@ -176,6 +191,9 @@ public class SeccioBotonsPE {
         }
     }
 
+    /**
+     * Implementa la funcio a dur a terme quan es pitja el boto d'eliminar grup
+     */
     private void esborrarGrup() {
         String grup = arbre.getSelectionModel().getSelectedItem().getValue();
         String pe;
@@ -199,6 +217,9 @@ public class SeccioBotonsPE {
         }
     }
 
+    /**
+     * Implementa l'accio a dur a terme quan es pitja el boto d'afegir grup
+     */
     private void afegirGrup() {
         String pe = arbre.getSelectionModel().getSelectedItem().getParent().getValue();
         String assig = arbre.getSelectionModel().getSelectedItem().getValue();
@@ -209,6 +230,9 @@ public class SeccioBotonsPE {
         }
     }
 
+    /**
+     * Implementa l'accio a dur a terme quan es pitja el boto d'esborrar assignatura
+     */
     private void esborrarAssignatura() {
         String pe = arbre.getSelectionModel().getSelectedItem().getParent().getValue();
         String assig = arbre.getSelectionModel().getSelectedItem().getValue();
@@ -220,6 +244,9 @@ public class SeccioBotonsPE {
         }
     }
 
+    /**
+     * Implementa la funcio a dur a terme quan es pitja el boto d'afegir assignatura
+     */
     private void afegirAssignatura() {
         String pe = arbre.getSelectionModel().getSelectedItem().getValue();
         System.err.println("DEBUG: es vol afegir una assignatura a  "+ pe);
@@ -228,6 +255,10 @@ public class SeccioBotonsPE {
         }
     }
 
+    /**
+     *
+     * @return retorna el layout de SeccioBotonsPE
+     */
     public Node getLayout() {
         return layout;
     }

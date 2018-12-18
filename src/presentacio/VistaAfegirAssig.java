@@ -12,6 +12,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
+/**
+ * Aquesta classe implementa la finestra per afegir assignatures
+ */
 public class VistaAfegirAssig {
     Stage escenari;
     Scene escena;
@@ -42,6 +45,10 @@ public class VistaAfegirAssig {
         escenari.show();
     }
 
+    /**
+     *
+     * @return retorna el layout de VistaAfegirAssig
+     */
     private Parent buildLayout() {
         int row = 0;
         //ID assignatura
@@ -128,10 +135,16 @@ public class VistaAfegirAssig {
         return layout;
     }
 
+    /**
+     * Impelemta l'accio a dur a terme quan es pitja el boto de cancelar
+     */
     private void exitVista() {
         escenari.close();
     }
 
+    /**
+     * Implementa la funcio a dur a terme quan es pitja el boto d'afegir assignatura
+     */
     private void crearAssignatura() {
 
         //Agafem tots els atributs
@@ -156,6 +169,12 @@ public class VistaAfegirAssig {
 
     }
 
+    /**
+     * Assegura que el valor introduit unicament pugui ser un enter positiu
+     * @param observable
+     * @param oldValue
+     * @param newValue
+     */
     private void mustBeUnsignedInt(ObservableValue<? extends String> observable, String oldValue, String newValue) {
         if (!newValue.equals("")) {
             try {

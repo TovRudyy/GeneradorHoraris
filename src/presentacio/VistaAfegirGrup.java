@@ -18,6 +18,9 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import domain.Tipus_Aula;
 
+/**
+ * Implementa la finestra a l'hora d'afegir grups
+ */
 public class VistaAfegirGrup {
     String plaEstudi;
     String assignatura;
@@ -44,6 +47,10 @@ public class VistaAfegirGrup {
         escenari.show();
     }
 
+    /**
+     *
+     * @return retorna el layout de VistaAfegirGrup
+     */
     private Parent buildLayout() {
         int row = 0;
         //ID grup
@@ -94,11 +101,17 @@ public class VistaAfegirGrup {
         return layout;
     }
 
+    /**
+     * Implementa l'accio a dur a terme quan es pitja el boto de cancelar
+     */
     private void cancelar() {
         escenari.close();
     }
 
-
+    /**
+     * Implementa l'accio a dur a terme quan es pitja el boto d'afegir grup
+     * @throws Aula_Exception
+     */
     private void afegirGrup() throws Aula_Exception {
         String id = inputID.getText();
         int capacitat;
@@ -134,6 +147,12 @@ public class VistaAfegirGrup {
     }
 
 
+    /**
+     * Assegura que el valor introduit unicament sigui un enter positiu
+     * @param observable
+     * @param oldValue
+     * @param newValue
+     */
     private void mustBeUnsignedInt(ObservableValue<? extends String> observable, String oldValue, String newValue) {
         if (!newValue.equals("")) {
             try {

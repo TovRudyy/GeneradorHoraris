@@ -10,8 +10,17 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+/**
+ * Aquest objecte implementa una finestra informativa per a missatges d'error
+ */
 public class PopUpWindow {
 
+    /**
+     *
+     * @param title titol de la finestra
+     * @param message missatge a mostrar
+     * @return retorna cert si l'usuari pitja el boto "d'acord"
+     */
     public static boolean display(String title, String message) {
         Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
@@ -20,17 +29,14 @@ public class PopUpWindow {
         Label label = new Label();
         label.setText(message);
 
-        //Create two buttons
         Button okbutton = new Button("D'acord");
 
-        //Clicking will set answer and close window
         okbutton.setOnAction(e -> {
             window.close();
         });;
 
         VBox myLayout = new VBox(10);
 
-        //Add buttons
         myLayout.getChildren().add(label);
         myLayout.setAlignment(Pos.CENTER);
         myLayout.getChildren().addAll(okbutton);
@@ -40,7 +46,6 @@ public class PopUpWindow {
         window.setScene(scene);
         window.showAndWait();
 
-        //Make sure to return answer
         return true;
     }
 }

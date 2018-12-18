@@ -16,6 +16,9 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+/**
+ * Classe que gestiona la modificació dels atributs d'un pla d'estudis
+ */
 public class ModifyWindow {
 
     private static int opcio;
@@ -26,6 +29,13 @@ public class ModifyWindow {
     private  static String assig;
     private  static String grup;
 
+    /**
+     *
+     * @param titol titol de la finestra
+     * @param opcio opcio que indica quin atribut es vol modificar exactament
+     * @param pe identificador d'un pla d'estudis
+     * @param assig identificador d'una assignatura
+     */
     public ModifyWindow(String titol, int opcio, String pe, String assig) {
         this.opcio = opcio;
         this.pe = pe;
@@ -40,6 +50,14 @@ public class ModifyWindow {
         window.showAndWait();
     }
 
+    /**
+     *
+     * @param titol titol de la finestra
+     * @param opcio opcio que indica quin atribut es vol modificar exactament
+     * @param pe identificador d'un pla d'estudis
+     * @param assig identficiador d'una assignatura
+     * @param grup identificador d'un grup
+     */
     public ModifyWindow(String titol, int opcio, String pe, String assig, String grup) {
         this.opcio = opcio;
         this.pe = pe;
@@ -55,7 +73,10 @@ public class ModifyWindow {
         window.showAndWait();
     }
 
-
+    /**
+     * Aqui es on es crea el layout respectiu de l'atribut a modificar
+     * @return el layout de l'escena
+     */
     private Parent dibuixaFinestra() {
         GridPane layout = new GridPane();
         layout.setPadding(new Insets(10,10,10,10));
@@ -154,6 +175,9 @@ public class ModifyWindow {
         return layout;
     }
 
+    /**
+     * Aqui es defineixen les diferents accions a prendre pel boto d'aplicar modificacio en funcio de l'opcio
+     */
     private static void aplicar() {
         switch (opcio) {
             case 0:
@@ -249,6 +273,12 @@ public class ModifyWindow {
         }
     }
 
+    /**
+     * Obliga a que el valor introduit nomes pugui ser un enter positiu
+     * @param observable objecte al qual aplicar la comprovacio
+     * @param oldValue valor antic
+     * @param newValue valor nou
+     */
     private void mustBeUnsignedInt(ObservableValue<? extends String> observable, String oldValue, String newValue) {
         if (!newValue.equals("")) {
             try {

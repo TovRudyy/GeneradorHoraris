@@ -5,7 +5,10 @@ import java.util.Scanner;
 
 
 /**
- * @author Olek
+ * Controlador de la capa de presentacio. Responsable de gestionar dades
+ * relacionades amb els Plans d'Estudis. Nomes util quan l'aplicacio s'executa
+ * en mode CLI.
+ * @author Oleksandr Rudyy
  */
 
 public class CtrlPlaEstudis {
