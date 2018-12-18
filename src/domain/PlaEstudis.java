@@ -72,6 +72,19 @@ public class PlaEstudis implements Serializable {
     }
 
     /**
+     *  Elimina la assignatura amb aquest identificador del conjunt total d'assignatures del pla d'estudis.
+     * @param id Identificador d'una assignatura.
+     */
+    public boolean eliminarAssignatura(String id) {
+        if (assignatures.remove(id) == null) {
+            System.err.println("ERROR: no existeix l'assignatura " + id);
+            return false;
+        }
+        System.err.println("DEBUG: s'ha eliminat l'assignatura " + id);
+        return true;
+    }
+
+    /**
      * @return Una string amb tota la informacio de totes les assignatures que conte el pla d'estudis.
      */
     public String toStringAssignatures() {
