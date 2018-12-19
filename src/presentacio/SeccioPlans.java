@@ -67,9 +67,20 @@ public class SeccioPlans {
         Button showHorari = new Button("Mostrar Horari");
         showHorari.setOnAction(e -> mostraHorari());
         buttonLayout.getChildren().add(showHorari);
+        //Boto restriccions negociables
+        Button restrNeg = new Button("Restricció negociable");
+        restrNeg.setOnAction(e -> mostraRestriccionsNegociables());
+        buttonLayout.getChildren().add(restrNeg);
 
         layout.getChildren().add(buttonLayout);
         layout.setPadding(new Insets(10));
+    }
+
+    private void mostraRestriccionsNegociables() {
+        String pe = arbre.getSelectionModel().getSelectedItem().getValue();
+        if (VistaPrincipal.ctrl.existsPlaEstudi(pe)) {
+            VistaRestriccionsNegociables vrn = new VistaRestriccionsNegociables(pe);
+        }
     }
 
     /**

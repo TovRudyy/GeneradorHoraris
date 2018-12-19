@@ -619,4 +619,13 @@ public class CtrlPresentacio {
     public void guardarPlaEstudis(String path) {
         CtrlPE.guardarPlaEstudis(path);
     }
+
+    /**
+     *
+     * @param plaEstudi identificador d'un pla d'estudi
+     * @return un array de strings amb totes les restriccions flexibles
+     */
+    public ArrayList<String> getRestriccionsFlexibles(String plaEstudi) {
+        return CtrlPE.getRestriccionsFlexibles(plaEstudi);
+    }
 }
