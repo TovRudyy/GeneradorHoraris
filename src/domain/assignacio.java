@@ -256,15 +256,12 @@ public class assignacio implements Serializable {
 
     /**
      * Fa la poda de les possibilitats que ja no son possibles a causa d'aquestes restriccions.
-     * @param restriccions Cojunt de restriccions modificables per l'usuari i que afecten aquesta restriccio.
+     * @param r Cojunt de restriccions modificables per l'usuari i que afecten aquesta restriccio.
      * @return True si encara ens queden possibilitats o false si no ens en queden.
      */
-    public boolean podaRestriccionsFlexibles (ArrayList<RestriccioFlexible> restriccions)
+    public boolean podaRestriccionsFlexibles (RestriccioFlexible r)
     {
-        for (RestriccioFlexible r: restriccions)
-        {
-            r.podaPossibilitats(possibles_classes);
-        }
+        r.podaPossibilitats(possibles_classes);
         return (! isEmpty());
     }
 

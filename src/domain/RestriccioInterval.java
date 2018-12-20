@@ -8,6 +8,7 @@ public class RestriccioInterval extends RestriccioFlexible {
     private DiaSetmana d;
     private int horaIni;
     private int horaFi;
+    private String id;
 
     /**
      * Creador de la restriccio Interval
@@ -21,6 +22,12 @@ public class RestriccioInterval extends RestriccioFlexible {
         this.horaIni = horaIni;
         this.horaFi = horaFi;
     }
+
+    public void setId(String id)
+    {
+        this.id = id;
+    }
+
 
     /**
      * @return La informacio de la restriccio.
@@ -37,6 +44,7 @@ public class RestriccioInterval extends RestriccioFlexible {
     {
         System.out.println("El dia " + d + " a l'interval " + horaIni + " fins " + horaFi);
     }
+
 
     /**
      * Fa la poda de les possibilitats que ja no son possibles.
@@ -60,5 +68,12 @@ public class RestriccioInterval extends RestriccioFlexible {
             possibles_classes.get(c_aux.getIdAula()).get(c_aux.getDia()).remove (c_aux);
 
     }
+
+
+    public String getAssignacioId ()
+    {
+        return id;
+    }
+
 }
 

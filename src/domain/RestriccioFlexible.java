@@ -27,4 +27,8 @@ public abstract class RestriccioFlexible extends Restriccio {
      */
     public abstract String getInfo();
 
+    public abstract String getAssignacioId ();
+
+    public abstract void setId(String id);
+
 }

@@ -20,13 +20,13 @@ public class Horari implements Serializable {
     private LinkedList<assignacio> l;
     private LinkedList<Classe> classesSeleccionades = new LinkedList<>();//ho guardem en forma de stack perque quan retrocedim sempre treurem la ultima afegida
     private Map<String, Aula> aules;
-    private HashMap<String, ArrayList<RestriccioFlexible>> restriccionsModificables;    //aqui mantenim un map amb totes les restriccions modifciables. Indexades pel nom de assig+grup (identificador de una assignacio)
+    private HashMap<String, RestriccioFlexible> restriccionsModificables;    //aqui mantenim un map amb totes les restriccions modifciables. Indexades pel nom de assig+grup (identificador de una assignacio)
 
     /**
      * Creadora de la classe Horari.
      * @param conjuntAssignacions ArrayList amb tot el conjunt d'assignacions que hem d'assignar al nostre horari.
      */
-    public Horari(LinkedList<assignacio> conjuntAssignacions, Map<String, Aula> aules, HashMap<String, ArrayList<RestriccioFlexible>> r) {
+    public Horari(LinkedList<assignacio> conjuntAssignacions, Map<String, Aula> aules, HashMap<String, RestriccioFlexible> r) {
         afegeixAssignacions(conjuntAssignacions);
         this.l = conjuntAssignacions;
         this.aules = aules;
@@ -80,11 +80,10 @@ public class Horari implements Serializable {
     public boolean preprocessaRestriccions ()
     {
         //iterem sobre totes les assignacions que tenen restriccions no modificables
-        for (Map.Entry<String, ArrayList<RestriccioFlexible>> a: restriccionsModificables.entrySet())
+        for (Map.Entry<String, RestriccioFlexible> a: restriccionsModificables.entrySet())
         {
-            String nom = a.getKey();
-            ArrayList<RestriccioFlexible> b = a.getValue();
-            boolean r = conjuntAssignacions.get(nom).podaRestriccionsFlexibles (b);
+            RestriccioFlexible b = a.getValue();
+            boolean r = conjuntAssignacions.get(b.getAssignacioId()).podaRestriccionsFlexibles (b);
             if (! r) return false;
         }
         return true;

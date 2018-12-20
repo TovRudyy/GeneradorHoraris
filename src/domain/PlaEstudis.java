@@ -17,7 +17,9 @@ public class PlaEstudis implements Serializable {
     private String id;  //Acrònim del Pla d'Estudis
     private TreeMap<String,assignatura> assignatures = new TreeMap<>(); //Assignatures pertanyents al pla d'estudis
     private Horari horari = null;
-    private HashMap<String, ArrayList<RestriccioFlexible>> restriccionsModificables = new HashMap<>();
+    private HashMap<String, RestriccioFlexible> restriccionsModificables = new HashMap<>();
+    private HashMap<String, RestriccioFlexible> restriccionsModificablesActives = new HashMap<>();
+
 
     /** Constructores **/
 
@@ -148,7 +150,7 @@ public class PlaEstudis implements Serializable {
         afegirRestriccionsNivell(); //afeim a les assignatures les seves restriccions de nivell
 
         //aqui tenim totes les assignacions totals
-        horari = new Horari (assignacions, aules, restriccionsModificables);
+        horari = new Horari (assignacions, aules, restriccionsModificablesActives);
         boolean ret;
         boolean b = horari.findHorari();
         ret = b;
@@ -178,6 +180,7 @@ public class PlaEstudis implements Serializable {
             assignatures.get(segona).addCorrequisit(primera);
         }
     }
+
 
 
     public void eliminarCorrequisit (String[] c)
@@ -250,19 +253,48 @@ public class PlaEstudis implements Serializable {
      * @param idAssigIGrup
      */
     public void afegirRestriccioFlexible (RestriccioFlexible r, String idAssigIGrup) {
-        restriccionsModificables.putIfAbsent(idAssigIGrup, new ArrayList<>());
-        restriccionsModificables.get(idAssigIGrup).add(r);
+        String a = "El grup " + idAssigIGrup + r.getInfo();
+        r.setId (idAssigIGrup);
+        restriccionsModificables.putIfAbsent(a, r);
+        restriccionsModificablesActives.putIfAbsent(a,r);   //afegim als dos conjunts, al de restriccions actives i al de restriccions existents
     }
 
     /**
      * Elimina la restriccio flexible identificada pel seu identificador.
-     * @param idAssigGrup
+     * @param t
      */
-    public void eliminarRestriccioFlexible (String idAssigGrup)
+    public void eliminarRestriccioFlexible (String t)
     {
-        restriccionsModificables.remove(idAssigGrup);
+        restriccionsModificables.remove(t);
     }
 
+
+    /**
+     * Una restriccio flexible passa a no ser activa.
+     * @param t
+     */
+    public void suavitzarRestriccioFlexible (String t)
+    {
+        restriccionsModificablesActives.remove(t);
+    }
+
+    /**
+     * Aquella restriccio passa a ser activa en el nostre horari.
+     * @param t Tota la informacio de la restriccio que ens permet identificarla
+     */
+    public void activarRestriccioFlexible (String t)
+    {
+        RestriccioFlexible r = restriccionsModificables.get(t);
+        restriccionsModificablesActives.putIfAbsent(t, r);
+    }
+
+    /**
+     * Totes les restriccions existents passen a ser actives.
+     */
+    public void reiniciarRestriccions ()
+    {
+        restriccionsModificablesActives = restriccionsModificables;
+    }
 
 
     /**
@@ -271,14 +303,23 @@ public class PlaEstudis implements Serializable {
     public ArrayList<String> getRestriccionsFlexibles ()
     {
         ArrayList<String> result = new ArrayList<>();
-        for (Map.Entry<String, ArrayList<RestriccioFlexible>> r : restriccionsModificables.entrySet())
+        for (Map.Entry<String, RestriccioFlexible> r : restriccionsModificables.entrySet())
         {
-            String a = "El grup " + r.getKey();
-            result.add(a);
+            result.add(r.getKey());
         }
         return result;
     }
 
+
+    public ArrayList<String> getRestriccionsFlexiblesActives ()
+    {
+        ArrayList<String> result = new ArrayList<>();
+        for (Map.Entry<String, RestriccioFlexible> r : restriccionsModificablesActives.entrySet())
+        {
+            result.add(r.getKey());
+        }
+        return result;
+    }
 
 
     //FUNCIONS UTILS PER A INTERACTUAR AMB EL CONTROLADOR QUAN REP REQUESTS DE LA INTERFICIE
