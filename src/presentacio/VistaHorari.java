@@ -27,6 +27,9 @@ import java.util.ArrayList;
 import java.util.Queue;
 import java.util.*;
 
+/**
+ * Aquesta classe implementa la finestra on es mostra l'horari
+ */
 public class VistaHorari {
     Stage escenari;
     Scene escena;
@@ -52,6 +55,10 @@ public class VistaHorari {
         escenari.show();
     }
 
+    /**
+     *
+     * @return retorna el layout de la VistaHorari
+     */
     private Parent buildHorari() {
         //Inicialitza el layout
         configureLayout();
@@ -69,12 +76,19 @@ public class VistaHorari {
     }
 
 
+    /**
+     *
+     * @param horari retorna un horari dibuixat
+     */
     private void dibuixaHorari(LinkedList<LinkedList<Queue<String>>> horari) {
         dibuixaDies(2,1);
         dibuixaHores(1,2);
         afegeixHorariSencer(2,2, horari);
     }
 
+    /**
+     * Afegeix botons per interactuar amb l'horari
+     */
     private void afegeixBotons() {
         HBox buttonLayout = new HBox();
         Button saveHorari = new Button("Guardar");
@@ -89,6 +103,9 @@ public class VistaHorari {
         layout.getChildren().add(buttonLayout);
     }
 
+    /**
+     * Implementa l'accio a dur a terme quan es pitja el boto d'exportar un horari a txt
+     */
     private void exportarTXT() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Exportar Horari");
@@ -106,6 +123,9 @@ public class VistaHorari {
         }
     }
 
+    /**
+     * Implementa l'accio a dur a terme quan es pitja el boto d'exportar un horari a png
+     */
     public void exportarPNG() {
         WritableImage image = matriuLayout.snapshot(new SnapshotParameters(), null);
         // TODO: probably use a file chooser here
@@ -124,11 +144,18 @@ public class VistaHorari {
         }
     }
 
+    /**
+     *
+     * @return retorna un Stage funcional
+     */
     private Stage getFileChooserStage() {
         Stage escenari = new Stage();
         return escenari;
     }
 
+    /**
+     * Implementa l'accio a dur a terme quan es pitja el boto de guarda horari
+     */
     private void guardarHorariSencer() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Guardar Horari");
@@ -145,6 +172,12 @@ public class VistaHorari {
         }
     }
 
+    /**
+     * Omple les cel·les del layout amb les assignacions de l'horari
+     * @param x cel·la inicial de l'eix X del layout
+     * @param y cel·la inicial de l'eix Y del layout
+     * @param horari estructura de dades que representa un hoarri
+     */
     private void afegeixHorariSencer(int x, int y, LinkedList<LinkedList<Queue<String>>> horari) {
         int dia = x;
 
@@ -213,14 +246,29 @@ public class VistaHorari {
 
     }
 
+    /**
+     *
+     * @param oldPositionY posicio d'una cel·la en l'eix Y del layout
+     * @return retorna l'hora on s'imparteix una classe
+     */
     private int getHoraPosition(int oldPositionY) {
         return posicio_hores[oldPositionY];
     }
 
+    /**
+     *
+     * @param oldPositionX posicio d'una cel·la en l'eix X del layout
+     * @return retorna el dia on s'imparteix una classe
+     */
     private String getDiaPosition(int oldPositionX) {
         return posicio_dia[oldPositionX];
     }
 
+    /**
+     * Dibuixa les hores de l'horari
+     * @param x cel·la inicial de l'eix X del layout
+     * @param y cel·la inicial de l'eix Y del layout
+     */
     private void dibuixaHores(int x, int y) {
         ArrayList<String> hores = VistaPrincipal.ctrl.getHoresHorari();
         for (String hora : hores) {
@@ -231,6 +279,11 @@ public class VistaHorari {
         }
     }
 
+    /**
+     * Dibuixa els dies de l'horari
+     * @param x cel·la inicial de l'eix X del layout
+     * @param y cel·la inicial de l'eix Y del layout
+     */
     private void dibuixaDies(int x, int y) {
         ArrayList<String> dies = VistaPrincipal.ctrl.getDiesSetmana();
         for (String dia : dies) {
@@ -241,12 +294,18 @@ public class VistaHorari {
         }
     }
 
+    /**
+     * Configura el layout principal
+     */
     private void configureLayout() {
         layout = new VBox();
         layout.setAlignment(Pos.CENTER);
         layout.setPadding(new Insets(10,10,10,10));
     }
 
+    /**
+     * COnfigura el layout on es representa l'horaro (GridPane)
+     */
     private void configureGridPane() {
         matriuLayout = new GridPane();
         matriuLayout.setMinSize(400, 200);

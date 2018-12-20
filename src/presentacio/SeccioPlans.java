@@ -14,6 +14,9 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
 
+/**
+ * Aquesta classe implementa la visualitzacio dels plans d'estudis
+ */
 public class SeccioPlans {
     VBox layout;
     static TreeItem<String> root;
@@ -28,12 +31,18 @@ public class SeccioPlans {
         buildLayout();
     }
 
+    /**
+     * Actualitza les dades dels plans d'estudis mostrats
+     */
     public static void refrescaArbrePlansEstudis() {
         afegeixPlans(root);
         arbre.setRoot(root);
         arbre.refresh();
     }
 
+    /**
+     * Construeix el layout de la classe
+     */
     private void buildLayout() {
         //Titol
         Label titol = new Label("Plans d'Estudis carregats");
@@ -58,11 +67,26 @@ public class SeccioPlans {
         Button showHorari = new Button("Mostrar Horari");
         showHorari.setOnAction(e -> mostraHorari());
         buttonLayout.getChildren().add(showHorari);
+        //Boto restriccions negociables
+        Button restrNeg = new Button("Restricció negociable");
+        restrNeg.setOnAction(e -> mostraRestriccionsNegociables());
+        buttonLayout.getChildren().add(restrNeg);
 
         layout.getChildren().add(buttonLayout);
         layout.setPadding(new Insets(10));
     }
 
+    private void mostraRestriccionsNegociables() {
+        String pe = arbre.getSelectionModel().getSelectedItem().getValue();
+        if (VistaPrincipal.ctrl.existsPlaEstudi(pe)) {
+            VistaRestriccionsNegociables vrn = new VistaRestriccionsNegociables(pe);
+        }
+    }
+
+    /**
+     *
+     * @return retorna l'objecte actual seleccionat del TreeView dels plans d'estudis
+     */
     private Node seleccioActual() {
         HBox box = new HBox();
         box.setSpacing(5);
@@ -84,7 +108,9 @@ public class SeccioPlans {
     }
 
 
-
+    /**
+     * Implementa l'accio a dur a terme quan es pitja el boto de mostrar horari
+     */
     private void mostraHorari() {
         String pe = arbre.getSelectionModel().getSelectedItem().getValue();
         System.err.println("DEBUG: es vol mostrar l'horari de "+ pe);
@@ -102,6 +128,9 @@ public class SeccioPlans {
         }
     }
 
+    /**
+     * Implementa l'accio a dur a terme quan es pitja el boto de generar horari
+     */
     private void generarHorari() {
         String pe = arbre.getSelectionModel().getSelectedItem().getValue();
         System.err.println("DEBUG: es vol generar l'horari de "+ pe);
@@ -119,6 +148,10 @@ public class SeccioPlans {
         }
     }
 
+    /**
+     * Afegeix plans d'estudis amb les seves dades al TreeView
+     * @param root
+     */
     private static void afegeixPlans(TreeItem<String> root) {
         root.getChildren().clear();
         System.err.println("DEBUG: estic en SeccioPlans.afegeixPlans");
@@ -129,12 +162,22 @@ public class SeccioPlans {
         arbre.setRoot(root);
     }
 
+    /**
+     * Afegeix un pla d'estudi al TreeView
+     * @param root
+     * @param p identificador d'un pla d'estudi
+     */
     private static void addPla(TreeItem<String> root, String p) {
         TreeItem<String> item = new TreeItem<String>(p);
         root.getChildren().add(item);
         addInfoPla(item, p);
     }
 
+    /**
+     * Afegeix l'informacio del pla d'estudis al TreeView
+     * @param root
+     * @param p identificado del pla d'estudis
+     */
     private static void addInfoPla(TreeItem<String> root, String p) {
         ArrayList<String> assig = VistaPrincipal.ctrl.getAssignatures(p);
         for (String a : assig) {
@@ -142,12 +185,24 @@ public class SeccioPlans {
         }
     }
 
+    /**
+     * Afegeix les assignatures del pla d'estudi al TreeView
+     * @param root
+     * @param assig identificador d'una assignatura
+     * @param pla identificador d'un pla d'estudi
+     */
     private static void addAssignatura(TreeItem<String> root, String assig, String pla) {
         TreeItem<String> item = new TreeItem<String>(assig);
         root.getChildren().add(item);
         addInfoAssignatura(item, assig, pla);
     }
 
+    /**
+     * Afegeix informacio d'una assignatura al TreeView
+     * @param root
+     * @param assig identificador de l'assignatura
+     * @param pla identificador d'un pla d'estudi
+     */
     private static void addInfoAssignatura(TreeItem<String> root, String assig, String pla) {
         //Nom
         String aux = VistaPrincipal.ctrl.getNomAssignatura(assig, pla);
@@ -191,6 +246,12 @@ public class SeccioPlans {
         addGrupsAssignatura(item, assig, pla);
     }
 
+    /**
+     * Afegeix informacio sobre els correquisits d'una assignatura al TreeView
+     * @param root
+     * @param assig identificador d''una assignatura
+     * @param pla identificador d'un pla d'estudis
+     */
     private static void addCorrequisits(TreeItem<String> root, String assig, String pla) {
         ArrayList<String> correquisits = VistaPrincipal.ctrl.getCorrequisitsAssignatura(assig, pla);
         for (String c : correquisits) {
@@ -200,6 +261,12 @@ public class SeccioPlans {
         }
     }
 
+    /**
+     * Afegeix els grups d'una assignatura al TreeView
+     * @param root
+     * @param assig identificador de l'assignatura
+     * @param pla identificador d'un pla d'estudis
+     */
     private static void addGrupsAssignatura(TreeItem<String> root, String assig, String pla) {
         ArrayList<String> grups = VistaPrincipal.ctrl.getGrupsAssignatura(assig, pla);
         for (String g : grups) {
@@ -209,6 +276,13 @@ public class SeccioPlans {
         }
     }
 
+    /**
+     * Afegeix informacio d'un grup al TreeView
+     * @param root
+     * @param grup identificador d'un grup
+     * @param assig identificador d'una assignatura
+     * @param pla identificador d'un pla d'estudis
+     */
     private static void addInfoGrups(TreeItem<String> root, String grup, String assig, String pla) {
         String aux;
         TreeItem<String> item;
@@ -233,6 +307,13 @@ public class SeccioPlans {
         }
     }
 
+    /**
+     * Afegeix informació d'un subgrup al TreeView
+     * @param root
+     * @param sg identificador d'un subgrup
+     * @param assig identificador d'una assignatura
+     * @param pla identificador d'un pla d'estudis
+     */
     private static void addInfoSubgrup(TreeItem<String> root, String sg, String assig, String pla) {
         String aux;
         TreeItem<String> item;
@@ -250,10 +331,18 @@ public class SeccioPlans {
         root.getChildren().add(item);
     }
 
+    /**
+     *
+     * @return retorna el layout de SeccioPlans
+     */
     public Pane getLayout() {
         return this.layout;
     }
 
+    /**
+     *
+     * @return retorna el TreeView de SeccioPlans
+     */
     public Object getArbrePE() {
         return arbre;
     }

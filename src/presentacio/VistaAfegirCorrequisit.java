@@ -12,6 +12,9 @@ import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
+/**
+ * Aquesta classe implementa la finestra per afegir correquisits
+ */
 public class VistaAfegirCorrequisit {
     Stage escenari;
     Scene escena;
@@ -36,6 +39,10 @@ public class VistaAfegirCorrequisit {
         escenari.show();
     }
 
+    /**
+     *
+     * @return retorna el layout de VistaAfegirCorrequisit
+     */
     private Parent buildLayout() {
         Label nom = new Label("Introdueix nom de l'assignatura: ");
         layout.add(nom,0,0);
@@ -50,10 +57,16 @@ public class VistaAfegirCorrequisit {
         return layout;
     }
 
+    /**
+     * Implementa l'accio a dur a terme quan es pitja el boto de cancelar
+     */
     private void cancelar() {
         escenari.close();
     }
 
+    /**
+     * Implementa la funcio a dur a terme quan es pitja el boto d'afegir correquisit
+     */
     private void afegirCorrequisit() {
         String assig_aux = inputCorr.getText(); //suposem que hi poden haver diverses paraules
         String assig[] = assig_aux.split(" ");

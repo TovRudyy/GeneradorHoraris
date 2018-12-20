@@ -9,11 +9,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 
-class Lector_Fitxers {
+final class Lector_Fitxers {
 
     private Lector_Fitxers() {
     }
 
+    /**
+     * @return retorna una llista de tots els objectes llegits dels arxius .json de la carpeta "data/PlaEstudis"
+     */
     static ArrayList<Object> llegirCarpetaPlansJSON() {
         File PEfolder = new File("data/PlaEstudis");
         if (!PEfolder.isDirectory()) return new ArrayList<>();
@@ -32,6 +35,9 @@ class Lector_Fitxers {
         return plansEstudis;
     }
 
+    /**
+     * @return retorna una llista de tots els objectes llegits dels arxius .ser de la carpeta "data/PlaEstudis"
+     */
     static ArrayList<Object> llegirCarpetaPlansSerialized() {
         File PEfolder = new File("data/PlaEstudis");
         if (!PEfolder.isDirectory()) return new ArrayList<>();
@@ -49,10 +55,19 @@ class Lector_Fitxers {
         return plansEstudis;
     }
 
+    /**
+     * @param path ruta de l'arxiu .json a llegir
+     * @return objecte llegit de l'arxiu
+     * @throws IOException el fitxer és un directori, no es pot crear o no es pot obrir
+     * @throws ParseException el format de l'arxiu no és correcte
+     */
     static Object llegirJSON(String path) throws IOException, ParseException {
         return new JSONParser().parse(new FileReader(path));
     }
 
+    /**
+     * @return retorna una llista de tots els objectes llegits dels arxius .json de la carpeta "data/Aules"
+     */
     static ArrayList<Object> llegirCarpetaAulesJSON() {
         File AUfolder = new File("data/Aules");
         if (!AUfolder.isDirectory()) return new ArrayList<>();
@@ -71,6 +86,9 @@ class Lector_Fitxers {
         return aularis;
     }
 
+    /**
+     * @return retorna una llista de tots els objectes llegits dels arxius .ser de la carpeta "data/Aules"
+     */
     static ArrayList<Object> llegirCarpetaAulesSerialized() {
         File AUfolder = new File("data/Aules");
         if (!AUfolder.isDirectory()) return new ArrayList<>();

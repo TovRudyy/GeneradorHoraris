@@ -618,4 +618,9 @@ public class ControladorPlaEstudis {
             System.err.println("ERROR: error al guardar pla estudis!");
         }
     }
+
+    public ArrayList<String> getRestriccionsFlexibles(String plaEstudi) {
+        PlaEstudis pe = getPlaEstudi(plaEstudi);
+        return pe.getRestriccionsFlexibles();
+    }
 }

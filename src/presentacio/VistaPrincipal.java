@@ -4,6 +4,9 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * Aquesta classe representa la finestra principal de l'aplicacio i comunica la GUI amb el controlador presentacio
+ */
 public class VistaPrincipal extends Application {
     //Constants
     private static final int width = 300;
@@ -16,6 +19,11 @@ public class VistaPrincipal extends Application {
     Scene escena;
     LayoutPrincipal layout;
 
+    /**
+     * Arranca l'aplicacio, inicialitza totes les estructures de dades i mostra la GUI
+     * @param primaryStage
+     * @throws Exception
+     */
     @Override
     public void start(Stage primaryStage) throws Exception {
         //ControladorPresentacio
@@ -34,10 +42,16 @@ public class VistaPrincipal extends Application {
         escenari.show();
     }
 
+    /**
+     * Actualiza les dades mostrades en la SeccioAules
+     */
     public static void refrescaTaulaAulari() {
         SeccioAules.refrescaTaula();
     }
 
+    /**
+     * Actualitza les dades mostrades en la SeccioPlans
+     */
     public static void refrescaArbrePlaEstudis() {
         SeccioPlans.refrescaArbrePlansEstudis();
     }

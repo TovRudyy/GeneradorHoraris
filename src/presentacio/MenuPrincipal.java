@@ -13,6 +13,9 @@ import javafx.stage.Window;
 
 import java.io.File;
 
+/**
+ * Aquesta classe implementa el menu superior de l'aplicacio
+ */
 public class MenuPrincipal {
     VBox layout;
 
@@ -21,10 +24,17 @@ public class MenuPrincipal {
         buildLayout();
     }
 
+    /**
+     *
+     * @return el layout del menu principal
+     */
     public Pane getLayout() {
         return this.layout;
     }
 
+    /**
+     * construeix el layout del menu principal
+     */
     private void buildLayout() {
         //Creacio Menus:
         MenuBar menu = new MenuBar();
@@ -79,9 +89,12 @@ public class MenuPrincipal {
         layout.getChildren().add(menu);
     }
 
+    /**
+     * implementa les accions a dur a terme a l'hora de pitjar el menu de guardar pla estudis
+     */
     private void guardarPE() {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Guardar Aulari");
+        fileChooser.setTitle("Guardar Pla Estudis");
         fileChooser.setInitialDirectory(new File("data/PlaEstudis"));
         Stage escenari = getFileChooserStage();
         File fitxer = fileChooser.showSaveDialog(escenari);
@@ -95,6 +108,10 @@ public class MenuPrincipal {
         }
     }
 
+
+    /**
+     * implementa les accions a dur a terme a l'hora de pitjar el menu de guardar aulari
+     */
     private void guardarAules() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Guardar Aulari");
@@ -111,6 +128,10 @@ public class MenuPrincipal {
         }
     }
 
+
+    /**
+     * implementa les accions a dur a terme a l'hora de pitjar el menu de carregar Horari
+     */
     private void loadHorari() {
         System.err.println("DEBUG: vols carregar un Horari");
         FileChooser fileChooser = new FileChooser();
@@ -125,6 +146,9 @@ public class MenuPrincipal {
         }
     }
 
+    /**
+     * implementa les accions a dur a terme a l'hora de pitjar el menu de carregar escena (aulari + pla d'estudis)
+     */
     private void loadScenario() {
         DirectoryChooser directChooser = new DirectoryChooser();
         directChooser.setTitle("Obrira fitxer pla estudis");
@@ -141,6 +165,10 @@ public class MenuPrincipal {
         }
     }
 
+
+    /**
+     * implementa les accions a dur a terme a l'hora de pitjar el menu de carregar pla d'estudis
+     */
     private void loadPlaEstudis() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Obrira fitxer pla estudis");
@@ -153,11 +181,18 @@ public class MenuPrincipal {
         }
     }
 
+
+    /**
+     * implementa les accions a dur a terme a l'hora de pitjar el menu de borrar pla d'estudis de memoria
+     */
     private void clearPlansEstudis() {
         VistaPrincipal.ctrl.borrarPlansEstudis();
         SeccioPlans.refrescaArbrePlansEstudis();
     }
 
+    /**
+     * implementa les accions a dur a terme a l'hora de pitjar el menu de carregar un aulari
+     */
     private void loadAules() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Obrir fitxer d'aules");
@@ -170,11 +205,19 @@ public class MenuPrincipal {
         }
     }
 
+
+    /**
+     *
+     * @return un objecte Stage funcional
+     */
     private Stage getFileChooserStage() {
         Stage escenari = new Stage();
         return escenari;
     }
 
+    /**
+     * implementa les accions a dur a terme a l'hora de pitjar el menu de borrar l'aulari de memoria
+     */
     private void clearAulariAction() {
         VistaPrincipal.ctrl.borrarAulari();
         VistaPrincipal.refrescaTaulaAulari();
