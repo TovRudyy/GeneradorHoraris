@@ -20,7 +20,12 @@ public class RestriccioSubgrup extends Restriccio {
         this.pare = pare;
     }
 
-
+    /**
+     * Elimina les possibilitats que no son compatibles amb aquesta restriccio de subgrup.
+     * @param possibles_classes
+     * @param c
+     * @return Les possibilitats que hem podat.
+     */
     public ArrayList<Classe> deletePossibilities (Map<String, Map<DiaSetmana, LinkedList<Classe>>> possibles_classes, Classe c) {
         //primerament comprovem si aquesta assignacio es un subgrup de la nova classe que hem agafat
         //si es cert haurem de podar, altrament ja hem acabat

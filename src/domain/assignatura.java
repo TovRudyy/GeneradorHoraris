@@ -130,6 +130,9 @@ public class assignatura implements Serializable {
 
     }
 
+    /**
+     * @return El map amb tots els grups que conte la assignatura.
+     */
     public Map<String, grup> getGrups() {
         return grups;
     }
@@ -202,6 +205,10 @@ public class assignatura implements Serializable {
     }
 
 
+    /**
+     * S'afegeixen a la assignatura una serie de nous correquisits.
+     * @param new_correquisits Conjunt dels nous correquisits que es volen afegir.
+     */
     public void addManyCorrequisits (ArrayList<String> new_correquisits) {
         for (int i=0; i < new_correquisits.size(); ++i) {
             String nova_assig = new_correquisits.get(i);
@@ -224,6 +231,9 @@ public class assignatura implements Serializable {
     }
 
 
+    /**
+     * @return Una string amb tota la informacio que conte la classe Assignatura.
+     */
     public String toStringComplet() {
         String ret = "Id: " + id + ", nom: " + nom + "\nnivell:" + nivell + "\nclasses_teoria:" +
                 classes_teoria + "\nclasses_problemes:" + classes_problemes +
@@ -239,32 +249,45 @@ public class assignatura implements Serializable {
         return ret;
     }
 
-
+    /**
+     * @return El numero de classes de teoria.
+     */
     public int getQtClassesTeoria() {
         return this.classes_teoria;
     }
 
 
+    /**
+     * @return La durada de les classes de teoria.
+     */
     public int getDuradaClassesTeoria() {
         return this.duracio_teoria;
     }
 
-
+    /**
+     * @return El numero de classes de problemes.
+     */
     public int getQtClassesProblemes() {
         return this.classes_problemes;
     }
 
-
+    /**
+     * @return La durada de les classes de problemes.
+     */
     public int getDuradaClassesProblemes() {
         return this.duracio_problemes;
     }
 
-
+    /**
+     * @return El numero de classes de laboratori.
+     */
     public int getQtClassesLaboratori() {
         return this.classes_laboratori;
     }
 
-
+    /**
+     * @return La durada de les classes de laboratori..
+     */
     public int getDuradaClassesLaboratori() {
         return this.duracio_laboratori;
     }
@@ -280,21 +303,35 @@ public class assignatura implements Serializable {
         return ret;
     }
 
+    /**
+     * @param grup identificador del grup.
+     * @return La capacitat de un grup donat.
+     */
     public int getCapacitatGrup(String grup) {
         return grups.get(grup).getCapacitat();
     }
 
-
+    /**
+     * @param grup identificador del grup.
+     * @return El horari del grup passat per parametre.
+     */
     public String getHorariGrup(String grup) {
         return grups.get(grup).getHorariAssig();
     }
 
-
+    /**
+     * @param grup identificador del grup.
+     * @return El tipus del grup..
+     */
     public String getTipusAulaGrup(String grup) {
         return grups.get(grup).getTipusAula();
     }
 
-
+    /**
+     * Retorna els subgrups de un grup.
+     * @param grup Identificador del grup.
+     * @return Conjunt de string referents a cadascun dels subgrups de un grup.
+     */
     public ArrayList<String> getSubgrupsGrup(String grup) {
         ArrayList<String> ret = new ArrayList<String>();
         for (grup gr : grups.values()) {
@@ -308,17 +345,29 @@ public class assignatura implements Serializable {
         return ret;
     }
 
+    /**
+     * @return Tots els correquisits que te aquesta assignatura.
+     */
     public ArrayList<String> getCorrequisits() {
         ArrayList<String> corr = corequisits.getAssignatures();
         corr.remove(this.id);
         return corr;
     }
 
+    /**
+     * Comprova si una assignatura conte un grup concret.
+     * @param grup Identificador del grup
+     * @return True si el conte o false altrament.
+     */
     public boolean hasGrup(String grup) {
         return grups.containsKey(grup);
     }
 
 
+    /**
+     * Esborra un grup de la assignatura, si es pot.
+     * @param grup Identificador del grup.
+     */
     public void esborraGrup(String grup) {
         ArrayList<String> borrar = new ArrayList<>();
         borrar.add(grup);
@@ -337,61 +386,104 @@ public class assignatura implements Serializable {
 
     }
 
+    /**
+     * Modifica el nom de la assignatura pel valor passat per parametre.
+     * @param newValue Nom nou.
+     */
     public void setNom(String newValue) {
         this.nom = newValue;
     }
 
-
+    /**
+     * Modifica el nivell de la assignatura pel valor passat per parametre.
+     * @param nivell Nou nivell.
+     */
     public void setNivell(int nivell) {
         this.nivell = nivell;
     }
 
 
+    /**
+     * Modifica el numero de classes de teoria.
+     * @param qt Numero de classes de teoria.
+     */
     public void setQtClassesTeoria(int qt) {
         this.classes_teoria = qt;
     }
 
-
+    /**
+     * Modifica la durada de les classes de teoria.
+     * @param qt La nova durada de les classes de teoria.
+     */
     public void setDuradaClassesTeoria(int qt) {
         this.duracio_teoria = qt;
     }
 
-
+    /**
+     * Modifica el numero de classes de problemes.
+     * @param qt Numero de classes de problemes.
+     */
     public void setQtClassesProblemes(int qt) {
         this.classes_problemes = qt;
     }
 
-
+    /**
+     * Modifica la durada de les classes de problemes.
+     * @param qt La nova durada de les classes de problemes.
+     */
     public void setDuradaClassesProblemes(int qt) {
         this.duracio_problemes = qt;
     }
 
-
+    /**
+     * Modifica el numero de classes de laboratori.
+     * @param qt Numero de classes de laboratori.
+     */
     public void setQtClassesLaboratori(int qt) {
         this.classes_laboratori = qt;
     }
 
-
+    /**
+     * Modifica la durada de les classes de laboratori.
+     * @param qt La nova durada de les classes de laboratori.
+     */
     public void setDuradaClassesLaboratori(int qt) {
         this.duracio_laboratori = qt;
     }
 
-
+    /**
+     * Modifica la capacitat de un grup per un nou valor.
+     * @param grup Identificador del grup
+     * @param qt Nova capacitat
+     */
     public void setCapacitatGrup(String grup, int qt) {
         grups.get(grup).setCapacitat(qt);
     }
 
-
+    /**
+     * Modifica el horari d'un grup per un nou valor.
+     * @param grup Identificador del grup
+     * @param valor Nou valor de l'horari.
+     */
     public void setHorariGrup(String grup, String valor) {
         grups.get(grup).setHorari(valor);
     }
 
-
+    /**
+     * Modifica el tipus d'un grup per un nou valor.
+     * @param grup Identificador del grup
+     * @param tipusAula Nou valor del tipus del grup.
+     */
     public void setTipusGrup(String grup, Tipus_Aula tipusAula) {
         grups.get(grup).setTipus(tipusAula);
     }
 
 
+    /**
+     * Afegeix un grup a la assignatura.
+     * @param g El nou grup.
+     * @return True si l'hem pogut afegir o no.
+     */
     public boolean afegirGrup (grup g)
     {
         String id = g.getId();
@@ -402,6 +494,11 @@ public class assignatura implements Serializable {
         }
     }
 
+    /**
+     * Eliminem un correquisit de la assignatura.
+     * @param id_altre Identificador del correquisit.
+     * @return True si l'hem pogut eliminar o false altrament.
+     */
     public boolean eliminarCorrequisit (String id_altre)
     {
         return corequisits.eliminarAssignatura (id_altre);

@@ -53,14 +53,26 @@ public class Aula implements Serializable {
         return  (id +":" + capacitat + ":" + tipus);
     }
 
+    /**
+     * Modifica la capacitat per un nou valor.
+     * @param nou
+     */
     public void setCapacitat(int nou) {
         this.capacitat = nou;
     }
 
+    /**
+     * Modifica el seu identificador per un nou valor.
+     * @param newValue
+     */
     public void setId(String newValue) {
         this.id = newValue;
     }
 
+    /**
+     * Canvia el tipus per un nou valor passat per parametre.
+     * @param tipus
+     */
     public void setTipus(String tipus) {
         try {
             this.tipus = Tipus_Aula.string_to_Tipus_Aula(tipus);

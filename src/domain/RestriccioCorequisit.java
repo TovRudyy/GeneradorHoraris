@@ -46,6 +46,11 @@ public class RestriccioCorequisit extends Restriccio {
     }
 
 
+    /**
+     * Elimina una assignatura dels seus correquisits.
+     * @param id_assignatura
+     * @return True si l'ha eliminat o false altrament.
+     */
     public boolean eliminarAssignatura (String id_assignatura)
     {
         return assignatures.remove(id_assignatura);

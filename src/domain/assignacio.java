@@ -212,8 +212,6 @@ public class assignacio implements Serializable {
      * @param c La Classe que representa la ultima Classe que hem triat perque formi part del nostre horari.
      * @return Una arrayList amb les possibilitats que hem "podat" ja que ja no son possibles.
      */
-
-
     public ArrayList<Classe> forwardChecking (Classe c) {
         ArrayList<Classe> result = new ArrayList<>();
 
@@ -256,7 +254,11 @@ public class assignacio implements Serializable {
     }
 
 
-
+    /**
+     * Fa la poda de les possibilitats que ja no son possibles a causa d'aquestes restriccions.
+     * @param restriccions Cojunt de restriccions modificables per l'usuari i que afecten aquesta restriccio.
+     * @return True si encara ens queden possibilitats o false si no ens en queden.
+     */
     public boolean podaRestriccionsFlexibles (ArrayList<RestriccioFlexible> restriccions)
     {
         for (RestriccioFlexible r: restriccions)

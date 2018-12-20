@@ -104,18 +104,34 @@ public class Classe implements Serializable {
     }
 
 
+    /**
+     * Modifica el valor del seu dia per un nou valor.
+     * @param d
+     */
     public void setDia (DiaSetmana d) {
         dia = d;
     }
 
+    /**
+     * Modifica el valor de la seva hora d'inici per un nou valor.
+     * @param h
+     */
     public void setHora_inici (int h) {
         hora_inici = h;
     }
 
+    /**
+     * Modifica el valor de la seva hora fi per un nou valor.
+     * @param h
+     */
     public void setHora_fi (int h) {
         hora_fi = h;
     }
 
+    /**
+     * Modifica el identificador de la seva aula.
+     * @param a
+     */
     public void setAula (String a) {
         id_aula = a;
     }

@@ -498,7 +498,11 @@ public class Horari implements Serializable {
     }
 
 
-
+    /**
+     * Processa les classes que hem triat per a forma el horari i l'agrupa en aquells que es produeixen el mateix dia,
+     * a la mateix hora i ho retorna.
+     * @return La taula amb el horari.
+     */
     public LinkedList<LinkedList<Queue<String>>> getHorariSencer ()
     {
         LinkedList<LinkedList<Queue<String>>> horaris = new LinkedList<>();    //inicialitzacio de una matriu formada per 16files (hores) x 5 dies
@@ -536,6 +540,11 @@ public class Horari implements Serializable {
     }
 
 
+    /**
+     * Processa les classes que hem triat per a forma el horari i l'agrupa en aquells que es produeixen el mateix dia,
+     * a la mateix hora i ho mostra en diverses taules, una per cada Aula diferent.
+     * @return Una E.D amb totes les taules previament explicades.
+     */
     public Queue<LinkedList<LinkedList<Queue<String>>>> getHorariAssignatures ()
     {
         Set<String> assigs = new TreeSet<>();   //conjunt de assignatures
@@ -585,6 +594,11 @@ public class Horari implements Serializable {
     }
 
 
+    /**
+     * Processa les classes que hem triat per a forma el horari i l'agrupa en aquells que es produeixen el mateix dia,
+     * a la mateix hora i ho crea en diverses taules, una per assignatura.
+     * @return Totes les taules previament creades.
+     */
     public Queue<LinkedList<LinkedList<Queue<String>>>> getHorariAules ()
     {
         Set<String> aules = new TreeSet<>(this.aules.keySet());
@@ -672,7 +686,9 @@ public class Horari implements Serializable {
     }
 
 
-
+    /**
+     * @return Retorna una String amb tota la informacio relativa al horari.
+     */
     public String toStringSencer() {
         // Es crea un nou stream
         ByteArrayOutputStream baos = new ByteArrayOutputStream();

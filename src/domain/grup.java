@@ -92,26 +92,41 @@ public class grup implements Serializable {
     }
 
 
+    /**
+     * Comprova si es un subgrup de un altre.
+     * @return True si ho es
+     */
     public boolean esSubgrup() {
         return !this.tipus.equals(Tipus_Aula.TEORIA);
     }
 
-
+    /**
+     * @return El tipus d'aula que necessita.
+     */
     public String getTipusAula() {
         return this.tipus.toString();
     }
 
-
+    /**
+     * Modifica la capacitat de el grup.
+     * @param qt
+     */
     public void setCapacitat(int qt) {
         this.capacitat = qt;
     }
 
-
+    /**
+     * Modifica el horari del grup.
+     * @param valor
+     */
     public void setHorari(String valor) {
         this.horariGrup = valor;
     }
 
-
+    /**
+     * Modifica el tipus d'aula que necessita.
+     * @param tipusAula
+     */
     public void setTipus(Tipus_Aula tipusAula) {
         System.err.println("DEBUG: vols canviar el tipus a " + tipusAula);
         this.tipus = tipusAula;

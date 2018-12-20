@@ -9,6 +9,12 @@ public class RestriccioInterval extends RestriccioFlexible {
     private int horaIni;
     private int horaFi;
 
+    /**
+     * Creador de la restriccio Interval
+     * @param d
+     * @param horaIni
+     * @param horaFi
+     */
     public RestriccioInterval (DiaSetmana d, int horaIni, int horaFi)
     {
         this.d = d;
@@ -16,17 +22,26 @@ public class RestriccioInterval extends RestriccioFlexible {
         this.horaFi = horaFi;
     }
 
+    /**
+     * @return La informacio de la restriccio.
+     */
     public String getInfo ()
     {
         return (" no es pot donar el " + d + " de " + horaIni + " a " + horaFi);
     }
 
+    /**
+     * Imprimeix per pantalla la informacio de la restriccio.
+     */
     public void showInfo ()
     {
         System.out.println("El dia " + d + " a l'interval " + horaIni + " fins " + horaFi);
     }
 
-    //Elimina les opcions de un map que no poden passar en el interval que te definit
+    /**
+     * Fa la poda de les possibilitats que ja no son possibles.
+     * @param possibles_classes Tot el map amb totes les possibilitats.
+     */
     public void podaPossibilitats (Map<String, Map<DiaSetmana, LinkedList<Classe>>> possibles_classes)
     {
         ArrayList<Classe> eliminades = new ArrayList<>();
