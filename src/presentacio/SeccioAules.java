@@ -22,7 +22,7 @@ import javafx.util.converter.IntegerStringConverter;
  */
 public class SeccioAules {
     VBox layout;
-    static TableView<AulaFX> taula;
+    static private TableView<AulaFX> taula;
     private static ObservableList<String> tipusAulesFX = FXCollections.observableArrayList();
     TextField idInput, capInput;
     ComboBox<String> tipusInput = new ComboBox<>(tipusAulesFX);

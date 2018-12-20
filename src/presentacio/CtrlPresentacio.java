@@ -15,13 +15,11 @@ import java.util.Queue;
  * @author Oleksandr Rudyy
  */
 public class CtrlPresentacio {
-    static ControladorPlaEstudis CtrlPE;
-    static ControladorAules CtrlAUS;
-    ControladorUtils CtrlUtils;
+    static private ControladorPlaEstudis CtrlPE;
+    static private ControladorAules CtrlAUS;
+    private ControladorUtils CtrlUtils;
 
-    static ArrayList<AulaFX> aules;
-
-    CtrlPlaEstudis PresentacioPE;
+    static private ArrayList<AulaFX> aules;
 
     public CtrlPresentacio() {
         this.CtrlPE = new ControladorPlaEstudis();
@@ -672,5 +670,14 @@ public class CtrlPresentacio {
      */
     public void activarRestriccio(String plaEstudi, String restriccio) {
         CtrlPE.activarRestriccio(plaEstudi, restriccio);
+    }
+
+    /**
+     *
+     * @param plaEstudi identificador d'un pla d'estudi
+     * @param dades string[] amb assignatura, grup, dia, horaInici i horaFi
+     */
+    public void afegirRestriccioNegociable(String plaEstudi, String[] dades) {
+        CtrlPE.afegirRestriccioNegociable(plaEstudi, dades);
     }
 }

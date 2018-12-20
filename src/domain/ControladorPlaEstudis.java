@@ -648,4 +648,9 @@ public class ControladorPlaEstudis {
         PlaEstudis pe = getPlaEstudi(plaEstudi);
         pe.activarRestriccioFlexible(restriccio);
     }
+
+    public void afegirRestriccioNegociable(String plaEstudi, String[] dades) {
+        PlaEstudis pe = getPlaEstudi(plaEstudi);
+        pe.afegirRestriccioFlexible(dades);
+    }
 }
