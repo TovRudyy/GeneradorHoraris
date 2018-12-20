@@ -84,6 +84,9 @@ public class PlaEstudis implements Serializable {
         return ret;
     }
 
+    /**
+     * @return Retorna les seves assignatures.
+     */
     public ArrayList<String> getAssignatures() {
         ArrayList<String> ret = new ArrayList<String>();
         for (assignatura a : assignatures.values()) {
@@ -238,7 +241,10 @@ public class PlaEstudis implements Serializable {
         restriccionsModificables.get(idAssigIGrup).add(r);
     }
 
-
+    /**
+     * Elimina la restriccio flexible identificada pel seu identificador.
+     * @param idAssigGrup
+     */
     public void eliminarRestriccioFlexible (String idAssigGrup)
     {
         restriccionsModificables.remove(idAssigGrup);
@@ -274,78 +280,146 @@ public class PlaEstudis implements Serializable {
     }
 
 
+    /**
+     * @param assig
+     * @return El nivell de la assignatura.
+     */
     public int getNivellAssignatura(String assig) {
         return assignatures.get(assig).getNivell();
 
     }
 
+    /**
+     * @param assig
+     * @return El numero de les classes de teoria.
+     */
     public int getQtClassesTeoriaAssignatura(String assig) {
         return assignatures.get(assig).getQtClassesTeoria();
     }
 
 
+    /**
+     * @param assig
+     * @return La durada de teoria de la assignatura.
+     */
     public int getDuradaClassesTeoriaAssignatura(String assig) {
         return assignatures.get(assig).getDuradaClassesTeoria();
 
     }
 
+    /**
+     * @param assig
+     * @return El numero de les classes de problemes.
+     */
     public int getQtClassesProblemesAssignatura(String assig) {
         return assignatures.get(assig).getQtClassesProblemes();
 
     }
 
+
+    /**
+     * @param assig
+     * @return La durada de problemes de la assignatura.
+     */
     public int getDuradaClassesProblemesAssignatura(String assig) {
         return assignatures.get(assig).getDuradaClassesProblemes();
 
     }
 
+    /**
+     * @param assig
+     * @return El numero de les classes de laboratori.
+     */
     public int getQtClassesLaboratoriAssignatura(String assig) {
         return assignatures.get(assig).getQtClassesLaboratori();
 
     }
 
+    /**
+     * @param assig
+     * @return La durada dels laboratoris de la assignatura.
+     */
     public int getDuradaClassesLaboratoriAssignatura(String assig) {
         return assignatures.get(assig).getDuradaClassesLaboratori();
     }
 
+    /**
+     * @param assig
+     * @return Els grup de les assignatures.
+     */
     public ArrayList<String> getGrupsAssignatura(String assig) {
         return assignatures.get(assig).getGrupsTeoria();
     }
 
 
-
+    /**
+     * @param grup
+     * @param assig
+     * @return La capacitat de un grup.
+     */
     public int getCapacitatGrup(String grup, String assig) {
         return assignatures.get(assig).getCapacitatGrup(grup);
     }
 
 
-
+    /**
+     * @param grup
+     * @param assig
+     * @return El horari de un grup d'una assignatura.
+     */
     public String getHorariGrup(String grup, String assig) {
         return assignatures.get(assig).getHorariGrup(grup);
 
     }
 
+    /**
+     * @param grup
+     * @param assig
+     * @return El tipus d'aula que necessita un grup.
+     */
     public String getTipusAulaGrup(String grup, String assig) {
         return assignatures.get(assig).getTipusAulaGrup(grup);
 
     }
 
+    /**
+     * @param grup
+     * @param assig
+     * @return Els subgrups de un grup.
+     */
     public ArrayList<String> getSubgrupsGrup(String grup, String assig) {
         return assignatures.get(assig).getSubgrupsGrup(grup);
     }
 
 
+    /**
+     * @param assig
+     * @return Els correquisits d'una assignatura.
+     */
     public ArrayList<String> getCorrequisitsAssignatura(String assig) {
         return assignatures.get(assig).getCorrequisits();
 
     }
 
-
+    /**
+     * Modifica una entrada del horari per una altre.
+     * @param assig
+     * @param grup
+     * @param d
+     * @param h
+     * @param diaNou
+     * @param horaNova
+     * @param aulaNova
+     * @return True si hem pogut modificar-ho o no.
+     */
     public boolean modificaEntrada (String assig, String grup, DiaSetmana d, int h, DiaSetmana diaNou, int horaNova, String aulaNova) {
         return horari.modificaClasse(assig, grup, d, h, diaNou, horaNova, aulaNova);
     }
 
 
+    /**
+     * @return El horari sencer.
+     */
     public LinkedList<LinkedList<Queue<String>>> getHorariSencer() {
         if (horari == null) {
             System.err.println("ERROR: horari és null!");
@@ -354,83 +428,154 @@ public class PlaEstudis implements Serializable {
         return horari.getHorariSencer();
     }
 
+    /**
+     * @return String de tot el horari sencer.
+     */
     public String toStringSencer() {
         return horari.toStringSencer();
     }
 
-
+    /**
+     * @return True si existeix un horari.
+     */
     public boolean existsHorari() {
         return (horari != null);
     }
 
-
+    /**
+     * @param assig
+     * @return True si el pla d'estudi conte una assignatura.
+     */
     public boolean hasAssignatura(String assig) {
         return assignatures.containsKey(assig);
     }
 
 
+    /**
+     * Elimina una assignatura.
+     * @param assig
+     */
     public void removeAssig(String assig) {
         assignatures.remove(assig);
     }
 
-
+    /**
+     * @param assig
+     * @param grup
+     * @return True si existeix un grup en una assignatura.
+     */
     public boolean existsGrupAssignatura(String assig, String grup) {
         return assignatures.get(assig).hasGrup(grup);
     }
 
-
+    /*
+     * esborra un grup de una assignatura.
+     * @param assig
+     * @param grup
+     */
     public void esborrarGrupAssignatura(String assig, String grup) {
         assignatures.get(assig).esborraGrup(grup);
     }
 
-
+    /**
+     * Modifica el nom de la assignatura.
+     * @param assig
+     * @param newValue
+     */
     public void setNomAssigantura(String assig, String newValue) {
         assignatures.get(assig).setNom(newValue);
     }
 
-
+    /**
+     * Modifica el nivell de la assignatura.
+     * @param assig
+     * @param nivell
+     */
     public void setNivellAssigantura(String assig, int nivell) {
         assignatures.get(assig).setNivell(nivell);
     }
 
-
+    /**
+     * Modifica el numero de classes de teoria.
+     * @param assig
+     * @param qt
+     */
     public void setQtClassesTeoriaAssigantura(String assig, int qt) {
         assignatures.get(assig).setQtClassesTeoria(qt);
     }
 
-
+    /**
+     * Modifica la durada de les classes de teoria.
+     * @param assig
+     * @param qt
+     */
     public void setDuradaClassesTeoriaAssigantura(String assig, int qt) {
         assignatures.get(assig).setDuradaClassesTeoria(qt);
     }
 
+    /**
+     * Modifica el numero de classes de problemes.
+     * @param assig
+     * @param qt
+     */
     public void setQtClassesProblemesAssigantura(String assig, int qt) {
         assignatures.get(assig).setQtClassesProblemes(qt);
     }
 
-
+    /**
+     * Modifica la durada de les classes de problemes.
+     * @param assig
+     * @param qt
+     */
     public void setDuradaClassesProblemesAssigantura(String assig, int qt) {
         assignatures.get(assig).setDuradaClassesProblemes(qt);
     }
 
-
+    /**
+     * Modifica el numero de classes de laboratori.
+     * @param assig
+     * @param qt
+     */
     public void setQtClassesLaboratoriAssigantura(String assig, int qt) {
         assignatures.get(assig).setQtClassesLaboratori(qt);
     }
 
-
+    /**
+     * Modifica la durada de les classes de laboratori.
+     * @param assig
+     * @param qt
+     */
     public void setDuradaClassesLaboratoriAssigantura(String assig, int qt) {
         assignatures.get(assig).setDuradaClassesLaboratori(qt);
     }
 
+    /**
+     * Modifica la capacitat de un grup de una assignatura.
+     * @param assig
+     * @param grup
+     * @param qt
+     */
     public void setCapacitatGrupAssignatura(String assig, String grup, int qt) {
         System.err.println("DEBUG: estas apuntant a l'assignatura " + assig);
         assignatures.get(assig).setCapacitatGrup(grup, qt);
     }
 
+    /**
+     * Modifica el horari de un grup d'una assignatura.
+     * @param assig
+     * @param grup
+     * @param valor
+     */
     public void setHorariGrupAssignatura(String assig, String grup, String valor) {
         assignatures.get(assig).setHorariGrup(grup, valor);
     }
 
+    /**
+     * Modifica el tipus d'aula necessaria per un grup d'una assignatura.
+     * @param assig
+     * @param grup
+     * @param tipusAula
+     */
     public void setTipusGrupAssignatura(String assig, String grup, Tipus_Aula tipusAula) {
         assignatures.get(assig).setTipusGrup(grup, tipusAula);
 
@@ -452,6 +597,12 @@ public class PlaEstudis implements Serializable {
         return true;
     }
 
+    /**
+     * Afegeix un grup a una assignatura.
+     * @param assignatura
+     * @param g
+     * @return True si es pot afegir o false altrament.
+     */
     public boolean afegirGrupAssignatura (String assignatura, grup g)
     {
         assignatura a = assignatures.get(assignatura);
