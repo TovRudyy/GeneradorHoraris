@@ -1,0 +1,23 @@
+Llista de funcionalitats implementades:
++Carregar aulari
++Guardar aulari
++Modificar aulari
++Carregar pla d'estudis
++Guardar pla d'estudis
++Modificar pla d'estudis
++Carregar escenari
++Modificar restriccions negociables del pla d'estudi
++Generar horari
++Guardar horari (horari + aulari + pla d'estudis)
++Consultar horari
++Modificar entrades de l'horari (moure sessions a dies i hores diferents)
++Guardar captura de l'horari en PNG
++Guardar l'horari en TXT
+
+Funcionalitats opcionals que no s'han implementat:
+-Filtrar un horari per assignatures i grups
+
+Funcionalitats opcionals:
++Permetre que les aules siguin de tipus diferents
++Permetre que els grups necessitin aules d'un cert tipus.
+

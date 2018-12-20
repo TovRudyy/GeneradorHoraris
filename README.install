@@ -1,7 +1,7 @@
 Requisits de l'instalació:
     -Java JDK 8 o superior (incloent java, jar i javadoc)
     -make
-    -Els fitxers .jar de la carpeta lib (json-simple-1.1.jar, junit-4.12.jar i hamcrest-core-1.3.jar)
+    -Els fitxers .jar de la carpeta lib (json-simple-1.1.jar)
     -El Manifest.txt de la carpeta arrel.
     
 Abans de l'instal·lació:
@@ -14,7 +14,6 @@ Abans de l'instal·lació:
 Procés d'instal·lació:
     per compilar els .class: make build
     per executar l'aplicació: make run
-    per executar el main dels drivers: make rundriver
     per generar el javadoc: make doc
     per generar el .jar de l'aplicació: make jar
     per executar el .jar de l'aplicació: make runjar

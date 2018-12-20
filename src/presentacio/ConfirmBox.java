@@ -8,7 +8,6 @@ import javafx.geometry.*;
 
 /**
  * Finestra de confirmació de decisions
- * @author Oleksandr Rudyy
  */
 public class ConfirmBox {
     static boolean answer;

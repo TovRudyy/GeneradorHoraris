@@ -1,9 +1,5 @@
-Nosaltres hem usat tres llibreries externes que són la llibreria de JUnit (junit-4.12), la llibreia Hamcrest (hamcrest-core-1.3.jar) i la llibreria json-simple (json-simple-1.1.jar).
-La de JUnit la hem fet servir per a crear el JUnit de la classe Horari ja que aquesta inclou les funcions
-necessàries per a implementar-lo.
-La de Hamcrest la fem servir amb la mateixa finalitat que la de JUnit: per poder validar els tests JUnit.
-La tercera llibreria és la del lector json. El motiu pel que vem decidir fer servir json en comptes de
-llegir directament un fitxer txt és sobretot la llegibilitat que permet a l'usuari, el qual redacta el fitxer
+Hem utilitzat la llibreria externa json-simple (json-simple-1.1.jar).
+El motiu pel que vam decidir fer servir json en comptes de llegir directament un fitxer txt és sobretot la llegibilitat que permet a l'usuari, el qual redacta el fitxer
 amb la informació que el nostre programa llegirà. D'aquesta manera ens feien falta funcions per tractar
 un fitxer json i per poder anar fent les lectures de la informació, etc.
  

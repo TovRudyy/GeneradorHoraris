@@ -1,8 +1,0 @@
-El directori "data/Drivers_Input" conté fitxers JSON que serveixen com a entrada pels drivers d'aquesta aplicació.  
-
-Horari_InputList.json
-PlaEstudis_InputAules.json
-PlaEstudis_InputPla.json
-RestriccioCorequisit_InputMap.json
-RestriccioOcupacio_InputMap.json
-RestriccioSubgrup_InputMap.json

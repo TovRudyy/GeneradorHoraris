@@ -6,7 +6,6 @@ import javafx.beans.property.SimpleStringProperty;
 /**
  * La funció de la classe AulaFX és simplement sincronitzar les dades
  * de les aules de la capa de domini amb les dades mostrades per la GUI
- * @author Oleksandr Rudyy
  */
 public class AulaFX {
     private final SimpleStringProperty id;

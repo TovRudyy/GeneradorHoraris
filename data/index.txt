@@ -4,13 +4,8 @@ Directori "Aules": conté fitxers JSON amb la descripció de les aules. Per defe
 
 Directori "PlaEstudis": conté fitxers JSON amb la descripció de diferents plans d'estudis. Igual que per la carpeta "Aules", durant la inicialització el programa llegeix tots els fitxers contnguts en aquesta carpeta i intenta carregar els Pla Estudis definits.
 
-Directori "Drivers_Input": conté fitxers JSON que especifiquen entrades especials pels drivers del GeneradorHoraris. 
-
 Directori "Escenaris": aquesta carpeta està creada perquè l'usuari tingui un lloc on guardar els diferents escenaris (Aulari + Pla d'Estudis).
 
 Directori "Horaris": en aquesta carpeta és on per defecte es guarden els horaris generats per l'aplicació. 
-
-Drectori "Jocs_de_Prova_Drivers": conté jocs de prova pels drivers.
-
 
 

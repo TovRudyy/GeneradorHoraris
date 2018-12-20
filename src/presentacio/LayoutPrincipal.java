@@ -5,7 +5,6 @@ import javafx.scene.layout.*;
 
 /**
  * Aquesta classe engloba totes les classes que formen el Layout principal de l'aplicacio
- * @autor Oleksandr Rudyy
  */
 public class LayoutPrincipal {
     private GridPane mainLayout;

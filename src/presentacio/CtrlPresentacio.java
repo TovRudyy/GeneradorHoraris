@@ -12,7 +12,6 @@ import java.util.Queue;
 
 /**
  * Controlador de la capa de presentacio mode GUI.
- * @author Oleksandr Rudyy
  */
 public class CtrlPresentacio {
     static private ControladorPlaEstudis CtrlPE;
