@@ -505,6 +505,7 @@ public class assignatura implements Serializable {
     }
 
 
+
     // Aqui farem que tots els grups recalculin la seva capacitat
     public void recalcularCapacitatsGrups ()
     {
@@ -523,10 +524,11 @@ public class assignatura implements Serializable {
         for (Map.Entry<String, grup> g: grups.entrySet())
         {
             int a= Integer.parseInt(g.getKey());
-            a = a%10;
+            int c = a%10;
             int b = (a/10)*10;
-            if (a != 0) {
-                int capacitat = getCapacitatGrup(Integer.toString(b));
+
+            if (c != 0) {
+                int capacitat = getCapacitatGrup(Integer.toString(b));  //agafem la capacitat del grup de teoria
                 setCapacitatGrup(Integer.toString(b), capacitat + g.getValue().getCapacitat());
             }
         }

@@ -138,8 +138,6 @@ public class VistaAfegirGrup {
             return;
         }
         Tipus_Aula t = Tipus_Aula.string_to_Tipus_Aula(tipus.getValue());
-
-        System.out.println(horariGrup);
         VistaPrincipal.ctrl.afegirGrup(plaEstudi, assignatura, id, capacitat, horariGrup, t);
         VistaPrincipal.refrescaArbrePlaEstudis();
         escenari.close();

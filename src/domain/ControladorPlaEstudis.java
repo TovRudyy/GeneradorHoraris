@@ -262,30 +262,6 @@ public class ControladorPlaEstudis {
      * @param id Identificador del pla d'estudis.
      */
     public void guardaHorari(String id) {
-        /*
-        PlaEstudis pe = getPlaEstudi(id);
-        String h = pe.getHorari();
-
-        Date date = Calendar.getInstance().getTime();
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
-        String strDate = dateFormat.format(date);
-        if (path.equals(""))
-            h =  pe.getID() + "\n" + "Data creació: " + strDate + "\n" +
-                    "L'identificador del pla d'estudis es : " + id + "\n\n" + h;
-        else
-            h =  pe.getID() + "\n" + "Data creació: " + strDate + "\n" +
-                 "El path de l'escenari corresponent es : " + path + "\n\n" + h;
-
-
-        System.out.println("GH: introdueix el nom del fitxer en el que es guardarà l'horari");
-        Scanner reader = new Scanner(System.in);
-        String arg;
-        arg = reader.next();
-        String aux;
-        if ( (aux = CtrlDades.guardaHorari(h, arg)) != null) {
-            System.out.println("INFO: s'ha guardat l'horari en " + aux);
-        }*/
-
         System.out.println("GH: introdueix el nom del fitxer en el que es guardarà l'horari");
         Scanner reader = new Scanner(System.in);
         String arg;
@@ -530,9 +506,20 @@ public class ControladorPlaEstudis {
         }
     }
 
+
+    //CAL FICAR EL CAS APART EN QUE EL GRUP SIGUI DE TEORIA, PEL QUE HEM DE REPERTIR TOTS ELS QUE HEM AFEGIT EN ELS SEUS SUBGRUPS.
+
     public void setCapacitatGrupAssignatura(String id, String assig, String grup, int qt) {
         PlaEstudis pe = getPlaEstudi(id);
+
+       /* if (grup.charAt(grup.length()-1) == '0')    //es un grup de teoria pel que cal modificar tots els subgrups
+        {
+
+        }*/
+
+
         pe.setCapacitatGrupAssignatura(assig, grup, qt);
+        pe.recalculaCapacitat(assig);
     }
 
 
@@ -595,7 +582,16 @@ public class ControladorPlaEstudis {
     {
         PlaEstudis pe = getPlaEstudi(plaEstudi);
         grup g = new grup (id, capacitat, horariGrup, t);
+        System.out.println("Hem afegit un grup");
         pe.afegirGrupAssignatura (assignatura, g);
+
+        //mirem si no es de teoria pel que ens cal recalcular les capacitats
+        int x = Integer.parseInt(id);
+        x = x%10;
+
+        if (x != 0) //no es de teoria
+            pe.recalculaCapacitat (assignatura);    //recalculem les capacitats dels grups de teoria d'aquestes assignatures.
+
     }
 
 

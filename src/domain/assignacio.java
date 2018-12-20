@@ -268,6 +268,7 @@ public class assignacio implements Serializable {
 
 
     /**
+     * Retornara true si esta buit.
      * @return Un boolea que ens diu si encara tenim suficients possibilitats per assignar tot el numero de classes restants.
      */
     public boolean isEmpty () { //si no tenim suficients possibilitats per cobrir les necessitats de l'assignatura
