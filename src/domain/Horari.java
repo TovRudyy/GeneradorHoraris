@@ -544,8 +544,6 @@ public class Horari implements Serializable {
             }
         }
 
-        printHorari();
-
         return horaris;
     }
 

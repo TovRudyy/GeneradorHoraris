@@ -265,7 +265,17 @@ public class PlaEstudis implements Serializable {
      * @param dades String[] amb: String[0] = assignatura, String[1] = grup, String[2] = dia,
      *              String[3] = horaInici, String[4] = horaFi
      */
-    public void afegirRestriccioFlexible(String[] dades) {
+    public void afegirRestriccioFlexible (String[] dades) { //pensada per quan passem els valors desde la aplicacio
+        DiaSetmana d = DiaSetmana.string_To_DiaSetmana(dades[2]);
+        int horaIni = Integer.parseInt(dades[3]);
+        int horaFi = Integer.parseInt(dades[4]);
+
+        RestriccioInterval a = new RestriccioInterval(d, horaIni, horaFi);
+        a.setId(dades[0]+dades[1]);
+        String x = a.getInfo();
+
+        restriccionsModificables.putIfAbsent(x, a);
+        restriccionsModificablesActives.putIfAbsent(x, a);
     }
 
     /**
