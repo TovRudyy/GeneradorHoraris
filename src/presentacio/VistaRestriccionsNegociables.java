@@ -245,6 +245,27 @@ public class VistaRestriccionsNegociables {
      * Implementa les accions a dur a terme quan es pitja el boto d'afegir restriccions
      */
     private void afegirResriccio() {
+        if (!assignatura.getSelectionModel().isEmpty() && !grups.getSelectionModel().isEmpty()
+        && !dia.getSelectionModel().isEmpty() && !horaInici.getSelectionModel().isEmpty() && !horaFi.getSelectionModel().isEmpty()) {
+            String inici, fi;
+            inici = horaInici.getSelectionModel().getSelectedItem();
+            fi = horaFi.getSelectionModel().getSelectedItem();
+            if (Integer.parseInt(fi) > Integer.parseInt(inici)) {
+                String a = assignatura.getSelectionModel().getSelectedItem();
+                String g = grups.getSelectionModel().getSelectedItem();
+                String d = dia.getSelectionModel().getSelectedItem();
+                String dades[] = new String[]{a, g, d, inici, fi};
+                VistaPrincipal.ctrl.afegirRestriccioNegociable(this.plaEstudi, dades);
+                escena.setRoot(buildLayout());
+            }
+            else {
+                return;
+            }
+        }
+        else {
+            return;
+        }
+
     }
 
     /**
