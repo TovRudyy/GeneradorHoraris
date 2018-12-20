@@ -595,7 +595,16 @@ public class ControladorPlaEstudis {
     {
         PlaEstudis pe = getPlaEstudi(plaEstudi);
         grup g = new grup (id, capacitat, horariGrup, t);
+        System.out.println("Hem afegit un grup");
         pe.afegirGrupAssignatura (assignatura, g);
+
+        //mirem si no es de teoria pel que ens cal recalcular les capacitats
+        int x = Integer.parseInt(id);
+        x = x%10;
+
+        if (x != 0) //no es de teoria
+            pe.recalculaCapacitat (assignatura);    //recalculem les capacitats dels grups de teoria d'aquestes assignatures.
+
     }
 
 

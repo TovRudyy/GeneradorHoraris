@@ -665,5 +665,10 @@ public class PlaEstudis implements Serializable {
         return a.afegirGrup(g);
     }
 
+    public void recalculaCapacitat (String assig)
+    {
+        assignatura a = assignatures.get (assig);
+        a.recalcularCapacitatsGrups();
+    }
 
 }
