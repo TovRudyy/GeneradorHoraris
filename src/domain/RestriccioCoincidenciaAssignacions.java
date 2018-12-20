@@ -27,19 +27,20 @@ public class RestriccioCoincidenciaAssignacions extends RestriccioFlexible {
 
 
     public void podaPossibilitats (Map<String, Map<DiaSetmana, LinkedList<Classe>>> possibles_classes){
+
         ArrayList<Classe> eliminades = new ArrayList<>();
         //recorro totes les aules
         for (Map.Entry<String, Map<DiaSetmana, LinkedList<Classe>>> a : possibles_classes.entrySet()) {
             Map<DiaSetmana, LinkedList<Classe>> diaConcret = a.getValue();
             for (Map.Entry<DiaSetmana, LinkedList<Classe>> aux : diaConcret.entrySet()) {
-                if (!aux.getKey().equals(d)) {
+                if (! aux.getKey().equals(d)) {
                     eliminades.addAll(aux.getValue());  //afegim totes les que no siguin del dia concret
                 }
             }
         }
-
-        for (Classe c_aux: eliminades)  //eliminem les classes amb les que hi ha conflicte
-            possibles_classes.get(c_aux.getIdAula()).get(c_aux.getDia()).remove (c_aux);
+        for (Classe c_aux: eliminades) {  //eliminem les classes amb les que hi ha conflicte
+            possibles_classes.get(c_aux.getIdAula()).get(c_aux.getDia()).remove(c_aux);
+        }
     }
 
     /**

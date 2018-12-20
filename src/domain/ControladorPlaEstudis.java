@@ -511,6 +511,13 @@ public class ControladorPlaEstudis {
 
     public void setCapacitatGrupAssignatura(String id, String assig, String grup, int qt) {
         PlaEstudis pe = getPlaEstudi(id);
+
+       /* if (grup.charAt(grup.length()-1) == '0')    //es un grup de teoria pel que cal modificar tots els subgrups
+        {
+
+        }*/
+
+
         pe.setCapacitatGrupAssignatura(assig, grup, qt);
         pe.recalculaCapacitat(assig);
     }

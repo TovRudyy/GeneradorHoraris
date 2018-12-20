@@ -84,19 +84,27 @@ public class Horari implements Serializable {
         {
             RestriccioFlexible b = a.getValue();
             String[] ids = b.getAssignacioId().split(" ");
-            boolean r = false;
+            boolean r = true;
 
-            if (ids.length == 1)   //entrarem si es una restriccio unaria
-                r = conjuntAssignacions.get(ids[0]).podaRestriccionsFlexibles (b);
+            if (ids.length == 1) {   //entrarem si es una restriccio unaria
+                System.out.println("Una restriccio unaria");
+                r = conjuntAssignacions.get(ids[0]).podaRestriccionsFlexibles(b);
+                if (!r) return false;
+            }
 
             //NOSE SI ES UNA DOBLE AND O NOMES UN.
             else { //si es una restriccio n-aria.
-                for (String id: ids)
-                    r = r || (conjuntAssignacions.get(id).podaRestriccionsFlexibles(b));
+                for (String id: ids) {
+                    if (conjuntAssignacions.containsKey(id)) {
+                        r = (conjuntAssignacions.get(id).podaRestriccionsFlexibles(b));
+                        if (!r) {
+                            return false;
+                        }
+                    }
+                }
             }
-
-            if (! r) return false;
         }
+        System.out.println("Hem retornat true");
         return true;
     }
 
