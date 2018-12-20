@@ -253,7 +253,7 @@ public class PlaEstudis implements Serializable {
      * @param idAssigIGrup
      */
     public void afegirRestriccioFlexible (RestriccioFlexible r, String idAssigIGrup) {
-        String a = "El grup " + idAssigIGrup + r.getInfo();
+        String a = r.getInfo();
         r.setId (idAssigIGrup);
         restriccionsModificables.putIfAbsent(a, r);
         restriccionsModificablesActives.putIfAbsent(a,r);   //afegim als dos conjunts, al de restriccions actives i al de restriccions existents
@@ -266,6 +266,7 @@ public class PlaEstudis implements Serializable {
     public void eliminarRestriccioFlexible (String t)
     {
         restriccionsModificables.remove(t);
+        restriccionsModificablesActives.remove(t);
     }
 
 
@@ -277,6 +278,7 @@ public class PlaEstudis implements Serializable {
     {
         restriccionsModificablesActives.remove(t);
     }
+
 
     /**
      * Aquella restriccio passa a ser activa en el nostre horari.

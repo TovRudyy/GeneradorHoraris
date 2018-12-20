@@ -34,7 +34,7 @@ public class RestriccioInterval extends RestriccioFlexible {
      */
     public String getInfo ()
     {
-        return (" no es pot donar el " + d + " de " + horaIni + " a " + horaFi);
+        return ("El grup " + id + "no es pot donar el " + d + " de " + horaIni + " a " + horaFi);
     }
 
     /**

@@ -37,12 +37,14 @@ public class RestriccioCoincidenciaAssignacions extends RestriccioFlexible {
      */
     public String getInfo() {
         String a = "Les assignacions ";
-        //for (int i=0;)
-        for (String ass : assignacions)
+
+        for (int i=0; i < assignacions.size(); ++i)
         {
-            a += ass + " ,";
+            String ass = assignacions.get(i);
+            if (i == (assignacions.size()-1)) a+= ass;
+            else a += ass + " ,";
         }
-        a = a + " el dia " + d;
+        a = a + " han de coincidir el dia " + d;
         return a;
     }
 

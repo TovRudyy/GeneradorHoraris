@@ -131,4 +131,5 @@ public class grup implements Serializable {
         System.err.println("DEBUG: vols canviar el tipus a " + tipusAula);
         this.tipus = tipusAula;
     }
+
 }
