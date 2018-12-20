@@ -262,30 +262,6 @@ public class ControladorPlaEstudis {
      * @param id Identificador del pla d'estudis.
      */
     public void guardaHorari(String id) {
-        /*
-        PlaEstudis pe = getPlaEstudi(id);
-        String h = pe.getHorari();
-
-        Date date = Calendar.getInstance().getTime();
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
-        String strDate = dateFormat.format(date);
-        if (path.equals(""))
-            h =  pe.getID() + "\n" + "Data creació: " + strDate + "\n" +
-                    "L'identificador del pla d'estudis es : " + id + "\n\n" + h;
-        else
-            h =  pe.getID() + "\n" + "Data creació: " + strDate + "\n" +
-                 "El path de l'escenari corresponent es : " + path + "\n\n" + h;
-
-
-        System.out.println("GH: introdueix el nom del fitxer en el que es guardarà l'horari");
-        Scanner reader = new Scanner(System.in);
-        String arg;
-        arg = reader.next();
-        String aux;
-        if ( (aux = CtrlDades.guardaHorari(h, arg)) != null) {
-            System.out.println("INFO: s'ha guardat l'horari en " + aux);
-        }*/
-
         System.out.println("GH: introdueix el nom del fitxer en el que es guardarà l'horari");
         Scanner reader = new Scanner(System.in);
         String arg;
