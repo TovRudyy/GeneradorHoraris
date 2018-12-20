@@ -636,4 +636,29 @@ public class ControladorPlaEstudis {
         PlaEstudis pe = getPlaEstudi(plaEstudi);
         return pe.getRestriccionsFlexibles();
     }
+
+    public ArrayList<String> getRestriccionsFlexiblesActives(String plaEstudi) {
+        PlaEstudis pe = getPlaEstudi(plaEstudi);
+        return pe.getRestriccionsFlexiblesActives();
+    }
+
+    public void eliminarRestriccio(String plaEstudi, String restriccio) {
+        PlaEstudis pe = getPlaEstudi(plaEstudi);
+        pe.eliminarRestriccioFlexible(restriccio);
+    }
+
+    public void suavitzarRestriccio(String plaEstudi, String restriccio) {
+        PlaEstudis pe = getPlaEstudi(plaEstudi);
+        pe.suavitzarRestriccioFlexible(restriccio);
+    }
+
+    public void reiniciarRestriccions(String plaEstudi) {
+        PlaEstudis pe = getPlaEstudi(plaEstudi);
+        pe.reiniciarRestriccions();
+    }
+
+    public void activarRestriccio(String plaEstudi, String restriccio) {
+        PlaEstudis pe = getPlaEstudi(plaEstudi);
+        pe.activarRestriccioFlexible(restriccio);
+    }
 }

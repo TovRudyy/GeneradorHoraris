@@ -628,4 +628,49 @@ public class CtrlPresentacio {
     public ArrayList<String> getRestriccionsFlexibles(String plaEstudi) {
         return CtrlPE.getRestriccionsFlexibles(plaEstudi);
     }
+
+    /**
+     *
+     * @param plaEstudi identificador d'un pla d'estudis
+     * @return una llista amb totes les restriccions flexibles actives
+     */
+    public ArrayList<String> getRestriccionsFlexiblesActives(String plaEstudi) {
+        return CtrlPE.getRestriccionsFlexiblesActives(plaEstudi);
+    }
+
+    /**
+     *
+     * @param plaEstudi identifciador d'un pla d'estudi
+     * @param restriccio restriccio a eliminar
+     */
+    public void eliminarRestriccio(String plaEstudi, String restriccio) {
+        CtrlPE.eliminarRestriccio(plaEstudi, restriccio);
+    }
+
+    /**
+     *
+     * @param plaEstudi identificador d'un pla d'estudi
+     * @param restriccio restriccio a suavitzar
+     */
+    public void suavitzarRestriccio(String plaEstudi, String restriccio) {
+        CtrlPE.suavitzarRestriccio(plaEstudi, restriccio);
+    }
+
+    /**
+     *
+     * @param plaEstudi identificador d'un pla d'estudi
+     */
+    public void reiniciarRestriccions(String plaEstudi) {
+        CtrlPE.reiniciarRestriccions(plaEstudi);
+
+    }
+
+    /**
+     *
+     * @param plaEstudi identifciador d'un pla d'estudis
+     * @param restriccio restriccio a activar
+     */
+    public void activarRestriccio(String plaEstudi, String restriccio) {
+        CtrlPE.activarRestriccio(plaEstudi, restriccio);
+    }
 }
