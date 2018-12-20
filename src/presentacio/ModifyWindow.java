@@ -244,7 +244,7 @@ public class ModifyWindow {
                     window.close();
                 }
                 break;
-            case 8:
+            case 8: //cas en el que modifiquem el tamany dels grups. Cal recalcular el tamany
                 if (!input.getText().equals("")) {
                     String newValue = input.getText();
                     VistaPrincipal.ctrl.setCapacitatGrupAssignatura(pe, assig, grup, Integer.parseUnsignedInt(newValue));

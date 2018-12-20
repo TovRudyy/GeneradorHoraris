@@ -530,9 +530,13 @@ public class ControladorPlaEstudis {
         }
     }
 
+
+    //CAL FICAR EL CAS APART EN QUE EL GRUP SIGUI DE TEORIA, PEL QUE HEM DE REPERTIR TOTS ELS QUE HEM AFEGIT EN ELS SEUS SUBGRUPS.
+
     public void setCapacitatGrupAssignatura(String id, String assig, String grup, int qt) {
         PlaEstudis pe = getPlaEstudi(id);
         pe.setCapacitatGrupAssignatura(assig, grup, qt);
+        pe.recalculaCapacitat(assig);
     }
 
 
