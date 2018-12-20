@@ -253,8 +253,9 @@ public class PlaEstudis implements Serializable {
      * @param idAssigIGrup
      */
     public void afegirRestriccioFlexible (RestriccioFlexible r, String idAssigIGrup) {
-        String a = r.getInfo();
         r.setId (idAssigIGrup);
+        String a = r.getInfo();
+        System.out.println("Hem afegit " + a);
         restriccionsModificables.putIfAbsent(a, r);
         restriccionsModificablesActives.putIfAbsent(a,r);   //afegim als dos conjunts, al de restriccions actives i al de restriccions existents
     }
