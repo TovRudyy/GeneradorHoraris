@@ -1,6 +1,5 @@
 package presentacio;
 
-import com.sun.xml.internal.ws.api.message.ExceptionHasMessage;
 import domain.Aula_Exception;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ObservableValue;
