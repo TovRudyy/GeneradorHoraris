@@ -199,7 +199,6 @@
         "valor": 4
       }
     } ,
-
     {
       "codi": "EDA",
       "nom": "Estructures de dades i disseny d'algorismes",
@@ -308,6 +307,18 @@
           "horaFinal": 16
         }
       ]
+    }
+  ],
+  "restriccions_n": [
+    {
+      "assignacions": [
+        "F10",
+        "EDA10",
+        "M110",
+        "M210",
+        "BD10"
+      ],
+      "dia": "Dilluns"
     }
   ]
 }

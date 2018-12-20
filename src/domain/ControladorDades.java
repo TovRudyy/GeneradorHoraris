@@ -114,7 +114,9 @@ public final class ControladorDades {
         JSONArray corequisits = (JSONArray) jsonObject.get("corequisits");
         if(corequisits != null) afegeixCorrequisits(plaEstudis, corequisits);
         JSONArray flexibles = (JSONArray) jsonObject.get("restriccions_intervals");
-        if(flexibles != null)afegeixRestriccionsIntervals(plaEstudis, flexibles);
+        if(flexibles != null) afegeixRestriccionsIntervals(plaEstudis, flexibles);
+        JSONArray naries = (JSONArray) jsonObject.get("restriccions_n");
+        if(naries != null) afegeixNAries(plaEstudis, naries);
         return plaEstudis;
     }
 
@@ -207,7 +209,6 @@ public final class ControladorDades {
         }
     }
 
-
     private static void afegeixRestriccionsIntervals(PlaEstudis plaEstudis, JSONArray flexibles){
         for(Object c: flexibles){
             JSONObject cc = (JSONObject) c;
@@ -221,6 +222,20 @@ public final class ControladorDades {
                 RestriccioInterval interval = new RestriccioInterval(dia, hI, hF);
                 plaEstudis.afegirRestriccioFlexible(interval, id);
             }
+        }
+    }
+
+    private static void afegeixNAries(PlaEstudis plaEstudis, JSONArray naries){
+        for(Object c: naries){
+            JSONObject cc = (JSONObject) c;
+            DiaSetmana dia = DiaSetmana.string_To_DiaSetmana((String) cc.get("dia"));
+            JSONArray ids = (JSONArray) cc.get("assignacions");
+            ArrayList<String> assignacions = new ArrayList<>();
+            for(Object r: ids){
+                assignacions.add((String) r);
+            }
+            if(assignacions.size() == 0) continue;
+            plaEstudis.afegirRestriccioFlexible(new RestriccioCoincidenciaAssignacions(assignacions, dia), assignacions.get(0));
         }
     }
 
