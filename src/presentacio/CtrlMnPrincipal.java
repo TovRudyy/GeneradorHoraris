@@ -9,7 +9,6 @@ import java.util.Scanner;
 /**
  * Controlador de la capa de presentacio. Nomes util quan el programa s'executa
  * en mode CLI.
- * @author Oleksandr Rudyy
  */
 
 public class CtrlMnPrincipal {

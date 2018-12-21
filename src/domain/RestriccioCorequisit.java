@@ -9,7 +9,7 @@ import java.util.Map;
  * @author David Pujol
  */
 
-public class RestriccioCorequisit extends Restriccio {
+public class RestriccioCorequisit extends RestriccioNoFlexible {
 
     //conte les assignatures amb les que es correquisit
     private ArrayList<String> assignatures = new ArrayList<String>();

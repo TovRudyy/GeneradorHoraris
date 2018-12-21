@@ -9,7 +9,7 @@ import java.util.Map;
  * @author David Pujol
  */
 
-public class RestriccioSubgrup extends Restriccio {
+public class RestriccioSubgrup extends RestriccioNoFlexible {
 
     private grup pare;
 

@@ -20,18 +20,8 @@ David: Pujol:
 
 
 Oleksandr Rudyy:
-    -ControladorPresentacioMenuPrincipal
-    -ControladorPresentacioPlaEstudis
-    -ControladorPersistencia
-    -Classe
-    -ControladorAules
-    -ControladorPlaEstudis
-    -DiaSetmana
-    -PlaEstudis
-
-    -Diagrama de classes
-    -Especificacio del diagrama de classes
-    -Manual d'usuari
+    -Capa de presentació (totes les classes)
+    -Diagrama de classes de la capa de presentació
     -Makefile
 
 
