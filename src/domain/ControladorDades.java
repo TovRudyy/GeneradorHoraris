@@ -75,12 +75,21 @@ public final class ControladorDades {
         return aules;
     }
 
+    /**
+     * Guarda un horari a un path concret
+     * @param horari String que representa el horari
+     * @param path Path a on guardar el fitxer
+     * @return True si s'ha pogut guardar
+     */
     public static String guardaHorariGUI(String horari, String path){
         return ControladorPersistencia.guardaHorariGUI(horari, path);
     }
 
 
-
+    /**
+     * Llegeix una carpeta de plans d'estudi de fitxers JSON.
+     * @return Una array amb tots els plans d'estudi llegits.
+     */
     private static ArrayList<PlaEstudis> llegirCarpetaPEJSON() {
         ArrayList<PlaEstudis> plaEstudisArray = new ArrayList<>();
         ArrayList<Object> plans = ControladorPersistencia.llegirCarpetaPlansJSON();
@@ -95,6 +104,10 @@ public final class ControladorDades {
         return plaEstudisArray;
     }
 
+    /**
+     * Llegeix una carpeta de plans d'estudi de fitxers serialitzats.
+     * @return Una array amb tots els plans d'estudi llegits.
+     */
     private static ArrayList<PlaEstudis> llegirCarpetaPESerialized() {
         ArrayList<PlaEstudis> plans = new ArrayList<>();
         for(Object o: ControladorPersistencia.llegirCarpetaPlansSerialized()) {
@@ -107,6 +120,10 @@ public final class ControladorDades {
         return plans;
     }
 
+    /**
+     * Converteix un JSON  a un pla d'estudis
+     * @return El pla d'estudis creat
+     */
     private static PlaEstudis JSONToPlaEstudis(JSONObject jsonObject) throws Aula_Exception {
         PlaEstudis plaEstudis = new PlaEstudis((String) jsonObject.get("nom"));
         JSONArray assignatures = (JSONArray) jsonObject.get("assignatures");
@@ -120,6 +137,12 @@ public final class ControladorDades {
         return plaEstudis;
     }
 
+    /**
+     * Crea la assignatura a apartir de un objecte generic.
+     * @param ass El objecte amb la informacio, generic.
+     * @return La assignatura creada.
+     * @throws Aula_Exception
+     */
     private static assignatura creaAssignatura(JSONObject ass) throws Aula_Exception{
         String codi = (String) ass.get("codi");
         String nom = (String) ass.get("nom");
@@ -193,12 +216,23 @@ public final class ControladorDades {
         return assig;
     }
 
+    /**
+     * Afegeix una asignatura a un pla d'estudis.
+     * @param plaEstudis El pla d'estudis
+     * @param assignatures Objecte generic amb la asignatura
+     * @throws Aula_Exception
+     */
     private static void afegeixAssignatures(PlaEstudis plaEstudis, JSONArray assignatures) throws Aula_Exception{
         for(Object a: assignatures){
             plaEstudis.addAssignatura(creaAssignatura((JSONObject) a));
         }
     }
 
+    /**
+     * Afegeix una asignatura a un pla d'estudis.
+     * @param plaEstudis El pla d'estudis
+     * @param corequisits Objecte generic amb els corequisits
+     */
     private static void afegeixCorrequisits(PlaEstudis plaEstudis, JSONArray corequisits){
         for(Object c: corequisits){
             JSONObject cc = (JSONObject) c;
@@ -209,6 +243,11 @@ public final class ControladorDades {
         }
     }
 
+    /**
+     * Afegeix unes restriccions flexibles a un pla d'estudis.
+     * @param plaEstudis El pla d'estudis
+     * @param flexibles Objecte generic amb les restriccions flexibles
+     */
     private static void afegeixRestriccionsIntervals(PlaEstudis plaEstudis, JSONArray flexibles){
         for(Object c: flexibles){
             JSONObject cc = (JSONObject) c;
@@ -225,6 +264,11 @@ public final class ControladorDades {
         }
     }
 
+    /**
+     * Afegeix unes restriccions naries a un pla d'estudis.
+     * @param plaEstudis El pla d'estudis
+     * @param naries Objecte generic amb les restriccions naries.
+     */
     private static void afegeixNAries(PlaEstudis plaEstudis, JSONArray naries){
         for(Object c: naries){
             JSONObject cc = (JSONObject) c;
@@ -239,6 +283,12 @@ public final class ControladorDades {
         }
     }
 
+    /**
+     * Converteix un objecte generic en una aula.
+     * @param obj El objecte generic
+     * @return L'aula
+     * @throws Aula_Exception
+     */
     private static Map<String, Aula> JSONToAules(JSONArray obj) throws Aula_Exception{
         Map<String, Aula> aules = new TreeMap<>();
         for (Object anObj : obj) {
@@ -252,6 +302,10 @@ public final class ControladorDades {
         return aules;
     }
 
+    /**
+     * Llegeix la carpeta amb les aules en format JSON.
+     * @return El conjunt d'aules llegides.
+     */
     private static Map<String, Aula> llegirCarpetaAulesJSON() {
         Map<String, Aula> aules = new TreeMap<>();
         ArrayList<Object> aularis = ControladorPersistencia.llegirCarpetaAulesJSON();
@@ -266,7 +320,10 @@ public final class ControladorDades {
         return aules;
     }
 
-    @SuppressWarnings("unchecked")
+    /**
+     * Llegeix la carpeta amb les aules en format JSON.
+     * @return El conjunt d'aules llegides.
+     */
     private static Map<String, Aula> llegirCarpetaAulesSerialized() {
         Map<String, Aula> aules = new TreeMap<>();
         for(Object o: ControladorPersistencia.llegirCarpetaAulesSerialized()) {
@@ -275,15 +332,33 @@ public final class ControladorDades {
         return aules;
     }
 
-
+    /**
+     * Carrega un path concret
+     * @param path
+     * @return Retorna el objecte generic que ha llegit al path.
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public static Object carrega(String path) throws IOException, ClassNotFoundException {
         return ControladorPersistencia.carrega(path);
     }
 
+    /**
+     * Guarda un objecte a un path concret
+     * @param object Objecte generic.
+     * @param path Path a on guardar-ho.
+     * @throws IOException
+     */
     public static void guarda(Object object, String path) throws IOException {
         ControladorPersistencia.guarda(object, path);
     }
 
+    /**
+     * Guarda un conjunt de objectes a un path concret.
+     * @param path Path a on guardar els objectes
+     * @param objects Conjunt d'objectes generics.
+     * @throws IOException
+     */
     public static void guarda(String path, Object... objects) throws IOException {
         ControladorPersistencia.guarda(objects, path);
     }

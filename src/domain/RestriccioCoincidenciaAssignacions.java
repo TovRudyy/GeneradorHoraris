@@ -9,11 +9,19 @@ public class RestriccioCoincidenciaAssignacions extends RestriccioFlexible {
     private DiaSetmana d;
 
 
+    /**
+     * Constructora de la classe
+     * @param assignacions Conjunt de les seves assignacions que han de coincidir.
+     * @param d Dia de la setmana
+     */
     public RestriccioCoincidenciaAssignacions (ArrayList<String> assignacions, DiaSetmana d) {
         this.assignacions = assignacions;
         this.d = d;
     }
 
+    /**
+     * Mostra per consola tota la informacio de la classe
+     */
     public void showInfo () {
         String a = "Les seguents assignacions han de coincidir ";
         for (String ass : assignacions)
@@ -25,7 +33,10 @@ public class RestriccioCoincidenciaAssignacions extends RestriccioFlexible {
         System.out.println(a);
     }
 
-
+    /**
+     * Poda del map totes les posibilitats que ja no es poden donar.
+     * @param possibles_classes Tot el map amb totes les possibilitats.
+     */
     public void podaPossibilitats (Map<String, Map<DiaSetmana, LinkedList<Classe>>> possibles_classes){
 
         ArrayList<Classe> eliminades = new ArrayList<>();
@@ -59,6 +70,9 @@ public class RestriccioCoincidenciaAssignacions extends RestriccioFlexible {
         return a;
     }
 
+    /**
+     * @return Una string amb tots els identificadors guardats.
+     */
     public String getAssignacioId () {
         String result = "";
         for (String a : assignacions)

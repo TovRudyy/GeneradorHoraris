@@ -27,8 +27,16 @@ public abstract class RestriccioFlexible extends Restriccio {
      */
     public abstract String getInfo();
 
+    /**
+     * @return El identificador de la restriccio
+     */
     public abstract String getAssignacioId ();
 
+
+    /**
+     * Modifica el identificador
+     * @param id Identificador nou.
+     */
     public abstract void setId(String id);
 
 }

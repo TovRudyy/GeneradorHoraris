@@ -23,6 +23,10 @@ public class RestriccioInterval extends RestriccioFlexible {
         this.horaFi = horaFi;
     }
 
+    /**
+     * Modifica el identificador per un de nou.
+     * @param id Identificador nou.
+     */
     public void setId(String id)
     {
         this.id = id;

@@ -11,6 +11,10 @@ public class ControladorUtils {
         this.hores = initHorresHorari();
     }
 
+    /**
+     * Inicialitza les hores del horari
+     * @return Una string amb totes les hores.
+     */
     private ArrayList<String> initHorresHorari() {
         ArrayList<String> hores = new ArrayList<String>();
         for (int i = 8; i < 20; i++) {
@@ -20,6 +24,10 @@ public class ControladorUtils {
         return hores;
     }
 
+    /**
+     * Inicialitza tots els dies de la setmana
+     * @return Una string amb tots els dies.
+     */
     public ArrayList<String> initDiesSetmana() {
         ArrayList<String> dies = new ArrayList<String>();
         for (DiaSetmana dia : DiaSetmana.values()) {
@@ -28,10 +36,16 @@ public class ControladorUtils {
         return dies;
     }
 
+    /**
+     * @return Una array amb tots els dies de la setmana.
+     */
     public ArrayList<String> getDiesSetmana() {
         return diesHorari;
     }
 
+    /**
+     * @return Una array amb totes les hores del horari.
+     */
     public ArrayList<String> getHoresHorari() {
         return hores;
     }

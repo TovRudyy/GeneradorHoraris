@@ -171,10 +171,21 @@ public class ControladorAules {
         Aulari = llegeixFitxer(file);
     }
 
+    /**
+     * Modifiquem la capacitat de l'aula
+     * @param id Identificador
+     * @param nou Nova capacitat.
+     */
     public void setCapacitatAula(String id, int nou) {
         Aulari.get(id).setCapacitat(nou);
     }
 
+    /**
+     * Modifiquem el identificador de l'aula
+     * @param id Identificador
+     * @param newValue Nou id
+     * @return un bolea indicant si hem pogut modificarlo o false si no, ja que ja existeix el identificador indicat.
+     */
     public boolean setIdentificadorAula(String id, String newValue) {
         if (Aulari.containsKey(newValue))
             return false;
@@ -185,10 +196,22 @@ public class ControladorAules {
         return true;
     }
 
+    /**
+     * Modifiquem el tipus de una aula
+     * @param id Identificador
+     * @param tipus Tipus
+     */
     public void setTipusAula(String id, String tipus) {
         Aulari.get(id).setTipus(tipus);
     }
 
+    /**
+     * Afegim una aula
+     * @param id Identificador
+     * @param capacitat Capacitat
+     * @param tipus Tipus
+     * @return True si l'hem pogut afegir o false altrament.
+     */
     public boolean afegirAula(String id, int capacitat, String tipus) {
         if (Aulari.containsKey(id))
             return false;
@@ -203,14 +226,25 @@ public class ControladorAules {
         return true;
     }
 
+    /**
+     * Eliminem l'aula amb identificador id.
+     * @param id Identificador.
+     */
     public void removeAula(String id) {
         Aulari.remove(id);
     }
 
+    /**
+     * Esborrem tot el aulari.
+     */
     public void borrarAulari() {
         Aulari.clear();
     }
 
+    /**
+     * Carreguem tot el fitxer d'aules a partir de un path
+     * @param absolutePath Path al fitxer.
+     */
     public void carregarFitxerAules(String absolutePath) {
         Map<String, Aula> noves = llegeixFitxer(absolutePath);
         for (String key : noves.keySet()) {
@@ -218,6 +252,10 @@ public class ControladorAules {
         }
     }
 
+    /**
+     * Guardem un aulari a un path
+     * @path Path per guardar el aulari.
+     */
     public void guardaAulari(String path) {
         try {
             ControladorDades.guarda(this.Aulari, path);

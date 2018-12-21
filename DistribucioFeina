@@ -7,6 +7,11 @@ David: Pujol:
     -RestriccioSubgrup
     -RestriccioOcupacio
     -RestriccionCorequisit
+    -Restriccio flexible
+    -Restriccio NoFlexible
+    -RestriccioInterval
+    -RestriccioCoincidenciaAssignacions
+    -Classe
 
     -Javadoc
     -Explicacio de l'algorisme

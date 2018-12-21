@@ -6,9 +6,6 @@ import java.util.Map;
 
 public abstract class RestriccioNoFlexible extends Restriccio {
 
-    public RestriccioNoFlexible () {
-    };
-
     /**
      *
      * @param possibles_classes Map amb totes les possibilitats de la assignacio.

@@ -1,9 +1,6 @@
 package domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Map;
 
 /**
  * Abstreu els tipus de restriccions que existeixen.
