@@ -87,6 +87,7 @@ public class VistaRestriccionsNegociables {
         VBox aux = new VBox();
         aux.setSpacing(10);
         aux.getChildren().add(nomRestTot);
+        boxesActives = new ArrayList<>();
         for (String r : restriccions) {
             System.err.println("DEBUG: afegint restriccio flexible activa: " + r);
             CheckBox box = new CheckBox(r);
@@ -95,6 +96,7 @@ public class VistaRestriccionsNegociables {
             boxesActives.add(box);
             aux.getChildren().add(box);
         }
+        System.out.println(boxesActives.size());
         return aux;
     }
 
@@ -190,6 +192,7 @@ public class VistaRestriccionsNegociables {
         VBox aux = new VBox();
         aux.setSpacing(10);
         aux.getChildren().add(nomRestTot);
+        boxesTotals = new ArrayList<>();
         for (String r : restriccions) {
             System.err.println("DEBUG: afegint restriccio flexible: " + r);
             CheckBox box = new CheckBox(r);
