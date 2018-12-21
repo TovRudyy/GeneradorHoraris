@@ -11,7 +11,7 @@ import java.util.Map;
  */
 
 
-public class RestriccioOcupacio extends Restriccio {
+public class RestriccioOcupacio extends RestriccioNoFlexible {
 
     /**
      * Crea una instancia de la classe RestriccioOcupacio.
