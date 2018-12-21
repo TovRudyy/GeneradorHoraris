@@ -77,7 +77,7 @@ public class Horari implements Serializable {
      * Poda aquelles assignacions que tinguin restriccions modificables.
      * @return False si alguna de les assignacions s'ha quedat sense valors i per tant ja no es valid el horari.
      */
-    public boolean preprocessaRestriccions ()
+    private boolean preprocessaRestriccions ()
     {
         //iterem sobre totes les assignacions que tenen restriccions no modificables
         for (Map.Entry<String, RestriccioFlexible> a: restriccionsModificables.entrySet())
@@ -196,20 +196,27 @@ public class Horari implements Serializable {
      * @param aulaNova
      * @return True si hem pogut fer el canvi, false altrament.
      */
-    public boolean modificaClasse(String idAssig, String idGrup, DiaSetmana diaAntic, int horaAntiga, DiaSetmana diaNou, int horaNova, String aulaNova) {
+    protected boolean modificaClasse(String idAssig, String idGrup, DiaSetmana diaAntic, int horaAntiga, DiaSetmana diaNou, int horaNova, String aulaNova) {
 
         //la eliminem de les seleccionades fins al moment
         Classe m = null;
         Classe d = null;
         int i = 0;
         boolean found = false;
+        int counter = 0;
 
         while (!found && i < classesSeleccionades.size()) {
             Classe c = classesSeleccionades.get(i); //seleccionem una de les classes seleccionades
-            if (c.getId_assig().equals(idAssig) && c.getId_grup().equals(idGrup) && (c.getHoraInici() == horaAntiga) && c.getDia().equals(diaAntic)) {
+           /* if (c.getId_assig().equals(idAssig) && c.getId_grup().equals(idGrup) && (c.getHoraInici() == horaAntiga) && c.getDia().equals(diaAntic)) {
                 d = c;
                 m = new Classe(c.getId_assig(), c.getId_grup(), c.getDia(), c.getHoraInici(), c.getHoraFi(), c.getIdAula());
                 found = true;
+            }*/
+            if (c.getId_assig().equals(idAssig) && c.getId_grup().equals(idGrup) && c.getDia().equals(diaAntic) && Restriccio.solapenHores(c.getHoraInici(), c.getHoraFi(), horaAntiga, horaAntiga+ (c.getDurada()) - (c.getHoraFi() - horaAntiga))) {
+                d = c;
+                m = new Classe(c.getId_assig(), c.getId_grup(), c.getDia(), c.getHoraInici(), c.getHoraFi(), c.getIdAula());
+                found = true;
+                counter = c.getDurada() - (c.getHoraFi() - horaAntiga); //ens indica quantes posicions mes amunt esta el primer que movem
             }
             ++i;
         }
@@ -220,7 +227,7 @@ public class Horari implements Serializable {
             int horaFi = m.getDurada() + horaNova;
 
             //comprovem que les noves dades son correctes abans de recolocarla (el dia no cal comprovar-lo)
-            if (horaFi > 20 || horaNova < 8) {
+            if ((horaNova + (d.getDurada() - counter)) > 20 || (horaNova - counter) < 8) {
                 System.out.println("Hora incorrecte");
                 return false;
             }
@@ -240,21 +247,21 @@ public class Horari implements Serializable {
                 return false;
             }
 
-            if (a.esMatins() && ((horaFi) > 14 ))
+            if (a.esMatins() && ((horaNova + (d.getDurada() - counter)) > 14 ))
             {
                 System.err.println("DEBUG: No podem assignar una classe de matins a una hora de tarda");
                 return false;
             }
 
-            if (!a.esMatins() && (horaNova < 14)){
+            if (!a.esMatins() && (horaNova - counter < 14)){
                 System.err.println("DEBUG: No podem assignar una classe de tardes a una hora de matins");
                 return false;
             }
 
 
             m.setDia(diaNou);
-            m.setHora_inici(horaNova);
-            m.setHora_fi(horaFi);  //ara ja la tenim amb la informacio canviada
+            m.setHora_inici(horaNova-counter);
+            m.setHora_fi(horaNova + (d.getDurada() - counter));  //ara ja la tenim amb la informacio canviada
             m.setAula(aulaNova);
 
             //ara comprovem si la podem afegir
