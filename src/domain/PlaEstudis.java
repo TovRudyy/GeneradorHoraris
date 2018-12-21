@@ -313,7 +313,8 @@ public class PlaEstudis implements Serializable {
      */
     public void reiniciarRestriccions ()
     {
-        restriccionsModificablesActives = restriccionsModificables;
+        restriccionsModificablesActives = new HashMap<>();
+        restriccionsModificablesActives.putAll(restriccionsModificables);
     }
 
 
