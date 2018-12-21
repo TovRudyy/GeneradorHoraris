@@ -16,8 +16,8 @@ import java.util.*;
 
 public class Horari implements Serializable {
 
-    private HashMap<String, assignacio> conjuntAssignacions = new HashMap<>();
-    private LinkedList<assignacio> l;
+    private LinkedHashMap<String, assignacio> conjuntAssignacions = new LinkedHashMap<>();
+    private LinkedList<assignacio> l = new LinkedList<>();
     private LinkedList<Classe> classesSeleccionades = new LinkedList<>();//ho guardem en forma de stack perque quan retrocedim sempre treurem la ultima afegida
     private Map<String, Aula> aules;
     private HashMap<String, RestriccioFlexible> restriccionsModificables;    //aqui mantenim un map amb totes les restriccions modifciables. Indexades pel nom de assig+grup (identificador de una assignacio)
@@ -28,7 +28,6 @@ public class Horari implements Serializable {
      */
     public Horari(LinkedList<assignacio> conjuntAssignacions, Map<String, Aula> aules, HashMap<String, RestriccioFlexible> r) {
         afegeixAssignacions(conjuntAssignacions);
-        this.l = conjuntAssignacions;
         this.aules = aules;
         this.restriccionsModificables = r;
     }
@@ -47,6 +46,11 @@ public class Horari implements Serializable {
         for (assignacio a : conjuntAssignacions)    //primer afegim les de matins i despres les de tardes
             if (!a.esMatins()) this.conjuntAssignacions.put((a.getIdAssig() + a.getIdGrup()), a);
 
+
+        for (Map.Entry<String, assignacio> aux : this.conjuntAssignacions.entrySet())
+        {
+            this.l.add(aux.getValue());
+        }
     }
 
 
@@ -58,6 +62,7 @@ public class Horari implements Serializable {
      */
     public boolean findHorari() {
         boolean a = preprocessaRestriccions ();
+
         if (a) {
             boolean r = selectClasse(0);
             if (r) System.err.println("HEM TROBAT UN HORARI: ");
@@ -87,7 +92,6 @@ public class Horari implements Serializable {
             boolean r = true;
 
             if (ids.length == 1) {   //entrarem si es una restriccio unaria
-                System.out.println("Una restriccio unaria");
                 r = conjuntAssignacions.get(ids[0]).podaRestriccionsFlexibles(b);
                 if (!r) return false;
             }
@@ -104,7 +108,6 @@ public class Horari implements Serializable {
                 }
             }
         }
-        System.out.println("Hem retornat true");
         return true;
     }
 
@@ -207,11 +210,6 @@ public class Horari implements Serializable {
 
         while (!found && i < classesSeleccionades.size()) {
             Classe c = classesSeleccionades.get(i); //seleccionem una de les classes seleccionades
-           /* if (c.getId_assig().equals(idAssig) && c.getId_grup().equals(idGrup) && (c.getHoraInici() == horaAntiga) && c.getDia().equals(diaAntic)) {
-                d = c;
-                m = new Classe(c.getId_assig(), c.getId_grup(), c.getDia(), c.getHoraInici(), c.getHoraFi(), c.getIdAula());
-                found = true;
-            }*/
             if (c.getId_assig().equals(idAssig) && c.getId_grup().equals(idGrup) && c.getDia().equals(diaAntic) && Restriccio.solapenHores(c.getHoraInici(), c.getHoraFi(), horaAntiga, horaAntiga+ (c.getDurada()) - (c.getHoraFi() - horaAntiga))) {
                 d = c;
                 m = new Classe(c.getId_assig(), c.getId_grup(), c.getDia(), c.getHoraInici(), c.getHoraFi(), c.getIdAula());
