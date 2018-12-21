@@ -153,14 +153,37 @@ public class VistaAfegirAssig {
             PopUpWindow.display("ERROR", "L'assignatura " + id +" ja existeix!");
             return;
         }
+
         String nom = inputNom.getText();
         int nivell = Integer.parseInt(inputNivell.getText());
+        if (nivell < 0)
+            System.err.println("El nivell no es correcte.");
+
         int n_T = Integer.parseInt(inputNclassL.getText());
+        if (n_T < 0)
+            System.err.println("El nombre de classes de teoria no es correcte.");
+
+
         int dur_T = Integer.parseInt(inputDurT.getText());
+        if (dur_T < 0)
+            System.err.println("La duracio de las classes de teoria no es correcte.");
+
         int n_P = Integer.parseInt(inputNclassP.getText());
+        if (n_P < 0)
+            System.err.println("El nombre de classes de problemes no es correcte.");
+
         int dur_P = Integer.parseInt(inputDurP.getText());
+        if (dur_P < 0)
+            System.err.println("La duracio de las classes de problemes no es correcte.");
+
         int n_L = Integer.parseInt(inputNclassL.getText());
+        if (n_L < 0)
+            System.err.println("El nombre de classes de laboratori no es correcte.");
+
         int dur_L = Integer.parseInt(inputDurL.getText());
+        if (dur_L < 0)
+            System.err.println("La duracio de las classes de laboratori no es correcte..");
+
 
         VistaPrincipal.ctrl.afegirAssignatura(plaEstudi, id, nom, nivell, n_T, dur_T, n_P, dur_P, n_L, dur_L);
 
