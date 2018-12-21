@@ -505,8 +505,9 @@ public class assignatura implements Serializable {
     }
 
 
-
-    // Aqui farem que tots els grups recalculin la seva capacitat
+    /**
+     * Recalcula el tamany dels grups de teoria a partir dels seus subgrups.
+     */
     public void recalcularCapacitatsGrups ()
     {
         //fiquem tots els grup de teoria a 0 per després recalcularlos
@@ -534,5 +535,43 @@ public class assignatura implements Serializable {
         }
 
     }
+
+    /**
+     * Ens permet que un cop modifiquem la capacitat de un subgrup de teoria, tambe augmenti de la mateix manera el tamany dels subgrups.
+     * @param grup Identificador del grup.
+     * @param change Canvi de la antiga capacitat i la nova.
+     */
+    public void recalcularCapacitatsSubgrups (String grup, int change)
+    {
+        int a = Integer.parseInt(grup);
+        a = a/10;
+
+        int numeroSubgrups = 0;
+        ArrayList<grup> subgrups = new ArrayList<>();
+
+        //trobem el nombre de subgrups
+        for (Map.Entry<String, grup> g: grups.entrySet())
+        {
+            int b = Integer.parseInt(g.getKey());
+            b = b/10;
+            if (a == b && !(grup.equals(g.getKey()))) { //es un subgrup
+                ++numeroSubgrups;
+                subgrups.add(g.getValue());
+            }
+        }
+
+        int cadascun = change / numeroSubgrups;
+        int restant = change - (numeroSubgrups*cadascun);
+        for (int i=0; i < subgrups.size(); ++i){
+            grup g = subgrups.get(i);
+
+            if (i == subgrups.size()-1)
+                g.setCapacitat(g.getCapacitat() + cadascun + restant);
+
+            else
+                g.setCapacitat(g.getCapacitat() + cadascun);
+        }
+    }
+
 
 }

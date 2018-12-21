@@ -4,6 +4,7 @@ package domain;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -697,11 +698,11 @@ public class ControladorPlaEstudis {
     public void setCapacitatGrupAssignatura(String id, String assig, String grup, int qt) {
         PlaEstudis pe = getPlaEstudi(id);
 
-       /* if (grup.charAt(grup.length()-1) == '0')    //es un grup de teoria pel que cal modificar tots els subgrups
+        if (grup.charAt(grup.length()-1) == '0')
         {
-
-        }*/
-
+            int previous = pe.getCapacitatGrup(grup, assig);
+            pe.recalculaCapacitatSubgrups(assig, grup, (qt - previous));
+        }
 
         pe.setCapacitatGrupAssignatura(assig, grup, qt);
         pe.recalculaCapacitat(assig);
@@ -774,7 +775,7 @@ public class ControladorPlaEstudis {
      * Afegeix un grup
      * @param plaEstudi El pla d'estudis
      * @param assignatura Id de la assignatura
-     * @param id
+     * @param id Id del pla d'estudi.
      * @param capacitat
      * @param horariGrup
      * @param t
@@ -783,7 +784,6 @@ public class ControladorPlaEstudis {
     {
         PlaEstudis pe = getPlaEstudi(plaEstudi);
         grup g = new grup (id, capacitat, horariGrup, t);
-        System.out.println("Hem afegit un grup");
         pe.afegirGrupAssignatura (assignatura, g);
 
         //mirem si no es de teoria pel que ens cal recalcular les capacitats
