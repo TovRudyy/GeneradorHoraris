@@ -28,19 +28,24 @@ public final class ControladorDades {
      * @param path Ruta del fitxer.
      * @return La instancia del pla d'estudis creat.
      */
-    public static PlaEstudis llegeixPE(String path) throws IOException, ClassNotFoundException, ParseException, Aula_Exception {
-        PlaEstudis plaEstudis;
+    public static ArrayList<PlaEstudis> llegeixPE(String path) throws IOException, ClassNotFoundException, ParseException, Aula_Exception {
+        ArrayList<PlaEstudis> plans = new ArrayList<>();
         switch (path.substring(path.lastIndexOf('.') + 1)) {
             case "ser":
-                plaEstudis = (PlaEstudis) ControladorPersistencia.carrega(path);
+                Object obj = ControladorPersistencia.carrega(path);
+                try{
+                    plans.add((PlaEstudis) obj);
+                }catch(ClassCastException e){
+                    plans.addAll((ArrayList<PlaEstudis>) obj);
+                }
                 break;
             case "json":
-                plaEstudis = JSONToPlaEstudis((JSONObject) ControladorPersistencia.llegirJSON(path));
+                plans.add(JSONToPlaEstudis((JSONObject) ControladorPersistencia.llegirJSON(path)));
                 break;
             default:
                 throw new IOException("Tipus de fitxer no suportat");
         }
-        return plaEstudis;
+        return plans;
     }
 
     /**

@@ -11,7 +11,10 @@ import java.util.Objects;
  * @author Olek
  */
 
-public class ControladorPersistencia {
+public final class ControladorPersistencia {
+
+    private ControladorPersistencia() {
+    }
 
     /**
      * @return retorna una llista de tots els objectes llegits dels arxius .json de la carpeta "data/PlaEstudis"

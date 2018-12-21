@@ -46,8 +46,9 @@ final class Lector_Fitxers {
             String path = pe_file.getAbsolutePath();
             if(!path.substring(path.lastIndexOf('.') + 1).equals("ser")) continue;
             try{
-                plansEstudis.add(Serialitzador.deserialize(pe_file.getAbsolutePath()));
+                plansEstudis.add(Serialitzador.deserialize(path));
             }catch(IOException | ClassNotFoundException e){
+                System.err.println("Fitxer " + path);
                 System.err.println(e.getMessage());
                 e.printStackTrace();
             }

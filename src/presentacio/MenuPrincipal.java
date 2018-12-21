@@ -9,7 +9,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 
 import java.io.File;
 
@@ -96,6 +95,8 @@ public class MenuPrincipal {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Guardar Pla Estudis");
         fileChooser.setInitialDirectory(new File("data/PlaEstudis"));
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Serialized files (*.ser)", "*.ser");
+        fileChooser.getExtensionFilters().add(extFilter);
         Stage escenari = getFileChooserStage();
         File fitxer = fileChooser.showSaveDialog(escenari);
         if (fitxer != null) {
@@ -116,6 +117,8 @@ public class MenuPrincipal {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Guardar Aulari");
         fileChooser.setInitialDirectory(new File("data/Aules"));
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Serialized files (*.ser)", "*.ser");
+        fileChooser.getExtensionFilters().add(extFilter);
         Stage escenari = getFileChooserStage();
         File fitxer = fileChooser.showSaveDialog(escenari);
         if (fitxer != null) {

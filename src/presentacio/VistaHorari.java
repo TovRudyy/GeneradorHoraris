@@ -18,14 +18,12 @@ import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-
 import javax.imageio.ImageIO;
-import javax.sound.sampled.Clip;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Queue;
-import java.util.*;
 
 /**
  * Aquesta classe implementa la finestra on es mostra l'horari
@@ -110,6 +108,8 @@ public class VistaHorari {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Exportar Horari");
         fileChooser.setInitialDirectory(new File("data/Horaris"));
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
+        fileChooser.getExtensionFilters().add(extFilter);
         Stage escenari = getFileChooserStage();
         File fitxer = fileChooser.showSaveDialog(escenari);
         if (fitxer != null) {
@@ -132,6 +132,8 @@ public class VistaHorari {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Exportar Horari");
         fileChooser.setInitialDirectory(new File("data/"));
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.png");
+        fileChooser.getExtensionFilters().add(extFilter);
         Stage escenari = getFileChooserStage();
         File fitxer = fileChooser.showSaveDialog(escenari);
         if (fitxer != null) {
@@ -160,6 +162,8 @@ public class VistaHorari {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Guardar Horari");
         fileChooser.setInitialDirectory(new File("data/Horaris"));
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Serialized files (*.ser)", "*.ser");
+        fileChooser.getExtensionFilters().add(extFilter);
         Stage escenari = getFileChooserStage();
         File fitxer = fileChooser.showSaveDialog(escenari);
         if (fitxer != null) {

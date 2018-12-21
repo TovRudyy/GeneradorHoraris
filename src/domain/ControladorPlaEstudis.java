@@ -201,8 +201,7 @@ public class ControladorPlaEstudis {
 
     public void carregarFitxerPlaEstudis(String absolutePath) {
         try {
-            PlaEstudis pe = ControladorDades.llegeixPE(absolutePath);
-            ConjuntPE.add(pe);
+            ConjuntPE.addAll(ControladorDades.llegeixPE(absolutePath));
         }catch (IOException | ClassNotFoundException | Aula_Exception | ParseException e) {
             System.err.println(e.getMessage());
             e.printStackTrace();
@@ -411,8 +410,7 @@ public class ControladorPlaEstudis {
         ConjuntPE.clear();
         String file = dir + EscenaPE;
         try {
-            PlaEstudis pe = ControladorDades.llegeixPE(file);
-            ConjuntPE.add(pe);
+            ConjuntPE.addAll(ControladorDades.llegeixPE(file));
         }catch (IOException | ClassNotFoundException | Aula_Exception | ParseException e) {
             System.err.println(e.getMessage());
             e.printStackTrace();

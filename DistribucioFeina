@@ -26,14 +26,12 @@ Oleksandr Rudyy:
 
 
 Victor Divi:
-    -Lector_Aules_JSON
-    -Lector_Pla_JSON
+    -Capa de persistencia
+    -ControladorDades
     -Aula
     -Aula_Exception
     -Tipus_Aula
-    -Drivers
-    -Lector_Drivers_JSON
-    -Stubs
-
-    -Jocs de Prova dels drivers
+    -Diagrama de classes de persistencia i presentació
+    -Jocs de proves
+    -Manual d'usuari
     -Codificacions JSON
