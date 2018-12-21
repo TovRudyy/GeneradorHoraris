@@ -260,8 +260,7 @@ public class assignacio implements Serializable {
      * @return True si encara ens queden possibilitats o false si no ens en queden.
      */
     public boolean podaRestriccionsFlexibles (RestriccioFlexible r)
-    {
-        r.podaPossibilitats(possibles_classes);
+    {  r.podaPossibilitats(possibles_classes);
         return (! isEmpty());
     }
 

@@ -193,6 +193,26 @@ public class ControladorPlaEstudis {
         return pe.existsHorari();
     }
 
+
+    public void borrarPlansEstudis() {
+        ConjuntPE.clear();
+    }
+
+    public void carregarFitxerPlaEstudis(String absolutePath) {
+        try {
+            PlaEstudis pe = ControladorDades.llegeixPE(absolutePath);
+            ConjuntPE.add(pe);
+        }catch (IOException | ClassNotFoundException | Aula_Exception | ParseException e) {
+            System.err.println(e.getMessage());
+            e.printStackTrace();
+        }
+
+    }
+
+    public boolean existsPlaEstudi(String pe) {
+        return (getPlaEstudi(pe) != null);
+    }
+
     /**
      * Mostra si existeix una assignatura amb el identificador assig del pla d'estudis id
      * @param id Identificador pla d'estudis
