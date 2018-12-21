@@ -3,7 +3,7 @@ package domain;
 import java.io.Serializable;
 
 /**
- * Implementa l'abstracció d'una Aula.
+ * Implementa l'abstraccioo d'una Aula.
  * @author Victor
  */
 public class Aula implements Serializable {

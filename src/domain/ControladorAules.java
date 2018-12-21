@@ -254,7 +254,7 @@ public class ControladorAules {
 
     /**
      * Guardem un aulari a un path
-     * @path Path per guardar el aulari.
+     * @param path Path per guardar el aulari.
      */
     public void guardaAulari(String path) {
         try {

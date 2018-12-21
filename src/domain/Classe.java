@@ -3,7 +3,7 @@ package domain;
 import java.io.Serializable;
 
 /**
- * Aquesta Classe serveix per relacionar Aula amb una data concreta i el grup d'una assignatura, per tant és la unitat de dades que processa l'algorisme a l'hora d'assignar un hoari a una assignacio.
+ * Aquesta Classe serveix per relacionar Aula amb una data concreta i el grup d'una assignatura, per tant es la unitat de dades que processa l'algorisme a l'hora d'assignar un hoari a una assignacio.
  * @author Olek
  */
 
