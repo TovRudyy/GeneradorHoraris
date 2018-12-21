@@ -1,0 +1,149 @@
+Objectius: comprovar la generació d'horaris en condcions normals, i les diferents funcionalitats més bàsiques de l'aplicació.
+
+Entrada:
+        Escenari_FIB
+Inicialització:
+        Executar aplicació
+        Carregar Escenari -> Seleccionar carpeta Escenari_FIB
+
+Operacions:
+    *Totes les accions es realitzen seqüencialment
+        Accions:
+                Seleccionar pla FIB
+                Clicar "Generar horari"
+        Sortida:
+                Finestra emergent mostrant un horari
+        Accions:
+                Clicar "Guardar"
+                Introduir un nom de fitxer
+        Sortida:
+                S'ha creat un nou fitxer nom.ser a la carpeta "data/Horaris"
+        Accions:
+                Clicar "Exportar PNG"
+                Introduir un nom de fitxer
+        Sortida:
+                S'ha creat una imatge nou.png a la carpeta "data"
+        Accions:
+                Clicar "Esportar txt"
+                Introduir un nom de fitxer
+        Sortida:
+                S'ha creat un fitxer nou.txt a la carpeta "data/Horaris"
+        Accions:
+                Arrossegar una classe d'un slot a un altre
+        Sortida:
+                Si el canvi es possible, es realitza el canvi. Si no, es mostra un missatge informatiu per consola
+        Accions:
+                Clicar "Sortir"
+        Sortida:
+                La finestra de l'horari es tanca
+        Accions:
+                Esborra tant el pla com les aules amb les opcions "Borrar Plans Estudis" del menú "Plans Estudis" i
+                    "Borrar aules" del menú "Aulari".
+                Clica "Carregar Horari" i selecciona el fitxer generat abans amb la opció "Guardar" de l'horari (tindrà extensió .ser)
+        Sortida:
+                S'han restaurat tant les aules com el pla
+        Accions:
+                Seleccionar pla FIB
+                Clicar "Afegir assig."
+        Sortida:
+                Es mostra la finestra de crear assignatura
+        Accions:
+                Introduir les dades següents: BD - Prova - 99 - 1 - 1 - 1 - 1 - 1 - 1
+                Clicar "Crear"
+        Sortida:
+                Es mostra una finestra indicant un error
+        Accions:
+                Canviar "BD" per "PR"
+        Sortida:
+                La finestra es tanca i l'assignatura "Prova" s'ha afegit al pla
+        Accions:
+                Seleccionar la assignatura "Prova"
+                Clicar "Afegir grup"
+        Sortida:
+                Es mostra la finestra de crear grup
+        Accions:
+                Introduir les dades següents: 10 - 60 - Matins - TEORIA
+                Clicar "Crear"
+        Sortida:
+                S'ha afegit el grup 10 a la assignatura "PR"
+        Accions:
+                Seleccionar el grup 10 de la assignatura "PR"
+                Clicar "Eliminar grup"
+        Sortida:
+                El grup 10 de la assignatura "PR" s'ha eliminat
+        Accions:
+                Seleccionar la assignatura "PR"
+                Clicar "Afegir correquisit"
+        Sortida:
+                Es mostra la finestra d'afegir corequisit
+        Accions:
+                Introduir "BD"
+                Clicar "Afegir"
+        Sortida:
+                S'ha afegit "BD" als correquisits de "PR" i viceversa
+        Accions:
+                Seleccionar "BD" en els correquisits de "PR"
+                Clicar "Eliminar correquisit"
+        Sortida:
+                S'ha eliminat "BD" dels correquisits de "PR" i viceversa
+        Accions:
+                Seleccionar l'atribut "Nom" de la assignatura "PR"
+                Clicar "Modificar atribut"
+        Sortida:
+                Es mostra la finestra d'edició d'atributs
+        Accions:
+                Introduiex un nom nou
+                Clica "Aplicar"
+        Sortida:
+                El nom de "PR" ha canviat
+        Accions:
+                Seleccionar la assignatura "Prova"
+                Clicar "Eliminar assig."
+        Sortida:
+                La assignatura "Prova" s'ha eliminat
+
+
+        Accions:
+                Introduir: "Aula_Test" - 200 - TEORIA a la barra d'afegir
+                Clicar "Afegir"
+        Sortida:
+                La nova aula s'ha afegit a la llista
+        Accions:
+                Doble clic a sobre del nom "Aula_Test"
+                Introduir "Nou_Nom"
+                Clicar "Enter"
+        Sortida:
+                El nom de l'aula ha canviat
+        Accions:
+                Selecciona l'aula
+                Clica "Eliminar"
+        Sortida:
+                L'aula s'ha eliminat
+
+
+        Accions:
+                Eliminar dues assignatures del pla "FIB"
+                Clica la opció "Guardar Pla Estudis" del menú "Plans Estudis"
+                Introdueix el nom del fitxer i clica "Guardar"
+                Clica la opció "Borrar Pla Estudis" del mateix menú
+        Sortida:
+                El pla s'ha esborrat
+        Accions:
+                Clica la opció "Carregar fitxer pla estudis"
+                Seleccionar l'arxiu creat anteriorment
+        Sortida:
+                Els canvis fets abans al pla "FIB" (eliminar dues assignatures) s'han conservat
+
+
+        Accions:
+                Elimina, modifica o afegeix aules
+                Clica la opció "Guardar Aules" del menú "Aulari"
+                Introdueix el nom del fitxer i clica "Guardar"
+                Clica la opció de "Borrar Aulari"
+        Sortida:
+                Totes les aules s'han esborrat
+        Accions:
+                Clica la opció "Carrega fitxer d'aules"
+                Selecciona el fitxer creat anteriorment
+        Sortida:
+                S'han carregat totes les aules amb els canvis fets anteriorment
