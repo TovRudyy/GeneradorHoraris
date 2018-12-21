@@ -1,0 +1,12 @@
+Objectius: Observar el comportament de l'algorisme quan un horari no és possible degut a la manca d'aules
+
+Inicialització:
+        Carregar Escenari -> Seleccionar carpeta "Escenari_Aules_Insuficients" o "Escenari_Bastantes_Aules_Insuficients"
+
+Operacions:
+        Accions:
+                Seleccionar pla "FIB"
+                Clicar "Generar horari"
+        Sortida:
+                Missatge informant que no s'ha pogut generar cap horari
+                (Observar que amb l'escenari Bastantes_Aules_Insuficients es triga molt més a veure que no es pot generar)

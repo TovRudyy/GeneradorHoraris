@@ -1,0 +1,11 @@
+Objectius: Observar la diferència entre el temps necessari per generar un horari que hi ha moltes possibilitats
+
+Inicialització:
+        Carregar Escenari -> Escenari_Enrome
+
+Operacions:
+        Accions:
+                Seleccionar pla "FIB"
+                Clicar "Generar horari"
+        Sortida:
+                Es mostra un horari generat (triga molt més temps que l'escenari normal (Escenari_FIB))

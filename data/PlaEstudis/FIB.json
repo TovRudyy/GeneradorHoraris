@@ -266,7 +266,7 @@
       }
     }
   ],
-  "correquisits":[
+  "corequisits":[
     {
       "a1":"IC",
       "a2":"FM"

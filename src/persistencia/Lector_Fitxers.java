@@ -45,12 +45,21 @@ final class Lector_Fitxers {
         for (File pe_file : Objects.requireNonNull(PEfolder.listFiles())) {
             String path = pe_file.getAbsolutePath();
             if(!path.substring(path.lastIndexOf('.') + 1).equals("ser")) continue;
+            Object obj = null;
             try{
-                plansEstudis.add(Serialitzador.deserialize(path));
+                obj = Serialitzador.deserialize(path);
+                plansEstudis.add(obj);
             }catch(IOException | ClassNotFoundException e){
-                System.err.println("Fitxer " + path);
-                System.err.println(e.getMessage());
-                e.printStackTrace();
+                try{
+                    if(obj != null) plansEstudis.addAll((ArrayList<Object>) obj);
+                    System.err.println("Fitxer " + path);
+                    System.err.println(e.getMessage());
+                    e.printStackTrace();
+                }catch(ClassCastException ee){
+                    System.err.println("Fitxer " + path);
+                    System.err.println(e.getMessage());
+                    e.printStackTrace();
+                }
             }
         }
         return plansEstudis;

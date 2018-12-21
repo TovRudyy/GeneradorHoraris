@@ -1,0 +1,80 @@
+{
+  "nom":"FIB",
+  "assignatures":[
+    {
+      "codi": "IC",
+      "nom": "Introduccio als computadors",
+      "nivell": 1,
+      "classes": {
+        "teoria": 2,
+        "duracio_t": 2,
+        "problemes": 0,
+        "duracio_p": 0,
+        "laboratori": 1,
+        "duracio_l": 2
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 7,
+        "matins": 4,
+        "capacitat": 68,
+        "tipus_subgrup": "L INFORMATICA",
+        "subgrup_per_alumnes": false,
+        "valor": 4
+      }
+    },
+    {
+      "codi": "PRO1",
+      "nom": "Programacio 1",
+      "nivell": 1,
+      "classes": {
+        "teoria": 1,
+        "duracio_t": 3,
+        "problemes": 0,
+        "duracio_p": 0,
+        "laboratori": 1,
+        "duracio_l": 2
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 7,
+        "matins": 4,
+        "capacitat": 66,
+        "tipus_subgrup": "LI",
+        "subgrup_per_alumnes": false,
+        "valor": 3
+      }
+    }
+  ],
+  "restriccions_intervals": [
+    {
+      "key": "IC10",
+      "value": [
+        {
+          "dia": "Dilluns",
+          "horaInici": 10,
+          "horaFinal": 14
+        }
+      ]
+    },
+    {
+      "key": "PRO110",
+      "value": [
+        {
+          "dia": "Dilluns",
+          "horaInici": 10,
+          "horaFinal": 14
+        }
+      ]
+    }
+  ],
+  "restriccions_n": [
+    {
+      "assignacions": [
+        "IC10",
+        "PRO110"
+      ],
+      "dia": "Dilluns"
+    }
+  ]
+}

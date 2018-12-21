@@ -1,0 +1,807 @@
+{
+  "nom":"FIB",
+  "assignatures":[
+    {
+      "codi": "IC",
+      "nom": "Introduccio als computadors",
+      "nivell": 1,
+      "classes": {
+        "teoria": 2,
+        "duracio_t": 2,
+        "problemes": 0,
+        "duracio_p": 0,
+        "laboratori": 1,
+        "duracio_l": 2
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 7,
+        "matins": 4,
+        "capacitat": 68,
+        "tipus_subgrup": "L INFORMATICA",
+        "subgrup_per_alumnes": false,
+        "valor": 4
+      }
+    },
+    {
+      "codi": "F",
+      "nom": "Fisica",
+      "nivell": 1,
+      "classes": {
+        "teoria": 2,
+        "duracio_t": 2,
+        "problemes": 0,
+        "duracio_p": 0,
+        "laboratori": 1,
+        "duracio_l": 2
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 7,
+        "matins": 4,
+        "capacitat": 68,
+        "tipus_subgrup": "L Fisica",
+        "subgrup_per_alumnes": false,
+        "valor": 4
+      }
+    },
+    {
+      "codi": "FM",
+      "nom": "Fonaments matematics",
+      "nivell": 1,
+      "classes": {
+        "teoria": 1,
+        "duracio_t": 3,
+        "problemes": 1,
+        "duracio_p": 2,
+        "laboratori": 0,
+        "duracio_l": 0
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 7,
+        "matins": 4,
+        "capacitat": 66,
+        "tipus_subgrup": "P",
+        "subgrup_per_alumnes": false,
+        "valor": 3
+      }
+    },
+    {
+      "codi": "PRO1",
+      "nom": "Programacio 1",
+      "nivell": 1,
+      "classes": {
+        "teoria": 1,
+        "duracio_t": 3,
+        "problemes": 0,
+        "duracio_p": 0,
+        "laboratori": 1,
+        "duracio_l": 2
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 7,
+        "matins": 4,
+        "capacitat": 66,
+        "tipus_subgrup": "LI",
+        "subgrup_per_alumnes": false,
+        "valor": 3
+      }
+    },
+    {
+      "codi": "EC",
+      "nom": "Estructura de computadors",
+      "nivell": 2,
+      "classes": {
+        "teoria": 2,
+        "duracio_t": 2,
+        "problemes": 0,
+        "duracio_p": 0,
+        "laboratori": 1,
+        "duracio_l": 2
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 5,
+        "matins": 3,
+        "capacitat": 60,
+        "tipus_subgrup": "LI",
+        "subgrup_per_alumnes": false,
+        "valor": 4
+      }
+    },
+    {
+      "codi": "PRO2",
+      "nom": "Programacio 2",
+      "nivell": 2,
+      "classes": {
+        "teoria": 1,
+        "duracio_t": 2,
+        "problemes": 0,
+        "duracio_p": 0,
+        "laboratori": 1,
+        "duracio_l": 2
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 5,
+        "matins": 3,
+        "capacitat": 60,
+        "tipus_subgrup": "LI",
+        "subgrup_per_alumnes": false,
+        "valor": 4
+      }
+    },
+    {
+      "codi": "M1",
+      "nom": "Matematiques 1",
+      "nivell": 2,
+      "classes": {
+        "teoria": 1,
+        "duracio_t": 2,
+        "problemes": 1,
+        "duracio_p": 2,
+        "laboratori": 0,
+        "duracio_l": 0
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 5,
+        "matins": 3,
+        "capacitat": 60,
+        "tipus_subgrup": "P",
+        "subgrup_per_alumnes": false,
+        "valor": 4
+      }
+    },
+    {
+      "codi": "M2",
+      "nom": "Matematiques 2",
+      "nivell": 2,
+      "classes": {
+        "teoria": 1,
+        "duracio_t": 2,
+        "problemes": 1,
+        "duracio_p": 2,
+        "laboratori": 0,
+        "duracio_l": 0
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 5,
+        "matins": 3,
+        "capacitat": 60,
+        "tipus_subgrup": "P",
+        "subgrup_per_alumnes": false,
+        "valor": 4
+      }
+    },
+    {
+      "codi": "CI",
+      "nom": "Computer interfaces",
+      "nivell": 3,
+      "classes": {
+        "teoria": 1,
+        "duracio_t": 2,
+        "problemes": 1,
+        "duracio_p": 2,
+        "laboratori": 2,
+        "duracio_l": 2
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 5,
+        "matins": 3,
+        "capacitat": 60,
+        "tipus_subgrup": "P",
+        "subgrup_per_alumnes": false,
+        "valor": 4
+      }
+    } ,
+    {
+      "codi": "EDA",
+      "nom": "Estructures de dades i disseny d'algorismes",
+      "nivell": 3,
+      "classes": {
+        "teoria": 1,
+        "duracio_t": 2,
+        "problemes": 1,
+        "duracio_p": 2,
+        "laboratori": 0,
+        "duracio_l": 0
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 5,
+        "matins": 3,
+        "capacitat": 60,
+        "tipus_subgrup": "P",
+        "subgrup_per_alumnes": false,
+        "valor": 4
+      }
+    },
+    {
+      "codi": "EEE",
+      "nom": "Empresa i entorn econòmic",
+      "nivell": 3,
+      "classes": {
+        "teoria": 2,
+        "duracio_t": 2,
+        "problemes": 2,
+        "duracio_p": 2,
+        "laboratori": 0,
+        "duracio_l": 0
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 5,
+        "matins": 3,
+        "capacitat": 60,
+        "tipus_subgrup": "P",
+        "subgrup_per_alumnes": false,
+        "valor": 4
+      }
+    },
+    {
+      "codi": "BD",
+      "nom": "Bases de dades",
+      "nivell": 3,
+      "classes": {
+        "teoria": 1,
+        "duracio_t": 2,
+        "problemes": 1,
+        "duracio_p": 2,
+        "laboratori": 0,
+        "duracio_l": 0
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 5,
+        "matins": 3,
+        "capacitat": 60,
+        "tipus_subgrup": "P",
+        "subgrup_per_alumnes": false,
+        "valor": 4
+      }
+    },
+
+
+    {
+      "codi": "2IC",
+      "nom": "Introduccio als computadors",
+      "nivell": 4,
+      "classes": {
+        "teoria": 2,
+        "duracio_t": 2,
+        "problemes": 0,
+        "duracio_p": 0,
+        "laboratori": 1,
+        "duracio_l": 2
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 7,
+        "matins": 4,
+        "capacitat": 68,
+        "tipus_subgrup": "L INFORMATICA",
+        "subgrup_per_alumnes": false,
+        "valor": 4
+      }
+    },
+    {
+      "codi": "2F",
+      "nom": "Fisica",
+      "nivell": 4,
+      "classes": {
+        "teoria": 2,
+        "duracio_t": 2,
+        "problemes": 0,
+        "duracio_p": 0,
+        "laboratori": 1,
+        "duracio_l": 2
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 7,
+        "matins": 4,
+        "capacitat": 68,
+        "tipus_subgrup": "L Fisica",
+        "subgrup_per_alumnes": false,
+        "valor": 4
+      }
+    },
+    {
+      "codi": "2FM",
+      "nom": "Fonaments matematics",
+      "nivell": 4,
+      "classes": {
+        "teoria": 1,
+        "duracio_t": 3,
+        "problemes": 1,
+        "duracio_p": 2,
+        "laboratori": 0,
+        "duracio_l": 0
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 7,
+        "matins": 4,
+        "capacitat": 66,
+        "tipus_subgrup": "P",
+        "subgrup_per_alumnes": false,
+        "valor": 3
+      }
+    },
+    {
+      "codi": "2PRO1",
+      "nom": "Programacio 1",
+      "nivell": 4,
+      "classes": {
+        "teoria": 1,
+        "duracio_t": 3,
+        "problemes": 0,
+        "duracio_p": 0,
+        "laboratori": 1,
+        "duracio_l": 2
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 7,
+        "matins": 4,
+        "capacitat": 66,
+        "tipus_subgrup": "LI",
+        "subgrup_per_alumnes": false,
+        "valor": 3
+      }
+    },
+    {
+      "codi": "2EC",
+      "nom": "Estructura de computadors",
+      "nivell": 5,
+      "classes": {
+        "teoria": 2,
+        "duracio_t": 2,
+        "problemes": 0,
+        "duracio_p": 0,
+        "laboratori": 1,
+        "duracio_l": 2
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 5,
+        "matins": 3,
+        "capacitat": 60,
+        "tipus_subgrup": "LI",
+        "subgrup_per_alumnes": false,
+        "valor": 4
+      }
+    },
+    {
+      "codi": "2PRO2",
+      "nom": "Programacio 2",
+      "nivell": 5,
+      "classes": {
+        "teoria": 1,
+        "duracio_t": 2,
+        "problemes": 0,
+        "duracio_p": 0,
+        "laboratori": 1,
+        "duracio_l": 2
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 5,
+        "matins": 3,
+        "capacitat": 60,
+        "tipus_subgrup": "LI",
+        "subgrup_per_alumnes": false,
+        "valor": 4
+      }
+    },
+    {
+      "codi": "2M1",
+      "nom": "Matematiques 1",
+      "nivell": 5,
+      "classes": {
+        "teoria": 1,
+        "duracio_t": 2,
+        "problemes": 1,
+        "duracio_p": 2,
+        "laboratori": 0,
+        "duracio_l": 0
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 5,
+        "matins": 3,
+        "capacitat": 60,
+        "tipus_subgrup": "P",
+        "subgrup_per_alumnes": false,
+        "valor": 4
+      }
+    },
+    {
+      "codi": "2M2",
+      "nom": "Matematiques 2",
+      "nivell": 5,
+      "classes": {
+        "teoria": 1,
+        "duracio_t": 2,
+        "problemes": 1,
+        "duracio_p": 2,
+        "laboratori": 0,
+        "duracio_l": 0
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 5,
+        "matins": 3,
+        "capacitat": 60,
+        "tipus_subgrup": "P",
+        "subgrup_per_alumnes": false,
+        "valor": 4
+      }
+    },
+    {
+      "codi": "2CI",
+      "nom": "Computer interfaces",
+      "nivell": 6,
+      "classes": {
+        "teoria": 1,
+        "duracio_t": 2,
+        "problemes": 1,
+        "duracio_p": 2,
+        "laboratori": 2,
+        "duracio_l": 2
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 5,
+        "matins": 3,
+        "capacitat": 60,
+        "tipus_subgrup": "P",
+        "subgrup_per_alumnes": false,
+        "valor": 4
+      }
+    } ,
+    {
+      "codi": "2EDA",
+      "nom": "Estructures de dades i disseny d'algorismes",
+      "nivell": 6,
+      "classes": {
+        "teoria": 1,
+        "duracio_t": 2,
+        "problemes": 1,
+        "duracio_p": 2,
+        "laboratori": 0,
+        "duracio_l": 0
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 5,
+        "matins": 3,
+        "capacitat": 60,
+        "tipus_subgrup": "P",
+        "subgrup_per_alumnes": false,
+        "valor": 4
+      }
+    },
+    {
+      "codi": "2EEE",
+      "nom": "Empresa i entorn econòmic",
+      "nivell": 6,
+      "classes": {
+        "teoria": 2,
+        "duracio_t": 2,
+        "problemes": 2,
+        "duracio_p": 2,
+        "laboratori": 0,
+        "duracio_l": 0
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 5,
+        "matins": 3,
+        "capacitat": 60,
+        "tipus_subgrup": "P",
+        "subgrup_per_alumnes": false,
+        "valor": 4
+      }
+    },
+    {
+      "codi": "2BD",
+      "nom": "Bases de dades",
+      "nivell": 6,
+      "classes": {
+        "teoria": 1,
+        "duracio_t": 2,
+        "problemes": 1,
+        "duracio_p": 2,
+        "laboratori": 0,
+        "duracio_l": 0
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 5,
+        "matins": 3,
+        "capacitat": 60,
+        "tipus_subgrup": "P",
+        "subgrup_per_alumnes": false,
+        "valor": 4
+      }
+    },
+
+
+    {
+      "codi": "3IC",
+      "nom": "Introduccio als computadors",
+      "nivell": 7,
+      "classes": {
+        "teoria": 2,
+        "duracio_t": 2,
+        "problemes": 0,
+        "duracio_p": 0,
+        "laboratori": 1,
+        "duracio_l": 2
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 7,
+        "matins": 4,
+        "capacitat": 68,
+        "tipus_subgrup": "L INFORMATICA",
+        "subgrup_per_alumnes": false,
+        "valor": 4
+      }
+    },
+    {
+      "codi": "3F",
+      "nom": "Fisica",
+      "nivell": 7,
+      "classes": {
+        "teoria": 2,
+        "duracio_t": 2,
+        "problemes": 0,
+        "duracio_p": 0,
+        "laboratori": 1,
+        "duracio_l": 2
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 7,
+        "matins": 4,
+        "capacitat": 68,
+        "tipus_subgrup": "L Fisica",
+        "subgrup_per_alumnes": false,
+        "valor": 4
+      }
+    },
+    {
+      "codi": "3FM",
+      "nom": "Fonaments matematics",
+      "nivell": 7,
+      "classes": {
+        "teoria": 1,
+        "duracio_t": 3,
+        "problemes": 1,
+        "duracio_p": 2,
+        "laboratori": 0,
+        "duracio_l": 0
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 7,
+        "matins": 4,
+        "capacitat": 66,
+        "tipus_subgrup": "P",
+        "subgrup_per_alumnes": false,
+        "valor": 3
+      }
+    },
+    {
+      "codi": "3PRO1",
+      "nom": "Programacio 1",
+      "nivell": 7,
+      "classes": {
+        "teoria": 1,
+        "duracio_t": 3,
+        "problemes": 0,
+        "duracio_p": 0,
+        "laboratori": 1,
+        "duracio_l": 2
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 7,
+        "matins": 4,
+        "capacitat": 66,
+        "tipus_subgrup": "LI",
+        "subgrup_per_alumnes": false,
+        "valor": 3
+      }
+    },
+    {
+      "codi": "3EC",
+      "nom": "Estructura de computadors",
+      "nivell": 8,
+      "classes": {
+        "teoria": 2,
+        "duracio_t": 2,
+        "problemes": 0,
+        "duracio_p": 0,
+        "laboratori": 1,
+        "duracio_l": 2
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 5,
+        "matins": 3,
+        "capacitat": 60,
+        "tipus_subgrup": "LI",
+        "subgrup_per_alumnes": false,
+        "valor": 4
+      }
+    },
+    {
+      "codi": "3PRO2",
+      "nom": "Programacio 2",
+      "nivell": 8,
+      "classes": {
+        "teoria": 1,
+        "duracio_t": 2,
+        "problemes": 0,
+        "duracio_p": 0,
+        "laboratori": 1,
+        "duracio_l": 2
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 5,
+        "matins": 3,
+        "capacitat": 60,
+        "tipus_subgrup": "LI",
+        "subgrup_per_alumnes": false,
+        "valor": 4
+      }
+    },
+    {
+      "codi": "3M1",
+      "nom": "Matematiques 1",
+      "nivell": 8,
+      "classes": {
+        "teoria": 1,
+        "duracio_t": 2,
+        "problemes": 1,
+        "duracio_p": 2,
+        "laboratori": 0,
+        "duracio_l": 0
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 5,
+        "matins": 3,
+        "capacitat": 60,
+        "tipus_subgrup": "P",
+        "subgrup_per_alumnes": false,
+        "valor": 4
+      }
+    },
+    {
+      "codi": "3M2",
+      "nom": "Matematiques 2",
+      "nivell": 8,
+      "classes": {
+        "teoria": 1,
+        "duracio_t": 2,
+        "problemes": 1,
+        "duracio_p": 2,
+        "laboratori": 0,
+        "duracio_l": 0
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 5,
+        "matins": 3,
+        "capacitat": 60,
+        "tipus_subgrup": "P",
+        "subgrup_per_alumnes": false,
+        "valor": 4
+      }
+    },
+    {
+      "codi": "3CI",
+      "nom": "Computer interfaces",
+      "nivell": 9,
+      "classes": {
+        "teoria": 1,
+        "duracio_t": 2,
+        "problemes": 1,
+        "duracio_p": 2,
+        "laboratori": 2,
+        "duracio_l": 2
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 5,
+        "matins": 3,
+        "capacitat": 60,
+        "tipus_subgrup": "P",
+        "subgrup_per_alumnes": false,
+        "valor": 4
+      }
+    } ,
+    {
+      "codi": "3EDA",
+      "nom": "Estructures de dades i disseny d'algorismes",
+      "nivell": 9,
+      "classes": {
+        "teoria": 1,
+        "duracio_t": 2,
+        "problemes": 1,
+        "duracio_p": 2,
+        "laboratori": 0,
+        "duracio_l": 0
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 5,
+        "matins": 3,
+        "capacitat": 60,
+        "tipus_subgrup": "P",
+        "subgrup_per_alumnes": false,
+        "valor": 4
+      }
+    },
+    {
+      "codi": "3EEE",
+      "nom": "Empresa i entorn econòmic",
+      "nivell": 9,
+      "classes": {
+        "teoria": 2,
+        "duracio_t": 2,
+        "problemes": 2,
+        "duracio_p": 2,
+        "laboratori": 0,
+        "duracio_l": 0
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 5,
+        "matins": 3,
+        "capacitat": 60,
+        "tipus_subgrup": "P",
+        "subgrup_per_alumnes": false,
+        "valor": 4
+      }
+    },
+    {
+      "codi": "3BD",
+      "nom": "Bases de dades",
+      "nivell": 9,
+      "classes": {
+        "teoria": 1,
+        "duracio_t": 2,
+        "problemes": 1,
+        "duracio_p": 2,
+        "laboratori": 0,
+        "duracio_l": 0
+      },
+      "grups": {
+        "automatic": true,
+        "nombre": 5,
+        "matins": 3,
+        "capacitat": 60,
+        "tipus_subgrup": "P",
+        "subgrup_per_alumnes": false,
+        "valor": 4
+      }
+    }
+  ],
+  "corequisits":[
+    {
+      "a1":"IC",
+      "a2":"FM"
+    }
+  ]
+}

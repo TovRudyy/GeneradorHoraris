@@ -1,0 +1,20 @@
+Objectiu: Veure l'efecte de les restriccions flexibles i com suavitzar-les
+
+Inicialització:
+        Carregar Escenari -> Seleccionar carpeta "Escenari_Restriccions_Flexibles"
+
+Operacions:
+        Accions:
+                Seleccionar pla "FIB"
+                Clicar "Generar Horari"
+        Sortida:
+                Missatge indicant que no es pot generar l'horari
+        Accions:
+                Clicar "Restriccions flexibles"
+                Seleccionar alguna de les restriccions actives (qualsevol combinació de les 3 deixarà de
+                        provocar la impossibilitat de la generació de l'horari)
+                Clicar "Sortir"
+                Clicar "Generar horari"
+        Sortida:
+                Finestra mostrant l'horari generat
+                Observar que les restriccions flexibles no "suavitzades" es segueixen complint
